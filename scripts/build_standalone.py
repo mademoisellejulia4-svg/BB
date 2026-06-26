@@ -30,6 +30,8 @@ img_files = {
     "images/story-2.jpg": ("images/story-2.jpg", 760),
     "images/instagram-1.jpg": ("images/instagram-1.jpg", 540),
     "images/instagram-2.jpg": ("images/instagram-2.jpg", 540),
+    "images/review-teapot.jpg": ("images/review-teapot.jpg", 560),
+    "images/review-food.jpg": ("images/review-food.jpg", 640),
 }
 uri_map = {}
 total = 0
@@ -594,15 +596,23 @@ __HEROCSS__
 <section id="reviews">
   <div class="sec-head" style="margin-bottom:8px">
     <div class="sec-eyebrow">Reviews</div>
-    <h2 class="sec-title">Loved in Nottingham</h2>
+    <h2 class="sec-title">Hear What Our Customers Say</h2>
   </div>
-  <div class="rv-score">
-    <span class="rv-num">4.8</span>
-    <span class="rv-stars">★★★★★</span>
-    <span class="rv-count">155 Google reviews</span>
+  <div class="rv-ratings">
+    <span class="rv-score"><span class="rv-num">4.98</span><span class="rv-stars">★★★★★</span><span class="rv-count">(42)</span></span>
+    <span class="rv-verified">Verified reviews</span>
+    <span class="rv-count">·&nbsp; Google 4.8 ★ · 155 reviews</span>
   </div>
   <div class="rv-grid">
     <div class="rv-card">
+      <img class="rv-photo" src="images/review-teapot.jpg" alt="Customer's cast iron teapot" />
+      <div class="rv-s">★★★★★</div>
+      <p class="rv-q">"I'm so happy with my new teapot. The loose teas are so nice, and the customer service was excellent."</p>
+      <div class="rv-prod">Loose Leaf Tea Starter Kit</div>
+      <div class="rv-by"><b>Caroline Sutliffe</b> &middot; Verified</div>
+    </div>
+    <div class="rv-card">
+      <img class="rv-photo" src="images/review-food.jpg" alt="Brunch at Biscuit &amp; Brew" />
       <div class="rv-s">★★★★★</div>
       <p class="rv-q">"Delicious food, reasonably priced, with such wonderful friendly staff &mdash; it makes you wonder why more people don't go there!"</p>
       <div class="rv-by"><b>Daniel McDonald-Smith</b> &middot; Google</div>
@@ -610,17 +620,22 @@ __HEROCSS__
     <div class="rv-card">
       <div class="rv-s">★★★★★</div>
       <p class="rv-q">"Quirky little tea shop which we loved! An amazing array of loose leaf tea, and the staff explained every flavour."</p>
-      <div class="rv-by"><b>Tripadvisor reviewer</b> &middot; Tripadvisor</div>
+      <div class="rv-by"><b>Verified guest</b> &middot; Tripadvisor</div>
+    </div>
+    <div class="rv-card">
+      <div class="rv-s">★★★★★</div>
+      <p class="rv-q">"Booked afternoon tea for a retirement &mdash; beautifully presented, a large warm scone with generous jam and clotted cream, and bottomless tea topped up as needed."</p>
+      <div class="rv-by"><b>Verified guest</b> &middot; Tripadvisor</div>
+    </div>
+    <div class="rv-card">
+      <div class="rv-s">★★★★★</div>
+      <p class="rv-q">"Everything homemade and totally delicious &mdash; an amazing feast. Little teapots with the brewing time explained for each tea."</p>
+      <div class="rv-by"><b>Verified guest</b> &middot; Tripadvisor</div>
     </div>
     <div class="rv-card">
       <div class="rv-s">★★★★★</div>
       <p class="rv-q">"A gem of a place &mdash; a cute little cafe with a lovely atmosphere and such friendly, attentive staff."</p>
       <div class="rv-by"><b>Google reviewer</b> &middot; Google</div>
-    </div>
-    <div class="rv-card">
-      <div class="rv-s">★★★★★</div>
-      <p class="rv-q">"Lovely coffee and a freshly baked scone, with good, attentive service. We'll be back."</p>
-      <div class="rv-by"><b>Tripadvisor reviewer</b> &middot; Tripadvisor</div>
     </div>
   </div>
   <a class="rv-cta" href="https://www.google.com/maps/search/?api=1&query=Biscuit%20%26%20Brew%20Nottingham" target="_blank" rel="noopener">Read &amp; leave a review →</a>

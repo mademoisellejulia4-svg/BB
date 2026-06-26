@@ -660,6 +660,11 @@
   .rv-score .rv-num{ font-family:'Cormorant Garamond',serif; font-size:44px; color:#fff; line-height:1; }
   .rv-stars{ color:var(--amber); font-size:18px; letter-spacing:2px; }
   .rv-count{ font-size:12px; color:rgba(255,255,255,0.5); letter-spacing:.04em; }
+  .rv-verified{ display:inline-flex; align-items:center; gap:6px; font-size:11px; letter-spacing:.06em; color:#5db075; }
+  .rv-verified::before{ content:"✓"; display:inline-flex; align-items:center; justify-content:center; width:16px; height:16px; border-radius:4px; background:#2f7d4a; color:#fff; font-size:10px; }
+  .rv-ratings{ display:flex; gap:14px 28px; align-items:center; justify-content:center; flex-wrap:wrap; margin-top:10px; }
+  .rv-photo{ width:calc(100% + 48px); margin:-26px -24px 4px; height:200px; object-fit:cover; border-radius:16px 16px 0 0; display:block; }
+  .rv-prod{ font-size:10px; text-transform:uppercase; letter-spacing:.18em; color:rgba(var(--amber-rgb),0.7); }
   .rv-grid{
     max-width:1180px; margin:46px auto 0; display:grid; gap:22px;
     grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); text-align:left;
@@ -1064,15 +1069,23 @@
 <section id="reviews">
   <div class="sec-head" style="margin-bottom:8px">
     <div class="sec-eyebrow">Reviews</div>
-    <h2 class="sec-title">Loved in Nottingham</h2>
+    <h2 class="sec-title">Hear What Our Customers Say</h2>
   </div>
-  <div class="rv-score">
-    <span class="rv-num">4.8</span>
-    <span class="rv-stars">★★★★★</span>
-    <span class="rv-count">155 Google reviews</span>
+  <div class="rv-ratings">
+    <span class="rv-score"><span class="rv-num">4.98</span><span class="rv-stars">★★★★★</span><span class="rv-count">(42)</span></span>
+    <span class="rv-verified">Verified reviews</span>
+    <span class="rv-count">·&nbsp; Google 4.8 ★ · 155 reviews</span>
   </div>
   <div class="rv-grid">
     <div class="rv-card">
+      <img class="rv-photo" src="images/review-teapot.jpg" alt="Customer's cast iron teapot" />
+      <div class="rv-s">★★★★★</div>
+      <p class="rv-q">"I'm so happy with my new teapot. The loose teas are so nice, and the customer service was excellent."</p>
+      <div class="rv-prod">Loose Leaf Tea Starter Kit</div>
+      <div class="rv-by"><b>Caroline Sutliffe</b> · Verified</div>
+    </div>
+    <div class="rv-card">
+      <img class="rv-photo" src="images/review-food.jpg" alt="Brunch at Biscuit & Brew" />
       <div class="rv-s">★★★★★</div>
       <p class="rv-q">"Delicious food, reasonably priced, with such wonderful friendly staff — it makes you wonder why more people don't go there!"</p>
       <div class="rv-by"><b>Daniel McDonald-Smith</b> · Google</div>
@@ -1080,17 +1093,22 @@
     <div class="rv-card">
       <div class="rv-s">★★★★★</div>
       <p class="rv-q">"Quirky little tea shop which we loved! An amazing array of loose leaf tea, and the staff explained every flavour."</p>
-      <div class="rv-by"><b>Tripadvisor reviewer</b> · Tripadvisor</div>
+      <div class="rv-by"><b>Verified guest</b> · Tripadvisor</div>
+    </div>
+    <div class="rv-card">
+      <div class="rv-s">★★★★★</div>
+      <p class="rv-q">"Booked afternoon tea for a retirement — beautifully presented, a large warm scone with generous jam and clotted cream, and bottomless tea topped up as needed."</p>
+      <div class="rv-by"><b>Verified guest</b> · Tripadvisor</div>
+    </div>
+    <div class="rv-card">
+      <div class="rv-s">★★★★★</div>
+      <p class="rv-q">"Everything homemade and totally delicious — an amazing feast. Little teapots with the brewing time explained for each tea."</p>
+      <div class="rv-by"><b>Verified guest</b> · Tripadvisor</div>
     </div>
     <div class="rv-card">
       <div class="rv-s">★★★★★</div>
       <p class="rv-q">"A gem of a place — a cute little cafe with a lovely atmosphere and such friendly, attentive staff."</p>
       <div class="rv-by"><b>Google reviewer</b> · Google</div>
-    </div>
-    <div class="rv-card">
-      <div class="rv-s">★★★★★</div>
-      <p class="rv-q">"Lovely coffee and a freshly baked scone, with good, attentive service. We'll be back."</p>
-      <div class="rv-by"><b>Tripadvisor reviewer</b> · Tripadvisor</div>
     </div>
   </div>
   <a class="rv-cta" href="https://www.google.com/maps/search/?api=1&query=Biscuit%20%26%20Brew%20Nottingham" target="_blank" rel="noopener">Read &amp; leave a review →</a>
