@@ -12,7 +12,7 @@ for you, and the preview URL is **private by default** — only you, signed into
 GitHub, can open it. Nothing is public.
 
 1. In Safari, go to your repo: `https://github.com/mademoisellejulia4-svg/BB`
-2. Switch to the branch **`claude/biscuit-brew-scroll-site-btdgqu`**.
+2. Switch to the branch **`claude/biscuit-brew-website-gnwai3`**.
 3. Tap the green **`< > Code`** button → **Codespaces** tab →
    **Create codespace on this branch**. Wait ~1 minute for it to build
    (it auto-runs `npm install`).
@@ -44,7 +44,7 @@ only you can view it — it is **not** public.
 2. **Workers & Pages** → **Create** → **Pages** → **Connect to Git** → authorize
    GitHub and pick this repo.
 3. Build settings:
-   - **Production branch:** `claude/biscuit-brew-scroll-site-btdgqu`
+   - **Production branch:** `claude/biscuit-brew-website-gnwai3`
    - **Build command:** *(leave empty)*
    - **Build output directory:** `public`
    - Deploy. You'll get a `https://<name>.pages.dev` URL.
