@@ -104,8 +104,9 @@
     background:rgba(var(--amber-rgb),0.8);
   }
 
-  /* ============ HERO — autoplaying video ============ */
-  #hero{ position:relative; height:100vh; width:100%; overflow:hidden; background:var(--ink); }
+  /* ============ HERO — scroll-scrubbed video (≈3 scrolls) ============ */
+  #hero{ position:relative; height:300vh; width:100%; background:var(--ink); }
+  #sticky{ position:sticky; top:0; height:100vh; width:100%; overflow:hidden; }
   #heroVideo{
     position:absolute; inset:0;
     width:100%; height:100%; object-fit:cover;
@@ -732,15 +733,17 @@
 <!-- SCROLL PROGRESS BAR -->
 <div id="vbar"><div id="vfill"></div></div>
 
-<!-- HERO: autoplaying video -->
+<!-- HERO: scroll-scrubbed video -->
 <section id="hero">
-  <video id="heroVideo" src="Video.mp4" autoplay muted loop playsinline preload="auto" poster="images/black-tea.png"></video>
-  <div class="hero-veil"></div>
-  <div class="hero-center">
-    <div class="hero-title">BISCUIT &amp; BREW</div>
-    <div class="hero-tag">Rooted in the hills</div>
+  <div id="sticky">
+    <video id="heroVideo" src="Video.mp4" muted playsinline preload="auto" poster="images/black-tea.png"></video>
+    <div class="hero-veil"></div>
+    <div class="hero-center">
+      <div class="hero-title">BISCUIT &amp; BREW</div>
+      <div class="hero-tag">Rooted in the hills</div>
+    </div>
+    <div class="scroll-hint">Scroll to explore</div>
   </div>
-  <div class="scroll-hint">Scroll to explore</div>
 </section>
 
 <!-- PRODUCTS -->
@@ -1089,14 +1092,51 @@
   const band = (p,a,b,c,d) => Math.min(ramp(p,a,b), 1-ramp(p,c,d));
 
   /* =====================================================================
-     HERO VIDEO + SCROLL PROGRESS BAR
+     HERO — scroll-scrubbed video: whole clip across ~3 viewport scrolls
      ===================================================================== */
+  const hero = $('#hero');
   const heroVideo = $('#heroVideo');
+  const heroCenter = $('#sticky .hero-center');
+  let heroDur = 0, targetT = 0, curT = 0, primed = false;
+
   if(heroVideo){
-    const tryPlay = () => { const pr = heroVideo.play(); if(pr && pr.catch) pr.catch(()=>{}); };
-    heroVideo.addEventListener('canplay', tryPlay);
-    tryPlay();
+    heroVideo.muted = true; heroVideo.playsInline = true;
+    heroVideo.setAttribute('webkit-playsinline','');
+    heroVideo.addEventListener('loadedmetadata', () => { heroDur = heroVideo.duration || 0; });
+    // iOS needs the decoder primed before currentTime seeks take effect
+    const prime = () => {
+      if(primed) return; primed = true;
+      const pr = heroVideo.play();
+      if(pr && pr.then) pr.then(() => heroVideo.pause()).catch(() => {});
+      else heroVideo.pause();
+    };
+    heroVideo.addEventListener('canplay', prime);
+    window.addEventListener('touchstart', prime, { once:true, passive:true });
+    window.addEventListener('wheel', prime, { once:true, passive:true });
+    heroVideo.load();
   }
+
+  function heroProgress(){
+    const total = hero.offsetHeight - window.innerHeight;
+    if(total <= 0) return 0;
+    return clamp(-hero.getBoundingClientRect().top / total, 0, 1);
+  }
+  function onHeroScroll(){
+    const p = heroProgress();
+    const d = heroDur || heroVideo.duration || 0;
+    targetT = p * Math.max(0, d - 0.05);
+    // fade the title out as the clip plays in
+    if(heroCenter) heroCenter.style.opacity = (1 - ramp(p, 0.04, 0.32)).toFixed(3);
+  }
+  function heroLoop(){
+    curT += (targetT - curT) * 0.16;
+    if(Math.abs(targetT - curT) < 0.008) curT = targetT;
+    if(heroVideo && (heroDur || heroVideo.duration) && Math.abs(heroVideo.currentTime - curT) > 0.02){
+      try { heroVideo.currentTime = curT; } catch(e){}
+    }
+    requestAnimationFrame(heroLoop);
+  }
+  requestAnimationFrame(heroLoop);
 
   const vfill = $('#vfill');
   function updateVBar(){
@@ -1104,9 +1144,10 @@
     const p = max > 0 ? window.scrollY / max : 0;
     vfill.style.height = (p*100).toFixed(2) + '%';
   }
-  window.addEventListener('scroll', updateVBar, { passive:true });
-  window.addEventListener('resize', updateVBar);
-  updateVBar();
+  function onScroll(){ onHeroScroll(); updateVBar(); }
+  window.addEventListener('scroll', onScroll, { passive:true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
 
   /* =====================================================================
      STORE — data-driven two-level SPA + modal + persistent cart.
