@@ -28,6 +28,8 @@ img_files = {
     "images/story-owners.png": ("images/story-owners.png", 800),
     "images/story-1.jpg": ("images/story-1.jpg", 760),
     "images/story-2.jpg": ("images/story-2.jpg", 760),
+    "images/instagram-1.jpg": ("images/instagram-1.jpg", 540),
+    "images/instagram-2.jpg": ("images/instagram-2.jpg", 540),
 }
 uri_map = {}
 total = 0
@@ -510,6 +512,27 @@ __HEROCSS__
   </div>
 </section>
 
+<section id="instagram">
+  <div class="sec-head" style="margin-bottom:0">
+    <div class="sec-eyebrow">Follow along</div>
+    <h2 class="sec-title">Find Us On Instagram</h2>
+    <div class="ig-handle"><a href="https://www.instagram.com/biscuitandbrew_/" target="_blank" rel="noopener">@biscuitandbrew_</a></div>
+  </div>
+  <div class="ig-grid">
+    <a class="ig-tile" href="https://www.instagram.com/reel/DZrpOSkNASV/" target="_blank" rel="noopener" style="background-image:url('images/instagram-1.jpg')">
+      <span class="ig-ico">Reel</span>
+      <span class="ig-veil"></span>
+      <span class="ig-play"></span>
+    </a>
+    <a class="ig-tile" href="https://www.instagram.com/reel/DZkJ3qHOFie/" target="_blank" rel="noopener" style="background-image:url('images/instagram-2.jpg')">
+      <span class="ig-ico">Reel</span>
+      <span class="ig-veil"></span>
+      <span class="ig-play"></span>
+      <span class="ig-cap">Book Club day at Biscuit and Brew ✨</span>
+    </a>
+  </div>
+</section>
+
 <section id="refer">
   <div class="r-eyebrow">Rewards</div>
   <h2>Refer A Friend</h2>
@@ -536,8 +559,8 @@ __HEROCSS__
       <div class="fc-logo">BISCUIT &amp; BREW</div>
       <p>Handcrafted loose leaf tea blends, inspired by cakes, biscuits, cocktails and music. Made in Nottingham since 2017.</p>
       <div class="fc-social">
-        <a href="#" onclick="return false" aria-label="Facebook">f</a>
-        <a href="#" onclick="return false" aria-label="Instagram">&#9678;</a>
+        <a href="https://www.facebook.com/biscuitandbrewteahouse/" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+        <a href="https://www.instagram.com/biscuitandbrew_/" target="_blank" rel="noopener" aria-label="Instagram">&#9678;</a>
       </div>
     </div>
     <div class="fc-col">
@@ -576,7 +599,7 @@ __HEROCSS__
 <footer>
   <div class="f-left">BISCUIT &amp; BREW</div>
   <div class="f-center">&copy; 2026 BISCUIT &amp; BREW &middot; Rooted in the hills.</div>
-  <div class="f-right"><a href="#" onclick="return false">Instagram</a> &nbsp;&bull;&nbsp; <a href="#" onclick="return false">Facebook</a></div>
+  <div class="f-right"><a href="https://www.instagram.com/biscuitandbrew_/" target="_blank" rel="noopener">Instagram</a> &nbsp;&bull;&nbsp; <a href="https://www.facebook.com/biscuitandbrewteahouse/" target="_blank" rel="noopener">Facebook</a></div>
 </footer>
 
 <div id="modal">
@@ -620,9 +643,10 @@ HTML = (HTML.replace("__CSS__", css)
             .replace("__HERO__", hero_uri)
             .replace("__JS__", JS))
 
-# inline static (non-catalog) image paths used in markup, e.g. the Our Story section
+# inline static (non-catalog) image paths used in markup (Our Story <img>, Instagram tiles)
 for rel, uri in uri_map.items():
     HTML = HTML.replace('src="' + rel + '"', 'src="' + uri + '"')
+    HTML = HTML.replace("url('" + rel + "')", "url('" + uri + "')")
 
 out = os.path.join(PUB, "biscuit-and-brew-ipad.html")
 with open(out, "w") as f:
