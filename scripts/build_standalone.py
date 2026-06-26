@@ -62,8 +62,8 @@ css = re.search(r"<style>(.*?)</style>", page, re.S).group(1)
 
 HERO_CSS = """
   /* ===== STANDALONE STATIC HERO (offline, no video) ===== */
-  #hero{ height:100vh; }
-  #sticky{ position:relative; }
+  #hero{ position:relative; height:100vh; width:100%; overflow:hidden; }
+  #sticky{ position:relative; height:100vh; width:100%; overflow:hidden; }
   .hero-bg{ position:absolute; inset:0; background-size:cover; background-position:center;
     animation:heroZoom 18s ease-in-out infinite alternate; }
   @keyframes heroZoom{ from{ transform:scale(1.02);} to{ transform:scale(1.12);} }
