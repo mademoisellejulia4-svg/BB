@@ -1,0 +1,5 @@
+# Static deploy config (Netlify / Cloudflare Pages both honor a publish dir).
+# The site is fully static — no build step. Everything lives in /public.
+[build]
+  publish = "public"
+  command = ""
