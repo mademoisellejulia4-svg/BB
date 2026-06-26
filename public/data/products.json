@@ -10,6 +10,7 @@
       "id": "black",
       "name": "Black Tea",
       "meta": "10 blends · full-bodied",
+      "image": "IMG_2673.jpg",
       "products": [
         {
           "id": "biscuit-brew",
@@ -115,6 +116,7 @@
       "id": "green",
       "name": "Green Tea",
       "meta": "5 blends · fresh & delicate",
+      "image": "IMG_2674.jpg",
       "products": [
         {
           "id": "pear-pistachio",
@@ -172,6 +174,7 @@
       "id": "herbal",
       "name": "Fruit & Herbal",
       "meta": "4 blends · caffeine-free",
+      "image": "IMG_2675.jpg",
       "products": [
         {
           "id": "strawberry-fields-forever",
@@ -211,6 +214,41 @@
             { "sku": "HRB-RASPBERRY-ROSE-50G", "size": "50g", "price": 7.50 },
             { "sku": "HRB-RASPBERRY-ROSE-100G", "size": "100g", "price": 13.50 },
             { "sku": "HRB-RASPBERRY-ROSE-250G", "size": "250g", "price": 29.00 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matcha",
+      "name": "Matcha",
+      "meta": "3 pieces · the ritual",
+      "image": "matcha.jpg",
+      "products": [
+        {
+          "id": "matcha-kit",
+          "name": "Matcha Kit",
+          "description": "Everything for the ritual — stone-ground ceremonial matcha paired with a handcrafted bamboo whisk.",
+          "image": "matcha.jpg",
+          "variants": [
+            { "sku": "MAT-KIT", "size": "Kit", "price": 25.95 }
+          ]
+        },
+        {
+          "id": "matcha",
+          "name": "Matcha",
+          "description": "Vivid, stone-ground ceremonial green tea — smooth, grassy and naturally energising.",
+          "image": "matcha-tin.jpg",
+          "variants": [
+            { "sku": "MAT-TIN", "size": "Tin", "price": 17.95 }
+          ]
+        },
+        {
+          "id": "matcha-whisk",
+          "name": "Matcha Whisk",
+          "description": "A traditional handcrafted bamboo chasen for a perfectly smooth, frothy bowl.",
+          "image": "matcha-whisk.jpg",
+          "variants": [
+            { "sku": "MAT-WHISK", "size": "Whisk", "price": 9.95 }
           ]
         }
       ]
