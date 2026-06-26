@@ -893,7 +893,7 @@
       card.className = 'cat-card';
       const count = (c.products && c.products.length) || 0;
       const media = c.image
-        ? '<div class="cc-media"><img src="'+c.image+'" alt="'+c.name+'" loading="lazy" onerror="this.style.display=\'none\'"><span class="cc-fade"></span></div>'
+        ? '<div class="cc-media"><img src="'+c.image+'" alt="'+c.name+'" loading="lazy"><span class="cc-fade"></span></div>'
         : '';
       card.innerHTML =
         media +
@@ -901,6 +901,20 @@
         '<div class="cc-name">'+c.name+'</div>' +
         '<div class="cc-meta">'+(c.meta || (count+' blends'))+'</div>' +
         '<div class="cc-cta">Explore &rarr;</div>';
+      // Resilient image loading: if the .jpg is missing, try .png, then .webp; otherwise hide.
+      const imgEl = card.querySelector('.cc-media img');
+      if(imgEl){
+        const exts = ['.png', '.webp', '.jpeg'];
+        imgEl.addEventListener('error', function(){
+          let i2 = parseInt(imgEl.dataset.fb || '0', 10);
+          if(i2 < exts.length){
+            imgEl.dataset.fb = String(i2 + 1);
+            imgEl.src = (c.image || '').replace(/\.[a-z0-9]+$/i, exts[i2]);
+          } else {
+            imgEl.style.display = 'none';
+          }
+        });
+      }
       card.addEventListener('click', () => openCategory(c.id));
       catGrid.appendChild(card);
     });
