@@ -364,6 +364,77 @@
   #toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
   #toast b{ color:var(--amber); font-weight:500; }
 
+  /* ============ HEADER NAV + CART BUTTON ============ */
+  header .hnav{ display:flex; align-items:center; gap:22px; pointer-events:auto; }
+  .bag{ display:inline-flex; align-items:center; gap:7px; }
+  .bag-count{
+    display:inline-flex; align-items:center; justify-content:center;
+    min-width:17px; height:17px; padding:0 5px; border-radius:9px;
+    background:rgba(var(--amber-rgb),0.18); color:var(--amber);
+    font-size:10px; line-height:1; font-weight:500;
+    transition:transform .3s var(--ease);
+  }
+  .bag-count.pop{ transform:scale(1.4); }
+
+  /* ============ CART DRAWER ============ */
+  #cartOverlay{
+    position:fixed; inset:0; z-index:600;
+    background:rgba(3,3,5,0.6); backdrop-filter:blur(4px);
+    opacity:0; visibility:hidden; transition:opacity .4s var(--ease), visibility .4s;
+  }
+  #cartOverlay.open{ opacity:1; visibility:visible; }
+  #cart{
+    position:fixed; top:0; right:0; z-index:650;
+    width:min(420px, 92vw); height:100vh;
+    background:linear-gradient(180deg, #0b0b16, #08080f);
+    border-left:1px solid rgba(var(--amber-rgb),0.18);
+    display:flex; flex-direction:column;
+    transform:translateX(100%); transition:transform .45s var(--ease);
+    box-shadow:-30px 0 80px -30px rgba(0,0,0,0.8);
+  }
+  #cart.open{ transform:translateX(0); }
+  .cart-head{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:26px 28px; border-bottom:1px solid rgba(255,255,255,0.07);
+  }
+  .cart-title{ font-family:'Cormorant Garamond',serif; font-size:24px; letter-spacing:.04em; color:#fff; }
+  .cart-close{ background:none; border:none; color:rgba(255,255,255,0.55); font-size:24px; cursor:pointer; line-height:1; transition:color .3s var(--ease); }
+  .cart-close:hover{ color:var(--amber); }
+  #cartItems{ flex:1; overflow-y:auto; padding:10px 28px; }
+  .cart-item{
+    display:flex; gap:14px; align-items:flex-start;
+    padding:20px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  .ci-main{ flex:1; min-width:0; }
+  .ci-name{ font-family:'Cormorant Garamond',serif; font-size:19px; color:#fff; line-height:1.2; }
+  .ci-meta{ font-size:11px; color:rgba(255,255,255,0.45); margin-top:4px; letter-spacing:.04em; }
+  .ci-row{ display:flex; align-items:center; justify-content:space-between; margin-top:12px; }
+  .ci-qty{ display:flex; align-items:center; border:1px solid rgba(255,255,255,0.14); border-radius:9px; overflow:hidden; }
+  .ci-qty button{ background:none; border:none; color:#fff; width:28px; height:30px; cursor:pointer; font-size:14px; }
+  .ci-qty button:hover{ color:var(--amber); }
+  .ci-qty span{ width:26px; text-align:center; font-size:12px; }
+  .ci-price{ font-family:'Cormorant Garamond',serif; font-size:18px; color:var(--amber); }
+  .ci-remove{ background:none; border:none; color:rgba(255,255,255,0.35); font-size:10px; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; margin-top:8px; transition:color .3s var(--ease); }
+  .ci-remove:hover{ color:#e7796b; }
+  .cart-empty{
+    flex:1; display:none; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; color:rgba(255,255,255,0.5); font-size:14px; padding:0 30px; gap:8px;
+  }
+  .cart-empty span{ font-size:12px; color:rgba(255,255,255,0.3); }
+  .cart-foot{ padding:24px 28px 30px; border-top:1px solid rgba(255,255,255,0.08); }
+  .cart-sub{ display:flex; align-items:baseline; justify-content:space-between; }
+  .cart-sub span:first-child{ font-size:11px; text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,0.5); }
+  #cartTotal{ font-family:'Cormorant Garamond',serif; font-size:28px; color:#fff; }
+  .checkout{
+    width:100%; margin-top:18px; cursor:pointer;
+    background:var(--amber); color:#0a0a0a; border:none; border-radius:12px;
+    padding:16px; font-family:'Inter',sans-serif; font-size:11px; font-weight:500;
+    text-transform:uppercase; letter-spacing:.22em;
+    transition:transform .3s var(--ease), filter .3s var(--ease);
+  }
+  .checkout:hover{ filter:brightness(1.08); transform:translateY(-2px); }
+  .cart-note{ margin-top:14px; text-align:center; font-size:10px; color:rgba(255,255,255,0.35); letter-spacing:.04em; }
+
   /* ============ NEWSLETTER ============ */
   #newsletter{
     position:relative; z-index:2;
@@ -425,7 +496,10 @@
 <!-- FIXED HEADER -->
 <header>
   <div class="brand">BISCUIT &amp; BREW</div>
-  <button class="shop" id="shopLink">SHOP</button>
+  <div class="hnav">
+    <button class="shop" id="shopLink">SHOP</button>
+    <button class="shop bag" id="bagBtn">BAG <span id="bagCount" class="bag-count">0</span></button>
+  </div>
 </header>
 
 <!-- SCROLL PROGRESS BAR -->
@@ -508,6 +582,22 @@
 </div>
 
 <div id="toast"></div>
+
+<!-- CART DRAWER -->
+<div id="cartOverlay"></div>
+<aside id="cart" aria-label="Shopping bag">
+  <div class="cart-head">
+    <span class="cart-title">Your bag</span>
+    <button class="cart-close" id="cartClose">&times;</button>
+  </div>
+  <div id="cartItems"></div>
+  <div class="cart-empty" id="cartEmpty">Your bag is empty.<br><span>Add a blend to begin your ritual.</span></div>
+  <div class="cart-foot" id="cartFoot">
+    <div class="cart-sub"><span>Subtotal</span><span id="cartTotal">&pound;0.00</span></div>
+    <button class="checkout" id="checkoutBtn">Checkout</button>
+    <p class="cart-note">Taxes &amp; shipping calculated at checkout.</p>
+  </div>
+</aside>
 
 <script>
 /* =========================================================================
@@ -750,90 +840,52 @@
   }
 
   /* =====================================================================
-     PRODUCTS — two-level SPA + modal + cart-ready data
+     STORE — data-driven two-level SPA + modal + persistent cart.
+     The catalog lives in /data/products.json — edit prices, sizes and
+     copy there; this code renders whatever that file contains.
      ===================================================================== */
-  const S = '50g', M = '100g', L = '250g';
-  // Cart-ready catalog. variants: [{ size, price (GBP) }]
-  const CATALOG = {
-    black: {
-      name: 'Black Tea',
-      meta: '10 blends · full-bodied',
-      products: [
-        { name:'Biscuit Brew', desc:'The signature: malty Assam wrapped in warm biscuit and a whisper of vanilla.',
-          variants:[{size:S,price:6.95},{size:M,price:12.50},{size:L,price:27.00}] },
-        { name:'Caramel Apple Betty', desc:'Baked apple, buttery caramel and cinnamon over a smooth black base.',
-          variants:[{size:S,price:7.25},{size:M,price:12.95},{size:L,price:28.00}] },
-        { name:'Salted Caramel', desc:'Rich golden caramel finished with a pinch of sea salt.',
-          variants:[{size:S,price:7.25},{size:M,price:12.95},{size:L,price:28.00}] },
-        { name:'Cherry Bakewell', desc:'Almond, morello cherry and frangipane — afternoon tea in a cup.',
-          variants:[{size:S,price:7.25},{size:M,price:12.95},{size:L,price:28.00}] },
-        { name:'Banana Fudge', desc:'Soft banana and creamy fudge folded into a mellow black tea.',
-          variants:[{size:S,price:7.25},{size:M,price:12.95},{size:L,price:28.00}] },
-        { name:'English Breakfast', desc:'A classic bright, brisk blend — the dependable morning cup.',
-          variants:[{size:S,price:5.95},{size:M,price:10.95},{size:L,price:23.00}] },
-        { name:'Moonbeam', desc:'A gentle evening black with soft floral and honeyed notes.',
-          variants:[{size:S,price:7.50},{size:M,price:13.50},{size:L,price:29.00}] },
-        { name:'The Essential Biscuit & Brew Loose Leaf Tea Bundle', desc:'A curated set of our best-loved blends — the perfect introduction.',
-          variants:[{size:'Bundle',price:45.00}] },
-        { name:"James and the Giant Peach", desc:'Juicy peach and apricot lifting a smooth, fragrant black tea.',
-          variants:[{size:S,price:7.25},{size:M,price:12.95},{size:L,price:28.00}] },
-        { name:"Mango T'Chai", desc:'Sweet mango meets warming chai spice — ginger, cardamom and clove.',
-          variants:[{size:S,price:7.50},{size:M,price:13.50},{size:L,price:29.00}] },
-      ]
-    },
-    green: {
-      name: 'Green Tea',
-      meta: '5 blends · fresh & delicate',
-      products: [
-        { name:'Pear & Pistachio', desc:'Silky pear and toasted pistachio over a soft sencha green.',
-          variants:[{size:S,price:7.50},{size:M,price:13.50},{size:L,price:29.00}] },
-        { name:'Lull', desc:'A calming green blend to slow the evening down.',
-          variants:[{size:S,price:7.25},{size:M,price:12.95},{size:L,price:28.00}] },
-        { name:'Watermelon Sugar', desc:'Cool, sweet watermelon for a bright summer green.',
-          variants:[{size:S,price:7.25},{size:M,price:12.95},{size:L,price:28.00}] },
-        { name:'Robin Hood', desc:'A woodland green with berry and herb — bold yet smooth.',
-          variants:[{size:S,price:7.50},{size:M,price:13.50},{size:L,price:29.00}] },
-        { name:'Deep Breath', desc:'Mint and green tea to clear the head and reset.',
-          variants:[{size:S,price:7.25},{size:M,price:12.95},{size:L,price:28.00}] },
-      ]
-    },
-    herbal: {
-      name: 'Fruit & Herbal',
-      meta: '4 blends · caffeine-free',
-      products: [
-        { name:'Strawberry Fields Forever', desc:'Ripe strawberries and a hint of cream — naturally caffeine-free.',
-          variants:[{size:S,price:7.25},{size:M,price:12.95},{size:L,price:28.00}] },
-        { name:'Cherry Kiss', desc:'Sweet cherry and hibiscus for a deep ruby infusion.',
-          variants:[{size:S,price:7.25},{size:M,price:12.95},{size:L,price:28.00}] },
-        { name:'Little Picture', desc:'A gentle fruit-and-herb medley, soft and soothing.',
-          variants:[{size:S,price:7.25},{size:M,price:12.95},{size:L,price:28.00}] },
-        { name:'Raspberry Rose', desc:'Tart raspberry lifted with delicate rose petals.',
-          variants:[{size:S,price:7.50},{size:M,price:13.50},{size:L,price:29.00}] },
-      ]
-    }
-  };
-
-  const CAT_ORDER = ['black','green','herbal'];
-  const fmt = (n) => '£' + n.toFixed(2);
+  let STORE = { store:{ currencySymbol:'£' }, categories:[] };
+  let CAT_BY_ID = {};
+  const symbol = () => (STORE.store && STORE.store.currencySymbol) || '£';
+  const fmt = (n) => symbol() + Number(n).toFixed(2);
   const fromPrice = (p) => Math.min.apply(null, p.variants.map(v=>v.price));
 
-  // future cart
-  window.bbCart = [];
+  async function loadCatalog(){
+    try {
+      const res = await fetch('data/products.json', { cache:'no-cache' });
+      if(!res.ok) throw new Error('HTTP '+res.status);
+      STORE = await res.json();
+    } catch(e){
+      console.error('Could not load data/products.json —', e);
+      STORE = { store:{ currencySymbol:'£' }, categories:[] };
+    }
+    CAT_BY_ID = {};
+    (STORE.categories || []).forEach(c => { CAT_BY_ID[c.id] = c; });
+    buildCategories();
+    renderCart();
+  }
 
-  /* build category cards */
+  /* build category cards from STORE */
   const catGrid = $('#catGrid');
-  CAT_ORDER.forEach((key, i) => {
-    const c = CATALOG[key];
-    const card = document.createElement('div');
-    card.className = 'cat-card';
-    card.innerHTML =
-      '<div class="cc-index">0'+(i+1)+'</div>' +
-      '<div class="cc-name">'+c.name+'</div>' +
-      '<div class="cc-meta">'+c.meta+'</div>' +
-      '<div class="cc-cta">Explore &rarr;</div>';
-    card.addEventListener('click', () => openCategory(key));
-    catGrid.appendChild(card);
-  });
+  function buildCategories(){
+    catGrid.innerHTML = '';
+    if(!STORE.categories || !STORE.categories.length){
+      catGrid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:rgba(255,255,255,0.4)">Catalog unavailable.</p>';
+      return;
+    }
+    STORE.categories.forEach((c, i) => {
+      const card = document.createElement('div');
+      card.className = 'cat-card';
+      const count = (c.products && c.products.length) || 0;
+      card.innerHTML =
+        '<div class="cc-index">'+(i<9?'0':'')+(i+1)+'</div>' +
+        '<div class="cc-name">'+c.name+'</div>' +
+        '<div class="cc-meta">'+(c.meta || (count+' blends'))+'</div>' +
+        '<div class="cc-cta">Explore &rarr;</div>';
+      card.addEventListener('click', () => openCategory(c.id));
+      catGrid.appendChild(card);
+    });
+  }
 
   /* view switching */
   const catView = $('#catView');
@@ -841,9 +893,10 @@
   const prodGrid = $('#prodGrid');
   let currentCat = null;
 
-  function openCategory(key){
-    currentCat = key;
-    const c = CATALOG[key];
+  function openCategory(id){
+    const c = CAT_BY_ID[id];
+    if(!c) return;
+    currentCat = id;
     $('#detailTitle').textContent = c.name;
     prodGrid.innerHTML = '';
 
@@ -855,13 +908,13 @@
       card.innerHTML =
         '<div class="pc-cat">'+c.name+'</div>' +
         '<div class="pc-name">'+p.name+'</div>' +
-        '<div class="pc-desc">'+(p.desc||'')+'</div>' +
+        '<div class="pc-desc">'+(p.description||'')+'</div>' +
         '<div class="pc-variants">'+chips+'</div>' +
         '<div class="pc-from">' +
           '<span><span class="lbl">From&nbsp;</span><span class="val">'+fmt(fromPrice(p))+'</span></span>' +
           '<span class="pc-view">View &rarr;</span>' +
         '</div>';
-      card.addEventListener('click', () => openModal(key, p));
+      card.addEventListener('click', () => openModal(c, p));
       prodGrid.appendChild(card);
     });
 
@@ -888,13 +941,13 @@
 
   /* ---------- modal ---------- */
   const modal = $('#modal');
-  let mProduct = null, mCatKey = null, mVarIdx = 0, mQty = 1;
+  let mProduct = null, mCat = null, mVarIdx = 0, mQty = 1;
 
-  function openModal(key, p){
-    mProduct = p; mCatKey = key; mVarIdx = 0; mQty = 1;
-    $('#mCat').textContent = CATALOG[key].name;
+  function openModal(c, p){
+    mProduct = p; mCat = c; mVarIdx = 0; mQty = 1;
+    $('#mCat').textContent = c.name;
     $('#mName').textContent = p.name;
-    $('#mDesc').textContent = p.desc || '';
+    $('#mDesc').textContent = p.description || '';
     $('#qVal').textContent = '1';
 
     const vWrap = $('#mVariants');
@@ -934,9 +987,102 @@
   }
   $('#addBtn').addEventListener('click', () => {
     const v = mProduct.variants[mVarIdx];
-    window.bbCart.push({ category:mCatKey, name:mProduct.name, size:v.size, price:v.price, qty:mQty });
+    addToCart({
+      sku: v.sku || (mProduct.id + '|' + v.size),
+      productId: mProduct.id,
+      category: mCat.id,
+      name: mProduct.name,
+      size: v.size,
+      price: v.price,
+      qty: mQty
+    });
     showToast('Added <b>'+mQty+' &times; '+mProduct.name+'</b> ('+v.size+')');
     closeModal();
+  });
+
+  /* =====================================================================
+     CART — persistent (localStorage), drawer UI, cart-ready item schema:
+       { sku, productId, category, name, size, price, qty }
+     ===================================================================== */
+  const CART_KEY = 'bb_cart_v1';
+  let cart = loadCart();
+  window.bbCart = cart; // exposed for future checkout integration
+
+  function loadCart(){
+    try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
+    catch(e){ return []; }
+  }
+  function saveCart(){
+    try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch(e){}
+    window.bbCart = cart;
+  }
+  const cartCount = () => cart.reduce((s,i) => s + i.qty, 0);
+  const cartTotal = () => cart.reduce((s,i) => s + i.qty * i.price, 0);
+
+  function addToCart(item){
+    const ex = cart.find(i => i.sku === item.sku);
+    if(ex) ex.qty = Math.min(99, ex.qty + item.qty);
+    else cart.push(Object.assign({}, item));
+    saveCart(); renderCart(); bumpBadge();
+  }
+  function setItemQty(sku, q){
+    const it = cart.find(i => i.sku === sku);
+    if(!it) return;
+    it.qty = q;
+    if(it.qty <= 0) cart = cart.filter(i => i.sku !== sku);
+    window.bbCart = cart;
+    saveCart(); renderCart();
+  }
+
+  const bagCountEl = $('#bagCount');
+  function bumpBadge(){
+    bagCountEl.classList.add('pop');
+    setTimeout(() => bagCountEl.classList.remove('pop'), 300);
+  }
+
+  const cartItemsEl = $('#cartItems');
+  const cartEmptyEl = $('#cartEmpty');
+  const cartFootEl  = $('#cartFoot');
+  function renderCart(){
+    bagCountEl.textContent = cartCount();
+    $('#cartTotal').textContent = fmt(cartTotal());
+    const empty = cart.length === 0;
+    cartEmptyEl.style.display = empty ? 'flex' : 'none';
+    cartFootEl.style.display  = empty ? 'none' : 'block';
+    cartItemsEl.innerHTML = '';
+    cart.forEach((i) => {
+      const row = document.createElement('div');
+      row.className = 'cart-item';
+      row.innerHTML =
+        '<div class="ci-main">' +
+          '<div class="ci-name">'+i.name+'</div>' +
+          '<div class="ci-meta">'+i.size+' &middot; '+fmt(i.price)+'</div>' +
+          '<div class="ci-row">' +
+            '<div class="ci-qty">' +
+              '<button data-act="dec">&minus;</button><span>'+i.qty+'</span><button data-act="inc">+</button>' +
+            '</div>' +
+            '<div class="ci-price">'+fmt(i.price * i.qty)+'</div>' +
+          '</div>' +
+          '<button class="ci-remove">Remove</button>' +
+        '</div>';
+      row.querySelector('[data-act="dec"]').addEventListener('click', () => setItemQty(i.sku, i.qty - 1));
+      row.querySelector('[data-act="inc"]').addEventListener('click', () => setItemQty(i.sku, Math.min(99, i.qty + 1)));
+      row.querySelector('.ci-remove').addEventListener('click', () => setItemQty(i.sku, 0));
+      cartItemsEl.appendChild(row);
+    });
+  }
+
+  /* cart drawer open/close */
+  const cartEl = $('#cart');
+  const cartOverlay = $('#cartOverlay');
+  function openCart(){ renderCart(); cartEl.classList.add('open'); cartOverlay.classList.add('open'); }
+  function closeCart(){ cartEl.classList.remove('open'); cartOverlay.classList.remove('open'); }
+  $('#bagBtn').addEventListener('click', openCart);
+  $('#cartClose').addEventListener('click', closeCart);
+  cartOverlay.addEventListener('click', closeCart);
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeCart(); });
+  $('#checkoutBtn').addEventListener('click', () => {
+    showToast('Checkout is a demo &mdash; <b>'+cartCount()+'</b> item(s), '+fmt(cartTotal()));
   });
 
   /* SHOP link + newsletter */
@@ -950,9 +1096,10 @@
   });
 
   /* go */
+  function start(){ loadCatalog(); boot(); }
   if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', boot);
-  } else { boot(); }
+    document.addEventListener('DOMContentLoaded', start);
+  } else { start(); }
 })();
 </script>
 </body>
