@@ -281,6 +281,13 @@
     border-color:rgba(255,170,0,0.6);
     box-shadow:0 30px 60px -22px rgba(0,0,0,0.7), 0 0 36px -8px rgba(255,170,0,0.32);
   }
+  /* optional product photo (e.g. the Matcha range) */
+  .pc-img{
+    height:200px; margin:-2px -2px 22px; border-radius:12px;
+    background-size:cover; background-position:center;
+    background-color:#0c0c14;
+    border:1px solid rgba(255,255,255,0.06);
+  }
   .pc-cat{
     font-size:10px; text-transform:uppercase; letter-spacing:.28em;
     color:rgba(var(--amber-rgb),0.7); margin-bottom:14px;
@@ -337,6 +344,8 @@
     font-size:22px; cursor:pointer; line-height:1; transition:color .3s var(--ease);
   }
   .modal-close:hover{ color:var(--amber); }
+  .modal-img{ display:none; height:240px; margin:6px 0 22px; border-radius:14px; background-size:cover; background-position:center; background-color:#0c0c14; border:1px solid rgba(255,255,255,0.07); }
+  .modal-img.show{ display:block; }
   .modal-cat{ font-size:10px; text-transform:uppercase; letter-spacing:.28em; color:rgba(var(--amber-rgb),0.75); }
   .modal-name{ font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:500; color:#fff; margin:8px 0 14px; }
   .modal-desc{ font-size:13px; font-weight:300; line-height:1.7; color:rgba(255,255,255,0.6); }
@@ -580,6 +589,7 @@
 <div id="modal">
   <div class="modal-card">
     <button class="modal-close" id="modalClose">&times;</button>
+    <div class="modal-img" id="mImg"></div>
     <div class="modal-cat" id="mCat"></div>
     <div class="modal-name" id="mName"></div>
     <div class="modal-desc" id="mDesc"></div>
@@ -919,7 +929,9 @@
       card.className = 'prod-card';
       const chips = p.variants.map(v =>
         '<span class="pc-chip">'+v.size+' <b>'+fmt(v.price)+'</b></span>').join('');
+      const pimg = p.image ? '<div class="pc-img" style="background-image:url(\''+p.image+'\')"></div>' : '';
       card.innerHTML =
+        pimg +
         '<div class="pc-cat">'+c.name+'</div>' +
         '<div class="pc-name">'+p.name+'</div>' +
         '<div class="pc-desc">'+(p.description||'')+'</div>' +
@@ -959,6 +971,9 @@
 
   function openModal(c, p){
     mProduct = p; mCat = c; mVarIdx = 0; mQty = 1;
+    const mImg = $('#mImg');
+    if(p.image){ mImg.style.backgroundImage = "url('"+p.image+"')"; mImg.classList.add('show'); }
+    else { mImg.classList.remove('show'); mImg.style.backgroundImage = ''; }
     $('#mCat').textContent = c.name;
     $('#mName').textContent = p.name;
     $('#mDesc').textContent = p.description || '';

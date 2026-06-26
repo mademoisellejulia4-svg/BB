@@ -218,6 +218,41 @@
           ]
         }
       ]
+    },
+    {
+      "id": "matcha",
+      "name": "Matcha",
+      "meta": "Ceremonial kit · whisk & tin",
+      "image": "images/matcha-kit.png",
+      "products": [
+        {
+          "id": "matcha-kit",
+          "name": "Matcha Kit",
+          "description": "The complete ritual: ceremonial matcha in its kraft tube paired with a hand-cut bamboo whisk — everything you need to whisk a bowl from scratch.",
+          "image": "images/matcha-kit.png",
+          "variants": [
+            { "sku": "MAT-KIT", "size": "Kit", "cups": "whisk + matcha tin", "price": 25.95 }
+          ]
+        },
+        {
+          "id": "matcha",
+          "name": "Matcha",
+          "description": "Stone-ground ceremonial-grade green tea powder — vivid, smooth and naturally energising. Whisk with hot water or steamed milk.",
+          "image": "images/matcha.png",
+          "variants": [
+            { "sku": "MAT-TIN", "size": "Tin", "cups": "ceremonial grade", "price": 17.95 }
+          ]
+        },
+        {
+          "id": "matcha-whisk",
+          "name": "Matcha Whisk",
+          "description": "A traditional chasen, hand-carved from a single piece of bamboo, for a silky, even froth every time.",
+          "image": "images/matcha-whisk.png",
+          "variants": [
+            { "sku": "MAT-WHISK", "size": "Bamboo chasen", "cups": "handcrafted", "price": 9.95 }
+          ]
+        }
+      ]
     }
   ]
 }
