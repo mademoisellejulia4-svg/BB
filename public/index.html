@@ -513,6 +513,104 @@
   footer .f-right a{ font-size:11px; color:rgba(255,255,255,0.55); text-decoration:none; letter-spacing:.04em; }
   footer .f-right a:hover{ text-decoration:underline; color:var(--amber); }
 
+  /* ============ HEADER LEFT + HAMBURGER ============ */
+  header .hleft{ display:flex; align-items:center; gap:16px; pointer-events:auto; }
+  .menu-btn{
+    width:26px; height:18px; position:relative;
+    background:none; border:none; cursor:pointer; padding:0;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .menu-btn span{
+    display:block; height:1.5px; width:100%;
+    background:rgba(255,255,255,0.75); border-radius:2px;
+    transition:background .3s var(--ease);
+  }
+  .menu-btn:hover span{ background:var(--amber); }
+
+  /* ============ NAVIGATION MENU (slide-in) ============ */
+  #navOverlay{
+    position:fixed; inset:0; z-index:300;
+    background:rgba(3,3,5,0.6); backdrop-filter:blur(4px);
+    opacity:0; visibility:hidden; transition:opacity .4s var(--ease), visibility .4s;
+  }
+  #navOverlay.open{ opacity:1; visibility:visible; }
+  #navMenu{
+    position:fixed; top:0; left:0; z-index:350;
+    width:min(380px, 86vw); height:100vh;
+    background:linear-gradient(180deg, #0b0b16, #08080f);
+    border-right:1px solid rgba(var(--amber-rgb),0.18);
+    display:flex; flex-direction:column;
+    transform:translateX(-100%); transition:transform .45s var(--ease);
+    box-shadow:30px 0 80px -30px rgba(0,0,0,0.8);
+  }
+  #navMenu.open{ transform:translateX(0); }
+  .nav-top{
+    display:flex; align-items:center; gap:12px;
+    padding:22px 22px; border-bottom:1px solid rgba(255,255,255,0.07);
+    min-height:64px;
+  }
+  .nav-back{
+    background:none; border:none; color:rgba(255,255,255,0.7); cursor:pointer;
+    font-size:20px; line-height:1; width:28px; height:28px;
+    opacity:0; pointer-events:none; transform:translateX(-6px);
+    transition:opacity .3s var(--ease), transform .3s var(--ease), color .3s var(--ease);
+  }
+  .nav-back.show{ opacity:1; pointer-events:auto; transform:translateX(0); }
+  .nav-back:hover{ color:var(--amber); }
+  .nav-title{
+    flex:1; font-family:'Cormorant Garamond',serif; font-size:22px;
+    letter-spacing:.06em; color:#fff;
+  }
+  .nav-close{ background:none; border:none; color:rgba(255,255,255,0.55); font-size:26px; cursor:pointer; line-height:1; padding:0 4px; transition:color .3s var(--ease); }
+  .nav-close:hover{ color:var(--amber); }
+  .nav-body{ flex:1; overflow-y:auto; padding:10px 0; }
+  .nav-list{ transition:opacity .25s var(--ease), transform .25s var(--ease); }
+  .nav-item{
+    display:flex; align-items:center; justify-content:space-between;
+    width:100%; text-align:left; background:none; border:none; cursor:pointer;
+    padding:18px 24px; gap:14px;
+    color:rgba(255,255,255,0.82); font-family:'Cormorant Garamond',serif;
+    font-size:23px; letter-spacing:.02em;
+    border-bottom:1px solid rgba(255,255,255,0.05);
+    transition:color .3s var(--ease), background .3s var(--ease), padding-left .3s var(--ease);
+  }
+  .nav-item:hover{ color:var(--amber); background:rgba(255,255,255,0.02); padding-left:30px; }
+  .nav-item .nav-arrow{ font-family:'Inter',sans-serif; font-size:15px; color:rgba(255,255,255,0.35); }
+  .nav-item:hover .nav-arrow{ color:var(--amber); }
+  .nav-foot{ padding:22px 24px calc(24px + env(safe-area-inset-bottom)); border-top:1px solid rgba(255,255,255,0.07); }
+  .nav-foot-brand{ font-family:'Cormorant Garamond',serif; font-size:16px; letter-spacing:.16em; color:var(--amber); }
+  .nav-foot-sub{ font-size:11px; color:rgba(255,255,255,0.4); margin-top:4px; letter-spacing:.04em; }
+
+  /* ============ CAFE & LOUNGE SECTION ============ */
+  #cafe{
+    position:relative; z-index:2; background:#070710;
+    padding:clamp(80px,12vh,150px) clamp(20px,6vw,90px);
+  }
+  .cafe-grid{
+    display:grid; gap:24px; max-width:1180px; margin:0 auto;
+    grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+  }
+  .cafe-card{
+    border:1px solid rgba(255,255,255,0.07); border-radius:16px;
+    background:linear-gradient(160deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+    padding:34px 30px; transition:transform .4s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease);
+  }
+  .cafe-card:hover{ transform:translateY(-8px); border-color:rgba(255,170,0,0.5); box-shadow:0 26px 56px -24px rgba(0,0,0,0.7); }
+  .cafe-card .cafe-k{ font-size:11px; letter-spacing:.3em; color:rgba(var(--amber-rgb),0.6); margin-bottom:18px; }
+  .cafe-card h3{ font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:500; color:#fff; margin-bottom:12px; letter-spacing:.02em; }
+  .cafe-card p{ font-size:13px; font-weight:300; line-height:1.7; color:rgba(255,255,255,0.5); }
+
+  /* ============ ABOUT SECTION ============ */
+  #about{
+    position:relative; z-index:2;
+    background:linear-gradient(to bottom, #070710, #030303);
+    padding:clamp(80px,14vh,170px) clamp(24px,6vw,90px);
+    text-align:center;
+  }
+  .about-inner{ max-width:720px; margin:0 auto; }
+  .about-title{ font-family:'Cormorant Garamond',serif; font-size:clamp(34px,6vw,58px); font-weight:500; color:#fff; letter-spacing:.02em; margin:14px 0 26px; line-height:1.1; }
+  .about-p{ font-size:15px; font-weight:300; line-height:1.9; color:rgba(255,255,255,0.6); margin-bottom:18px; }
+
   /* =====================================================================
      MOBILE — intentional layout for iPhone-sized screens (≤640px)
      ===================================================================== */
@@ -528,8 +626,10 @@
     /* header */
     header{ height:54px; padding:0 16px; }
     header .brand{ font-size:12px; letter-spacing:.14em; }
-    header .hnav{ gap:14px; }
+    header .hleft{ gap:12px; }
+    header .hnav{ gap:12px; }
     header .shop{ font-size:11px; letter-spacing:.12em; padding:10px 2px; }
+    .menu-btn{ width:24px; height:16px; }
 
     /* hero overlays — keep within viewport, sit over dark areas */
     #ovTitle{ top:11vh; }
@@ -600,6 +700,13 @@
     .nl-form input{ width:100%; max-width:340px; text-align:center; }
     .nl-begin{ font-size:14px; padding:8px; }
 
+    /* cafe & about */
+    #cafe{ padding:64px 16px 70px; }
+    .cafe-grid{ grid-template-columns:1fr; gap:16px; }
+    .cafe-card{ padding:28px 24px; }
+    #about{ padding:70px 22px; }
+    .about-p{ font-size:14px; line-height:1.8; }
+
     /* footer */
     footer{ flex-direction:column; justify-content:center; text-align:center; gap:14px; padding:30px 20px calc(30px + env(safe-area-inset-bottom)); }
 
@@ -629,12 +736,30 @@
 
 <!-- FIXED HEADER -->
 <header>
-  <div class="brand">BISCUIT &amp; BREW</div>
+  <div class="hleft">
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
+    <div class="brand">BISCUIT &amp; BREW</div>
+  </div>
   <div class="hnav">
     <button class="shop" id="shopLink">SHOP</button>
     <button class="shop bag" id="bagBtn">BAG <span id="bagCount" class="bag-count">0</span></button>
   </div>
 </header>
+
+<!-- NAVIGATION MENU (slide-in, multi-level) -->
+<div id="navOverlay"></div>
+<nav id="navMenu" aria-label="Main menu">
+  <div class="nav-top">
+    <button class="nav-back" id="navBack" aria-label="Back">&larr;</button>
+    <div class="nav-title" id="navTitle">Menu</div>
+    <button class="nav-close" id="navClose" aria-label="Close menu">&times;</button>
+  </div>
+  <div class="nav-body" id="navBody"></div>
+  <div class="nav-foot">
+    <div class="nav-foot-brand">BISCUIT &amp; BREW</div>
+    <div class="nav-foot-sub">Rooted in the hills.</div>
+  </div>
+</nav>
 
 <!-- SCROLL PROGRESS BAR -->
 <div id="vbar"><div id="vfill"></div></div>
@@ -674,6 +799,42 @@
       <div class="detail-title" id="detailTitle"></div>
     </div>
     <div class="prod-grid" id="prodGrid"></div>
+  </div>
+</section>
+
+<!-- CAFE & LOUNGE -->
+<section id="cafe">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Visit Us</div>
+    <h2 class="sec-title">The Cafe &amp; Lounge</h2>
+    <p class="sec-sub">Where the ritual is poured by hand, in the hills.</p>
+  </div>
+  <div class="cafe-grid">
+    <article class="cafe-card" id="cafe-lounge">
+      <div class="cafe-k">01</div>
+      <h3>Cafe &amp; Lounge</h3>
+      <p>A slow room of warm wood and amber light. Loose-leaf flights, fresh bakes and a quiet corner to let the afternoon unwind.</p>
+    </article>
+    <article class="cafe-card" id="cafe-experiences">
+      <div class="cafe-k">02</div>
+      <h3>Experiences</h3>
+      <p>Guided tastings and blending workshops — learn to read the leaf and build your own signature brew with our tea makers.</p>
+    </article>
+    <article class="cafe-card" id="cafe-events">
+      <div class="cafe-k">03</div>
+      <h3>Events</h3>
+      <p>Private afternoon teas, launches and seasonal evenings. Tell us the occasion and we'll set the table.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ABOUT US -->
+<section id="about">
+  <div class="about-inner">
+    <div class="sec-eyebrow">About Us</div>
+    <h2 class="about-title">Small batch,<br/>made by hand.</h2>
+    <p class="about-p">Biscuit &amp; Brew began with a simple idea — that a cup of tea should feel like a ritual, not a rush. Every blend is built by hand in small batches, from leaf to tin.</p>
+    <p class="about-p">We source carefully, blend slowly, and name each tea for the feeling it brings. Rooted in the hills, brewed for the quiet moments.</p>
   </div>
 </section>
 
@@ -1285,6 +1446,81 @@
     const val = $('#nlEmail').value.trim();
     if(val){ showToast('Welcome to the <b>Tea Club</b> &mdash; check your inbox.'); $('#nlEmail').value=''; }
   });
+
+  /* =====================================================================
+     NAVIGATION MENU — slide-in, multi-level drill-down (matches site map)
+     ===================================================================== */
+  // action: where a leaf link goes. 'shop' opens the products/categories.
+  const NAV = [
+    { label:'Shop', children:[
+      { label:'Loose Leaf Tea', action:'shop' },
+      { label:'Gifts & Bundles', children:[
+        { label:'Loose Leaf Tea Bundles', action:'shop' },
+        { label:'Starter Kits', action:'shop' },
+        { label:'Gifts', action:'shop' }
+      ]},
+      { label:'Accessories', action:'shop' }
+    ]},
+    { label:'Cafe & Lounge', children:[
+      { label:'Cafe & Lounge', action:'cafe-lounge' },
+      { label:'Experiences', action:'cafe-experiences' },
+      { label:'Events', action:'cafe-events' }
+    ]},
+    { label:'About Us', action:'about' }
+  ];
+
+  const navMenu = $('#navMenu'), navOverlay = $('#navOverlay'), navBody = $('#navBody');
+  const navTitleEl = $('#navTitle'), navBackBtn = $('#navBack');
+  let navStack = [{ title:'Menu', items:NAV }];
+
+  function renderNav(dir){
+    const cur = navStack[navStack.length - 1];
+    navTitleEl.textContent = cur.title;
+    navBackBtn.classList.toggle('show', navStack.length > 1);
+
+    const list = document.createElement('div');
+    list.className = 'nav-list';
+    cur.items.forEach(node => {
+      const b = document.createElement('button');
+      b.className = 'nav-item';
+      const hasKids = node.children && node.children.length;
+      b.innerHTML = '<span>'+node.label+'</span><span class="nav-arrow">'+(hasKids ? '&rarr;' : '+')+'</span>';
+      b.addEventListener('click', () => {
+        if(hasKids){ navStack.push({ title:node.label, items:node.children }); renderNav(1); }
+        else { navGo(node.action); }
+      });
+      list.appendChild(b);
+    });
+
+    navBody.innerHTML = '';
+    navBody.appendChild(list);
+    // slide/fade in
+    list.style.opacity = '0';
+    list.style.transform = 'translateX(' + (dir < 0 ? '-14px' : '14px') + ')';
+    requestAnimationFrame(() => { list.style.opacity = '1'; list.style.transform = 'translateX(0)'; });
+  }
+
+  function navGo(action){
+    closeNav();
+    let target = '#products';
+    if(action === 'about') target = '#about';
+    else if(action === 'cafe-lounge') target = '#cafe-lounge';
+    else if(action === 'cafe-experiences') target = '#cafe-experiences';
+    else if(action === 'cafe-events') target = '#cafe-events';
+    else if(action === 'shop'){ target = '#products'; backToCats(); }
+    const el = document.querySelector(target);
+    if(el) setTimeout(() => el.scrollIntoView({ behavior:'smooth', block: target==='#products'?'start':'center' }), 320);
+  }
+
+  function openNav(){ navStack = [{ title:'Menu', items:NAV }]; renderNav(1); navMenu.classList.add('open'); navOverlay.classList.add('open'); }
+  function closeNav(){ navMenu.classList.remove('open'); navOverlay.classList.remove('open'); }
+  function navBack(){ if(navStack.length > 1){ navStack.pop(); renderNav(-1); } }
+
+  $('#menuBtn').addEventListener('click', openNav);
+  $('#navClose').addEventListener('click', closeNav);
+  navOverlay.addEventListener('click', closeNav);
+  navBackBtn.addEventListener('click', navBack);
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeNav(); });
 
   /* go */
   function start(){ loadCatalog(); boot(); }
