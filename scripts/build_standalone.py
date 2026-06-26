@@ -61,23 +61,7 @@ with open(os.path.join(PUB, "index.html")) as f:
 css = re.search(r"<style>(.*?)</style>", page, re.S).group(1)
 
 HERO_CSS = """
-  /* ===== STANDALONE STATIC HERO (offline, no video) ===== */
-  #hero{ position:relative; height:100vh; width:100%; overflow:hidden; }
-  #sticky{ position:relative; height:100vh; width:100%; overflow:hidden; }
-  .hero-bg{ position:absolute; inset:0; background-size:cover; background-position:center;
-    animation:heroZoom 18s ease-in-out infinite alternate; }
-  @keyframes heroZoom{ from{ transform:scale(1.02);} to{ transform:scale(1.12);} }
-  .hero-veil{ position:absolute; inset:0;
-    background:radial-gradient(120% 90% at 50% 40%, rgba(3,3,3,0.35), rgba(3,3,3,0.85) 80%); }
-  .hero-center{ position:absolute; inset:0; display:flex; flex-direction:column;
-    align-items:center; justify-content:center; text-align:center; padding:0 24px; }
-  .hero-title{ font-family:'Cormorant Garamond',serif; font-weight:500;
-    font-size:clamp(40px,11vw,120px); letter-spacing:.22em; padding-left:.22em;
-    color:rgba(var(--amber-rgb),0.92); text-shadow:0 2px 50px rgba(0,0,0,0.7); }
-  .hero-tag{ margin-top:18px; font-family:'Cormorant Garamond',serif; font-style:italic;
-    font-size:clamp(18px,3.4vw,30px); color:rgba(255,255,255,0.82);
-    text-shadow:0 2px 24px rgba(0,0,0,0.7); }
-
+  /* standalone reuses the scroll-scrubbed video hero CSS from index.html */
   .fc-social{ margin-top:22px; display:flex; gap:14px; }
   .fc-social a{ width:34px; height:34px; border:1px solid rgba(255,255,255,0.15); border-radius:50%; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.6); text-decoration:none; transition:all .3s var(--ease); }
   .fc-social a:hover{ border-color:var(--amber); color:var(--amber); }
@@ -255,6 +239,29 @@ JS = """
   });
   document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeNav(); });
 
+  /* hero: scroll-scrub the whole clip across ~3 viewport scrolls */
+  (function(){
+    const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+    const ramp=(p,a,b)=>clamp((p-a)/(b-a),0,1);
+    const hero=$('#hero'), v=$('#heroVideo'), center=$('#sticky .hero-center');
+    if(!hero||!v) return;
+    let dur=0, targetT=0, curT=0, primed=false;
+    v.muted=true; v.playsInline=true; v.setAttribute('webkit-playsinline','');
+    v.addEventListener('loadedmetadata',()=>{ dur=v.duration||0; });
+    const prime=()=>{ if(primed) return; primed=true; const pr=v.play(); if(pr&&pr.then) pr.then(()=>v.pause()).catch(()=>{}); else { try{v.pause();}catch(e){} } };
+    v.addEventListener('canplay',prime);
+    window.addEventListener('touchstart',prime,{once:true,passive:true});
+    window.addEventListener('wheel',prime,{once:true,passive:true});
+    v.load();
+    function prog(){ const t=hero.offsetHeight-window.innerHeight; return t<=0?0:clamp(-hero.getBoundingClientRect().top/t,0,1); }
+    function onScroll(){ const p=prog(); const d=dur||v.duration||0; targetT=p*Math.max(0,d-0.05); if(center) center.style.opacity=(1-ramp(p,0.04,0.32)).toFixed(3); }
+    function loop(){ curT+=(targetT-curT)*0.16; if(Math.abs(targetT-curT)<0.008) curT=targetT; if((dur||v.duration)&&Math.abs(v.currentTime-curT)>0.02){ try{v.currentTime=curT;}catch(e){} } requestAnimationFrame(loop); }
+    requestAnimationFrame(loop);
+    window.addEventListener('scroll',onScroll,{passive:true});
+    window.addEventListener('resize',onScroll);
+    onScroll();
+  })();
+
   buildCategories(); renderCart();
 })();
 """
@@ -322,7 +329,7 @@ __HEROCSS__
 
 <section id="hero">
   <div id="sticky">
-    <div class="hero-bg" style="background-image:url('__HERO__')"></div>
+    <video id="heroVideo" src="videos/hero.mp4" muted playsinline preload="auto" poster="images/black-tea.png"></video>
     <div class="hero-veil"></div>
     <div class="hero-center">
       <div class="hero-title">BISCUIT &amp; BREW</div>
@@ -649,7 +656,7 @@ for rel, uri in uri_map.items():
     HTML = HTML.replace("url('" + rel + "')", "url('" + uri + "')")
 
 # inline the Instagram reel videos as data URIs so they autoplay offline
-video_files = { "videos/igA.mp4": "videos/igA.mp4", "videos/igB.mp4": "videos/igB.mp4" }
+video_files = { "videos/hero.mp4": "videos/hero.mp4", "videos/igA.mp4": "videos/igA.mp4", "videos/igB.mp4": "videos/igB.mp4" }
 for rel, path in video_files.items():
     with open(os.path.join(PUB, path), "rb") as vf:
         vb = vf.read()
