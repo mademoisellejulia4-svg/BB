@@ -65,6 +65,24 @@ css = re.search(r"<style>(.*?)</style>", page, re.S).group(1)
 
 HERO_CSS = """
   /* standalone reuses the scroll-scrubbed video hero CSS from index.html */
+  #promoModal{ position:fixed; inset:0; z-index:900; display:none; align-items:center; justify-content:center; padding:24px; background:rgba(3,3,5,0.80); backdrop-filter:blur(6px); opacity:0; transition:opacity .5s var(--ease); }
+  #promoModal.open{ display:flex; }
+  .pm-card{ position:relative; width:min(460px, 94vw); max-height:92vh; overflow:auto; background:radial-gradient(120% 90% at 50% 18%, #fbf7ef, #f1e8d8); border:1px solid rgba(var(--amber-rgb),0.35); border-radius:50% / 42%; padding:clamp(54px,8vw,74px) clamp(40px,8vw,64px); text-align:center; box-shadow:0 50px 120px -40px rgba(0,0,0,0.85), inset 0 0 0 1px rgba(255,255,255,0.5); transform:scale(.92) translateY(14px); transition:transform .55s var(--ease); }
+  #promoModal.open .pm-card{ transform:scale(1) translateY(0); }
+  .pm-close{ position:absolute; top:18px; right:22px; width:34px; height:34px; border-radius:50%; background:none; border:1px solid rgba(58,74,58,0.35); color:#3a4a3a; font-size:18px; line-height:1; cursor:pointer; transition:all .3s var(--ease); }
+  .pm-close:hover{ background:#3a4a3a; color:#fff; border-color:#3a4a3a; }
+  .pm-eyebrow{ font-size:10px; letter-spacing:.4em; text-transform:uppercase; color:#9a7b3a; margin-bottom:12px; }
+  .pm-card h2{ font-family:'Cormorant Garamond', serif; font-weight:600; font-size:clamp(28px,7vw,40px); line-height:1.1; letter-spacing:.02em; color:#2f3a2f; }
+  .pm-card h2 .pm-amber{ color:#b8860b; }
+  .pm-card p{ margin:16px auto 24px; max-width:300px; font-size:13px; line-height:1.6; color:rgba(47,58,47,0.7); }
+  .pm-card form{ display:flex; flex-direction:column; gap:18px; max-width:300px; margin:0 auto; }
+  .pm-card .pm-field{ text-align:left; }
+  .pm-card label{ display:block; font-size:10px; text-transform:uppercase; letter-spacing:.2em; color:rgba(47,58,47,0.6); margin-bottom:6px; }
+  .pm-card input{ width:100%; background:transparent; border:none; border-bottom:1px solid rgba(58,74,58,0.4); color:#2f3a2f; padding:8px 2px; font-family:'Inter',sans-serif; font-size:15px; }
+  .pm-card input:focus{ outline:none; border-color:#b8860b; }
+  .pm-btn{ margin-top:8px; cursor:pointer; align-self:center; background:none; border:1px solid #3a4a3a; color:#3a4a3a; border-radius:40px; padding:13px 40px; font-family:'Inter',sans-serif; font-size:11px; font-weight:500; text-transform:uppercase; letter-spacing:.24em; transition:all .3s var(--ease); }
+  .pm-btn:hover{ background:#3a4a3a; color:#fbf7ef; }
+  @media (max-width:520px){ .pm-card{ border-radius:30px; padding:54px 30px; } }
   #book{ position:relative; z-index:2; background:#0a0a14; padding:clamp(80px,12vh,150px) clamp(20px,6vw,90px); border-top:1px solid rgba(255,255,255,0.06); }
   .book-banner{ max-width:1100px; margin:0 auto 48px; height:clamp(220px,34vh,380px); border-radius:18px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); }
   .book-banner img{ width:100%; height:100%; object-fit:cover; display:block; }
@@ -257,6 +275,19 @@ JS = """
   const referBtn=$('#referBtn'); if(referBtn) referBtn.addEventListener('click',()=>showToast('Referral is a demo \\u2014 share your <b>£5</b> link.'));
   const storyVisit=$('#storyVisit'); if(storyVisit) storyVisit.addEventListener('click',()=>$('#visit').scrollIntoView({behavior:'smooth'}));
   const bookForm=$('#bookForm'); if(bookForm) bookForm.addEventListener('submit',(e)=>{ e.preventDefault(); showToast('Booking enquiry sent \\u2014 we\\'ll confirm by <b>email</b>.'); bookForm.reset(); });
+
+  const promoModal=$('#promoModal');
+  if(promoModal){
+    const SEEN='bb_promo_seen_v1';
+    const openPromo=()=>{ promoModal.classList.add('open'); requestAnimationFrame(()=>promoModal.style.opacity='1'); };
+    const closePromo=()=>{ promoModal.style.opacity='0'; setTimeout(()=>promoModal.classList.remove('open'),500); try{ localStorage.setItem(SEEN,'1'); }catch(e){} };
+    let seen=false; try{ seen=localStorage.getItem(SEEN)==='1'; }catch(e){}
+    if(!seen) setTimeout(openPromo,1400);
+    $('#pmClose').addEventListener('click',closePromo);
+    promoModal.addEventListener('click',(e)=>{ if(e.target===promoModal) closePromo(); });
+    document.addEventListener('keydown',(e)=>{ if(e.key==='Escape'&&promoModal.classList.contains('open')) closePromo(); });
+    $('#pmForm').addEventListener('submit',(e)=>{ e.preventDefault(); closePromo(); showToast('Welcome to the <b>Tea Club</b> \\u2014 your <b>20% off</b> code is on its way.'); });
+  }
 
   /* promo banner */
   document.body.classList.add('promo-on');
@@ -776,6 +807,20 @@ __HEROCSS__
   </div>
 </div>
 <div id="toast"></div>
+
+<div id="promoModal" aria-hidden="true">
+  <div class="pm-card">
+    <button class="pm-close" id="pmClose" aria-label="Close">&times;</button>
+    <div class="pm-eyebrow">Welcome to Biscuit &amp; Brew</div>
+    <h2>Get <span class="pm-amber">20% off</span><br/>your first order! &#127873;</h2>
+    <p>Sign up now for exclusive deals, new treats, and 20% off your first order.</p>
+    <form id="pmForm">
+      <div class="pm-field"><label for="pmName">Name</label><input type="text" id="pmName" placeholder="Your name" required /></div>
+      <div class="pm-field"><label for="pmEmail">Email</label><input type="email" id="pmEmail" placeholder="your@email.com" required /></div>
+      <button type="submit" class="pm-btn">Subscribe</button>
+    </form>
+  </div>
+</div>
 
 <div id="cartOverlay"></div>
 <aside id="cart" aria-label="Shopping bag">
