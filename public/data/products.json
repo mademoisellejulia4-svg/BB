@@ -217,6 +217,38 @@
           ]
         }
       ]
+    },
+    {
+      "id": "matcha",
+      "name": "Matcha",
+      "meta": "3 pieces · the ritual",
+      "image": "matcha.jpg",
+      "products": [
+        {
+          "id": "matcha-kit",
+          "name": "Matcha Kit",
+          "description": "Everything for the ritual — stone-ground ceremonial matcha paired with a handcrafted bamboo whisk.",
+          "variants": [
+            { "sku": "MAT-KIT", "size": "Kit", "price": 25.95 }
+          ]
+        },
+        {
+          "id": "matcha",
+          "name": "Matcha",
+          "description": "Vivid, stone-ground ceremonial green tea — smooth, grassy and naturally energising.",
+          "variants": [
+            { "sku": "MAT-TIN", "size": "Tin", "price": 17.95 }
+          ]
+        },
+        {
+          "id": "matcha-whisk",
+          "name": "Matcha Whisk",
+          "description": "A traditional handcrafted bamboo chasen for a perfectly smooth, frothy bowl.",
+          "variants": [
+            { "sku": "MAT-WHISK", "size": "Whisk", "price": 9.95 }
+          ]
+        }
+      ]
     }
   ]
 }
