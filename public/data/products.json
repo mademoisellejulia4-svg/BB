@@ -228,6 +228,7 @@
           "id": "matcha-kit",
           "name": "Matcha Kit",
           "description": "Everything for the ritual — stone-ground ceremonial matcha paired with a handcrafted bamboo whisk.",
+          "image": "matcha.jpg",
           "variants": [
             { "sku": "MAT-KIT", "size": "Kit", "price": 25.95 }
           ]
@@ -236,6 +237,7 @@
           "id": "matcha",
           "name": "Matcha",
           "description": "Vivid, stone-ground ceremonial green tea — smooth, grassy and naturally energising.",
+          "image": "matcha-tin.jpg",
           "variants": [
             { "sku": "MAT-TIN", "size": "Tin", "price": 17.95 }
           ]
@@ -244,6 +246,7 @@
           "id": "matcha-whisk",
           "name": "Matcha Whisk",
           "description": "A traditional handcrafted bamboo chasen for a perfectly smooth, frothy bowl.",
+          "image": "matcha-whisk.jpg",
           "variants": [
             { "sku": "MAT-WHISK", "size": "Whisk", "price": 9.95 }
           ]

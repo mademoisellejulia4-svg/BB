@@ -284,6 +284,19 @@
     border-color:rgba(255,170,0,0.6);
     box-shadow:0 30px 60px -22px rgba(0,0,0,0.7), 0 0 36px -8px rgba(255,170,0,0.32);
   }
+  /* product image (full-bleed to the card's top edges, cover, with fade) */
+  .prod-card .pc-media{
+    position:relative;
+    margin:-28px -26px 20px;
+    height:210px; overflow:hidden;
+    border-radius:16px 16px 0 0;
+  }
+  .prod-card .pc-media img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .prod-card .pc-media .cc-fade{
+    position:absolute; left:0; right:0; bottom:0;
+    height:96px; pointer-events:none;
+    background:linear-gradient(to bottom, rgba(10,10,26,0) 0%, #0a0a1a 100%);
+  }
   .pc-cat{
     font-size:10px; text-transform:uppercase; letter-spacing:.28em;
     color:rgba(var(--amber-rgb),0.7); margin-bottom:14px;
@@ -333,13 +346,20 @@
     transform:translateY(18px) scale(.98);
     transition:transform .45s var(--ease);
     box-shadow:0 40px 90px -30px rgba(0,0,0,0.9);
+    position:relative;
   }
   #modal.open .modal-card{ transform:translateY(0) scale(1); }
   .modal-close{
-    float:right; background:none; border:none; color:rgba(255,255,255,0.5);
+    position:absolute; top:16px; right:16px; z-index:2;
+    width:34px; height:34px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(8,8,15,0.5); backdrop-filter:blur(4px);
+    border:none; color:rgba(255,255,255,0.7);
     font-size:22px; cursor:pointer; line-height:1; transition:color .3s var(--ease);
   }
   .modal-close:hover{ color:var(--amber); }
+  .modal-media{ margin:-6px 0 20px; border-radius:14px; overflow:hidden; height:200px; }
+  .modal-media img{ width:100%; height:100%; object-fit:cover; display:block; }
   .modal-cat{ font-size:10px; text-transform:uppercase; letter-spacing:.28em; color:rgba(var(--amber-rgb),0.75); }
   .modal-name{ font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:500; color:#fff; margin:8px 0 14px; }
   .modal-desc{ font-size:13px; font-weight:300; line-height:1.7; color:rgba(255,255,255,0.6); }
@@ -541,6 +561,7 @@
     /* product cards — single column */
     .prod-grid{ grid-template-columns:1fr; gap:16px; }
     .prod-card{ padding:24px 22px; }
+    .prod-card .pc-media{ margin:-24px -22px 18px; height:200px; }
     .pc-name{ font-size:24px; }
     .pc-from .val{ font-size:21px; }
 
@@ -680,6 +701,7 @@
 <div id="modal">
   <div class="modal-card">
     <button class="modal-close" id="modalClose">&times;</button>
+    <div class="modal-media" id="mMedia"><img id="mImg" alt="" /></div>
     <div class="modal-cat" id="mCat"></div>
     <div class="modal-name" id="mName"></div>
     <div class="modal-desc" id="mDesc"></div>
@@ -966,6 +988,23 @@
   const symbol = () => (STORE.store && STORE.store.currencySymbol) || '£';
   const fmt = (n) => symbol() + Number(n).toFixed(2);
   const fromPrice = (p) => Math.min.apply(null, p.variants.map(v=>v.price));
+  const esc = (s) => String(s == null ? '' : s).replace(/"/g, '&quot;');
+
+  // Resilient image loading: if the given source is missing, try other common
+  // extensions before hiding the image — so artwork renders regardless of format.
+  function bindImgFallback(imgEl, original){
+    if(!imgEl) return;
+    const exts = ['.png', '.webp', '.jpeg', '.jpg'];
+    imgEl.onerror = function(){
+      const i2 = parseInt(imgEl.dataset.fb || '0', 10);
+      if(i2 < exts.length){
+        imgEl.dataset.fb = String(i2 + 1);
+        imgEl.src = (original || '').replace(/\.[a-z0-9]+$/i, exts[i2]);
+      } else {
+        imgEl.style.display = 'none';
+      }
+    };
+  }
 
   async function loadCatalog(){
     try {
@@ -1040,7 +1079,12 @@
       card.className = 'prod-card';
       const chips = p.variants.map(v =>
         '<span class="pc-chip">'+v.size+' <b>'+fmt(v.price)+'</b></span>').join('');
+      const pmedia = p.image
+        ? '<div class="pc-media"><img src="'+esc(p.image)+'" alt="'+esc(p.name)+'" loading="lazy"><span class="cc-fade"></span></div>'
+        : '';
+      if(p.image) card.classList.add('has-media');
       card.innerHTML =
+        pmedia +
         '<div class="pc-cat">'+c.name+'</div>' +
         '<div class="pc-name">'+p.name+'</div>' +
         '<div class="pc-desc">'+(p.description||'')+'</div>' +
@@ -1049,6 +1093,7 @@
           '<span><span class="lbl">From&nbsp;</span><span class="val">'+fmt(fromPrice(p))+'</span></span>' +
           '<span class="pc-view">View &rarr;</span>' +
         '</div>';
+      if(p.image) bindImgFallback(card.querySelector('.pc-media img'), p.image);
       card.addEventListener('click', () => openModal(c, p));
       prodGrid.appendChild(card);
     });
@@ -1080,6 +1125,17 @@
 
   function openModal(c, p){
     mProduct = p; mCat = c; mVarIdx = 0; mQty = 1;
+    const mMedia = $('#mMedia'), mImg = $('#mImg');
+    if(p.image){
+      mImg.style.display = '';
+      mImg.dataset.fb = '';
+      mImg.alt = p.name;
+      mImg.src = p.image;
+      bindImgFallback(mImg, p.image);
+      mMedia.style.display = '';
+    } else {
+      mMedia.style.display = 'none';
+    }
     $('#mCat').textContent = c.name;
     $('#mName').textContent = p.name;
     $('#mDesc').textContent = p.description || '';
