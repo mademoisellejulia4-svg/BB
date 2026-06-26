@@ -15,12 +15,16 @@
         {
           "id": "biscuit-brew",
           "name": "Biscuit Brew",
-          "description": "The signature chocolate-digestive blend — malty and smooth with cocoa shells and oat tops.",
+          "description": "Our signature black tea blend inspired by the mighty chocolate digestive. Rich Sri Lankan and Yunnan black tea with cocoa shells, oat flowering tops and natural flavouring for a comforting, biscuit-like brew.",
+          "image": "images/biscuit-brew.jpg",
+          "rating": 5,
+          "reviews": 5,
           "variants": [
             { "sku": "BLK-BISCUIT-BREW-15G", "size": "15g", "cups": "7 cups", "price": 2.95 },
-            { "sku": "BLK-BISCUIT-BREW-65G", "size": "65g", "cups": "32 cups", "price": 6.45 },
-            { "sku": "BLK-BISCUIT-BREW-150G", "size": "150g", "cups": "75 cups", "price": 12.95 },
-            { "sku": "BLK-BISCUIT-BREW-TUBE", "size": "65g Tube", "cups": "reusable tin", "price": 14.95 }
+            { "sku": "BLK-BISCUIT-BREW-65G", "size": "65g", "cups": "32 cups", "price": 6.95 },
+            { "sku": "BLK-BISCUIT-BREW-150G", "size": "150g", "cups": "75 cups", "price": 13.50 },
+            { "sku": "BLK-BISCUIT-BREW-TUBE", "size": "65g Tube", "cups": "reusable tin", "price": 14.95 },
+            { "sku": "BLK-BISCUIT-BREW-TEABAGS", "size": "15 Teabags", "cups": "pyramid bags", "price": 4.95 }
           ]
         },
         {

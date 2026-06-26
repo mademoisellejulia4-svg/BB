@@ -34,6 +34,7 @@ img_files = {
     "images/review-food.jpg": ("images/review-food.jpg", 640),
     "images/book-afternoon-tea.jpg": ("images/book-afternoon-tea.jpg", 1100),
     "images/cherry-bakewell.jpg": ("images/cherry-bakewell.jpg", 760),
+    "images/biscuit-brew.jpg": ("images/biscuit-brew.jpg", 760),
 }
 uri_map = {}
 total = 0
