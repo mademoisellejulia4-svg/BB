@@ -519,16 +519,15 @@ __HEROCSS__
     <div class="ig-handle"><a href="https://www.instagram.com/biscuitandbrew_/" target="_blank" rel="noopener">@biscuitandbrew_</a></div>
   </div>
   <div class="ig-grid">
-    <a class="ig-tile" href="https://www.instagram.com/reel/DZrpOSkNASV/" target="_blank" rel="noopener" style="background-image:url('images/instagram-1.jpg')">
-      <span class="ig-ico">Reel</span>
+    <a class="ig-tile" href="https://www.instagram.com/reel/DZrpOSkNASV/" target="_blank" rel="noopener">
+      <video src="videos/igA.mp4" poster="images/instagram-1.jpg" autoplay muted loop playsinline preload="metadata"></video>
       <span class="ig-veil"></span>
-      <span class="ig-play"></span>
+      <span class="ig-ico">▶ Reel</span>
     </a>
-    <a class="ig-tile" href="https://www.instagram.com/reel/DY2JboxNfP-/" target="_blank" rel="noopener" style="background-image:url('images/instagram-2.jpg')">
-      <span class="ig-ico">Reel</span>
+    <a class="ig-tile" href="https://www.instagram.com/reel/DY2JboxNfP-/" target="_blank" rel="noopener">
+      <video src="videos/igB.mp4" poster="images/instagram-2.jpg" autoplay muted loop playsinline preload="metadata"></video>
       <span class="ig-veil"></span>
-      <span class="ig-play"></span>
-      <span class="ig-cap">Book Club day at Biscuit and Brew ✨</span>
+      <span class="ig-ico">▶ Reel</span>
     </a>
   </div>
 </section>
@@ -643,10 +642,20 @@ HTML = (HTML.replace("__CSS__", css)
             .replace("__HERO__", hero_uri)
             .replace("__JS__", JS))
 
-# inline static (non-catalog) image paths used in markup (Our Story <img>, Instagram tiles)
+# inline static (non-catalog) image paths used in markup (Our Story <img>, Instagram posters)
 for rel, uri in uri_map.items():
     HTML = HTML.replace('src="' + rel + '"', 'src="' + uri + '"')
+    HTML = HTML.replace('poster="' + rel + '"', 'poster="' + uri + '"')
     HTML = HTML.replace("url('" + rel + "')", "url('" + uri + "')")
+
+# inline the Instagram reel videos as data URIs so they autoplay offline
+video_files = { "videos/igA.mp4": "videos/igA.mp4", "videos/igB.mp4": "videos/igB.mp4" }
+for rel, path in video_files.items():
+    with open(os.path.join(PUB, path), "rb") as vf:
+        vb = vf.read()
+    vuri = "data:video/mp4;base64," + base64.b64encode(vb).decode()
+    HTML = HTML.replace('src="' + rel + '"', 'src="' + vuri + '"')
+    print(f"  video {rel}: {len(vb)//1024} KB")
 
 out = os.path.join(PUB, "biscuit-and-brew-ipad.html")
 with open(out, "w") as f:
