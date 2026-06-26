@@ -66,7 +66,15 @@ with open(os.path.join(PUB, "index.html")) as f:
 css = re.search(r"<style>(.*?)</style>", page, re.S).group(1)
 
 HERO_CSS = """
-  /* standalone reuses the scroll-scrubbed video hero CSS from index.html */
+  /* standalone: static photo hero (iOS Safari can't reliably play data: URI video) */
+  #hero{ position:relative; height:100vh; width:100%; overflow:hidden; }
+  #sticky{ position:relative; height:100vh; width:100%; overflow:hidden; }
+  .hero-bg{ position:absolute; inset:0; background-size:cover; background-position:center; animation:heroZoom 18s ease-in-out infinite alternate; }
+  @keyframes heroZoom{ from{ transform:scale(1.02);} to{ transform:scale(1.12);} }
+  /* Instagram tiles use poster thumbnails + play overlay (no embedded video) */
+  .ig-tile .ig-play{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:54px; height:54px; border-radius:50%; background:rgba(0,0,0,0.4); border:1.5px solid rgba(255,255,255,0.85); display:flex; align-items:center; justify-content:center; transition:transform .3s var(--ease), background .3s var(--ease); }
+  .ig-tile:hover .ig-play{ transform:translate(-50%,-50%) scale(1.08); background:rgba(var(--amber-rgb),0.85); }
+  .ig-tile .ig-play::after{ content:""; margin-left:4px; border-style:solid; border-width:9px 0 9px 15px; border-color:transparent transparent transparent #fff; }
   #promoMsg{ transition:opacity .4s ease; }
   #favourites{ position:relative; z-index:2; background:linear-gradient(to bottom, #0a0a1a, #050510); padding:clamp(70px,11vh,140px) clamp(20px,6vw,90px); text-align:center; }
   .fav-grid{ max-width:1100px; margin:46px auto 0; display:grid; gap:30px; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); }
@@ -441,7 +449,7 @@ __HEROCSS__
 
 <section id="hero">
   <div id="sticky">
-    <video id="heroVideo" src="videos/hero.mp4" muted playsinline preload="auto" poster="images/black-tea.png"></video>
+    <div class="hero-bg" style="background-image:url('__HERO__')"></div>
     <div class="hero-veil"></div>
     <div class="hero-center">
       <div class="hero-title">BISCUIT &amp; BREW</div>
@@ -759,14 +767,14 @@ __HEROCSS__
     <div class="ig-handle"><a href="https://www.instagram.com/biscuitandbrew_/" target="_blank" rel="noopener">@biscuitandbrew_</a></div>
   </div>
   <div class="ig-grid">
-    <a class="ig-tile" href="https://www.instagram.com/reel/DZrpOSkNASV/" target="_blank" rel="noopener">
-      <video src="videos/igA.mp4" poster="images/instagram-1.jpg" autoplay muted loop playsinline preload="metadata"></video>
+    <a class="ig-tile" href="https://www.instagram.com/reel/DZrpOSkNASV/" target="_blank" rel="noopener" style="background-image:url('images/instagram-1.jpg')">
       <span class="ig-veil"></span>
+      <span class="ig-play"></span>
       <span class="ig-ico">▶ Reel</span>
     </a>
-    <a class="ig-tile" href="https://www.instagram.com/reel/DY2JboxNfP-/" target="_blank" rel="noopener">
-      <video src="videos/igB.mp4" poster="images/instagram-2.jpg" autoplay muted loop playsinline preload="metadata"></video>
+    <a class="ig-tile" href="https://www.instagram.com/reel/DY2JboxNfP-/" target="_blank" rel="noopener" style="background-image:url('images/instagram-2.jpg')">
       <span class="ig-veil"></span>
+      <span class="ig-play"></span>
       <span class="ig-ico">▶ Reel</span>
     </a>
   </div>
@@ -911,14 +919,10 @@ for rel, uri in uri_map.items():
     HTML = HTML.replace('poster="' + rel + '"', 'poster="' + uri + '"')
     HTML = HTML.replace("url('" + rel + "')", "url('" + uri + "')")
 
-# inline the Instagram reel videos as data URIs so they autoplay offline
-video_files = { "videos/hero.mp4": "videos/hero.mp4", "videos/igA.mp4": "videos/igA.mp4", "videos/igB.mp4": "videos/igB.mp4" }
-for rel, path in video_files.items():
-    with open(os.path.join(PUB, path), "rb") as vf:
-        vb = vf.read()
-    vuri = "data:video/mp4;base64," + base64.b64encode(vb).decode()
-    HTML = HTML.replace('src="' + rel + '"', 'src="' + vuri + '"')
-    print(f"  video {rel}: {len(vb)//1024} KB")
+# NOTE: videos are intentionally NOT embedded — iOS Safari can't reliably play
+# data: URI <video>, which prevented the single file from opening on iPad.
+# The offline build uses a static photo hero and Instagram poster tiles instead;
+# the full video experience lives on the served site.
 
 out = os.path.join(PUB, "biscuit-and-brew-ipad.html")
 with open(out, "w") as f:
