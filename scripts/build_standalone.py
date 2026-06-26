@@ -62,6 +62,41 @@ css = re.search(r"<style>(.*?)</style>", page, re.S).group(1)
 
 HERO_CSS = """
   /* standalone reuses the scroll-scrubbed video hero CSS from index.html */
+  #book{ position:relative; z-index:2; background:#0a0a14; padding:clamp(80px,12vh,150px) clamp(20px,6vw,90px); border-top:1px solid rgba(255,255,255,0.06); }
+  .book-grid{ max-width:1100px; margin:0 auto; display:grid; gap:54px; grid-template-columns:1.25fr 1fr; }
+  @media (max-width:820px){ .book-grid{ grid-template-columns:1fr; } }
+  .book-form{ display:flex; flex-direction:column; gap:18px; }
+  .bf-row{ display:flex; flex-direction:column; gap:7px; }
+  .bf-row label{ font-size:10px; text-transform:uppercase; letter-spacing:.22em; color:rgba(255,255,255,0.5); }
+  .bf-row input, .bf-row select, .bf-row textarea{ background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:13px 14px; color:#fff; font-family:'Inter',sans-serif; font-size:14px; letter-spacing:.02em; }
+  .bf-row textarea{ resize:vertical; min-height:84px; }
+  .bf-row input:focus, .bf-row select:focus, .bf-row textarea:focus{ outline:none; border-color:rgba(var(--amber-rgb),0.6); }
+  .bf-row select option{ background:#0c0c16; color:#fff; }
+  .bf-two{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media (max-width:480px){ .bf-two{ grid-template-columns:1fr; } }
+  .book-submit{ margin-top:6px; cursor:pointer; background:var(--amber); color:#0a0a0a; border:none; border-radius:12px; padding:16px; font-family:'Inter',sans-serif; font-size:11px; font-weight:500; text-transform:uppercase; letter-spacing:.22em; transition:transform .3s var(--ease), filter .3s var(--ease); }
+  .book-submit:hover{ filter:brightness(1.08); transform:translateY(-2px); }
+  .book-note{ font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:.03em; text-align:center; }
+  .book-aside .ba-block{ margin-bottom:40px; }
+  .book-aside h3{ font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:500; color:#fff; margin-bottom:16px; letter-spacing:.03em; }
+  .hours-row{ display:flex; justify-content:space-between; max-width:320px; font-size:13px; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.07); color:rgba(255,255,255,0.7); }
+  .hours-row span:last-child{ color:rgba(255,255,255,0.45); }
+  .book-aside p{ font-size:13px; font-weight:300; line-height:1.8; color:rgba(255,255,255,0.6); }
+  .maps-btn{ display:inline-flex; align-items:center; gap:9px; margin-top:16px; border:1px solid rgba(var(--amber-rgb),0.5); color:var(--amber); text-decoration:none; border-radius:40px; padding:11px 22px; font-size:11px; text-transform:uppercase; letter-spacing:.2em; transition:all .3s var(--ease); }
+  .maps-btn:hover{ background:rgba(var(--amber-rgb),0.1); transform:translateY(-2px); }
+  #reviews{ position:relative; z-index:2; background:#08080f; padding:clamp(80px,12vh,150px) clamp(20px,6vw,90px); border-top:1px solid rgba(255,255,255,0.06); text-align:center; }
+  .rv-score{ display:inline-flex; align-items:center; gap:14px; margin-top:8px; flex-wrap:wrap; justify-content:center; }
+  .rv-score .rv-num{ font-family:'Cormorant Garamond',serif; font-size:44px; color:#fff; line-height:1; }
+  .rv-stars{ color:var(--amber); font-size:18px; letter-spacing:2px; }
+  .rv-count{ font-size:12px; color:rgba(255,255,255,0.5); letter-spacing:.04em; }
+  .rv-grid{ max-width:1180px; margin:46px auto 0; display:grid; gap:22px; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); text-align:left; }
+  .rv-card{ border:1px solid rgba(255,255,255,0.08); border-radius:16px; background:linear-gradient(160deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015)); padding:26px 24px; display:flex; flex-direction:column; gap:12px; }
+  .rv-card .rv-s{ color:var(--amber); font-size:13px; letter-spacing:2px; }
+  .rv-card .rv-q{ font-size:14px; font-weight:300; line-height:1.7; color:rgba(255,255,255,0.78); flex:1; }
+  .rv-card .rv-by{ font-size:11px; letter-spacing:.06em; color:rgba(255,255,255,0.45); }
+  .rv-card .rv-by b{ color:rgba(255,255,255,0.7); font-weight:500; }
+  .rv-cta{ display:inline-block; margin-top:36px; cursor:pointer; text-decoration:none; border:1px solid rgba(255,255,255,0.16); color:rgba(255,255,255,0.8); border-radius:40px; padding:13px 28px; font-size:11px; text-transform:uppercase; letter-spacing:.2em; transition:all .3s var(--ease); }
+  .rv-cta:hover{ border-color:rgba(var(--amber-rgb),0.6); color:var(--amber); }
   .fc-social{ margin-top:22px; display:flex; gap:14px; }
   .fc-social a{ width:34px; height:34px; border:1px solid rgba(255,255,255,0.15); border-radius:50%; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.6); text-decoration:none; transition:all .3s var(--ease); }
   .fc-social a:hover{ border-color:var(--amber); color:var(--amber); }
@@ -216,6 +251,7 @@ JS = """
   $('#nlForm').addEventListener('submit',e=>{ e.preventDefault(); const v=$('#nlEmail').value.trim(); if(v){ showToast('Welcome to the <b>Tea Club</b> \\u2014 check your inbox.'); $('#nlEmail').value=''; } });
   const referBtn=$('#referBtn'); if(referBtn) referBtn.addEventListener('click',()=>showToast('Referral is a demo \\u2014 share your <b>£5</b> link.'));
   const storyVisit=$('#storyVisit'); if(storyVisit) storyVisit.addEventListener('click',()=>$('#visit').scrollIntoView({behavior:'smooth'}));
+  const bookForm=$('#bookForm'); if(bookForm) bookForm.addEventListener('submit',(e)=>{ e.preventDefault(); showToast('Booking enquiry sent \\u2014 we\\'ll confirm by <b>email</b>.'); bookForm.reset(); });
 
   /* promo banner */
   document.body.classList.add('promo-on');
@@ -314,10 +350,10 @@ __HEROCSS__
     </div>
     <div class="nav-group">
       <div class="nav-h">Cafe &amp; Lounge</div>
+      <a data-go="book">Book A Table</a>
       <a data-go="cafemenu">Cafe &amp; Lounge Menu</a>
       <a data-go="kidsmenu">Kids Menu</a>
       <a data-go="visit">Experiences</a>
-      <a data-go="visit">Events</a>
     </div>
     <div class="nav-group">
       <div class="nav-h">About Us</div>
@@ -480,9 +516,9 @@ __HEROCSS__
       <h3>Visit Us</h3>
       <p>5 Victoria Street<br/>Nottingham NG1 2EW</p>
       <div style="margin-top:18px">
-        <div class="v-row"><span>Mon</span><span>Closed</span></div>
-        <div class="v-row"><span>Tue &ndash; Sat</span><span>9:00 &ndash; 17:00</span></div>
-        <div class="v-row"><span>Sun</span><span>10:00 &ndash; 16:00</span></div>
+        <div class="v-row"><span>Mon &ndash; Fri</span><span>9:00 &ndash; 5:00</span></div>
+        <div class="v-row"><span>Saturday</span><span>9:30 &ndash; 5:00</span></div>
+        <div class="v-row"><span>Sunday</span><span>10:00 &ndash; 4:30</span></div>
       </div>
     </div>
     <div class="visit-col">
@@ -491,6 +527,103 @@ __HEROCSS__
       <p>Book the full afternoon tea experience &mdash; scones, finger sandwiches, cake and a pot of loose leaf tea &mdash; or join one of our guided tea-tasting events. Booking online, or gift it with a voucher.</p>
     </div>
   </div>
+</section>
+
+<section id="book">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Book A Table</div>
+    <h2 class="sec-title">Book Your Experience</h2>
+    <p class="sec-sub">Select your experience and preferred date to submit a booking enquiry.</p>
+  </div>
+  <div class="book-grid">
+    <form class="book-form" id="bookForm">
+      <div class="bf-row">
+        <label for="bkExp">Choose your experience</label>
+        <select id="bkExp" required>
+          <option value="">Select an experience</option>
+          <option>Afternoon Tea Experience</option>
+          <option>Cream Tea Experience</option>
+          <option>Tea Tasting Event</option>
+          <option>Table Reservation</option>
+        </select>
+      </div>
+      <div class="bf-two">
+        <div class="bf-row"><label for="bkDate">Preferred date</label><input type="date" id="bkDate" required /></div>
+        <div class="bf-row"><label for="bkTime">Preferred time</label><input type="time" id="bkTime" required /></div>
+      </div>
+      <div class="bf-row">
+        <label for="bkGuests">Number of guests</label>
+        <select id="bkGuests">
+          <option>1 guest</option><option selected>2 guests</option><option>3 guests</option>
+          <option>4 guests</option><option>5 guests</option><option>6 guests</option>
+          <option>7 guests</option><option>8+ guests</option>
+        </select>
+      </div>
+      <div class="bf-two">
+        <div class="bf-row"><label for="bkName">Full name</label><input type="text" id="bkName" placeholder="Your name" required /></div>
+        <div class="bf-row"><label for="bkEmail">Email</label><input type="email" id="bkEmail" placeholder="your@email.com" required /></div>
+      </div>
+      <div class="bf-row"><label for="bkPhone">Phone</label><input type="tel" id="bkPhone" placeholder="07xxx xxxxxx" /></div>
+      <div class="bf-row">
+        <label for="bkReq">Special requests or dietary requirements</label>
+        <textarea id="bkReq" placeholder="Let us know about any allergies, dietary requirements, or special occasions…"></textarea>
+      </div>
+      <button type="submit" class="book-submit">Submit Booking Request</button>
+      <p class="book-note">This is a booking enquiry. We'll confirm availability and send payment details via email.</p>
+    </form>
+    <aside class="book-aside">
+      <div class="ba-block">
+        <h3>Our Opening Hours</h3>
+        <div class="hours-row"><span>Monday</span><span>9:00 &ndash; 5:00</span></div>
+        <div class="hours-row"><span>Tuesday</span><span>9:00 &ndash; 5:00</span></div>
+        <div class="hours-row"><span>Wednesday</span><span>9:00 &ndash; 5:00</span></div>
+        <div class="hours-row"><span>Thursday</span><span>9:00 &ndash; 5:00</span></div>
+        <div class="hours-row"><span>Friday</span><span>9:00 &ndash; 5:00</span></div>
+        <div class="hours-row"><span>Saturday</span><span>9:30 &ndash; 5:00</span></div>
+        <div class="hours-row"><span>Sunday</span><span>10:00 &ndash; 4:30</span></div>
+      </div>
+      <div class="ba-block">
+        <h3>How To Find Us</h3>
+        <p>5 Victoria Street<br/>Nottingham NG1 2EW</p>
+        <a class="maps-btn" href="https://www.google.com/maps/search/?api=1&query=Biscuit%20%26%20Brew%205%20Victoria%20Street%20Nottingham%20NG1%202EW" target="_blank" rel="noopener">Open in Google Maps →</a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="sec-head" style="margin-bottom:8px">
+    <div class="sec-eyebrow">Reviews</div>
+    <h2 class="sec-title">Loved in Nottingham</h2>
+  </div>
+  <div class="rv-score">
+    <span class="rv-num">4.8</span>
+    <span class="rv-stars">★★★★★</span>
+    <span class="rv-count">155 Google reviews</span>
+  </div>
+  <div class="rv-grid">
+    <div class="rv-card">
+      <div class="rv-s">★★★★★</div>
+      <p class="rv-q">"Delicious food, reasonably priced, with such wonderful friendly staff &mdash; it makes you wonder why more people don't go there!"</p>
+      <div class="rv-by"><b>Daniel McDonald-Smith</b> &middot; Google</div>
+    </div>
+    <div class="rv-card">
+      <div class="rv-s">★★★★★</div>
+      <p class="rv-q">"Quirky little tea shop which we loved! An amazing array of loose leaf tea, and the staff explained every flavour."</p>
+      <div class="rv-by"><b>Tripadvisor reviewer</b> &middot; Tripadvisor</div>
+    </div>
+    <div class="rv-card">
+      <div class="rv-s">★★★★★</div>
+      <p class="rv-q">"A gem of a place &mdash; a cute little cafe with a lovely atmosphere and such friendly, attentive staff."</p>
+      <div class="rv-by"><b>Google reviewer</b> &middot; Google</div>
+    </div>
+    <div class="rv-card">
+      <div class="rv-s">★★★★★</div>
+      <p class="rv-q">"Lovely coffee and a freshly baked scone, with good, attentive service. We'll be back."</p>
+      <div class="rv-by"><b>Tripadvisor reviewer</b> &middot; Tripadvisor</div>
+    </div>
+  </div>
+  <a class="rv-cta" href="https://www.google.com/maps/search/?api=1&query=Biscuit%20%26%20Brew%20Nottingham" target="_blank" rel="noopener">Read &amp; leave a review →</a>
 </section>
 
 <section id="story">
@@ -572,9 +705,9 @@ __HEROCSS__
     <div class="fc-col">
       <h4>Highlights</h4>
       <a data-go="products">Our Loose Leaf Tea</a>
-      <a data-go="visit">Book A Table</a>
-      <a data-go="visit">Cafe &amp; Lounge Menu</a>
-      <a data-go="visit">Afternoon Tea</a>
+      <a data-go="book">Book A Table</a>
+      <a data-go="cafemenu">Cafe &amp; Lounge Menu</a>
+      <a data-go="book">Afternoon Tea</a>
     </div>
     <div class="fc-col">
       <h4>Useful Info</h4>
