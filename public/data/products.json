@@ -10,6 +10,7 @@
       "id": "black",
       "name": "Black Tea",
       "meta": "10 blends · full-bodied",
+      "image": "IMG_2673.jpg",
       "products": [
         {
           "id": "biscuit-brew",
@@ -115,6 +116,7 @@
       "id": "green",
       "name": "Green Tea",
       "meta": "5 blends · fresh & delicate",
+      "image": "IMG_2674.jpg",
       "products": [
         {
           "id": "pear-pistachio",
@@ -172,6 +174,7 @@
       "id": "herbal",
       "name": "Fruit & Herbal",
       "meta": "4 blends · caffeine-free",
+      "image": "IMG_2675.jpg",
       "products": [
         {
           "id": "strawberry-fields-forever",
