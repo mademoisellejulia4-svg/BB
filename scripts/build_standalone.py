@@ -25,6 +25,9 @@ img_files = {
     "images/matcha-whisk.png": ("images/matcha-whisk.png", 1000),
     "images/starter-loose-leaf.png": ("images/starter-loose-leaf.png", 1000),
     "images/starter-matcha.png": ("images/starter-matcha.png", 1000),
+    "images/story-owners.png": ("images/story-owners.png", 800),
+    "images/story-1.jpg": ("images/story-1.jpg", 760),
+    "images/story-2.jpg": ("images/story-2.jpg", 760),
 }
 uri_map = {}
 total = 0
@@ -226,6 +229,7 @@ JS = """
   $('#shopLink').addEventListener('click',()=>$('#products').scrollIntoView({behavior:'smooth'}));
   $('#nlForm').addEventListener('submit',e=>{ e.preventDefault(); const v=$('#nlEmail').value.trim(); if(v){ showToast('Welcome to the <b>Tea Club</b> \\u2014 check your inbox.'); $('#nlEmail').value=''; } });
   const referBtn=$('#referBtn'); if(referBtn) referBtn.addEventListener('click',()=>showToast('Referral is a demo \\u2014 share your <b>£5</b> link.'));
+  const storyVisit=$('#storyVisit'); if(storyVisit) storyVisit.addEventListener('click',()=>$('#visit').scrollIntoView({behavior:'smooth'}));
 
   /* promo banner */
   document.body.classList.add('promo-on');
@@ -308,8 +312,8 @@ __HEROCSS__
     </div>
     <div class="nav-group">
       <div class="nav-h">About Us</div>
-      <a data-go="visit">Our Story</a>
-      <a data-go="footcols">Visit Us</a>
+      <a data-go="story">Our Story</a>
+      <a data-go="visit">Visit Us</a>
     </div>
   </div>
 </nav>
@@ -480,6 +484,32 @@ __HEROCSS__
   </div>
 </section>
 
+<section id="story">
+  <div class="story-wrap">
+    <img class="story-portrait" src="images/story-owners.png" alt="Dee and Darren, owners of Biscuit &amp; Brew" />
+    <div class="story-eyebrow">Our Story</div>
+    <h2 class="story-title">Come in, get comfy</h2>
+    <p>Hi! We're Dee and Darren, the owners of Biscuit and Brew. Welcome to our teahouse!</p>
+    <p>We'd like to tell you a bit about who we are, how we got started, and what we aim to deliver for our customers.</p>
+    <p>We established Biscuit and Brew in 2019, initially as something of a side hustle. We were both working in creative jobs &mdash; Darren as a musician and Dee as a dance teacher &mdash; when we started crafting tea blends inspired by Darren's music. We'd never encountered a music-inspired tea before, and pairing each song with its own tea felt like a fun way to make the music more memorable for people.</p>
+    <p>We quickly got hooked on experimenting with new blends, and over the next couple of years we crafted flavours inspired by sweets, desserts and cocktails; books and music; different moods and different times of day. We even made a tea that tastes like our wedding cake.</p>
+    <p>At this point we never thought we'd end up opening a tea house! But, when we started selling tea to our friends and inviting them over for tasting sessions called "biscuit and brews," we had an inkling this could be more than just a hobby. It was tough to find creative work after lockdown, and Darren was rejected from a job he really thought he would get. 24 hours later we were in Nottingham visiting what would become our first cafe on Hounds Gate. It really was that spontaneous!</p>
+    <p>So, that's the story of Biscuit and Brew! But what can you expect if you come to visit us?</p>
+    <p>We started out by having our friends over for cosy cups of tea, and really the goal hasn't changed. We want you to feel as though you've been welcomed into our home. This is why we focus on making your visit feel as personal as possible: our scones and cakes are freshly baked in-house, and we craft all the different tea flavours ourselves. We even use the same cast-iron Japanese teapots we have at home (because we think they're the best!)</p>
+    <p>Giving friendly, attentive, and knowledgeable service is also super important to us. Greeting customers at the door and serving them at the table might have gone a little out of fashion, but we think it's the best way to make people feel special. We've noticed over the years that memorable dining experiences are often defined by great service.</p>
+    <div class="story-images">
+      <img src="images/story-1.jpg" alt="Enjoying a pot of tea at Biscuit &amp; Brew" />
+      <img src="images/story-2.jpg" alt="Table service at Biscuit &amp; Brew" />
+    </div>
+    <p>Focussing on service also helps us to fulfil our role as tea experts, here to help you navigate the (sometimes overwhelming!) world of loose leaf. After all, there are so many different blends, it's not always clear how much tea to brew, how long to brew it for, whether it has caffeine in it, and so on. Our goal is to show that brewing a cup of tea shouldn't feel so complicated! When you visit us, we'll guide you through the process and answer any queries you might have. We keep scent bottles on our front counter so you can smell a blend before you try it, and our refillable afternoon teas are a great way to explore all the flavours on our menu. We're eager to tell the stories of our teas, so no question is too small to ask.</p>
+    <p>While there's nothing wrong with sticking to what you know, we've also tried to challenge you a bit with our menu. You'll never blow someone's mind by giving them something they expect! Darren once had a burger with a donut on it, and it was so unexpectedly enjoyable that it stuck with him ever since. Our goal is to recreate that experience for you. Tea that tastes like Battenburg cake, banana bread with bacon and mascarpone on it, an eggy-bread toastie glazed with honey: all these experiments are designed to give you something you didn't know you needed. Don't worry though, if dippy eggs and English Breakfast is more your thing, we've got you. We still appreciate the classics.</p>
+    <p>In short, we want you to feel welcomed and looked after, but also (if you fancy it!) encouraged to venture out of your comfort zone to try some new flavours. If we can make you feel at home and provide you with a memorable experience, we're doing our jobs properly!</p>
+    <p>Thanks for visiting us, and we hope to see you soon.</p>
+    <div class="story-sign">Dee &amp; Darren</div>
+    <button class="story-cta" id="storyVisit">Visit Us</button>
+  </div>
+</section>
+
 <section id="refer">
   <div class="r-eyebrow">Rewards</div>
   <h2>Refer A Friend</h2>
@@ -529,7 +559,7 @@ __HEROCSS__
     <div class="fc-col">
       <h4>Reading</h4>
       <a href="#" onclick="return false">Media</a>
-      <a href="#" onclick="return false">Our Story</a>
+      <a data-go="story">Our Story</a>
       <a href="#" onclick="return false">Caffeine Guide</a>
       <a href="#" onclick="return false">How to Brew Loose Leaf Tea</a>
       <a href="#" onclick="return false">Music &amp; Tea</a>
@@ -589,6 +619,10 @@ HTML = (HTML.replace("__CSS__", css)
             .replace("__HEROCSS__", HERO_CSS)
             .replace("__HERO__", hero_uri)
             .replace("__JS__", JS))
+
+# inline static (non-catalog) image paths used in markup, e.g. the Our Story section
+for rel, uri in uri_map.items():
+    HTML = HTML.replace('src="' + rel + '"', 'src="' + uri + '"')
 
 out = os.path.join(PUB, "biscuit-and-brew-ipad.html")
 with open(out, "w") as f:
