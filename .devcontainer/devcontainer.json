@@ -1,0 +1,12 @@
+{
+  "name": "Biscuit & Brew",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "Biscuit & Brew",
+      "visibility": "private"
+    }
+  },
+  "postCreateCommand": "npm install"
+}
