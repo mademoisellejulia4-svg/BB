@@ -277,6 +277,33 @@
       ]
     },
     {
+      "id": "starter-kits",
+      "name": "Starter Kits",
+      "meta": "Everything you need to begin",
+      "image": "images/starter-loose-leaf.png",
+      "variantLabel": "Select kit",
+      "products": [
+        {
+          "id": "loose-leaf-starter-kit",
+          "name": "Loose Leaf Tea Starter Kit",
+          "description": "A cast iron teapot paired with a bag of our loose leaf tea — the easiest way to start brewing properly at home.",
+          "image": "images/starter-loose-leaf.png",
+          "variants": [
+            { "sku": "KIT-LOOSE-LEAF", "size": "Kit", "cups": "teapot + tea", "price": 29.95 }
+          ]
+        },
+        {
+          "id": "matcha-starter-kit",
+          "name": "Matcha Starter Kit",
+          "description": "Ceremonial matcha, a kraft storage tube and a hand-cut bamboo whisk — your full matcha ritual in one set.",
+          "image": "images/starter-matcha.png",
+          "variants": [
+            { "sku": "KIT-MATCHA", "size": "Kit", "cups": "matcha + whisk", "price": 25.95 }
+          ]
+        }
+      ]
+    },
+    {
       "id": "matcha",
       "name": "Matcha",
       "meta": "Ceremonial kit · whisk & tin",

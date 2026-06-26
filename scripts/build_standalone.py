@@ -23,6 +23,8 @@ img_files = {
     "images/matcha-kit.png": ("images/matcha-kit.png", 1000),
     "images/matcha.png": ("images/matcha.png", 1000),
     "images/matcha-whisk.png": ("images/matcha-whisk.png", 1000),
+    "images/starter-loose-leaf.png": ("images/starter-loose-leaf.png", 1000),
+    "images/starter-matcha.png": ("images/starter-matcha.png", 1000),
 }
 uri_map = {}
 total = 0
@@ -236,7 +238,7 @@ JS = """
   $('#menuBtn').addEventListener('click',openNav);
   $('#navClose').addEventListener('click',closeNav);
   navOv.addEventListener('click',closeNav);
-  const NAV_CAT={ vouchers:1, matcha:1, accessories:1 };
+  const NAV_CAT={ vouchers:1, matcha:1, accessories:1, 'starter-kits':1 };
   document.querySelectorAll('[data-go]').forEach(a=>{
     a.addEventListener('click',()=>{
       const go=a.getAttribute('data-go'); closeNav();
@@ -293,6 +295,7 @@ __HEROCSS__
     <div class="nav-group">
       <div class="nav-h">Shop</div>
       <a data-go="products">Loose Leaf Tea</a>
+      <a data-go="starter-kits">Starter Kits</a>
       <a data-go="vouchers">Gifts &amp; Bundles</a>
       <a data-go="accessories">Accessories</a>
     </div>
