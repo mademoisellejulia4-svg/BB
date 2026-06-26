@@ -195,15 +195,27 @@
     border:1px solid rgba(255,255,255,0.07);
     border-radius:18px;
     background:linear-gradient(160deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
-    padding:46px 34px; min-height:340px;
+    padding:46px 34px; min-height:420px;
     display:flex; flex-direction:column; justify-content:flex-end;
     overflow:hidden;
     transition:transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease);
   }
-  .cat-card::before{
+  /* product-tin photo for each category */
+  .cat-card .cc-img{
+    position:absolute; inset:0; z-index:0;
+    background-size:cover; background-position:center;
+    transform:scale(1.04);
+    transition:transform .6s var(--ease);
+  }
+  .cat-card .cc-img::after{
     content:""; position:absolute; inset:0;
+    background:linear-gradient(to top, rgba(3,3,3,0.92) 8%, rgba(3,3,3,0.45) 45%, rgba(3,3,3,0.15) 100%);
+  }
+  .cat-card:hover .cc-img{ transform:scale(1.10); }
+  .cat-card::before{
+    content:""; position:absolute; inset:0; z-index:1;
     background:radial-gradient(120% 80% at 50% 0%, rgba(var(--amber-rgb),0.10), transparent 60%);
-    opacity:.6; transition:opacity .4s var(--ease);
+    opacity:.6; transition:opacity .4s var(--ease); pointer-events:none;
   }
   .cat-card:hover{
     transform:translateY(-12px);
@@ -212,20 +224,20 @@
   }
   .cat-card:hover::before{ opacity:1; }
   .cat-card .cc-index{
-    position:absolute; top:26px; left:34px;
+    position:absolute; z-index:2; top:26px; left:34px;
     font-size:11px; letter-spacing:.3em; color:rgba(var(--amber-rgb),0.6);
   }
   .cat-card .cc-name{
-    position:relative;
+    position:relative; z-index:2;
     font-family:'Cormorant Garamond', serif;
     font-size:34px; font-weight:500; letter-spacing:.06em; color:#fff;
   }
   .cat-card .cc-meta{
-    position:relative; margin-top:10px;
-    font-size:12px; color:rgba(255,255,255,0.5); letter-spacing:.04em;
+    position:relative; z-index:2; margin-top:10px;
+    font-size:12px; color:rgba(255,255,255,0.6); letter-spacing:.04em;
   }
   .cat-card .cc-cta{
-    position:relative; margin-top:22px;
+    position:relative; z-index:2; margin-top:22px;
     font-size:11px; text-transform:uppercase; letter-spacing:.25em;
     color:var(--amber);
   }
@@ -337,6 +349,7 @@
     font-family:'Inter',sans-serif; transition:all .3s var(--ease);
   }
   .vbtn .vs{ display:block; font-size:12px; letter-spacing:.04em; }
+  .vbtn .vc{ display:block; margin-top:3px; font-size:9.5px; letter-spacing:.06em; color:rgba(255,255,255,0.4); }
   .vbtn .vp{ display:block; margin-top:5px; font-family:'Cormorant Garamond',serif; font-size:18px; color:#fff; }
   .vbtn:hover{ border-color:rgba(255,170,0,0.5); }
   .vbtn.sel{ border-color:var(--amber); background:rgba(var(--amber-rgb),0.10); }
@@ -602,11 +615,10 @@
 <script>
 /* =========================================================================
    BISCUIT & BREW
-   NOTE ON PRICING DATA: the reference site biscuitandbrewteahouse.com is
-   blocked by this environment's network egress policy, so live prices/sizes
-   could not be fetched. The values below are realistic GBP placeholders in a
-   cart-ready structure — replace `variants` with the real products.json data
-   (size + price) when the host is reachable.
+   PRICING DATA: sizes mirror the real shop (15g / 65g / 150g + 65g reusable
+   tube), anchored to its £6.45 (65g) reference. The reference host blocks this
+   environment's network egress, so per-SKU figures are best-effort — edit
+   public/data/products.json to match the live store exactly.
    ========================================================================= */
 (function(){
   "use strict";
@@ -877,7 +889,9 @@
       const card = document.createElement('div');
       card.className = 'cat-card';
       const count = (c.products && c.products.length) || 0;
+      const img = c.image ? '<div class="cc-img" style="background-image:url(\''+c.image+'\')"></div>' : '';
       card.innerHTML =
+        img +
         '<div class="cc-index">'+(i<9?'0':'')+(i+1)+'</div>' +
         '<div class="cc-name">'+c.name+'</div>' +
         '<div class="cc-meta">'+(c.meta || (count+' blends'))+'</div>' +
@@ -955,7 +969,9 @@
     p.variants.forEach((v, idx) => {
       const b = document.createElement('button');
       b.className = 'vbtn' + (idx===0 ? ' sel' : '');
-      b.innerHTML = '<span class="vs">'+v.size+'</span><span class="vp">'+fmt(v.price)+'</span>';
+      b.innerHTML = '<span class="vs">'+v.size+'</span>' +
+        (v.cups ? '<span class="vc">'+v.cups+'</span>' : '') +
+        '<span class="vp">'+fmt(v.price)+'</span>';
       b.addEventListener('click', () => {
         mVarIdx = idx;
         vWrap.querySelectorAll('.vbtn').forEach(x=>x.classList.remove('sel'));
