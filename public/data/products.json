@@ -66,11 +66,15 @@
         {
           "id": "cherry-bakewell",
           "name": "Cherry Bakewell",
-          "description": "A cherry-amaretto blend — rich and tangy with nutty almond tones.",
+          "description": "Rich and tangy with berry and nutty tones — a cheeky black tea blend of Sri Lankan black tea, apple pieces, rosehip, hibiscus, almond pieces, freeze-dried cranberry, orange peel, freeze-dried cherry and natural flavouring.",
+          "image": "images/cherry-bakewell.jpg",
+          "rating": 5,
+          "reviews": 3,
           "variants": [
             { "sku": "BLK-CHERRY-BAKEWELL-15G", "size": "15g", "cups": "7 cups", "price": 2.95 },
-            { "sku": "BLK-CHERRY-BAKEWELL-65G", "size": "65g", "cups": "32 cups", "price": 6.45 },
-            { "sku": "BLK-CHERRY-BAKEWELL-150G", "size": "150g", "cups": "75 cups", "price": 12.95 }
+            { "sku": "BLK-CHERRY-BAKEWELL-65G", "size": "65g", "cups": "32 cups", "price": 6.95 },
+            { "sku": "BLK-CHERRY-BAKEWELL-150G", "size": "150g", "cups": "75 cups", "price": 13.50 },
+            { "sku": "BLK-CHERRY-BAKEWELL-TUBE", "size": "65g Tube", "cups": "reusable tin", "price": 14.95 }
           ]
         },
         {

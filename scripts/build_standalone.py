@@ -33,6 +33,7 @@ img_files = {
     "images/review-teapot.jpg": ("images/review-teapot.jpg", 560),
     "images/review-food.jpg": ("images/review-food.jpg", 640),
     "images/book-afternoon-tea.jpg": ("images/book-afternoon-tea.jpg", 1100),
+    "images/cherry-bakewell.jpg": ("images/cherry-bakewell.jpg", 760),
 }
 uri_map = {}
 total = 0
@@ -221,6 +222,7 @@ JS = """
       card.innerHTML=pimg+
         '<div class="pc-cat">'+c.name+'</div>'+
         '<div class="pc-name">'+p.name+'</div>'+
+        (p.rating?'<div class="pc-stars">'+('★★★★★'.slice(0,p.rating))+' <span>'+(p.reviews||'')+(p.reviews?' reviews':'')+'</span></div>':'')+
         '<div class="pc-desc">'+(p.description||'')+'</div>'+
         '<div class="pc-variants">'+chips+'</div>'+
         '<div class="pc-from"><span><span class="lbl">From&nbsp;</span><span class="val">'+fmt(fromPrice(p))+'</span></span><span class="pc-view">View \\u2192</span></div>';
@@ -243,6 +245,9 @@ JS = """
     $('#mCat').textContent=c.name; $('#mName').textContent=p.name;
     $('#mDesc').textContent=p.description||'';
     $('#mVlabel').textContent=c.variantLabel||'Select size';
+    const rEl=$('#mRating');
+    if(p.rating){ $('#mStars').textContent='★★★★★'.slice(0,p.rating)+'☆☆☆☆☆'.slice(0,5-p.rating); $('#mReviews').textContent=(p.reviews?p.reviews+' review'+(p.reviews>1?'s':''):''); rEl.classList.add('show'); }
+    else { rEl.classList.remove('show'); }
     $('#qVal').textContent='1';
     const w=$('#mVariants'); w.innerHTML='';
     p.variants.forEach((v,idx)=>{
@@ -845,9 +850,14 @@ __HEROCSS__
     <div class="modal-img" id="mImg"></div>
     <div class="modal-cat" id="mCat"></div>
     <div class="modal-name" id="mName"></div>
+    <div class="modal-rating" id="mRating"><span class="ms" id="mStars">★★★★★</span><span class="mr" id="mReviews"></span></div>
     <div class="modal-desc" id="mDesc"></div>
     <div class="modal-vlabel" id="mVlabel">Select size</div>
     <div class="modal-variants" id="mVariants"></div>
+    <div class="modal-trust">
+      <div class="modal-stock"><b>✓ In stock</b> &middot; Pickup at Biscuit &amp; Brew, usually ready in 24 hours<br/><span class="save">Subscribe &amp; save 10%</span> on repeat orders</div>
+      <div class="modal-badges"><span>Sustainable</span><span>Blended in the UK</span><span>Invented by us</span></div>
+    </div>
     <div class="modal-foot">
       <div class="qty"><button id="qMinus">&minus;</button><span id="qVal">1</span><button id="qPlus">+</button></div>
       <button class="addbtn" id="addBtn">Add to cart</button>

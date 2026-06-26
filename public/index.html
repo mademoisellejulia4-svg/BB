@@ -279,6 +279,8 @@
     font-family:'Cormorant Garamond', serif;
     font-size:25px; font-weight:500; color:#fff; letter-spacing:.02em; line-height:1.1;
   }
+  .pc-stars{ margin-top:8px; color:var(--amber); font-size:12px; letter-spacing:2px; }
+  .pc-stars span{ color:rgba(255,255,255,0.4); font-size:10px; letter-spacing:.04em; }
   .pc-desc{
     margin-top:10px; font-size:12.5px; font-weight:300; line-height:1.6;
     color:rgba(255,255,255,0.5); flex:1;
@@ -364,6 +366,16 @@
   .modal-cat{ font-size:10px; text-transform:uppercase; letter-spacing:.28em; color:rgba(var(--amber-rgb),0.75); }
   .modal-name{ font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:500; color:#fff; margin:8px 0 14px; }
   .modal-desc{ font-size:13px; font-weight:300; line-height:1.7; color:rgba(255,255,255,0.6); }
+  .modal-rating{ display:none; align-items:center; gap:9px; margin:2px 0 14px; }
+  .modal-rating.show{ display:flex; }
+  .modal-rating .ms{ color:var(--amber); font-size:14px; letter-spacing:2px; }
+  .modal-rating .mr{ font-size:11px; color:rgba(255,255,255,0.5); letter-spacing:.04em; }
+  .modal-trust{ margin-top:22px; padding-top:18px; border-top:1px solid rgba(255,255,255,0.08); }
+  .modal-stock{ font-size:11.5px; color:rgba(255,255,255,0.6); line-height:1.7; }
+  .modal-stock b{ color:#5db075; font-weight:500; }
+  .modal-stock .save{ color:var(--amber); }
+  .modal-badges{ margin-top:12px; display:flex; flex-wrap:wrap; gap:8px; }
+  .modal-badges span{ font-size:9px; text-transform:uppercase; letter-spacing:.12em; color:rgba(255,255,255,0.6); border:1px solid rgba(255,255,255,0.14); border-radius:30px; padding:5px 10px; }
   .modal-vlabel{ margin-top:26px; font-size:10px; text-transform:uppercase; letter-spacing:.25em; color:rgba(255,255,255,0.4); }
   .modal-variants{ margin-top:14px; display:flex; flex-wrap:wrap; gap:10px; }
   .vbtn{
@@ -1366,9 +1378,14 @@
     <div class="modal-img" id="mImg"></div>
     <div class="modal-cat" id="mCat"></div>
     <div class="modal-name" id="mName"></div>
+    <div class="modal-rating" id="mRating"><span class="ms" id="mStars">★★★★★</span><span class="mr" id="mReviews"></span></div>
     <div class="modal-desc" id="mDesc"></div>
     <div class="modal-vlabel" id="mVlabel">Select size</div>
     <div class="modal-variants" id="mVariants"></div>
+    <div class="modal-trust">
+      <div class="modal-stock"><b>✓ In stock</b> &middot; Pickup at Biscuit &amp; Brew, usually ready in 24 hours<br/><span class="save">Subscribe &amp; save 10%</span> on repeat orders</div>
+      <div class="modal-badges"><span>Sustainable</span><span>Blended in the UK</span><span>Invented by us</span></div>
+    </div>
     <div class="modal-foot">
       <div class="qty">
         <button id="qMinus">&minus;</button><span id="qVal">1</span><button id="qPlus">+</button>
@@ -1582,6 +1599,7 @@
         pimg +
         '<div class="pc-cat">'+c.name+'</div>' +
         '<div class="pc-name">'+p.name+'</div>' +
+        (p.rating ? '<div class="pc-stars">'+('★★★★★'.slice(0,p.rating))+' <span>'+(p.reviews||'')+(p.reviews?' reviews':'')+'</span></div>' : '') +
         '<div class="pc-desc">'+(p.description||'')+'</div>' +
         '<div class="pc-variants">'+chips+'</div>' +
         '<div class="pc-from">' +
@@ -1626,6 +1644,12 @@
     $('#mName').textContent = p.name;
     $('#mDesc').textContent = p.description || '';
     $('#mVlabel').textContent = c.variantLabel || 'Select size';
+    const rEl = $('#mRating');
+    if(p.rating){
+      $('#mStars').textContent = '★★★★★'.slice(0, p.rating) + '☆☆☆☆☆'.slice(0, 5 - p.rating);
+      $('#mReviews').textContent = (p.reviews ? p.reviews + ' review' + (p.reviews>1?'s':'') : '');
+      rEl.classList.add('show');
+    } else { rEl.classList.remove('show'); }
     $('#qVal').textContent = '1';
 
     const vWrap = $('#mVariants');
