@@ -32,6 +32,7 @@ img_files = {
     "images/instagram-2.jpg": ("images/instagram-2.jpg", 540),
     "images/review-teapot.jpg": ("images/review-teapot.jpg", 560),
     "images/review-food.jpg": ("images/review-food.jpg", 640),
+    "images/book-afternoon-tea.jpg": ("images/book-afternoon-tea.jpg", 1100),
 }
 uri_map = {}
 total = 0
@@ -65,6 +66,8 @@ css = re.search(r"<style>(.*?)</style>", page, re.S).group(1)
 HERO_CSS = """
   /* standalone reuses the scroll-scrubbed video hero CSS from index.html */
   #book{ position:relative; z-index:2; background:#0a0a14; padding:clamp(80px,12vh,150px) clamp(20px,6vw,90px); border-top:1px solid rgba(255,255,255,0.06); }
+  .book-banner{ max-width:1100px; margin:0 auto 48px; height:clamp(220px,34vh,380px); border-radius:18px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); }
+  .book-banner img{ width:100%; height:100%; object-fit:cover; display:block; }
   .book-grid{ max-width:1100px; margin:0 auto; display:grid; gap:54px; grid-template-columns:1.25fr 1fr; }
   @media (max-width:820px){ .book-grid{ grid-template-columns:1fr; } }
   .book-form{ display:flex; flex-direction:column; gap:18px; }
@@ -532,6 +535,7 @@ __HEROCSS__
 </section>
 
 <section id="book">
+  <div class="book-banner"><img src="images/book-afternoon-tea.jpg" alt="Afternoon tea at Biscuit &amp; Brew" /></div>
   <div class="sec-head">
     <div class="sec-eyebrow">Book A Table</div>
     <h2 class="sec-title">Book Your Experience</h2>
