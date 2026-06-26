@@ -70,6 +70,33 @@ HERO_CSS = """
   .hero-tag{ margin-top:18px; font-family:'Cormorant Garamond',serif; font-style:italic;
     font-size:clamp(18px,3.4vw,30px); color:rgba(255,255,255,0.82);
     text-shadow:0 2px 24px rgba(0,0,0,0.7); }
+
+  .fc-social{ margin-top:22px; display:flex; gap:14px; }
+  .fc-social a{ width:34px; height:34px; border:1px solid rgba(255,255,255,0.15); border-radius:50%; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.6); text-decoration:none; transition:all .3s var(--ease); }
+  .fc-social a:hover{ border-color:var(--amber); color:var(--amber); }
+  .fc-pay{ max-width:1180px; margin:30px auto 0; padding-top:22px; border-top:1px solid rgba(255,255,255,0.06); display:flex; flex-wrap:wrap; gap:9px; align-items:center; }
+  .fc-pay .pay{ font-size:9px; letter-spacing:.06em; color:rgba(255,255,255,0.5); border:1px solid rgba(255,255,255,0.14); border-radius:5px; padding:5px 8px; background:rgba(255,255,255,0.03); }
+
+  #cafemenu{ position:relative; z-index:2; background:#08080f; padding:clamp(80px,12vh,150px) clamp(20px,6vw,90px); border-top:1px solid rgba(255,255,255,0.06); }
+  .cm-grid{ max-width:1180px; margin:0 auto; display:grid; gap:34px 48px; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); }
+  .cm-group h3{ font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:500; color:#fff; letter-spacing:.04em; margin-bottom:6px; }
+  .cm-group .cm-note{ font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:.04em; margin-bottom:16px; }
+  .cm-row{ display:flex; align-items:baseline; gap:12px; padding:9px 0; border-bottom:1px dashed rgba(255,255,255,0.08); }
+  .cm-row .cm-name{ color:rgba(255,255,255,0.82); font-size:14px; }
+  .cm-row .cm-dots{ flex:1; border-bottom:1px dotted rgba(255,255,255,0.18); transform:translateY(-3px); }
+  .cm-row .cm-price{ font-family:'Cormorant Garamond',serif; color:var(--amber); font-size:16px; white-space:nowrap; }
+  .cm-sub{ font-size:11.5px; font-weight:300; color:rgba(255,255,255,0.4); margin-top:6px; line-height:1.6; }
+
+  #refer{ position:relative; z-index:2; background:linear-gradient(160deg, #3a4a3a, #2a352a); padding:clamp(70px,11vh,130px) 24px; text-align:center; }
+  #refer .r-eyebrow{ font-size:11px; letter-spacing:.4em; text-transform:uppercase; color:var(--amber); margin-bottom:16px; }
+  #refer h2{ font-family:'Cormorant Garamond',serif; font-size:clamp(34px,6vw,54px); font-weight:500; color:#fff; }
+  #refer p{ margin-top:14px; font-size:14px; font-weight:300; color:rgba(255,255,255,0.7); }
+  .r-cards{ margin-top:40px; display:flex; gap:20px; justify-content:center; flex-wrap:wrap; }
+  .r-card{ background:rgba(0,0,0,0.25); border:1px solid rgba(255,255,255,0.12); border-radius:14px; padding:26px 32px; min-width:200px; }
+  .r-card .r-amt{ font-family:'Cormorant Garamond',serif; font-size:34px; color:var(--amber); }
+  .r-card .r-lbl{ margin-top:6px; font-size:12px; letter-spacing:.06em; color:rgba(255,255,255,0.65); }
+  .r-cta{ margin-top:40px; display:inline-block; cursor:pointer; background:var(--amber); color:#0a0a0a; border:none; border-radius:12px; padding:15px 38px; font-family:'Inter',sans-serif; font-size:11px; font-weight:500; text-transform:uppercase; letter-spacing:.22em; transition:transform .3s var(--ease), filter .3s var(--ease); }
+  .r-cta:hover{ filter:brightness(1.08); transform:translateY(-2px); }
 """
 
 JS = """
@@ -193,6 +220,7 @@ JS = """
   $('#checkoutBtn').addEventListener('click',()=>showToast('Checkout is a demo \\u2014 <b>'+count()+'</b> item(s), '+fmt(total())));
   $('#shopLink').addEventListener('click',()=>$('#products').scrollIntoView({behavior:'smooth'}));
   $('#nlForm').addEventListener('submit',e=>{ e.preventDefault(); const v=$('#nlEmail').value.trim(); if(v){ showToast('Welcome to the <b>Tea Club</b> \\u2014 check your inbox.'); $('#nlEmail').value=''; } });
+  const referBtn=$('#referBtn'); if(referBtn) referBtn.addEventListener('click',()=>showToast('Referral is a demo \\u2014 share your <b>£5</b> link.'));
 
   /* promo banner */
   document.body.classList.add('promo-on');
@@ -205,7 +233,7 @@ JS = """
   $('#menuBtn').addEventListener('click',openNav);
   $('#navClose').addEventListener('click',closeNav);
   navOv.addEventListener('click',closeNav);
-  const NAV_CAT={ vouchers:1, matcha:1 };
+  const NAV_CAT={ vouchers:1, matcha:1, accessories:1 };
   document.querySelectorAll('[data-go]').forEach(a=>{
     a.addEventListener('click',()=>{
       const go=a.getAttribute('data-go'); closeNav();
@@ -263,11 +291,11 @@ __HEROCSS__
       <div class="nav-h">Shop</div>
       <a data-go="products">Loose Leaf Tea</a>
       <a data-go="vouchers">Gifts &amp; Bundles</a>
-      <a data-go="matcha">Accessories</a>
+      <a data-go="accessories">Accessories</a>
     </div>
     <div class="nav-group">
       <div class="nav-h">Cafe &amp; Lounge</div>
-      <a data-go="visit">Cafe &amp; Lounge</a>
+      <a data-go="cafemenu">Cafe &amp; Lounge Menu</a>
       <a data-go="visit">Experiences</a>
       <a data-go="visit">Events</a>
     </div>
@@ -307,6 +335,69 @@ __HEROCSS__
   </div>
 </section>
 
+<section id="cafemenu">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Cafe &amp; Lounge</div>
+    <h2 class="sec-title">The Menu</h2>
+    <p class="sec-sub">Served in our Nottingham tea house. Loose leaf tea brewed in a Japanese cast iron teapot.</p>
+  </div>
+  <div class="cm-grid">
+    <div class="cm-group">
+      <h3>Tea</h3>
+      <div class="cm-note">Loose leaf, brewed in a cast iron teapot</div>
+      <div class="cm-row"><span class="cm-name">Our Blends &mdash; Pot For One</span><span class="cm-dots"></span><span class="cm-price">£4.25</span></div>
+      <div class="cm-row"><span class="cm-name">Our Blends &mdash; 65g Tea Pack</span><span class="cm-dots"></span><span class="cm-price">£6.95</span></div>
+      <div class="cm-row"><span class="cm-name">Traditional Brews &mdash; Pot For One</span><span class="cm-dots"></span><span class="cm-price">£4.10</span></div>
+      <div class="cm-row"><span class="cm-name">Traditional Brews &mdash; 65g Tea Pack</span><span class="cm-dots"></span><span class="cm-price">£5.95</span></div>
+      <p class="cm-sub">English Breakfast &middot; Decaf Black &middot; Earl Grey &middot; Assam &middot; Darjeeling &middot; Ceylon &middot; Jasmine Green &middot; Black Dragon Oolong &middot; Chun Mee Green &middot; Rooibos &middot; Pure Peppermint &middot; Lapsang Souchong &middot; Lavender Flower</p>
+    </div>
+    <div class="cm-group">
+      <h3>Coffee</h3>
+      <div class="cm-note">Rich, smooth dark roast &middot; poured over ice +50p</div>
+      <div class="cm-row"><span class="cm-name">Americano</span><span class="cm-dots"></span><span class="cm-price">£3.70</span></div>
+      <div class="cm-row"><span class="cm-name">Cappuccino</span><span class="cm-dots"></span><span class="cm-price">£3.95</span></div>
+      <div class="cm-row"><span class="cm-name">Latte</span><span class="cm-dots"></span><span class="cm-price">£3.95</span></div>
+      <div class="cm-row"><span class="cm-name">Flat White</span><span class="cm-dots"></span><span class="cm-price">£3.85</span></div>
+      <div class="cm-row"><span class="cm-name">Double Espresso</span><span class="cm-dots"></span><span class="cm-price">£2.95</span></div>
+      <div class="cm-row"><span class="cm-name">Mocha / White Mocha</span><span class="cm-dots"></span><span class="cm-price">£4.45</span></div>
+      <div class="cm-row"><span class="cm-name">Affogato</span><span class="cm-dots"></span><span class="cm-price">£4.45</span></div>
+      <div class="cm-row"><span class="cm-name">250g Beans</span><span class="cm-dots"></span><span class="cm-price">£10.95</span></div>
+      <p class="cm-sub">Upgrades: oat milk +50p &middot; over ice +50p &middot; extra shot +£1.45 &middot; flavouring syrups +50p (hazelnut, vanilla, caramel, salted caramel, Biscoff, cinnamon)</p>
+    </div>
+    <div class="cm-group">
+      <h3>Chai</h3>
+      <div class="cm-note">Served hot or poured over ice +50p</div>
+      <div class="cm-row"><span class="cm-name">Chai Latte</span><span class="cm-dots"></span><span class="cm-price">£3.95</span></div>
+      <div class="cm-row"><span class="cm-name">Dirty Chai</span><span class="cm-dots"></span><span class="cm-price">£5.25</span></div>
+      <h3 style="margin-top:26px">Iced Brews</h3>
+      <div class="cm-row"><span class="cm-name">Strawberry Fields Forever</span><span class="cm-dots"></span><span class="cm-price">£4.95</span></div>
+      <div class="cm-row"><span class="cm-name">Cherry Kiss</span><span class="cm-dots"></span><span class="cm-price">£4.95</span></div>
+    </div>
+    <div class="cm-group">
+      <h3>Matcha</h3>
+      <div class="cm-note">Japanese ceremonial-grade green tea</div>
+      <div class="cm-row"><span class="cm-name">Matcha Latte</span><span class="cm-dots"></span><span class="cm-price">£4.25</span></div>
+      <div class="cm-row"><span class="cm-name">Iced Matcha Latte</span><span class="cm-dots"></span><span class="cm-price">£4.75</span></div>
+      <div class="cm-row"><span class="cm-name">Matchagato</span><span class="cm-dots"></span><span class="cm-price">£4.45</span></div>
+      <div class="cm-row"><span class="cm-name">Biscuit Brew Matcha</span><span class="cm-dots"></span><span class="cm-price">£5.45</span></div>
+      <div class="cm-row"><span class="cm-name">30g Pack</span><span class="cm-dots"></span><span class="cm-price">£17.95</span></div>
+    </div>
+    <div class="cm-group">
+      <h3>Hot Chocolate</h3>
+      <div class="cm-note">Add flavouring syrups +50p</div>
+      <div class="cm-row"><span class="cm-name">Belgian Hot Chocolate</span><span class="cm-dots"></span><span class="cm-price">£4.25</span></div>
+      <div class="cm-row"><span class="cm-name">Italian White Hot Chocolate</span><span class="cm-dots"></span><span class="cm-price">£4.25</span></div>
+      <div class="cm-row"><span class="cm-name">Luxury Hot Choc</span><span class="cm-dots"></span><span class="cm-price">£5.20</span></div>
+    </div>
+    <div class="cm-group">
+      <h3>Cold Drinks</h3>
+      <div class="cm-note">Chilled &amp; refreshing</div>
+      <div class="cm-row"><span class="cm-name">Soft Drinks</span><span class="cm-dots"></span><span class="cm-price">£4.75</span></div>
+      <p class="cm-sub">Cloudy Lemonade &middot; Dandelion &amp; Burdock &middot; Orange Juice &middot; Apple Juice</p>
+    </div>
+  </div>
+</section>
+
 <section id="visit">
   <div class="visit-wrap">
     <div class="visit-col">
@@ -332,6 +423,17 @@ __HEROCSS__
   </div>
 </section>
 
+<section id="refer">
+  <div class="r-eyebrow">Rewards</div>
+  <h2>Refer A Friend</h2>
+  <p>You'll both love Biscuit &amp; Brew &mdash; so here's £5 each off your next order.</p>
+  <div class="r-cards">
+    <div class="r-card"><div class="r-amt">£5</div><div class="r-lbl">Your friend gets</div></div>
+    <div class="r-card"><div class="r-amt">£5</div><div class="r-lbl">You get</div></div>
+  </div>
+  <button class="r-cta" id="referBtn">Start Earning</button>
+</section>
+
 <section id="newsletter">
   <h2>Join our Tea Club.</h2>
   <p class="nsub">Exclusives, news, gossip &amp; tea talk.</p>
@@ -346,6 +448,10 @@ __HEROCSS__
     <div class="fc-brand">
       <div class="fc-logo">BISCUIT &amp; BREW</div>
       <p>Handcrafted loose leaf tea blends, inspired by cakes, biscuits, cocktails and music. Made in Nottingham since 2017.</p>
+      <div class="fc-social">
+        <a href="#" onclick="return false" aria-label="Facebook">f</a>
+        <a href="#" onclick="return false" aria-label="Instagram">&#9678;</a>
+      </div>
     </div>
     <div class="fc-col">
       <h4>Highlights</h4>
@@ -372,6 +478,11 @@ __HEROCSS__
       <a href="#" onclick="return false">Music &amp; Tea</a>
       <a href="#" onclick="return false">Our Name</a>
     </div>
+  </div>
+  <div class="fc-pay">
+    <span class="pay">AMEX</span><span class="pay">Apple Pay</span><span class="pay">Diners Club</span>
+    <span class="pay">Discover</span><span class="pay">Google Pay</span><span class="pay">Maestro</span>
+    <span class="pay">Mastercard</span><span class="pay">Shop Pay</span><span class="pay">Union Pay</span><span class="pay">Visa</span>
   </div>
 </section>
 
