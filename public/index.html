@@ -500,9 +500,102 @@
   footer .f-right a{ font-size:11px; color:rgba(255,255,255,0.55); text-decoration:none; letter-spacing:.04em; }
   footer .f-right a:hover{ text-decoration:underline; color:var(--amber); }
 
+  /* ============ PROMO BANNER ============ */
+  #promo{
+    position:fixed; top:0; left:0; right:0; z-index:250;
+    height:34px; display:flex; align-items:center; justify-content:center;
+    background:#3a4a3a; color:rgba(255,255,255,0.92);
+    font-size:11px; letter-spacing:.08em; text-align:center; padding:0 40px;
+  }
+  #promo b{ color:var(--amber); font-weight:500; }
+  #promo .promo-x{
+    position:absolute; right:14px; top:50%; transform:translateY(-50%);
+    background:none; border:none; color:rgba(255,255,255,0.6); font-size:16px; cursor:pointer; line-height:1;
+  }
+  #promo .promo-x:hover{ color:#fff; }
+  body.promo-on header{ top:34px; }
+  body.promo-on #vbar{ top:34px; height:calc(100vh - 34px); }
+
+  /* ============ MENU BUTTON + NAV DRAWER ============ */
+  .menu-btn{
+    display:inline-flex; align-items:center; gap:9px;
+    background:none; border:none; cursor:pointer; pointer-events:auto;
+    color:rgba(255,255,255,0.75); font-family:'Inter',sans-serif;
+    font-size:11px; text-transform:uppercase; letter-spacing:.2em;
+    transition:color .3s var(--ease);
+  }
+  .menu-btn:hover{ color:var(--amber); }
+  .menu-btn .bars{ display:inline-flex; flex-direction:column; gap:3px; }
+  .menu-btn .bars i{ width:18px; height:1.5px; background:currentColor; display:block; }
+  header .hleft{ display:flex; align-items:center; gap:20px; pointer-events:auto; }
+
+  #navOverlay{
+    position:fixed; inset:0; z-index:660;
+    background:rgba(3,3,5,0.6); backdrop-filter:blur(4px);
+    opacity:0; visibility:hidden; transition:opacity .4s var(--ease), visibility .4s;
+  }
+  #navOverlay.open{ opacity:1; visibility:visible; }
+  #nav{
+    position:fixed; top:0; left:0; z-index:670;
+    width:min(380px, 90vw); height:100vh;
+    background:linear-gradient(180deg, #0b0b16, #08080f);
+    border-right:1px solid rgba(var(--amber-rgb),0.18);
+    transform:translateX(-100%); transition:transform .45s var(--ease);
+    box-shadow:30px 0 80px -30px rgba(0,0,0,0.8);
+    display:flex; flex-direction:column; overflow-y:auto;
+  }
+  #nav.open{ transform:translateX(0); }
+  .nav-head{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:24px 28px; border-bottom:1px solid rgba(255,255,255,0.07);
+  }
+  .nav-head .brand{ font-family:'Cormorant Garamond',serif; font-size:18px; letter-spacing:.18em; color:var(--amber); }
+  .nav-close{ background:none; border:none; color:rgba(255,255,255,0.55); font-size:24px; cursor:pointer; line-height:1; }
+  .nav-close:hover{ color:var(--amber); }
+  .nav-body{ padding:18px 28px 40px; }
+  .nav-group{ margin-top:22px; }
+  .nav-group > .nav-h{
+    font-family:'Cormorant Garamond',serif; font-size:22px; color:#fff; letter-spacing:.04em; margin-bottom:10px;
+  }
+  .nav-group a{
+    display:block; padding:9px 0; color:rgba(255,255,255,0.6);
+    font-size:13px; letter-spacing:.04em; text-decoration:none; cursor:pointer;
+    transition:color .3s var(--ease), padding-left .3s var(--ease);
+  }
+  .nav-group a:hover{ color:var(--amber); padding-left:6px; }
+
+  /* ============ VISIT / CAFE & LOUNGE ============ */
+  #visit{
+    position:relative; z-index:2; background:#0a0a14;
+    padding:clamp(70px,11vh,140px) clamp(20px,6vw,90px);
+    border-top:1px solid rgba(255,255,255,0.06);
+  }
+  .visit-wrap{ max-width:1100px; margin:0 auto; display:grid; gap:48px; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); }
+  .visit-col .v-eyebrow{ font-size:11px; letter-spacing:.4em; text-transform:uppercase; color:var(--amber); opacity:.85; margin-bottom:14px; }
+  .visit-col h3{ font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:500; color:#fff; margin-bottom:14px; letter-spacing:.03em; }
+  .visit-col p{ font-size:13px; font-weight:300; line-height:1.8; color:rgba(255,255,255,0.55); }
+  .visit-col .v-row{ display:flex; justify-content:space-between; max-width:300px; font-size:12.5px; padding:7px 0; border-bottom:1px solid rgba(255,255,255,0.06); color:rgba(255,255,255,0.6); }
+  .visit-col .v-row span:last-child{ color:rgba(255,255,255,0.4); }
+
+  /* ============ FOOTER COLUMNS ============ */
+  #footcols{
+    position:relative; z-index:2; background:var(--ink);
+    border-top:1px solid rgba(var(--amber-rgb),0.15);
+    padding:clamp(54px,8vh,90px) clamp(20px,6vw,70px) 30px;
+  }
+  .fc-wrap{ max-width:1180px; margin:0 auto; display:grid; gap:40px; grid-template-columns:1.3fr 1fr 1fr 1fr; }
+  .fc-brand .fc-logo{ font-family:'Cormorant Garamond',serif; font-size:26px; letter-spacing:.14em; color:var(--amber); }
+  .fc-brand p{ margin-top:14px; font-size:12px; font-weight:300; line-height:1.7; color:rgba(255,255,255,0.45); max-width:240px; }
+  .fc-col h4{ font-family:'Inter',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:.22em; color:#fff; margin-bottom:16px; }
+  .fc-col a{ display:block; padding:6px 0; font-size:12.5px; color:rgba(255,255,255,0.5); text-decoration:none; letter-spacing:.03em; transition:color .3s var(--ease); cursor:pointer; }
+  .fc-col a:hover{ color:var(--amber); }
+  @media (max-width:860px){ .fc-wrap{ grid-template-columns:1fr 1fr; } }
+
   @media (max-width:640px){
     footer{ justify-content:center; text-align:center; }
     #ovSub{ left:6%; bottom:12%; }
+    .fc-wrap{ grid-template-columns:1fr; }
+    #promo{ font-size:10px; padding:0 34px; }
   }
 </style>
 </head>
@@ -515,14 +608,51 @@
   <div class="lsub">Preparing your ritual&hellip;</div>
 </div>
 
+<!-- PROMO BANNER -->
+<div id="promo">
+  <span><b>20% off</b> your first order when you subscribe to the mail list</span>
+  <button class="promo-x" id="promoX" aria-label="Dismiss">&times;</button>
+</div>
+
 <!-- FIXED HEADER -->
 <header>
-  <div class="brand">BISCUIT &amp; BREW</div>
+  <div class="hleft">
+    <button class="menu-btn" id="menuBtn"><span class="bars"><i></i><i></i><i></i></span> MENU</button>
+    <div class="brand">BISCUIT &amp; BREW</div>
+  </div>
   <div class="hnav">
     <button class="shop" id="shopLink">SHOP</button>
     <button class="shop bag" id="bagBtn">BAG <span id="bagCount" class="bag-count">0</span></button>
   </div>
 </header>
+
+<!-- NAV DRAWER -->
+<div id="navOverlay"></div>
+<nav id="nav" aria-label="Main menu">
+  <div class="nav-head">
+    <span class="brand">BISCUIT &amp; BREW</span>
+    <button class="nav-close" id="navClose">&times;</button>
+  </div>
+  <div class="nav-body">
+    <div class="nav-group">
+      <div class="nav-h">Shop</div>
+      <a data-go="products">Loose Leaf Tea</a>
+      <a data-go="vouchers">Gifts &amp; Bundles</a>
+      <a data-go="matcha">Accessories</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-h">Cafe &amp; Lounge</div>
+      <a data-go="visit">Cafe &amp; Lounge</a>
+      <a data-go="visit">Experiences</a>
+      <a data-go="visit">Events</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-h">About Us</div>
+      <a data-go="visit">Our Story</a>
+      <a data-go="footcols">Visit Us</a>
+    </div>
+  </div>
+</nav>
 
 <!-- SCROLL PROGRESS BAR -->
 <div id="vbar"><div id="vfill"></div></div>
@@ -565,6 +695,32 @@
   </div>
 </section>
 
+<!-- VISIT / CAFE & LOUNGE -->
+<section id="visit">
+  <div class="visit-wrap">
+    <div class="visit-col">
+      <div class="v-eyebrow">Cafe &amp; Lounge</div>
+      <h3>Come and sit a while.</h3>
+      <p>A family-run cafe and hidden lounge in the heart of Nottingham, pouring our handcrafted loose leaf blends since 2017. Breakfast, brunch, afternoon tea, cakes and hot chocolates — with gluten-free and vegan-friendly options, served at your table or tucked away in our cosy downstairs snug.</p>
+    </div>
+    <div class="visit-col">
+      <div class="v-eyebrow">Find Us</div>
+      <h3>Visit Us</h3>
+      <p>5 Victoria Street<br/>Nottingham NG1 2EW</p>
+      <div style="margin-top:18px">
+        <div class="v-row"><span>Mon</span><span>Closed</span></div>
+        <div class="v-row"><span>Tue – Sat</span><span>9:00 – 17:00</span></div>
+        <div class="v-row"><span>Sun</span><span>10:00 – 16:00</span></div>
+      </div>
+    </div>
+    <div class="visit-col">
+      <div class="v-eyebrow">Experiences</div>
+      <h3>Afternoon Tea</h3>
+      <p>Book the full afternoon tea experience — scones, finger sandwiches, cake and a pot of loose leaf tea — or join one of our guided tea-tasting events. Booking online, or gift it with a voucher.</p>
+    </div>
+  </div>
+</section>
+
 <!-- NEWSLETTER -->
 <section id="newsletter">
   <h2>Join our Tea Club.</h2>
@@ -573,6 +729,41 @@
     <input type="email" id="nlEmail" placeholder="Your email" required />
     <button type="submit" class="nl-begin">BEGIN &rarr;</button>
   </form>
+</section>
+
+<!-- FOOTER COLUMNS -->
+<section id="footcols">
+  <div class="fc-wrap">
+    <div class="fc-brand">
+      <div class="fc-logo">BISCUIT &amp; BREW</div>
+      <p>Handcrafted loose leaf tea blends, inspired by cakes, biscuits, cocktails and music. Made in Nottingham since 2017.</p>
+    </div>
+    <div class="fc-col">
+      <h4>Highlights</h4>
+      <a data-go="products">Our Loose Leaf Tea</a>
+      <a data-go="visit">Book A Table</a>
+      <a data-go="visit">Cafe &amp; Lounge Menu</a>
+      <a data-go="visit">Afternoon Tea</a>
+    </div>
+    <div class="fc-col">
+      <h4>Useful Info</h4>
+      <a href="#" onclick="return false">Wholesale</a>
+      <a href="#" onclick="return false">FAQ</a>
+      <a href="#" onclick="return false">Contact Us</a>
+      <a data-go="visit">Visit Us</a>
+      <a href="#" onclick="return false">Returns Policy</a>
+      <a href="#" onclick="return false">Privacy Policy</a>
+    </div>
+    <div class="fc-col">
+      <h4>Reading</h4>
+      <a href="#" onclick="return false">Media</a>
+      <a href="#" onclick="return false">Our Story</a>
+      <a href="#" onclick="return false">Caffeine Guide</a>
+      <a href="#" onclick="return false">How to Brew Loose Leaf Tea</a>
+      <a href="#" onclick="return false">Music &amp; Tea</a>
+      <a href="#" onclick="return false">Our Name</a>
+    </div>
+  </div>
 </section>
 
 <!-- FOOTER -->
@@ -593,7 +784,7 @@
     <div class="modal-cat" id="mCat"></div>
     <div class="modal-name" id="mName"></div>
     <div class="modal-desc" id="mDesc"></div>
-    <div class="modal-vlabel">Select size</div>
+    <div class="modal-vlabel" id="mVlabel">Select size</div>
     <div class="modal-variants" id="mVariants"></div>
     <div class="modal-foot">
       <div class="qty">
@@ -977,6 +1168,7 @@
     $('#mCat').textContent = c.name;
     $('#mName').textContent = p.name;
     $('#mDesc').textContent = p.description || '';
+    $('#mVlabel').textContent = c.variantLabel || 'Select size';
     $('#qVal').textContent = '1';
 
     const vWrap = $('#mVariants');
@@ -1111,9 +1303,51 @@
   $('#bagBtn').addEventListener('click', openCart);
   $('#cartClose').addEventListener('click', closeCart);
   cartOverlay.addEventListener('click', closeCart);
-  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeCart(); });
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape'){ closeCart(); closeNav(); } });
   $('#checkoutBtn').addEventListener('click', () => {
     showToast('Checkout is a demo &mdash; <b>'+cartCount()+'</b> item(s), '+fmt(cartTotal()));
+  });
+
+  /* promo banner */
+  document.body.classList.add('promo-on');
+  $('#promoX').addEventListener('click', () => {
+    document.body.classList.remove('promo-on');
+    $('#promo').style.display = 'none';
+    if(window.ScrollTrigger) ScrollTrigger.refresh();
+  });
+
+  /* nav drawer */
+  const nav = $('#nav'), navOverlay = $('#navOverlay');
+  function openNav(){ nav.classList.add('open'); navOverlay.classList.add('open'); }
+  function closeNav(){ nav.classList.remove('open'); navOverlay.classList.remove('open'); }
+  $('#menuBtn').addEventListener('click', openNav);
+  $('#navClose').addEventListener('click', closeNav);
+  navOverlay.addEventListener('click', closeNav);
+  // category ids that should open the product detail view
+  const NAV_CAT = { vouchers:1, matcha:1 };
+  nav.querySelectorAll('[data-go]').forEach(a => {
+    a.addEventListener('click', () => {
+      const go = a.getAttribute('data-go');
+      closeNav();
+      if(go === 'products'){
+        backToCats();
+        $('#products').scrollIntoView({ behavior:'smooth' });
+      } else if(NAV_CAT[go]){
+        $('#products').scrollIntoView({ behavior:'smooth' });
+        setTimeout(() => openCategory(go), 420);
+      } else {
+        const el = document.getElementById(go);
+        if(el) el.scrollIntoView({ behavior:'smooth' });
+      }
+    });
+  });
+  // footer-column links that jump to a section
+  document.querySelectorAll('#footcols [data-go]').forEach(a => {
+    a.addEventListener('click', () => {
+      const go = a.getAttribute('data-go');
+      if(go === 'products'){ backToCats(); $('#products').scrollIntoView({ behavior:'smooth' }); }
+      else { const el = document.getElementById(go); if(el) el.scrollIntoView({ behavior:'smooth' }); }
+    });
   });
 
   /* SHOP link + newsletter */
