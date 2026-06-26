@@ -5,8 +5,10 @@
   "portsAttributes": {
     "3000": {
       "label": "Biscuit & Brew",
-      "visibility": "private"
+      "visibility": "public",
+      "onAutoForward": "openBrowser"
     }
   },
-  "postCreateCommand": "npm install"
+  "postCreateCommand": "npm install",
+  "postAttachCommand": "npm start"
 }
