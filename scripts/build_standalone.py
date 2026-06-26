@@ -65,6 +65,25 @@ css = re.search(r"<style>(.*?)</style>", page, re.S).group(1)
 
 HERO_CSS = """
   /* standalone reuses the scroll-scrubbed video hero CSS from index.html */
+  #promoMsg{ transition:opacity .4s ease; }
+  #favourites{ position:relative; z-index:2; background:linear-gradient(to bottom, #0a0a1a, #050510); padding:clamp(70px,11vh,140px) clamp(20px,6vw,90px); text-align:center; }
+  .fav-grid{ max-width:1100px; margin:46px auto 0; display:grid; gap:30px; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); }
+  .fav-card{ cursor:pointer; display:flex; flex-direction:column; align-items:center; }
+  .fav-medal{ position:relative; width:180px; height:180px; border-radius:50%; background-size:cover; background-position:center; background-color:#0c0c14; border:1px solid rgba(var(--amber-rgb),0.25); box-shadow:0 20px 40px -20px rgba(0,0,0,0.7); transition:transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease); }
+  .fav-card:hover .fav-medal{ transform:translateY(-8px) scale(1.03); border-color:rgba(255,170,0,0.6); box-shadow:0 30px 50px -20px rgba(0,0,0,0.8), 0 0 30px -8px rgba(255,170,0,0.3); }
+  .fav-badge{ position:absolute; top:12px; left:50%; transform:translateX(-50%); background:#3a4a3a; color:#fff; font-size:9px; letter-spacing:.12em; text-transform:uppercase; padding:4px 10px; border-radius:30px; white-space:nowrap; }
+  .fav-name{ margin-top:18px; font-family:'Cormorant Garamond',serif; font-size:21px; color:#fff; letter-spacing:.02em; }
+  .fav-price{ margin-top:5px; font-size:12px; color:rgba(var(--amber-rgb),0.85); letter-spacing:.04em; }
+  .fav-shop{ margin-top:44px; cursor:pointer; background:none; border:1px solid rgba(var(--amber-rgb),0.5); color:var(--amber); border-radius:40px; padding:13px 30px; font-family:'Inter',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:.22em; transition:all .3s var(--ease); }
+  .fav-shop:hover{ background:rgba(var(--amber-rgb),0.1); transform:translateY(-2px); }
+  .nl-club{ margin:38px auto 0; max-width:440px; display:flex; flex-direction:column; gap:16px; }
+  .nlc-two{ display:flex; gap:16px; }
+  .nl-club input{ flex:1; width:100%; background:transparent; border:none; border-bottom:1px solid rgba(var(--amber-rgb),0.5); color:#fff; padding:12px 4px; font-family:'Inter',sans-serif; font-size:14px; letter-spacing:.04em; }
+  .nl-club input::placeholder{ color:rgba(255,255,255,0.4); }
+  .nl-club input:focus{ outline:none; border-color:var(--amber); }
+  .nl-club-btn{ margin-top:10px; cursor:pointer; background:var(--amber); color:#0a0a0a; border:none; border-radius:40px; padding:15px; font-family:'Inter',sans-serif; font-size:11px; font-weight:500; text-transform:uppercase; letter-spacing:.22em; transition:transform .3s var(--ease), filter .3s var(--ease); }
+  .nl-club-btn:hover{ filter:brightness(1.08); transform:translateY(-2px); }
+  @media (max-width:440px){ .nlc-two{ flex-direction:column; } }
   #promoModal{ position:fixed; inset:0; z-index:900; display:none; align-items:center; justify-content:center; padding:24px; background:rgba(3,3,5,0.80); backdrop-filter:blur(6px); opacity:0; transition:opacity .5s var(--ease); }
   #promoModal.open{ display:flex; }
   .pm-card{ position:relative; width:min(460px, 94vw); max-height:92vh; overflow:auto; background:radial-gradient(120% 90% at 50% 18%, #fbf7ef, #f1e8d8); border:1px solid rgba(var(--amber-rgb),0.35); border-radius:50% / 42%; padding:clamp(54px,8vw,74px) clamp(40px,8vw,64px); text-align:center; box-shadow:0 50px 120px -40px rgba(0,0,0,0.85), inset 0 0 0 1px rgba(255,255,255,0.5); transform:scale(.92) translateY(14px); transition:transform .55s var(--ease); }
@@ -160,6 +179,19 @@ JS = """
   const fmt = n => symbol() + Number(n).toFixed(2);
   const fromPrice = p => Math.min.apply(null, p.variants.map(v=>v.price));
   const CAT = {}; (STORE.categories||[]).forEach(c=>CAT[c.id]=c);
+  const FAVS=[['black','caramel-apple-betty'],['green','pear-pistachio'],['herbal','cherry-kiss'],['black','biscuit-brew']];
+  function buildFavourites(){
+    const grid=$('#favGrid'); if(!grid) return; grid.innerHTML='';
+    FAVS.forEach(([cid,pid])=>{
+      const c=CAT[cid]; if(!c) return; const p=(c.products||[]).find(x=>x.id===pid); if(!p) return;
+      const card=document.createElement('div'); card.className='fav-card';
+      card.innerHTML='<div class="fav-medal"'+(c.image?' style="background-image:url(\\''+c.image+'\\')"':'')+'><span class="fav-badge">'+c.name+'</span></div>'+
+        '<div class="fav-name">'+p.name+'</div>'+
+        '<div class="fav-price">From '+fmt(fromPrice(p))+'</div>';
+      card.addEventListener('click',()=>openModal(c,p));
+      grid.appendChild(card);
+    });
+  }
 
   /* ---- categories ---- */
   const catGrid = $('#catGrid');
@@ -292,6 +324,8 @@ JS = """
   /* promo banner */
   document.body.classList.add('promo-on');
   $('#promoX').addEventListener('click',()=>{ document.body.classList.remove('promo-on'); $('#promo').style.display='none'; });
+  (function(){ const el=$('#promoMsg'); if(!el) return; const msgs=["Hello! Is it tea you're looking for?","Free Delivery on all orders over &pound;30","<b>20% off</b> when you subscribe to the mail list"]; let i=0; setInterval(()=>{ el.style.opacity='0'; setTimeout(()=>{ i=(i+1)%msgs.length; el.innerHTML=msgs[i]; el.style.opacity='1'; },400); },4200); })();
+  const favShop=$('#favShop'); if(favShop) favShop.addEventListener('click',()=>{ backToCats(); $('#products').scrollIntoView({behavior:'smooth'}); });
 
   /* nav drawer */
   const nav=$('#nav'), navOv=$('#navOverlay');
@@ -334,7 +368,7 @@ JS = """
     onScroll();
   })();
 
-  buildCategories(); renderCart();
+  buildCategories(); buildFavourites(); renderCart();
 })();
 """
 JS = JS.replace("__STORE__", store_json)
@@ -355,7 +389,7 @@ __HEROCSS__
 </head>
 <body>
 <div id="promo">
-  <span><b>20% off</b> your first order when you subscribe to the mail list</span>
+  <span id="promoMsg">Hello! Is it tea you're looking for?</span>
   <button class="promo-x" id="promoX" aria-label="Dismiss">&times;</button>
 </div>
 
@@ -425,6 +459,16 @@ __HEROCSS__
     </div>
     <div class="prod-grid" id="prodGrid"></div>
   </div>
+</section>
+
+<section id="favourites">
+  <div class="sec-head" style="margin-bottom:0">
+    <div class="sec-eyebrow">Personal Favourites</div>
+    <h2 class="sec-title">Our Personal Favourites</h2>
+    <p class="sec-sub">Not sure where to start with our range? Here are a few of the team's favourite blends.</p>
+  </div>
+  <div class="fav-grid" id="favGrid"></div>
+  <button class="fav-shop" id="favShop">Shop our favourites &rarr;</button>
 </section>
 
 <section id="cafemenu">
@@ -734,11 +778,15 @@ __HEROCSS__
 </section>
 
 <section id="newsletter">
-  <h2>Join our Tea Club.</h2>
-  <p class="nsub">Exclusives, news, gossip &amp; tea talk.</p>
-  <form class="nl-form" id="nlForm">
-    <input type="email" id="nlEmail" placeholder="Your email" required />
-    <button type="submit" class="nl-begin">BEGIN &rarr;</button>
+  <h2>Join our exclusive tea club</h2>
+  <p class="nsub">For 20% off your first order, secret menus, shop gossip and more. Fill in your details and we'll send your discount code as a thank you.</p>
+  <form class="nl-club" id="nlForm">
+    <div class="nlc-two">
+      <input type="text" id="nlFirst" placeholder="First name" required />
+      <input type="text" id="nlLast" placeholder="Last name" required />
+    </div>
+    <input type="email" id="nlEmail" placeholder="Email" required />
+    <button type="submit" class="nl-club-btn">Subscribe &amp; get 20% off</button>
   </form>
 </section>
 
