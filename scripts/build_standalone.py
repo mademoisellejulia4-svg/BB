@@ -19,6 +19,7 @@ def data_uri(path, max_w=1100, quality=82):
 img_files = {
     "images/black-tea.png": ("images/black-tea.png", 1100),
     "images/hero-poster.jpg": ("images/hero-poster.jpg", 1280),
+    "images/storefront.jpg": ("images/storefront.jpg", 1400),
     "images/green-tea.png": ("images/green-tea.png", 1100),
     "images/fruit-herbal.png": ("images/fruit-herbal.png", 1100),
     "images/matcha-kit.png": ("images/matcha-kit.png", 1000),
@@ -373,6 +374,16 @@ JS = """
   $('#checkoutBtn').addEventListener('click',()=>showToast('Checkout is a demo \\u2014 <b>'+count()+'</b> item(s), '+fmt(total())));
   $('#shopLink').addEventListener('click',()=>$('#products').scrollIntoView({behavior:'smooth'}));
   $('#nlForm').addEventListener('submit',e=>{ e.preventDefault(); const v=$('#nlEmail').value.trim(); if(v){ showToast('Welcome to the <b>Tea Club</b> \\u2014 check your inbox.'); $('#nlEmail').value=''; } });
+  document.querySelectorAll('#faq .faq-item').forEach((item)=>{
+    const q=item.querySelector('.faq-q'), a=item.querySelector('.faq-a');
+    q.addEventListener('click',()=>{
+      const isOpen=item.classList.contains('open');
+      document.querySelectorAll('#faq .faq-item.open').forEach((o)=>{ if(o!==item){ o.classList.remove('open'); o.querySelector('.faq-a').style.maxHeight=null; } });
+      if(isOpen){ item.classList.remove('open'); a.style.maxHeight=null; }
+      else { item.classList.add('open'); a.style.maxHeight=a.scrollHeight+'px'; }
+    });
+  });
+  const contactForm=$('#contactForm'); if(contactForm) contactForm.addEventListener('submit',(e)=>{ e.preventDefault(); showToast('Thanks for your message \\u2014 we\\'ll be in touch soon.'); contactForm.reset(); });
   const referBtn=$('#referBtn'); if(referBtn) referBtn.addEventListener('click',()=>showToast('Referral is a demo \\u2014 share your <b>£5</b> link.'));
   const storyVisit=$('#storyVisit'); if(storyVisit) storyVisit.addEventListener('click',()=>$('#visit').scrollIntoView({behavior:'smooth'}));
   const bookForm=$('#bookForm'); if(bookForm) bookForm.addEventListener('submit',(e)=>{ e.preventDefault(); showToast('Booking enquiry sent \\u2014 we\\'ll confirm by <b>email</b>.'); bookForm.reset(); });
@@ -537,6 +548,8 @@ __HEROCSS__
             <a data-go="visit">Visit Us</a>
             <a data-go="reviews">Reviews</a>
             <a data-go="instagram">Find Us On Instagram</a>
+            <a data-go="faq">FAQ</a>
+            <a data-go="contact">Contact Us</a>
             <a data-go="refer">Refer a Friend</a>
           </div>
         </div>
@@ -979,6 +992,78 @@ __HEROCSS__
   <a class="rv-cta" href="https://www.google.com/maps/search/?api=1&query=Biscuit%20%26%20Brew%20Nottingham" target="_blank" rel="noopener">Read &amp; leave a review →</a>
 </section>
 
+<section id="faq">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Good to know</div>
+    <h2 class="sec-title">Frequently Asked Questions</h2>
+    <p class="sec-sub">Everything you need to know about our tea, orders and the tea house.</p>
+  </div>
+  <div class="faq-wrap">
+    <div class="faq-item">
+      <button class="faq-q">Where are you based? <span class="faq-ic">+</span></button>
+      <div class="faq-a"><p>You'll find our cafe &amp; lounge at 5 Victoria Street, Nottingham NG1 2EW. Pop in for breakfast, brunch, afternoon tea, cakes and a pot of our handcrafted loose leaf tea.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Do I need to book a table? <span class="faq-ic">+</span></button>
+      <div class="faq-a"><p>Walk-ins are always welcome, but we recommend booking for afternoon tea, tea tasting and weekends so we can save you the perfect spot. You can book a table online in seconds.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">How do your loose leaf teas ship? <span class="faq-ic">+</span></button>
+      <div class="faq-a"><p>Every blend is made in house and sent in resealable 65g pouches (with larger sizes and refillable tubes available). UK orders over £30 ship free, and most orders are dispatched within 1–2 working days.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Which of your blends contain caffeine? <span class="faq-ic">+</span></button>
+      <div class="faq-a"><p>All of our black and green teas are naturally caffeinated, along with a few fruit and rooibos blends marked with an asterisk on the menu. Most of our fruit infusions and rooibos blends are naturally caffeine free.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Do you cater for dietary requirements? <span class="faq-ic">+</span></button>
+      <div class="faq-a"><p>Yes — we have gluten-free and vegan-friendly options across the cafe menu. Just let the team know when you order and we'll point you in the right direction.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Can I buy a gift voucher? <span class="faq-ic">+</span></button>
+      <div class="faq-a"><p>Absolutely. We offer gift vouchers from £10 to £100, plus afternoon tea, cream tea and tea tasting experience vouchers — perfect for the tea lover in your life.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Get in touch</div>
+    <h2 class="sec-title">Contact Us</h2>
+    <p class="sec-sub">Questions about an order, a booking or a blend? We'd love to hear from you.</p>
+  </div>
+  <div class="contact-info">
+    <div class="ci-col">
+      <div class="v-eyebrow">Visit</div>
+      <p>5 Victoria Street<br/>Nottingham NG1 2EW</p>
+    </div>
+    <div class="ci-col">
+      <div class="v-eyebrow">Opening Hours</div>
+      <div class="v-row"><span>Mon – Fri</span><span>9:00 – 5:00</span></div>
+      <div class="v-row"><span>Saturday</span><span>9:30 – 5:00</span></div>
+      <div class="v-row"><span>Sunday</span><span>10:00 – 4:30</span></div>
+    </div>
+    <div class="ci-col">
+      <div class="v-eyebrow">Say Hello</div>
+      <p><a href="mailto:hello@biscuitandbrewteahouse.com">hello@biscuitandbrewteahouse.com</a><br/>
+      <a href="https://www.instagram.com/biscuitandbrew_/" target="_blank" rel="noopener">@biscuitandbrew_</a></p>
+    </div>
+  </div>
+  <div class="contact-photo">
+    <img src="images/storefront.jpg" alt="The Biscuit &amp; Brew tea house storefront on Victoria Street, Nottingham" loading="lazy" />
+  </div>
+  <form class="contact-form" id="contactForm">
+    <h3>Send us a message</h3>
+    <div class="cf-two">
+      <div class="cf-field"><input type="text" id="cfName" placeholder="Name" required /></div>
+      <div class="cf-field"><input type="email" id="cfEmail" placeholder="Email" required /></div>
+    </div>
+    <div class="cf-field"><input type="tel" id="cfPhone" placeholder="Phone number (optional)" /></div>
+    <div class="cf-field"><textarea id="cfMsg" rows="5" placeholder="Comment" required></textarea></div>
+    <button type="submit" class="cf-btn">Send</button>
+  </form>
+</section>
+
 <section id="newsletter">
   <h2>Join our exclusive tea club</h2>
   <p class="nsub">For 20% off your first order, secret menus, shop gossip and more. Fill in your details and we'll send your discount code as a thank you.</p>
@@ -1012,8 +1097,8 @@ __HEROCSS__
     <div class="fc-col">
       <h4>Useful Info</h4>
       <a href="#" onclick="return false">Wholesale</a>
-      <a href="#" onclick="return false">FAQ</a>
-      <a href="#" onclick="return false">Contact Us</a>
+      <a data-go="faq">FAQ</a>
+      <a data-go="contact">Contact Us</a>
       <a data-go="visit">Visit Us</a>
       <a href="#" onclick="return false">Returns Policy</a>
       <a href="#" onclick="return false">Privacy Policy</a>
