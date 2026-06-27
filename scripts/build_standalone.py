@@ -1036,7 +1036,7 @@ __HEROCSS__
     </div>
     <div class="faq-item">
       <button class="faq-q">What is your refund and returns policy? <span class="faq-ic">+</span></button>
-      <div class="faq-a"><p>Our full returns policy is available on request — just <a data-go="contact">contact us</a> and we'll be happy to help put things right.</p></div>
+      <div class="faq-a"><p>You can read our full <a data-go="returns">returns policy here</a>. In short: unopened tea can be returned, and if anything arrives damaged or wrong we'll put it right — just get in touch.</p></div>
     </div>
     <div class="faq-item">
       <button class="faq-q">Do you ship internationally? <span class="faq-ic">+</span></button>
@@ -1111,6 +1111,32 @@ __HEROCSS__
   </form>
 </section>
 
+<section id="returns">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Good to know</div>
+    <h2 class="sec-title">Returns Policy</h2>
+    <p class="sec-sub">We want you to love every sip — here's how returns work.</p>
+  </div>
+  <div class="policy-wrap">
+    <p>We want you to love every sip of your tea from Biscuit &amp; Brew! But we understand that sometimes things don't go as planned. Our returns policy is designed to make things as smooth and fair as possible for you.</p>
+    <h3>Can I Return My Tea?</h3>
+    <p>Due to the nature of loose-leaf tea, we cannot accept returns on any tea products that have been opened or partially used. This is to ensure freshness and quality for all our customers. However, if your tea is still sealed and unopened, we'll gladly process a return for you.</p>
+    <h3>What If My Tea Arrives Damaged or Isn't Right?</h3>
+    <p>If your order arrives damaged, or if we've made a mistake, please let us know within 7 days of receiving your order. We'll work with you to make it right, whether that means sending a replacement or issuing a refund. Just <a data-go="contact">reach out to us</a> with a photo and details of the issue.</p>
+    <h3>How to Start a Return</h3>
+    <p>If your item qualifies for a return (e.g. unopened tea or a non-perishable item), follow these simple steps:</p>
+    <ol>
+      <li><b>Contact us:</b> Email us at <a href="mailto:returns@biscuitandbrew.com">returns@biscuitandbrew.com</a> with your order number and a brief description of the reason for the return.</li>
+      <li><b>Prepare the package:</b> Make sure the item is securely packaged to avoid damage on its way back to us.</li>
+      <li><b>Ship it back:</b> Once we receive your return, we'll process it and issue your refund within a few days.</li>
+    </ol>
+    <h3>Return Shipping Costs</h3>
+    <p>Customers are responsible for return shipping costs unless the item was damaged or there was an error on our part. We recommend using a trackable shipping method to ensure it reaches us safely.</p>
+    <h3>Questions? We're Here to Help!</h3>
+    <p>If you have any questions about our returns policy or need help with a specific return, don't hesitate to <a data-go="contact">reach out</a>.</p>
+  </div>
+</section>
+
 <section id="newsletter">
   <h2>Join our exclusive tea club</h2>
   <p class="nsub">For 20% off your first order, secret menus, shop gossip and more. Fill in your details and we'll send your discount code as a thank you.</p>
@@ -1147,7 +1173,7 @@ __HEROCSS__
       <a data-go="faq">FAQ</a>
       <a data-go="contact">Contact Us</a>
       <a data-go="visit">Visit Us</a>
-      <a href="#" onclick="return false">Returns Policy</a>
+      <a data-go="returns">Returns Policy</a>
       <a href="#" onclick="return false">Privacy Policy</a>
     </div>
     <div class="fc-col">
