@@ -87,7 +87,7 @@
         {
           "id": "banana-fudge",
           "name": "Banana Fudge",
-          "description": "Foamy banana flavoured — bold but fruity over a smooth black tea.",
+          "description": "Banana meets creamy black tea in this indulgent loose leaf blend. Sri Lankan black tea with freeze-dried banana and natural flavouring — a rich, comforting brew with a sweet, fudgy finish.",
           "variants": [
             {
               "sku": "BLK-BANANA-FUDGE-15G",
@@ -113,7 +113,8 @@
               "cups": "reusable tin",
               "price": 14.95
             }
-          ]
+          ],
+          "image": "images/banana-fudge.jpg"
         },
         {
           "id": "salted-caramel",
