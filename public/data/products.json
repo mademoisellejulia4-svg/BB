@@ -862,6 +862,20 @@
           ]
         },
         {
+          "id": "loose-leaf-bundle",
+          "name": "Loose Leaf Tea Bundle",
+          "description": "Build your perfect tea collection with our custom 4 × 65g bundle. Choose any four blends from our full range — mix black teas, fruit infusions, herbals or matcha.",
+          "image": "images/loose-leaf-bundle.jpg",
+          "variants": [
+            {
+              "sku": "GIFT-LL-BUNDLE",
+              "size": "4 × 65g",
+              "cups": "choose 4 blends",
+              "price": 20.0
+            }
+          ]
+        },
+        {
           "id": "gift-voucher",
           "name": "Gift Voucher",
           "description": "A gold-foiled gift voucher, posted in a forest-green envelope and sealed with a gold ribbon — to spend on loose leaf tea, gifts or a table at the tea house.",
