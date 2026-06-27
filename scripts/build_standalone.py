@@ -18,6 +18,7 @@ def data_uri(path, max_w=1100, quality=82):
 # --- compress images, map relative path -> data uri ---
 img_files = {
     "images/black-tea.png": ("images/black-tea.png", 1100),
+    "images/hero-poster.jpg": ("images/hero-poster.jpg", 1280),
     "images/green-tea.png": ("images/green-tea.png", 1100),
     "images/fruit-herbal.png": ("images/fruit-herbal.png", 1100),
     "images/matcha-kit.png": ("images/matcha-kit.png", 1000),
@@ -544,7 +545,7 @@ __HEROCSS__
 
 <section id="hero">
   <div id="sticky">
-    <video id="heroVideo" src="videos/hero.mp4" muted playsinline preload="auto" poster="images/black-tea.png"></video>
+    <video id="heroVideo" src="videos/hero.mp4" muted playsinline preload="auto" poster="images/hero-poster.jpg"></video>
     <div class="hero-veil"></div>
     <div class="hero-center">
       <div class="hero-title">BISCUIT &amp; BREW</div>
