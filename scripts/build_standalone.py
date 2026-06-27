@@ -999,29 +999,76 @@ __HEROCSS__
     <p class="sec-sub">Everything you need to know about our tea, orders and the tea house.</p>
   </div>
   <div class="faq-wrap">
+    <div class="faq-group">Questions About Our Products</div>
     <div class="faq-item">
-      <button class="faq-q">Where are you based? <span class="faq-ic">+</span></button>
-      <div class="faq-a"><p>You'll find our cafe &amp; lounge at 5 Victoria Street, Nottingham NG1 2EW. Pop in for breakfast, brunch, afternoon tea, cakes and a pot of our handcrafted loose leaf tea.</p></div>
+      <button class="faq-q">How do I brew the perfect tea? <span class="faq-ic">+</span></button>
+      <div class="faq-a"><p>Brewing instructions are written on the front of every packet of loose leaf tea we send out, and are also available to view on all tea blends — just search for your particular blend and see. Our Brew Guide also has loads of great tips on how to make the perfect loose leaf brew.</p></div>
     </div>
     <div class="faq-item">
-      <button class="faq-q">Do I need to book a table? <span class="faq-ic">+</span></button>
-      <div class="faq-a"><p>Walk-ins are always welcome, but we recommend booking for afternoon tea, tea tasting and weekends so we can save you the perfect spot. You can book a table online in seconds.</p></div>
+      <button class="faq-q">Do I need an infuser? <span class="faq-ic">+</span></button>
+      <div class="faq-a"><p>Pretty much. If you really do still need one, you can <a data-go="accessories">get one here</a>.</p></div>
     </div>
     <div class="faq-item">
-      <button class="faq-q">How do your loose leaf teas ship? <span class="faq-ic">+</span></button>
-      <div class="faq-a"><p>Every blend is made in house and sent in resealable 65g pouches (with larger sizes and refillable tubes available). UK orders over £30 ship free, and most orders are dispatched within 1–2 working days.</p></div>
+      <button class="faq-q">What are natural flavourings? <span class="faq-ic">+</span></button>
+      <div class="faq-a"><p>Natural flavourings are basically natural flavouring preparations which have been derived from only natural ingredients, as opposed to artificial flavours or nature-identical flavours, which are the chemical equivalent of natural flavourings but chemically synthesised rather than extracted from natural source materials.</p><p>Please be aware that flavourings are not necessarily made from the ingredients you would assume. For example, the natural almond flavour we use contains no actual nuts whatsoever! So whilst you can describe the resulting flavour from the taste, you wouldn't include it in the ingredient list. It's worth adding that none of our flavourings contain any allergens.</p></div>
+    </div>
+
+    <div class="faq-group">Delivery</div>
+    <div class="faq-item">
+      <button class="faq-q">How much is shipping? <span class="faq-ic">+</span></button>
+      <div class="faq-a"><p>Our shipping costs are calculated based on our own packaging costs in addition to the couriers' own shipping prices. Most UK orders are shipped using Royal Mail or DPD. Couriers on international orders vary.</p></div>
     </div>
     <div class="faq-item">
-      <button class="faq-q">Which of your blends contain caffeine? <span class="faq-ic">+</span></button>
-      <div class="faq-a"><p>All of our black and green teas are naturally caffeinated, along with a few fruit and rooibos blends marked with an asterisk on the menu. Most of our fruit infusions and rooibos blends are naturally caffeine free.</p></div>
+      <button class="faq-q">When will my order arrive? <span class="faq-ic">+</span></button>
+      <div class="faq-a"><p>Usually orders are fulfilled and shipped out within 1–2 days of being placed. Order times do vary depending on your location in the world, but our best efforts have been made to include this information when you're selecting your postage at checkout. If this isn't the case, <a data-go="contact">let us know here</a>.</p></div>
     </div>
     <div class="faq-item">
-      <button class="faq-q">Do you cater for dietary requirements? <span class="faq-ic">+</span></button>
-      <div class="faq-a"><p>Yes — we have gluten-free and vegan-friendly options across the cafe menu. Just let the team know when you order and we'll point you in the right direction.</p></div>
+      <button class="faq-q">My order hasn't arrived <span class="faq-ic">+</span></button>
+      <div class="faq-a"><p>There can be occasional delays on orders for reasons beyond us and exclusive to the particular couriers. In the rare cases this does happen it usually has something to do with processing or collection issues and damaged labels. Hang tight for a couple of days and if your order still hasn't arrived then <a data-go="contact">contact us here</a>.</p></div>
     </div>
     <div class="faq-item">
-      <button class="faq-q">Can I buy a gift voucher? <span class="faq-ic">+</span></button>
-      <div class="faq-a"><p>Absolutely. We offer gift vouchers from £10 to £100, plus afternoon tea, cream tea and tea tasting experience vouchers — perfect for the tea lover in your life.</p></div>
+      <button class="faq-q">I've changed my mind on my order <span class="faq-ic">+</span></button>
+      <div class="faq-a"><p>Unfortunately we're unable to make changes to your order once it has been placed (it makes it difficult to keep track of stock, and things are more easily lost and generally confused). That being said, if you have ordered something by mistake, or even if you've just changed your mind, <a data-go="contact">let us know</a> as soon as you can; if the order hasn't been packed we may be able to make it right.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">What do I do if something is wrong with my order? <span class="faq-ic">+</span></button>
+      <div class="faq-a"><p>We want everyone to be happy with their tea. If you're unhappy with your order in any way — if something is incomplete, damaged or anything else — then please <a data-go="contact">reach out to us here</a>.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">What is your refund and returns policy? <span class="faq-ic">+</span></button>
+      <div class="faq-a"><p>Our full returns policy is available on request — just <a data-go="contact">contact us</a> and we'll be happy to help put things right.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Do you ship internationally? <span class="faq-ic">+</span></button>
+      <div class="faq-a"><p>Yes! We currently ship worldwide, although this may not always be reflected in the checkout options (this is for quite boring reasons; we have to input the costs of shipping to each country manually and we just haven't gotten to yours yet). If your country is not on the list of possible shipping options then you can <a data-go="contact">contact us here</a>.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Can you send my order quicker? <span class="faq-ic">+</span></button>
+      <div class="faq-a"><p>In a rush? No problem! Just <a data-go="contact">get in touch</a> with us before you place your order to check.</p></div>
+    </div>
+
+    <div class="faq-group">Tea House</div>
+    <div class="faq-item">
+      <button class="faq-q">Can I reserve a table? <span class="faq-ic">+</span></button>
+      <div class="faq-a"><p>We are walk-in only, but we do take bookings for Afternoon Tea. You can make a reservation enquiry <a data-go="book">here</a>.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Do you have wheelchair access? <span class="faq-ic">+</span></button>
+      <div class="faq-a"><p>We have access and space for wheelchairs. However, space is limited to the ground floor level, which can get very cosy, so please bear this in mind when attending. There is also a small step at the entrance of our shop, and our only toilet facilities are accessible from the shop exterior. If you have further concerns please <a data-go="contact">contact us here</a>.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Do you allow dogs? <span class="faq-ic">+</span></button>
+      <div class="faq-a"><p>We love dogs! If your dog is as well behaved as you are then we're happy to host them anytime.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Do you serve any gluten free or dairy free foods? <span class="faq-ic">+</span></button>
+      <div class="faq-a"><p>We can cater to gluten free and dairy free for much of our menu, depending on availability. As the cost of many gluten free ingredients can be, on average, up to four times as expensive as non-GF ingredients, there may be a small surcharge.</p></div>
+    </div>
+
+    <div class="faq-group">Allergens</div>
+    <div class="faq-item">
+      <button class="faq-q">Which allergens do you handle? <span class="faq-ic">+</span></button>
+      <div class="faq-a"><p>We handle the following allergens in our kitchen: milk, eggs, wheat, peanuts, nuts, soybean, mustard &amp; sulphur dioxide. While we do our utmost to ensure cross contamination is avoided, please note that all of the food is prepared in a very small space. Those with strong food allergies should take this into consideration before attending.</p></div>
     </div>
   </div>
 </section>
