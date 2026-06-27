@@ -686,6 +686,13 @@
   .policy-wrap ol{ margin:6px 0 16px; padding-left:20px; }
   .policy-wrap ol li{ font-size:13.5px; font-weight:300; line-height:1.8; color:rgba(255,255,255,0.6); margin-bottom:10px; }
   .policy-wrap ol li b{ color:rgba(255,255,255,0.85); font-weight:500; }
+  .policy-wrap ul{ margin:6px 0 16px; padding-left:20px; }
+  .policy-wrap ul li{ font-size:13.5px; font-weight:300; line-height:1.8; color:rgba(255,255,255,0.6); margin-bottom:8px; }
+  .brew-chart{ max-width:760px; margin:22px auto 8px; border:1px solid rgba(255,255,255,0.1); border-radius:14px; overflow:hidden; }
+  .brew-chart .bc-row{ display:grid; grid-template-columns:1.7fr 1fr 1fr; gap:10px; padding:13px 18px; border-bottom:1px solid rgba(255,255,255,0.07); font-size:13px; color:rgba(255,255,255,0.66); }
+  .brew-chart .bc-row:last-child{ border-bottom:none; }
+  .brew-chart .bc-head{ background:rgba(var(--amber-rgb),0.08); color:var(--amber); text-transform:uppercase; letter-spacing:.14em; font-size:10.5px; }
+  .brew-chart .bc-row .bc-tea{ color:#fff; }
 
   /* ============ FOOTER ============ */
   footer{
@@ -1619,7 +1626,7 @@
     <div class="faq-group">Questions About Our Products</div>
     <div class="faq-item">
       <button class="faq-q">How do I brew the perfect tea? <span class="faq-ic">+</span></button>
-      <div class="faq-a"><p>Brewing instructions are written on the front of every packet of loose leaf tea we send out, and are also available to view on all tea blends — just search for your particular blend and see. Our Brew Guide also has loads of great tips on how to make the perfect loose leaf brew.</p></div>
+      <div class="faq-a"><p>Brewing instructions are written on the front of every packet of loose leaf tea we send out, and are also available to view on all tea blends — just search for your particular blend and see. Our <a data-go="brew">Brew Guide</a> also has loads of great tips on how to make the perfect loose leaf brew.</p></div>
     </div>
     <div class="faq-item">
       <button class="faq-q">Do I need an infuser? <span class="faq-ic">+</span></button>
@@ -1756,6 +1763,55 @@
   </div>
 </section>
 
+<!-- HOW TO BREW -->
+<section id="brew">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Brew Guide</div>
+    <h2 class="sec-title">How to Brew Loose Leaf Tea</h2>
+    <p class="sec-sub">A little care makes all the difference. Here's how to get the most out of every blend.</p>
+  </div>
+  <div class="policy-wrap">
+    <p>Loose leaf tea is easier than it looks — and once you've brewed your first proper pot, you won't go back. The leaves are bigger and better quality than what you'll find in most tea bags, so they need a little room to unfurl and a little time to work their magic.</p>
+
+    <h3>What You'll Need</h3>
+    <ul>
+      <li>Your favourite Biscuit &amp; Brew loose leaf blend</li>
+      <li>An infuser, teapot or <a data-go="accessories">bucket brewer</a> to give the leaves space to open up</li>
+      <li>Fresh, just-boiled water (filtered if your tap water is hard)</li>
+    </ul>
+
+    <h3>The Simple Method</h3>
+    <ol>
+      <li><b>Measure:</b> Use roughly one heaped teaspoon (about 2–3g) per cup — and, if you like the old saying, "one for the pot".</li>
+      <li><b>Heat the water:</b> Different teas like different temperatures (see the chart below). Black, rooibos and fruit infusions love water straight off the boil; green and white teas prefer it a little cooler so they don't turn bitter.</li>
+      <li><b>Add the leaves:</b> Pop the tea into your infuser or straight into the pot, then pour the hot water over.</li>
+      <li><b>Steep:</b> Let it brew for the time shown below. Give it the full time — loose leaf rewards a little patience.</li>
+      <li><b>Lift &amp; enjoy:</b> Remove the leaves (or pour off the pot) so it doesn't keep stewing, then sip and enjoy.</li>
+    </ol>
+
+    <h3>Brewing Chart</h3>
+    <div class="brew-chart">
+      <div class="bc-row bc-head"><span>Tea</span><span>Water</span><span>Steep</span></div>
+      <div class="bc-row"><span class="bc-tea">Black Tea</span><span>95–100°C</span><span>3–5 min</span></div>
+      <div class="bc-row"><span class="bc-tea">Green Tea</span><span>70–80°C</span><span>2–3 min</span></div>
+      <div class="bc-row"><span class="bc-tea">White Tea</span><span>75–85°C</span><span>3–4 min</span></div>
+      <div class="bc-row"><span class="bc-tea">Oolong</span><span>85–95°C</span><span>3–5 min</span></div>
+      <div class="bc-row"><span class="bc-tea">Rooibos</span><span>100°C</span><span>5–7 min</span></div>
+      <div class="bc-row"><span class="bc-tea">Fruit Infusions</span><span>100°C</span><span>5–8 min</span></div>
+    </div>
+
+    <h3>A Few Tips</h3>
+    <ul>
+      <li><b>Don't over-steep.</b> Leaving the leaves in too long can make your brew bitter — set a timer if you're prone to forgetting.</li>
+      <li><b>Re-steep your leaves.</b> Good loose leaf tea has plenty to give. Most of our blends are happy with a second (and sometimes third) brew.</li>
+      <li><b>Mind the milk.</b> Our black blends take milk beautifully; the fruit infusions, greens and rooibos are best enjoyed as they are.</li>
+      <li><b>Store it well.</b> Keep your tea in an airtight tin or pouch, away from light, heat and strong smells, to keep it fresh and flavoursome.</li>
+    </ul>
+
+    <p>Want to take it further? Every packet we send out has brewing instructions on the front, and you'll find the perfect kit over in our <a data-go="accessories">accessories</a>. Still have a question? <a data-go="contact">Get in touch</a> — we're always happy to talk tea.</p>
+  </div>
+</section>
+
 <!-- NEWSLETTER -->
 <section id="newsletter">
   <h2>Join our exclusive tea club</h2>
@@ -1802,7 +1858,7 @@
       <a href="#" onclick="return false">Media</a>
       <a data-go="story">Our Story</a>
       <a href="#" onclick="return false">Caffeine Guide</a>
-      <a href="#" onclick="return false">How to Brew Loose Leaf Tea</a>
+      <a data-go="brew">How to Brew Loose Leaf Tea</a>
       <a href="#" onclick="return false">Music &amp; Tea</a>
       <a href="#" onclick="return false">Our Name</a>
     </div>
@@ -2370,8 +2426,8 @@
   // footer-column links that jump to a section / open a menu
   document.querySelectorAll('#footcols [data-go]').forEach(a =>
     a.addEventListener('click', () => goTo(a.getAttribute('data-go'))));
-  // FAQ + policy answer links (contact / book / accessories / returns)
-  document.querySelectorAll('#faq [data-go], #returns [data-go]').forEach(a =>
+  // FAQ + policy + brew-guide answer links (contact / book / accessories / returns / brew)
+  document.querySelectorAll('#faq [data-go], #returns [data-go], #brew [data-go]').forEach(a =>
     a.addEventListener('click', () => goTo(a.getAttribute('data-go'))));
 
   /* horizontal mega-menu (wide screens) */

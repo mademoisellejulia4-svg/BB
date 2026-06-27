@@ -1002,7 +1002,7 @@ __HEROCSS__
     <div class="faq-group">Questions About Our Products</div>
     <div class="faq-item">
       <button class="faq-q">How do I brew the perfect tea? <span class="faq-ic">+</span></button>
-      <div class="faq-a"><p>Brewing instructions are written on the front of every packet of loose leaf tea we send out, and are also available to view on all tea blends — just search for your particular blend and see. Our Brew Guide also has loads of great tips on how to make the perfect loose leaf brew.</p></div>
+      <div class="faq-a"><p>Brewing instructions are written on the front of every packet of loose leaf tea we send out, and are also available to view on all tea blends — just search for your particular blend and see. Our <a data-go="brew">Brew Guide</a> also has loads of great tips on how to make the perfect loose leaf brew.</p></div>
     </div>
     <div class="faq-item">
       <button class="faq-q">Do I need an infuser? <span class="faq-ic">+</span></button>
@@ -1137,6 +1137,54 @@ __HEROCSS__
   </div>
 </section>
 
+<section id="brew">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Brew Guide</div>
+    <h2 class="sec-title">How to Brew Loose Leaf Tea</h2>
+    <p class="sec-sub">A little care makes all the difference. Here's how to get the most out of every blend.</p>
+  </div>
+  <div class="policy-wrap">
+    <p>Loose leaf tea is easier than it looks — and once you've brewed your first proper pot, you won't go back. The leaves are bigger and better quality than what you'll find in most tea bags, so they need a little room to unfurl and a little time to work their magic.</p>
+
+    <h3>What You'll Need</h3>
+    <ul>
+      <li>Your favourite Biscuit &amp; Brew loose leaf blend</li>
+      <li>An infuser, teapot or <a data-go="accessories">bucket brewer</a> to give the leaves space to open up</li>
+      <li>Fresh, just-boiled water (filtered if your tap water is hard)</li>
+    </ul>
+
+    <h3>The Simple Method</h3>
+    <ol>
+      <li><b>Measure:</b> Use roughly one heaped teaspoon (about 2–3g) per cup — and, if you like the old saying, "one for the pot".</li>
+      <li><b>Heat the water:</b> Different teas like different temperatures (see the chart below). Black, rooibos and fruit infusions love water straight off the boil; green and white teas prefer it a little cooler so they don't turn bitter.</li>
+      <li><b>Add the leaves:</b> Pop the tea into your infuser or straight into the pot, then pour the hot water over.</li>
+      <li><b>Steep:</b> Let it brew for the time shown below. Give it the full time — loose leaf rewards a little patience.</li>
+      <li><b>Lift &amp; enjoy:</b> Remove the leaves (or pour off the pot) so it doesn't keep stewing, then sip and enjoy.</li>
+    </ol>
+
+    <h3>Brewing Chart</h3>
+    <div class="brew-chart">
+      <div class="bc-row bc-head"><span>Tea</span><span>Water</span><span>Steep</span></div>
+      <div class="bc-row"><span class="bc-tea">Black Tea</span><span>95–100°C</span><span>3–5 min</span></div>
+      <div class="bc-row"><span class="bc-tea">Green Tea</span><span>70–80°C</span><span>2–3 min</span></div>
+      <div class="bc-row"><span class="bc-tea">White Tea</span><span>75–85°C</span><span>3–4 min</span></div>
+      <div class="bc-row"><span class="bc-tea">Oolong</span><span>85–95°C</span><span>3–5 min</span></div>
+      <div class="bc-row"><span class="bc-tea">Rooibos</span><span>100°C</span><span>5–7 min</span></div>
+      <div class="bc-row"><span class="bc-tea">Fruit Infusions</span><span>100°C</span><span>5–8 min</span></div>
+    </div>
+
+    <h3>A Few Tips</h3>
+    <ul>
+      <li><b>Don't over-steep.</b> Leaving the leaves in too long can make your brew bitter — set a timer if you're prone to forgetting.</li>
+      <li><b>Re-steep your leaves.</b> Good loose leaf tea has plenty to give. Most of our blends are happy with a second (and sometimes third) brew.</li>
+      <li><b>Mind the milk.</b> Our black blends take milk beautifully; the fruit infusions, greens and rooibos are best enjoyed as they are.</li>
+      <li><b>Store it well.</b> Keep your tea in an airtight tin or pouch, away from light, heat and strong smells, to keep it fresh and flavoursome.</li>
+    </ul>
+
+    <p>Want to take it further? Every packet we send out has brewing instructions on the front, and you'll find the perfect kit over in our <a data-go="accessories">accessories</a>. Still have a question? <a data-go="contact">Get in touch</a> — we're always happy to talk tea.</p>
+  </div>
+</section>
+
 <section id="newsletter">
   <h2>Join our exclusive tea club</h2>
   <p class="nsub">For 20% off your first order, secret menus, shop gossip and more. Fill in your details and we'll send your discount code as a thank you.</p>
@@ -1181,7 +1229,7 @@ __HEROCSS__
       <a href="#" onclick="return false">Media</a>
       <a data-go="story">Our Story</a>
       <a href="#" onclick="return false">Caffeine Guide</a>
-      <a href="#" onclick="return false">How to Brew Loose Leaf Tea</a>
+      <a data-go="brew">How to Brew Loose Leaf Tea</a>
       <a href="#" onclick="return false">Music &amp; Tea</a>
       <a href="#" onclick="return false">Our Name</a>
     </div>
