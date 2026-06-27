@@ -145,7 +145,8 @@
               "cups": "reusable tin",
               "price": 14.95
             }
-          ]
+          ],
+          "image": "images/salted-caramel.jpg"
         },
         {
           "id": "caramel-apple-betty",
