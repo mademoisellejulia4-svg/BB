@@ -509,7 +509,6 @@ __HEROCSS__
       </div>
     </nav>
   </div>
-  <a class="brand-logo" id="brandLogo" href="#" aria-label="Biscuit &amp; Brew — home"><img src="images/logo-mark.png" alt="Biscuit &amp; Brew" /></a>
   <div class="hnav">
     <button class="shop" id="shopLink">SHOP</button>
     <button class="shop bag" id="bagBtn">BAG <span id="bagCount" class="bag-count">0</span></button>
@@ -544,6 +543,7 @@ __HEROCSS__
 </nav>
 
 <section id="hero">
+  <a class="hero-logo" id="brandLogo" href="#" aria-label="Biscuit &amp; Brew — home"><img src="images/logo-mark.png" alt="Biscuit &amp; Brew" /></a>
   <div id="sticky">
     <video id="heroVideo" src="videos/hero.mp4" muted playsinline preload="auto" poster="images/hero-poster.jpg"></video>
     <div class="hero-veil"></div>
