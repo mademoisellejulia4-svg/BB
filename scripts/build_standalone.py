@@ -36,6 +36,7 @@ img_files = {
     "images/cherry-bakewell.jpg": ("images/cherry-bakewell.jpg", 760),
     "images/biscuit-brew.jpg": ("images/biscuit-brew.jpg", 760),
     "images/rooibos.png": ("images/rooibos.png", 1100),
+    "images/payments.jpg": ("images/payments.jpg", 654),
 }
 uri_map = {}
 total = 0
@@ -151,6 +152,7 @@ HERO_CSS = """
   .fc-social a:hover{ border-color:var(--amber); color:var(--amber); }
   .fc-pay{ max-width:1180px; margin:30px auto 0; padding-top:22px; border-top:1px solid rgba(255,255,255,0.06); display:flex; flex-wrap:wrap; gap:9px; align-items:center; }
   .fc-pay .pay{ font-size:9px; letter-spacing:.06em; color:rgba(255,255,255,0.5); border:1px solid rgba(255,255,255,0.14); border-radius:5px; padding:5px 8px; background:rgba(255,255,255,0.03); }
+  .fc-pay-img{ height:30px; width:auto; max-width:100%; opacity:.95; }
 
   #cafemenu{ position:relative; z-index:2; background:#08080f; padding:clamp(80px,12vh,150px) clamp(20px,6vw,90px); border-top:1px solid rgba(255,255,255,0.06); }
   .cm-grid{ max-width:1180px; margin:0 auto; display:grid; gap:34px 48px; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); }
@@ -838,9 +840,7 @@ __HEROCSS__
     </div>
   </div>
   <div class="fc-pay">
-    <span class="pay">AMEX</span><span class="pay">Apple Pay</span><span class="pay">Diners Club</span>
-    <span class="pay">Discover</span><span class="pay">Google Pay</span><span class="pay">Maestro</span>
-    <span class="pay">Mastercard</span><span class="pay">Shop Pay</span><span class="pay">Union Pay</span><span class="pay">Visa</span>
+    <img class="fc-pay-img" src="images/payments.jpg" alt="Accepted payments: Amex, Apple Pay, Diners Club, Discover, Google Pay, Maestro, Mastercard, Shop Pay, Union Pay, Visa" />
   </div>
 </section>
 
