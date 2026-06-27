@@ -247,7 +247,7 @@
         {
           "id": "moonbeam",
           "name": "Moonbeam",
-          "description": "Lavender flower and orange peel — bright with soft floral undertones.",
+          "description": "Escape into the midsummer evening with this lavender flower and orange peel infused Sri Lankan black tea. Bright with floral tones — a perfect swap for your Earl Grey.",
           "variants": [
             {
               "sku": "BLK-MOONBEAM-15G",
@@ -273,12 +273,13 @@
               "cups": "reusable tin",
               "price": 14.95
             }
-          ]
+          ],
+          "image": "images/moonbeam.jpg"
         },
         {
           "id": "english-breakfast",
           "name": "English Breakfast",
-          "description": "A classic bright, brisk traditional brew — the dependable morning cup.",
+          "description": "Our house English Breakfast blend, perfect for any time of day. A quintessentially British, full-bodied brew that pairs beautifully with buttery toast — blended from Chinese, Assam and Sri Lankan black teas for a smooth, satisfying flavour.",
           "variants": [
             {
               "sku": "BLK-ENGLISH-BREAKFAST-15G",
@@ -297,8 +298,21 @@
               "size": "150g",
               "cups": "75 cups",
               "price": 11.5
+            },
+            {
+              "sku": "BLK-ENGLISH-BREAKFAST-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 13.95
+            },
+            {
+              "sku": "BLK-ENGLISH-BREAKFAST-TEABAGS",
+              "size": "15 Teabags",
+              "cups": "pyramid bags",
+              "price": 4.5
             }
-          ]
+          ],
+          "image": "images/english-breakfast.jpg"
         },
         {
           "id": "essential-bundle",
