@@ -36,6 +36,7 @@ img_files = {
     "images/cherry-bakewell.jpg": ("images/cherry-bakewell.jpg", 760),
     "images/biscuit-brew.jpg": ("images/biscuit-brew.jpg", 760),
     "images/rooibos.png": ("images/rooibos.png", 1100),
+    "images/vouchers.png": ("images/vouchers.png", 1100),
     "images/rv-battenburg.jpg": ("images/rv-battenburg.jpg", 300),
     "images/rv-taster.jpg": ("images/rv-taster.jpg", 300),
     "images/rv-biscuitbrew.jpg": ("images/rv-biscuitbrew.jpg", 300),

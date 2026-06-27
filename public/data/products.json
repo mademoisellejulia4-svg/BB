@@ -374,7 +374,8 @@
     {
       "id": "vouchers",
       "name": "Gift Vouchers",
-      "meta": "Gold-foiled · posted in a green envelope",
+      "meta": "From £10 to £100",
+      "image": "images/vouchers.png",
       "variantLabel": "Select amount",
       "products": [
         {
