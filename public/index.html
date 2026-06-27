@@ -807,21 +807,21 @@
   .rv-verified{ display:inline-flex; align-items:center; gap:6px; font-size:11px; letter-spacing:.06em; color:#5db075; }
   .rv-verified::before{ content:"✓"; display:inline-flex; align-items:center; justify-content:center; width:16px; height:16px; border-radius:4px; background:#2f7d4a; color:#fff; font-size:10px; }
   .rv-ratings{ display:flex; gap:14px 28px; align-items:center; justify-content:center; flex-wrap:wrap; margin-top:10px; }
-  .rv-photo{ width:calc(100% + 48px); margin:-26px -24px 4px; height:200px; object-fit:cover; border-radius:16px 16px 0 0; display:block; }
-  .rv-prod{ font-size:10px; text-transform:uppercase; letter-spacing:.18em; color:rgba(var(--amber-rgb),0.7); }
+  .rv-prod{ font-size:11px; letter-spacing:.04em; color:rgba(255,255,255,0.4); }
   .rv-grid{
     max-width:1180px; margin:46px auto 0; display:grid; gap:22px;
-    grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); text-align:left;
+    grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); text-align:center;
   }
   .rv-card{
     border:1px solid rgba(255,255,255,0.08); border-radius:16px;
     background:linear-gradient(160deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015));
-    padding:26px 24px; display:flex; flex-direction:column; gap:12px;
+    padding:30px 24px 26px; display:flex; flex-direction:column; align-items:center; gap:14px;
   }
-  .rv-card .rv-s{ color:var(--amber); font-size:13px; letter-spacing:2px; }
-  .rv-card .rv-q{ font-size:14px; font-weight:300; line-height:1.7; color:rgba(255,255,255,0.78); flex:1; }
-  .rv-card .rv-by{ font-size:11px; letter-spacing:.06em; color:rgba(255,255,255,0.45); }
-  .rv-card .rv-by b{ color:rgba(255,255,255,0.7); font-weight:500; }
+  .rv-avatar{ width:130px; height:130px; border-radius:50%; object-fit:cover; border:1px solid rgba(255,255,255,0.12); }
+  .rv-card .rv-q{ font-size:14px; font-weight:300; line-height:1.6; color:rgba(255,255,255,0.82); flex:1; }
+  .rv-card .rv-s{ color:var(--amber); font-size:14px; letter-spacing:3px; }
+  .rv-name{ font-size:13px; font-weight:500; color:#fff; display:inline-flex; align-items:center; gap:6px; }
+  .rv-name::after{ content:"✓"; display:inline-flex; align-items:center; justify-content:center; width:15px; height:15px; border-radius:50%; background:#2f7d4a; color:#fff; font-size:9px; }
   .rv-cta{
     display:inline-block; margin-top:36px; cursor:pointer; text-decoration:none;
     border:1px solid rgba(255,255,255,0.16); color:rgba(255,255,255,0.8);
@@ -1220,55 +1220,6 @@
   </div>
 </section>
 
-<!-- REVIEWS -->
-<section id="reviews">
-  <div class="sec-head" style="margin-bottom:8px">
-    <div class="sec-eyebrow">Reviews</div>
-    <h2 class="sec-title">Hear What Our Customers Say</h2>
-  </div>
-  <div class="rv-ratings">
-    <span class="rv-score"><span class="rv-num">4.98</span><span class="rv-stars">★★★★★</span><span class="rv-count">(42)</span></span>
-    <span class="rv-verified">Verified reviews</span>
-    <span class="rv-count">·&nbsp; Google 4.8 ★ · 155 reviews</span>
-  </div>
-  <div class="rv-grid">
-    <div class="rv-card">
-      <img class="rv-photo" src="images/review-teapot.jpg" alt="Customer's cast iron teapot" />
-      <div class="rv-s">★★★★★</div>
-      <p class="rv-q">"I'm so happy with my new teapot. The loose teas are so nice, and the customer service was excellent."</p>
-      <div class="rv-prod">Loose Leaf Tea Starter Kit</div>
-      <div class="rv-by"><b>Caroline Sutliffe</b> · Verified</div>
-    </div>
-    <div class="rv-card">
-      <img class="rv-photo" src="images/review-food.jpg" alt="Brunch at Biscuit & Brew" />
-      <div class="rv-s">★★★★★</div>
-      <p class="rv-q">"Delicious food, reasonably priced, with such wonderful friendly staff — it makes you wonder why more people don't go there!"</p>
-      <div class="rv-by"><b>Daniel McDonald-Smith</b> · Google</div>
-    </div>
-    <div class="rv-card">
-      <div class="rv-s">★★★★★</div>
-      <p class="rv-q">"Quirky little tea shop which we loved! An amazing array of loose leaf tea, and the staff explained every flavour."</p>
-      <div class="rv-by"><b>Verified guest</b> · Tripadvisor</div>
-    </div>
-    <div class="rv-card">
-      <div class="rv-s">★★★★★</div>
-      <p class="rv-q">"Booked afternoon tea for a retirement — beautifully presented, a large warm scone with generous jam and clotted cream, and bottomless tea topped up as needed."</p>
-      <div class="rv-by"><b>Verified guest</b> · Tripadvisor</div>
-    </div>
-    <div class="rv-card">
-      <div class="rv-s">★★★★★</div>
-      <p class="rv-q">"Everything homemade and totally delicious — an amazing feast. Little teapots with the brewing time explained for each tea."</p>
-      <div class="rv-by"><b>Verified guest</b> · Tripadvisor</div>
-    </div>
-    <div class="rv-card">
-      <div class="rv-s">★★★★★</div>
-      <p class="rv-q">"A gem of a place — a cute little cafe with a lovely atmosphere and such friendly, attentive staff."</p>
-      <div class="rv-by"><b>Google reviewer</b> · Google</div>
-    </div>
-  </div>
-  <a class="rv-cta" href="https://www.google.com/maps/search/?api=1&query=Biscuit%20%26%20Brew%20Nottingham" target="_blank" rel="noopener">Read &amp; leave a review →</a>
-</section>
-
 <!-- OUR STORY -->
 <section id="story">
   <div class="story-wrap">
@@ -1329,6 +1280,64 @@
     <div class="r-card"><div class="r-amt">£5</div><div class="r-lbl">You get</div></div>
   </div>
   <button class="r-cta" id="referBtn">Start Earning</button>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="sec-head" style="margin-bottom:8px">
+    <div class="sec-eyebrow">Reviews</div>
+    <h2 class="sec-title">Why people love our loose leaf tea</h2>
+  </div>
+  <div class="rv-ratings">
+    <span class="rv-score"><span class="rv-num">4.98</span><span class="rv-stars">★★★★★</span><span class="rv-count">(42)</span></span>
+    <span class="rv-verified">Verified reviews</span>
+    <span class="rv-count">·&nbsp; Google 4.8 ★ · 155 reviews</span>
+  </div>
+  <div class="rv-grid">
+    <div class="rv-card">
+      <img class="rv-avatar" src="images/rv-battenburg.jpg" alt="Battenburg loose leaf tea" />
+      <p class="rv-q">"Lovely tea"</p>
+      <div class="rv-s">★★★★★</div>
+      <div class="rv-name">Carl Farrell</div>
+      <div class="rv-prod">Battenburg</div>
+    </div>
+    <div class="rv-card">
+      <img class="rv-avatar" src="images/rv-taster.jpg" alt="Tea Taster Bundle Box" />
+      <p class="rv-q">"Delicious teas, thank you!"</p>
+      <div class="rv-s">★★★★★</div>
+      <div class="rv-name">Emma Winterton</div>
+      <div class="rv-prod">Tea Taster Bundle Box</div>
+    </div>
+    <div class="rv-card">
+      <img class="rv-avatar" src="images/rv-biscuitbrew.jpg" alt="Biscuit Brew loose leaf tea" />
+      <p class="rv-q">"Biscuit Brew is the perfect tea, great flavour, perfectly balanced. My new go-to!"</p>
+      <div class="rv-s">★★★★★</div>
+      <div class="rv-name">Nick W</div>
+      <div class="rv-prod">Biscuit Brew</div>
+    </div>
+    <div class="rv-card">
+      <img class="rv-avatar" src="images/rv-cherrybakewell.jpg" alt="Cherry Bakewell loose leaf tea" />
+      <p class="rv-q">"Omg the Cherry Bakewell!"</p>
+      <div class="rv-s">★★★★★</div>
+      <div class="rv-name">Dina K</div>
+      <div class="rv-prod">Cherry Bakewell</div>
+    </div>
+    <div class="rv-card">
+      <img class="rv-avatar" src="images/review-teapot.jpg" alt="Customer's cast iron teapot" />
+      <p class="rv-q">"I'm so happy with my new teapot. The loose teas are so nice, and the customer service was excellent."</p>
+      <div class="rv-s">★★★★★</div>
+      <div class="rv-name">Caroline Sutliffe</div>
+      <div class="rv-prod">Loose Leaf Tea Starter Kit</div>
+    </div>
+    <div class="rv-card">
+      <img class="rv-avatar" src="images/review-food.jpg" alt="Brunch at Biscuit &amp; Brew" />
+      <p class="rv-q">"Delicious food, reasonably priced, with such wonderful friendly staff."</p>
+      <div class="rv-s">★★★★★</div>
+      <div class="rv-name">Daniel McDonald-Smith</div>
+      <div class="rv-prod">Cafe &amp; Lounge</div>
+    </div>
+  </div>
+  <a class="rv-cta" href="https://www.google.com/maps/search/?api=1&query=Biscuit%20%26%20Brew%20Nottingham" target="_blank" rel="noopener">Read &amp; leave a review →</a>
 </section>
 
 <!-- NEWSLETTER -->
