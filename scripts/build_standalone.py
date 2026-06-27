@@ -369,16 +369,21 @@ JS = """
   $('#menuBtn').addEventListener('click',openNav);
   $('#navClose').addEventListener('click',closeNav);
   navOv.addEventListener('click',closeNav);
+  const MENU_OVERLAYS={ cafemenu:1, kidsmenu:1 };
+  function openMenuOverlay(id){ const el=document.getElementById(id); if(!el) return; el.classList.add('open'); el.scrollTop=0; document.body.style.overflow='hidden'; }
+  function closeMenuOverlay(id){ const el=document.getElementById(id); if(el) el.classList.remove('open'); document.body.style.overflow=''; }
+  document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>closeMenuOverlay(b.getAttribute('data-close'))));
+  function goTo(go){
+    if(go==='products'){ backToCats(); $('#products').scrollIntoView({behavior:'smooth'}); }
+    else if(MENU_OVERLAYS[go]){ openMenuOverlay(go); }
+    else if(CAT[go]){ $('#products').scrollIntoView({behavior:'smooth'}); setTimeout(()=>openCategory(go),420); }
+    else { const el=document.getElementById(go); if(el) el.scrollIntoView({behavior:'smooth'}); else { backToCats(); $('#products').scrollIntoView({behavior:'smooth'}); } }
+  }
   document.querySelectorAll('[data-go]').forEach(a=>{
-    a.addEventListener('click',()=>{
-      const go=a.getAttribute('data-go'); closeNav();
-      if(go==='products'){ backToCats(); $('#products').scrollIntoView({behavior:'smooth'}); }
-      else if(CAT[go]){ $('#products').scrollIntoView({behavior:'smooth'}); setTimeout(()=>openCategory(go),420); }
-      else { const el=document.getElementById(go); if(el) el.scrollIntoView({behavior:'smooth'}); else { backToCats(); $('#products').scrollIntoView({behavior:'smooth'}); } }
-    });
+    a.addEventListener('click',()=>{ closeNav(); goTo(a.getAttribute('data-go')); });
   });
   const navLogin=$('#navLogin'); if(navLogin) navLogin.addEventListener('click',()=>{ closeNav(); showToast('Accounts are a demo \\u2014 sign-in coming soon.'); });
-  document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeNav(); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeNav(); closeMenuOverlay('cafemenu'); closeMenuOverlay('kidsmenu'); } });
 
   /* hero: scroll-scrub the whole clip across ~3 viewport scrolls */
   (function(){
@@ -458,6 +463,8 @@ __HEROCSS__
     <a data-go="green">White Tea</a>
     <a data-go="rooibos">Caffeine Free</a>
     <a data-go="products">Music Blends</a>
+    <a data-go="cafemenu">Cafe &amp; Lounge Menu</a>
+    <a data-go="kidsmenu">Kids Menu</a>
   </div>
   <div class="nav-foot">
     <a class="nav-login" id="navLogin">&#9711;&nbsp; Log In</a>
@@ -503,6 +510,7 @@ __HEROCSS__
 </section>
 
 <section id="cafemenu">
+  <button class="menu-overlay-close" data-close="cafemenu" aria-label="Close menu">&times;</button>
   <div class="sec-head">
     <div class="sec-eyebrow">Cafe &amp; Lounge</div>
     <h2 class="sec-title">The Menu</h2>
@@ -566,6 +574,7 @@ __HEROCSS__
 </section>
 
 <section id="kidsmenu" style="background:#0a0a14">
+  <button class="menu-overlay-close" data-close="kidsmenu" aria-label="Close menu">&times;</button>
   <div class="sec-head">
     <div class="sec-eyebrow">For the little ones</div>
     <h2 class="sec-title">Kids Menu</h2>

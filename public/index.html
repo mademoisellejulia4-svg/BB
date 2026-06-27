@@ -724,11 +724,21 @@
   .fc-pay svg{ height:28px; width:auto; display:block; }
 
   /* ============ CAFE & LOUNGE MENU ============ */
-  #cafemenu{
-    position:relative; z-index:2; background:#08080f;
-    padding:clamp(80px,12vh,150px) clamp(20px,6vw,90px);
-    border-top:1px solid rgba(255,255,255,0.06);
+  /* Cafe & Kids menus open as full-screen overlays from the nav (not in scroll flow) */
+  #cafemenu, #kidsmenu{
+    position:fixed; inset:0; z-index:680; overflow-y:auto;
+    background:#08080f;
+    padding:clamp(70px,11vh,120px) clamp(20px,6vw,90px) 80px;
+    opacity:0; visibility:hidden; transition:opacity .4s var(--ease), visibility .4s;
   }
+  #cafemenu.open, #kidsmenu.open{ opacity:1; visibility:visible; }
+  .menu-overlay-close{
+    position:fixed; top:18px; right:22px; z-index:690;
+    width:42px; height:42px; border-radius:50%;
+    background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.25); color:#fff;
+    font-size:22px; line-height:1; cursor:pointer; transition:all .3s var(--ease);
+  }
+  .menu-overlay-close:hover{ background:var(--amber); color:#0a0a0a; border-color:transparent; }
   .cm-grid{
     max-width:1180px; margin:0 auto;
     display:grid; gap:34px 48px;
@@ -944,6 +954,8 @@
     <a data-go="green">White Tea</a>
     <a data-go="rooibos">Caffeine Free</a>
     <a data-go="products">Music Blends</a>
+    <a data-go="cafemenu">Cafe &amp; Lounge Menu</a>
+    <a data-go="kidsmenu">Kids Menu</a>
   </div>
   <div class="nav-foot">
     <a class="nav-login" id="navLogin">&#9711;&nbsp; Log In</a>
@@ -1002,6 +1014,7 @@
 
 <!-- CAFE & LOUNGE MENU -->
 <section id="cafemenu">
+  <button class="menu-overlay-close" data-close="cafemenu" aria-label="Close menu">&times;</button>
   <div class="sec-head">
     <div class="sec-eyebrow">Cafe &amp; Lounge</div>
     <h2 class="sec-title">The Menu</h2>
@@ -1066,6 +1079,7 @@
 
 <!-- KIDS MENU -->
 <section id="kidsmenu" style="background:#0a0a14">
+  <button class="menu-overlay-close" data-close="kidsmenu" aria-label="Close menu">&times;</button>
   <div class="sec-head">
     <div class="sec-eyebrow">For the little ones</div>
     <h2 class="sec-title">Kids Menu</h2>
@@ -1862,34 +1876,39 @@
   $('#menuBtn').addEventListener('click', openNav);
   $('#navClose').addEventListener('click', closeNav);
   navOverlay.addEventListener('click', closeNav);
-  // category ids that should open the product detail view
-  nav.querySelectorAll('[data-go]').forEach(a => {
-    a.addEventListener('click', () => {
-      const go = a.getAttribute('data-go');
-      closeNav();
-      if(go === 'products'){
-        backToCats();
-        $('#products').scrollIntoView({ behavior:'smooth' });
-      } else if(CAT_BY_ID[go]){
-        $('#products').scrollIntoView({ behavior:'smooth' });
-        setTimeout(() => openCategory(go), 420);
-      } else {
-        const el = document.getElementById(go);
-        if(el) el.scrollIntoView({ behavior:'smooth' });
-        else { backToCats(); $('#products').scrollIntoView({ behavior:'smooth' }); }
-      }
-    });
+  // full-screen menu overlays (Cafe & Lounge Menu, Kids Menu)
+  const MENU_OVERLAYS = { cafemenu:1, kidsmenu:1 };
+  function openMenuOverlay(id){
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.classList.add('open');
+    el.scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenuOverlay(id){
+    const el = document.getElementById(id);
+    if(el) el.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('[data-close]').forEach(b =>
+    b.addEventListener('click', () => closeMenuOverlay(b.getAttribute('data-close'))));
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape'){ closeMenuOverlay('cafemenu'); closeMenuOverlay('kidsmenu'); }
   });
+
+  function goTo(go){
+    if(go === 'products'){ backToCats(); $('#products').scrollIntoView({ behavior:'smooth' }); }
+    else if(MENU_OVERLAYS[go]){ openMenuOverlay(go); }
+    else if(CAT_BY_ID[go]){ $('#products').scrollIntoView({ behavior:'smooth' }); setTimeout(() => openCategory(go), 420); }
+    else { const el = document.getElementById(go); if(el) el.scrollIntoView({ behavior:'smooth' }); else { backToCats(); $('#products').scrollIntoView({ behavior:'smooth' }); } }
+  }
+  nav.querySelectorAll('[data-go]').forEach(a =>
+    a.addEventListener('click', () => { closeNav(); goTo(a.getAttribute('data-go')); }));
   const navLogin = $('#navLogin');
   if(navLogin) navLogin.addEventListener('click', () => { closeNav(); showToast('Accounts are a demo &mdash; sign-in coming soon.'); });
-  // footer-column links that jump to a section
-  document.querySelectorAll('#footcols [data-go]').forEach(a => {
-    a.addEventListener('click', () => {
-      const go = a.getAttribute('data-go');
-      if(go === 'products'){ backToCats(); $('#products').scrollIntoView({ behavior:'smooth' }); }
-      else { const el = document.getElementById(go); if(el) el.scrollIntoView({ behavior:'smooth' }); }
-    });
-  });
+  // footer-column links that jump to a section / open a menu
+  document.querySelectorAll('#footcols [data-go]').forEach(a =>
+    a.addEventListener('click', () => goTo(a.getAttribute('data-go'))));
 
   /* SHOP link + newsletter */
   $('#shopLink').addEventListener('click', () => {
