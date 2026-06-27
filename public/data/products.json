@@ -60,11 +60,15 @@
         {
           "id": "caramel-apple-betty",
           "name": "Caramel Apple Betty",
-          "description": "Spiced cinnamon apple pie — rich and creamy with aromatic fruit.",
+          "description": "Not quite a crumble, nor just a pie. Sweet, tart apples with warming cinnamon and fenugreek, served with the magic ingredient: caramel custard. A rich black tea blend with comforting dessert notes.",
+          "image": "images/caramel-apple-betty.jpg",
+          "rating": 5,
+          "reviews": 3,
           "variants": [
             { "sku": "BLK-CARAMEL-APPLE-BETTY-15G", "size": "15g", "cups": "7 cups", "price": 2.95 },
-            { "sku": "BLK-CARAMEL-APPLE-BETTY-65G", "size": "65g", "cups": "32 cups", "price": 6.45 },
-            { "sku": "BLK-CARAMEL-APPLE-BETTY-150G", "size": "150g", "cups": "75 cups", "price": 12.95 }
+            { "sku": "BLK-CARAMEL-APPLE-BETTY-65G", "size": "65g", "cups": "32 cups", "price": 6.95 },
+            { "sku": "BLK-CARAMEL-APPLE-BETTY-150G", "size": "150g", "cups": "75 cups", "price": 13.50 },
+            { "sku": "BLK-CARAMEL-APPLE-BETTY-TUBE", "size": "65g Tube", "cups": "reusable tin", "price": 14.95 }
           ]
         },
         {

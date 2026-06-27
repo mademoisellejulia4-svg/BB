@@ -35,6 +35,7 @@ img_files = {
     "images/book-afternoon-tea.jpg": ("images/book-afternoon-tea.jpg", 1100),
     "images/cherry-bakewell.jpg": ("images/cherry-bakewell.jpg", 760),
     "images/biscuit-brew.jpg": ("images/biscuit-brew.jpg", 760),
+    "images/caramel-apple-betty.jpg": ("images/caramel-apple-betty.jpg", 760),
     "images/rooibos.png": ("images/rooibos.png", 1100),
     "images/vouchers.png": ("images/vouchers.png", 1100),
     "images/rv-battenburg.jpg": ("images/rv-battenburg.jpg", 300),
