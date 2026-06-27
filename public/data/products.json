@@ -813,15 +813,16 @@
       "products": [
         {
           "id": "bucket-brewer",
-          "name": "Bucket Brewer Tea Infuser",
-          "description": "A deep mesh infuser that drops straight into your mug — loose leaf, no fuss.",
+          "name": "Bucket Brewer Loose Leaf Tea Infuser",
+          "description": "A loose leaf tea infuser that easily fits in most mugs. Actual infuser style may slightly vary from the image; our infusers currently do not come with lids.",
           "variants": [
             {
               "sku": "ACC-BUCKET-BREWER",
               "size": "Each",
               "price": 8.5
             }
-          ]
+          ],
+          "image": "images/bucket-brewer.jpg"
         },
         {
           "id": "cast-iron-teapot",

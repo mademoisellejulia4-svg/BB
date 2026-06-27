@@ -42,6 +42,7 @@ img_files = {
     "images/mango-tchai.jpg": ("images/mango-tchai.jpg", 760),
     "images/banana-fudge.jpg": ("images/banana-fudge.jpg", 760),
     "images/salted-caramel.jpg": ("images/salted-caramel.jpg", 760),
+    "images/bucket-brewer.jpg": ("images/bucket-brewer.jpg", 900),
     "images/essential-bundle.jpg": ("images/essential-bundle.jpg", 1000),
     "images/rooibos.png": ("images/rooibos.png", 1100),
     "images/vouchers.png": ("images/vouchers.png", 1100),
