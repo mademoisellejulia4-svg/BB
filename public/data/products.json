@@ -20,31 +20,98 @@
           "rating": 5,
           "reviews": 5,
           "variants": [
-            { "sku": "BLK-BISCUIT-BREW-15G", "size": "15g", "cups": "7 cups", "price": 2.95 },
-            { "sku": "BLK-BISCUIT-BREW-65G", "size": "65g", "cups": "32 cups", "price": 6.95 },
-            { "sku": "BLK-BISCUIT-BREW-150G", "size": "150g", "cups": "75 cups", "price": 13.50 },
-            { "sku": "BLK-BISCUIT-BREW-TUBE", "size": "65g Tube", "cups": "reusable tin", "price": 14.95 },
-            { "sku": "BLK-BISCUIT-BREW-TEABAGS", "size": "15 Teabags", "cups": "pyramid bags", "price": 4.95 }
+            {
+              "sku": "BLK-BISCUIT-BREW-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "BLK-BISCUIT-BREW-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "BLK-BISCUIT-BREW-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 13.5
+            },
+            {
+              "sku": "BLK-BISCUIT-BREW-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            },
+            {
+              "sku": "BLK-BISCUIT-BREW-TEABAGS",
+              "size": "15 Teabags",
+              "cups": "pyramid bags",
+              "price": 4.95
+            }
           ]
         },
         {
           "id": "james-giant-peach",
           "name": "James and the Giant Peach",
-          "description": "Peach, ginger and cardamom — sweet, zesty fruit with a subtle warm spice.",
+          "description": "Peach, ginger and cardamom — based on the Roald Dahl book. Sweet, zesty fruits with subtle spices.",
           "variants": [
-            { "sku": "BLK-JAMES-GIANT-PEACH-15G", "size": "15g", "cups": "7 cups", "price": 2.95 },
-            { "sku": "BLK-JAMES-GIANT-PEACH-65G", "size": "65g", "cups": "32 cups", "price": 6.45 },
-            { "sku": "BLK-JAMES-GIANT-PEACH-150G", "size": "150g", "cups": "75 cups", "price": 12.95 }
+            {
+              "sku": "BLK-JAMES-GIANT-PEACH-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "BLK-JAMES-GIANT-PEACH-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "BLK-JAMES-GIANT-PEACH-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 13.5
+            },
+            {
+              "sku": "BLK-JAMES-GIANT-PEACH-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
           ]
         },
         {
           "id": "banana-fudge",
           "name": "Banana Fudge",
-          "description": "Foamy banana folded into a black tea — bold but fruity.",
+          "description": "Foamy banana flavoured — bold but fruity over a smooth black tea.",
           "variants": [
-            { "sku": "BLK-BANANA-FUDGE-15G", "size": "15g", "cups": "7 cups", "price": 2.95 },
-            { "sku": "BLK-BANANA-FUDGE-65G", "size": "65g", "cups": "32 cups", "price": 6.45 },
-            { "sku": "BLK-BANANA-FUDGE-150G", "size": "150g", "cups": "75 cups", "price": 12.95 }
+            {
+              "sku": "BLK-BANANA-FUDGE-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "BLK-BANANA-FUDGE-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "BLK-BANANA-FUDGE-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 13.5
+            },
+            {
+              "sku": "BLK-BANANA-FUDGE-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
           ]
         },
         {
@@ -52,9 +119,30 @@
           "name": "Salted Caramel",
           "description": "Salted and caramelised — robust with a warm, dark sweetness.",
           "variants": [
-            { "sku": "BLK-SALTED-CARAMEL-15G", "size": "15g", "cups": "7 cups", "price": 2.95 },
-            { "sku": "BLK-SALTED-CARAMEL-65G", "size": "65g", "cups": "32 cups", "price": 6.45 },
-            { "sku": "BLK-SALTED-CARAMEL-150G", "size": "150g", "cups": "75 cups", "price": 12.95 }
+            {
+              "sku": "BLK-SALTED-CARAMEL-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "BLK-SALTED-CARAMEL-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "BLK-SALTED-CARAMEL-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 13.5
+            },
+            {
+              "sku": "BLK-SALTED-CARAMEL-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
           ]
         },
         {
@@ -65,10 +153,30 @@
           "rating": 5,
           "reviews": 3,
           "variants": [
-            { "sku": "BLK-CARAMEL-APPLE-BETTY-15G", "size": "15g", "cups": "7 cups", "price": 2.95 },
-            { "sku": "BLK-CARAMEL-APPLE-BETTY-65G", "size": "65g", "cups": "32 cups", "price": 6.95 },
-            { "sku": "BLK-CARAMEL-APPLE-BETTY-150G", "size": "150g", "cups": "75 cups", "price": 13.50 },
-            { "sku": "BLK-CARAMEL-APPLE-BETTY-TUBE", "size": "65g Tube", "cups": "reusable tin", "price": 14.95 }
+            {
+              "sku": "BLK-CARAMEL-APPLE-BETTY-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "BLK-CARAMEL-APPLE-BETTY-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "BLK-CARAMEL-APPLE-BETTY-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 13.5
+            },
+            {
+              "sku": "BLK-CARAMEL-APPLE-BETTY-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
           ]
         },
         {
@@ -79,30 +187,92 @@
           "rating": 5,
           "reviews": 3,
           "variants": [
-            { "sku": "BLK-CHERRY-BAKEWELL-15G", "size": "15g", "cups": "7 cups", "price": 2.95 },
-            { "sku": "BLK-CHERRY-BAKEWELL-65G", "size": "65g", "cups": "32 cups", "price": 6.95 },
-            { "sku": "BLK-CHERRY-BAKEWELL-150G", "size": "150g", "cups": "75 cups", "price": 13.50 },
-            { "sku": "BLK-CHERRY-BAKEWELL-TUBE", "size": "65g Tube", "cups": "reusable tin", "price": 14.95 }
+            {
+              "sku": "BLK-CHERRY-BAKEWELL-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "BLK-CHERRY-BAKEWELL-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "BLK-CHERRY-BAKEWELL-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 13.5
+            },
+            {
+              "sku": "BLK-CHERRY-BAKEWELL-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
           ]
         },
         {
           "id": "mango-tchai",
           "name": "Mango T'Chai",
-          "description": "Mango and coconut chai — light and fruity with warming aromatic spice.",
+          "description": "Mango and coconut chai (pronounced with a soft T) — light and fruity with warming aromatic undertones.",
           "variants": [
-            { "sku": "BLK-MANGO-TCHAI-15G", "size": "15g", "cups": "7 cups", "price": 3.25 },
-            { "sku": "BLK-MANGO-TCHAI-65G", "size": "65g", "cups": "32 cups", "price": 6.95 },
-            { "sku": "BLK-MANGO-TCHAI-150G", "size": "150g", "cups": "75 cups", "price": 13.95 }
+            {
+              "sku": "BLK-MANGO-TCHAI-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "BLK-MANGO-TCHAI-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "BLK-MANGO-TCHAI-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 13.5
+            },
+            {
+              "sku": "BLK-MANGO-TCHAI-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
           ]
         },
         {
           "id": "moonbeam",
           "name": "Moonbeam",
-          "description": "Lavender flower and orange peel — bright with soft floral notes.",
+          "description": "Lavender flower and orange peel — bright with soft floral undertones.",
           "variants": [
-            { "sku": "BLK-MOONBEAM-15G", "size": "15g", "cups": "7 cups", "price": 3.25 },
-            { "sku": "BLK-MOONBEAM-65G", "size": "65g", "cups": "32 cups", "price": 6.95 },
-            { "sku": "BLK-MOONBEAM-150G", "size": "150g", "cups": "75 cups", "price": 13.95 }
+            {
+              "sku": "BLK-MOONBEAM-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "BLK-MOONBEAM-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "BLK-MOONBEAM-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 13.5
+            },
+            {
+              "sku": "BLK-MOONBEAM-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
           ]
         },
         {
@@ -110,9 +280,24 @@
           "name": "English Breakfast",
           "description": "A classic bright, brisk traditional brew — the dependable morning cup.",
           "variants": [
-            { "sku": "BLK-ENGLISH-BREAKFAST-15G", "size": "15g", "cups": "7 cups", "price": 2.50 },
-            { "sku": "BLK-ENGLISH-BREAKFAST-65G", "size": "65g", "cups": "32 cups", "price": 5.95 },
-            { "sku": "BLK-ENGLISH-BREAKFAST-150G", "size": "150g", "cups": "75 cups", "price": 11.50 }
+            {
+              "sku": "BLK-ENGLISH-BREAKFAST-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.5
+            },
+            {
+              "sku": "BLK-ENGLISH-BREAKFAST-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 5.95
+            },
+            {
+              "sku": "BLK-ENGLISH-BREAKFAST-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 11.5
+            }
           ]
         },
         {
@@ -120,7 +305,12 @@
           "name": "The Essential Biscuit & Brew Loose Leaf Tea Bundle",
           "description": "A curated set of our best-loved blends — the perfect introduction.",
           "variants": [
-            { "sku": "BLK-ESSENTIAL-BUNDLE", "size": "Bundle", "cups": "4 blends", "price": 22.00 }
+            {
+              "sku": "BLK-ESSENTIAL-BUNDLE",
+              "size": "Bundle",
+              "cups": "4 blends",
+              "price": 22.0
+            }
           ]
         }
       ]
@@ -136,9 +326,24 @@
           "name": "Robin Hood",
           "description": "Elderberry, dandelion and blackberry — fruits from the Nottingham forests.",
           "variants": [
-            { "sku": "GRN-ROBIN-HOOD-15G", "size": "15g", "cups": "7 cups", "price": 3.25 },
-            { "sku": "GRN-ROBIN-HOOD-65G", "size": "65g", "cups": "32 cups", "price": 6.95 },
-            { "sku": "GRN-ROBIN-HOOD-150G", "size": "150g", "cups": "75 cups", "price": 13.95 }
+            {
+              "sku": "GRN-ROBIN-HOOD-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 3.25
+            },
+            {
+              "sku": "GRN-ROBIN-HOOD-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "GRN-ROBIN-HOOD-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 13.95
+            }
           ]
         },
         {
@@ -146,9 +351,24 @@
           "name": "Lull",
           "description": "Blueberry, almond and cinnamon over a purple tea — fruity and gently spiced.",
           "variants": [
-            { "sku": "GRN-LULL-15G", "size": "15g", "cups": "7 cups", "price": 2.95 },
-            { "sku": "GRN-LULL-65G", "size": "65g", "cups": "32 cups", "price": 6.45 },
-            { "sku": "GRN-LULL-150G", "size": "150g", "cups": "75 cups", "price": 12.95 }
+            {
+              "sku": "GRN-LULL-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "GRN-LULL-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.45
+            },
+            {
+              "sku": "GRN-LULL-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 12.95
+            }
           ]
         },
         {
@@ -156,9 +376,24 @@
           "name": "Watermelon Sugar",
           "description": "Watermelon, lychee and passionfruit — soft and fruity with a slight tang.",
           "variants": [
-            { "sku": "GRN-WATERMELON-SUGAR-15G", "size": "15g", "cups": "7 cups", "price": 2.95 },
-            { "sku": "GRN-WATERMELON-SUGAR-65G", "size": "65g", "cups": "32 cups", "price": 6.45 },
-            { "sku": "GRN-WATERMELON-SUGAR-150G", "size": "150g", "cups": "75 cups", "price": 12.95 }
+            {
+              "sku": "GRN-WATERMELON-SUGAR-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "GRN-WATERMELON-SUGAR-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.45
+            },
+            {
+              "sku": "GRN-WATERMELON-SUGAR-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 12.95
+            }
           ]
         },
         {
@@ -166,9 +401,24 @@
           "name": "Pear & Pistachio",
           "description": "Pear and toasted pistachio over a soft green — fruity, earthy and nutty.",
           "variants": [
-            { "sku": "GRN-PEAR-PISTACHIO-15G", "size": "15g", "cups": "7 cups", "price": 3.25 },
-            { "sku": "GRN-PEAR-PISTACHIO-65G", "size": "65g", "cups": "32 cups", "price": 6.95 },
-            { "sku": "GRN-PEAR-PISTACHIO-150G", "size": "150g", "cups": "75 cups", "price": 13.95 }
+            {
+              "sku": "GRN-PEAR-PISTACHIO-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 3.25
+            },
+            {
+              "sku": "GRN-PEAR-PISTACHIO-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "GRN-PEAR-PISTACHIO-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 13.95
+            }
           ]
         },
         {
@@ -176,9 +426,24 @@
           "name": "Deep Breath",
           "description": "Cooling eucalyptus and peppermint — clarifying with a green-blue hue.",
           "variants": [
-            { "sku": "GRN-DEEP-BREATH-15G", "size": "15g", "cups": "7 cups", "price": 2.95 },
-            { "sku": "GRN-DEEP-BREATH-65G", "size": "65g", "cups": "32 cups", "price": 6.45 },
-            { "sku": "GRN-DEEP-BREATH-150G", "size": "150g", "cups": "75 cups", "price": 12.95 }
+            {
+              "sku": "GRN-DEEP-BREATH-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "GRN-DEEP-BREATH-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.45
+            },
+            {
+              "sku": "GRN-DEEP-BREATH-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 12.95
+            }
           ]
         }
       ]
@@ -194,9 +459,24 @@
           "name": "Cherry Kiss",
           "description": "Cherry-cola flavoured fruit infusion — fruity and aromatic, caffeine-free.",
           "variants": [
-            { "sku": "HRB-CHERRY-KISS-15G", "size": "15g", "cups": "7 cups", "price": 2.95 },
-            { "sku": "HRB-CHERRY-KISS-65G", "size": "65g", "cups": "32 cups", "price": 6.45 },
-            { "sku": "HRB-CHERRY-KISS-150G", "size": "150g", "cups": "75 cups", "price": 12.95 }
+            {
+              "sku": "HRB-CHERRY-KISS-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "HRB-CHERRY-KISS-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.45
+            },
+            {
+              "sku": "HRB-CHERRY-KISS-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 12.95
+            }
           ]
         },
         {
@@ -204,9 +484,24 @@
           "name": "Little Picture",
           "description": "Zesty lime, mango, papaya and pineapple — citrussy tropical fruits.",
           "variants": [
-            { "sku": "HRB-LITTLE-PICTURE-15G", "size": "15g", "cups": "7 cups", "price": 2.95 },
-            { "sku": "HRB-LITTLE-PICTURE-65G", "size": "65g", "cups": "32 cups", "price": 6.45 },
-            { "sku": "HRB-LITTLE-PICTURE-150G", "size": "150g", "cups": "75 cups", "price": 12.95 }
+            {
+              "sku": "HRB-LITTLE-PICTURE-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "HRB-LITTLE-PICTURE-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.45
+            },
+            {
+              "sku": "HRB-LITTLE-PICTURE-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 12.95
+            }
           ]
         },
         {
@@ -214,9 +509,24 @@
           "name": "Hound on the Hunt",
           "description": "A sweet, smoky bonfire blend with a kick of chilli heat. Contains caffeine.",
           "variants": [
-            { "sku": "HRB-HOUND-HUNT-15G", "size": "15g", "cups": "7 cups", "price": 3.25 },
-            { "sku": "HRB-HOUND-HUNT-65G", "size": "65g", "cups": "32 cups", "price": 6.95 },
-            { "sku": "HRB-HOUND-HUNT-150G", "size": "150g", "cups": "75 cups", "price": 13.95 }
+            {
+              "sku": "HRB-HOUND-HUNT-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 3.25
+            },
+            {
+              "sku": "HRB-HOUND-HUNT-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "HRB-HOUND-HUNT-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 13.95
+            }
           ]
         },
         {
@@ -224,9 +534,24 @@
           "name": "Strawberry Fields Forever",
           "description": "Strawberries with zesty lime and lemon — like a strawberry twister lolly.",
           "variants": [
-            { "sku": "HRB-STRAWBERRY-FIELDS-15G", "size": "15g", "cups": "7 cups", "price": 2.95 },
-            { "sku": "HRB-STRAWBERRY-FIELDS-65G", "size": "65g", "cups": "32 cups", "price": 6.45 },
-            { "sku": "HRB-STRAWBERRY-FIELDS-150G", "size": "150g", "cups": "75 cups", "price": 12.95 }
+            {
+              "sku": "HRB-STRAWBERRY-FIELDS-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "HRB-STRAWBERRY-FIELDS-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.45
+            },
+            {
+              "sku": "HRB-STRAWBERRY-FIELDS-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 12.95
+            }
           ]
         },
         {
@@ -234,9 +559,24 @@
           "name": "Raspberry Rose",
           "description": "Tart, floral and fruity — inspired by a wedding cake. Contains caffeine.",
           "variants": [
-            { "sku": "HRB-RASPBERRY-ROSE-15G", "size": "15g", "cups": "7 cups", "price": 3.25 },
-            { "sku": "HRB-RASPBERRY-ROSE-65G", "size": "65g", "cups": "32 cups", "price": 6.95 },
-            { "sku": "HRB-RASPBERRY-ROSE-150G", "size": "150g", "cups": "75 cups", "price": 13.95 }
+            {
+              "sku": "HRB-RASPBERRY-ROSE-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 3.25
+            },
+            {
+              "sku": "HRB-RASPBERRY-ROSE-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "HRB-RASPBERRY-ROSE-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 13.95
+            }
           ]
         }
       ]
@@ -252,9 +592,24 @@
           "name": "Plum Tart",
           "description": "A springtime, fruity little tart — plum and elderberry with a touch of cinnamon.",
           "variants": [
-            { "sku": "ROO-PLUM-TART-15G", "size": "15g", "cups": "7 cups", "price": 2.95 },
-            { "sku": "ROO-PLUM-TART-65G", "size": "65g", "cups": "32 cups", "price": 6.45 },
-            { "sku": "ROO-PLUM-TART-150G", "size": "150g", "cups": "75 cups", "price": 12.95 }
+            {
+              "sku": "ROO-PLUM-TART-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "ROO-PLUM-TART-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.45
+            },
+            {
+              "sku": "ROO-PLUM-TART-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 12.95
+            }
           ]
         },
         {
@@ -262,9 +617,24 @@
           "name": "French Toast",
           "description": "Tastes like spiced vanilla toast — warm, sweet and comforting.",
           "variants": [
-            { "sku": "ROO-FRENCH-TOAST-15G", "size": "15g", "cups": "7 cups", "price": 2.95 },
-            { "sku": "ROO-FRENCH-TOAST-65G", "size": "65g", "cups": "32 cups", "price": 6.45 },
-            { "sku": "ROO-FRENCH-TOAST-150G", "size": "150g", "cups": "75 cups", "price": 12.95 }
+            {
+              "sku": "ROO-FRENCH-TOAST-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "ROO-FRENCH-TOAST-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.45
+            },
+            {
+              "sku": "ROO-FRENCH-TOAST-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 12.95
+            }
           ]
         },
         {
@@ -272,9 +642,24 @@
           "name": "Jaffa Cake",
           "description": "Marmalade and chocolate — rich and creamy with orange fruit tones.",
           "variants": [
-            { "sku": "ROO-JAFFA-CAKE-15G", "size": "15g", "cups": "7 cups", "price": 2.95 },
-            { "sku": "ROO-JAFFA-CAKE-65G", "size": "65g", "cups": "32 cups", "price": 6.45 },
-            { "sku": "ROO-JAFFA-CAKE-150G", "size": "150g", "cups": "75 cups", "price": 12.95 }
+            {
+              "sku": "ROO-JAFFA-CAKE-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "ROO-JAFFA-CAKE-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.45
+            },
+            {
+              "sku": "ROO-JAFFA-CAKE-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 12.95
+            }
           ]
         },
         {
@@ -282,9 +667,24 @@
           "name": "Battenburg",
           "description": "Apricot jam and marzipan — cakey with fruity, nutty tones.",
           "variants": [
-            { "sku": "ROO-BATTENBURG-15G", "size": "15g", "cups": "7 cups", "price": 2.95 },
-            { "sku": "ROO-BATTENBURG-65G", "size": "65g", "cups": "32 cups", "price": 6.45 },
-            { "sku": "ROO-BATTENBURG-150G", "size": "150g", "cups": "75 cups", "price": 12.95 }
+            {
+              "sku": "ROO-BATTENBURG-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "ROO-BATTENBURG-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.45
+            },
+            {
+              "sku": "ROO-BATTENBURG-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 12.95
+            }
           ]
         }
       ]
@@ -302,7 +702,12 @@
           "description": "A cast iron teapot paired with a bag of our loose leaf tea — the easiest way to start brewing properly at home.",
           "image": "images/starter-loose-leaf.png",
           "variants": [
-            { "sku": "KIT-LOOSE-LEAF", "size": "Kit", "cups": "teapot + tea", "price": 29.95 }
+            {
+              "sku": "KIT-LOOSE-LEAF",
+              "size": "Kit",
+              "cups": "teapot + tea",
+              "price": 29.95
+            }
           ]
         },
         {
@@ -311,7 +716,12 @@
           "description": "Ceremonial matcha, a kraft storage tube and a hand-cut bamboo whisk — your full matcha ritual in one set.",
           "image": "images/starter-matcha.png",
           "variants": [
-            { "sku": "KIT-MATCHA", "size": "Kit", "cups": "matcha + whisk", "price": 25.95 }
+            {
+              "sku": "KIT-MATCHA",
+              "size": "Kit",
+              "cups": "matcha + whisk",
+              "price": 25.95
+            }
           ]
         }
       ]
@@ -328,7 +738,12 @@
           "description": "The complete ritual: ceremonial matcha in its kraft tube paired with a hand-cut bamboo whisk — everything you need to whisk a bowl from scratch.",
           "image": "images/matcha-kit.png",
           "variants": [
-            { "sku": "MAT-KIT", "size": "Kit", "cups": "whisk + matcha tin", "price": 25.95 }
+            {
+              "sku": "MAT-KIT",
+              "size": "Kit",
+              "cups": "whisk + matcha tin",
+              "price": 25.95
+            }
           ]
         },
         {
@@ -337,7 +752,12 @@
           "description": "Stone-ground ceremonial-grade green tea powder — vivid, smooth and naturally energising. Whisk with hot water or steamed milk.",
           "image": "images/matcha.png",
           "variants": [
-            { "sku": "MAT-TIN", "size": "30g", "cups": "ceremonial grade", "price": 17.95 }
+            {
+              "sku": "MAT-TIN",
+              "size": "30g",
+              "cups": "ceremonial grade",
+              "price": 17.95
+            }
           ]
         },
         {
@@ -346,7 +766,12 @@
           "description": "A traditional chasen, hand-carved from a single piece of bamboo, for a silky, even froth every time.",
           "image": "images/matcha-whisk.png",
           "variants": [
-            { "sku": "MAT-WHISK", "size": "Bamboo chasen", "cups": "handcrafted", "price": 9.95 }
+            {
+              "sku": "MAT-WHISK",
+              "size": "Bamboo chasen",
+              "cups": "handcrafted",
+              "price": 9.95
+            }
           ]
         }
       ]
@@ -362,7 +787,11 @@
           "name": "Bucket Brewer Tea Infuser",
           "description": "A deep mesh infuser that drops straight into your mug — loose leaf, no fuss.",
           "variants": [
-            { "sku": "ACC-BUCKET-BREWER", "size": "Each", "price": 8.50 }
+            {
+              "sku": "ACC-BUCKET-BREWER",
+              "size": "Each",
+              "price": 8.5
+            }
           ]
         },
         {
@@ -370,7 +799,11 @@
           "name": "Cast Iron Teapot",
           "description": "A Japanese-style cast iron teapot that holds the heat — the way we brew in the tea house.",
           "variants": [
-            { "sku": "ACC-CAST-IRON-TEAPOT", "size": "Each", "price": 25.00 }
+            {
+              "sku": "ACC-CAST-IRON-TEAPOT",
+              "size": "Each",
+              "price": 25.0
+            }
           ]
         }
       ]
@@ -387,10 +820,26 @@
           "name": "Gift Voucher",
           "description": "A gold-foiled gift voucher, posted in a forest-green envelope and sealed with a gold ribbon — to spend on loose leaf tea, gifts or a table at the tea house.",
           "variants": [
-            { "sku": "VCH-10", "size": "£10", "price": 10.00 },
-            { "sku": "VCH-25", "size": "£25", "price": 25.00 },
-            { "sku": "VCH-50", "size": "£50", "price": 50.00 },
-            { "sku": "VCH-100", "size": "£100", "price": 100.00 }
+            {
+              "sku": "VCH-10",
+              "size": "£10",
+              "price": 10.0
+            },
+            {
+              "sku": "VCH-25",
+              "size": "£25",
+              "price": 25.0
+            },
+            {
+              "sku": "VCH-50",
+              "size": "£50",
+              "price": 50.0
+            },
+            {
+              "sku": "VCH-100",
+              "size": "£100",
+              "price": 100.0
+            }
           ]
         },
         {
@@ -398,7 +847,11 @@
           "name": "Afternoon Tea Experience Voucher",
           "description": "Treat someone to the full afternoon tea — scones, finger sandwiches, cake and a pot of loose leaf tea in the Nottingham lounge.",
           "variants": [
-            { "sku": "VCH-AT", "size": "Per person", "price": 30.00 }
+            {
+              "sku": "VCH-AT",
+              "size": "Per person",
+              "price": 30.0
+            }
           ]
         },
         {
@@ -406,7 +859,11 @@
           "name": "Cream Tea Experience Voucher",
           "description": "Warm scones with clotted cream, jam and a pot of tea — a cosy afternoon treat.",
           "variants": [
-            { "sku": "VCH-CT", "size": "Per person", "price": 15.00 }
+            {
+              "sku": "VCH-CT",
+              "size": "Per person",
+              "price": 15.0
+            }
           ]
         },
         {
@@ -414,7 +871,11 @@
           "name": "Tea Tasting Event Voucher",
           "description": "A guided tasting flight through our handcrafted blends, hosted at the tea house.",
           "variants": [
-            { "sku": "VCH-TT", "size": "Per ticket", "price": 35.00 }
+            {
+              "sku": "VCH-TT",
+              "size": "Per ticket",
+              "price": 35.0
+            }
           ]
         }
       ]
