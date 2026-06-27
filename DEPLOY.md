@@ -1,3 +1,34 @@
+# Preview the site
+
+## Open on a computer (easiest — no server needed)
+
+The file `public/biscuit-and-brew-ipad.html` is a single, fully self-contained
+page (catalog, images and the hero video are all embedded). On any computer it
+just opens — no server, no internet:
+
+1. Download it: open
+   `https://github.com/mademoisellejulia4-svg/BB/raw/claude/biscuit-brew-website-gnwai3/public/biscuit-and-brew-ipad.html`
+   (or grab the file from the repo).
+2. **Double-click the downloaded file** — it opens in your default browser
+   (Chrome, Edge, Firefox or Safari) and the hero video plays as you scroll.
+
+> On a desktop browser everything works, including the embedded hero video —
+> the data-URI video limitation only affects iPad/iOS Safari.
+
+## Run the full served site on a computer
+
+To run the real Express server (live `index.html`, hot data from
+`data/products.json`):
+
+```bash
+npm install
+npm start
+```
+
+Then open **http://localhost:3000** in your browser. Stop with `Ctrl-C`.
+
+---
+
 # Private preview — from an iPad, with no computer
 
 The site is fully static (HTML + `data/products.json` + `Video.mp4`). You can
