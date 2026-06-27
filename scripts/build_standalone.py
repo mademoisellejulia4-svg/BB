@@ -383,7 +383,17 @@ JS = """
     a.addEventListener('click',()=>{ closeNav(); goTo(a.getAttribute('data-go')); });
   });
   const navLogin=$('#navLogin'); if(navLogin) navLogin.addEventListener('click',()=>{ closeNav(); showToast('Accounts are a demo \\u2014 sign-in coming soon.'); });
-  document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeNav(); closeMenuOverlay('cafemenu'); closeMenuOverlay('kidsmenu'); } });
+
+  /* horizontal mega-menu (wide screens) */
+  const megaItems=Array.from(document.querySelectorAll('.megabar .mega-item'));
+  function closeMega(){ megaItems.forEach(i=>i.classList.remove('open')); }
+  megaItems.forEach(item=>{
+    const trig=item.querySelector('.mega-trig');
+    trig.addEventListener('click',(e)=>{ e.stopPropagation(); const wasOpen=item.classList.contains('open'); closeMega(); if(!wasOpen) item.classList.add('open'); });
+    item.querySelectorAll('[data-go]').forEach(a=>a.addEventListener('click',()=>{ closeMega(); if(document.activeElement) document.activeElement.blur(); }));
+  });
+  document.addEventListener('click',(e)=>{ if(!e.target.closest('.mega-item')) closeMega(); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeNav(); closeMega(); closeMenuOverlay('cafemenu'); closeMenuOverlay('kidsmenu'); } });
 
   /* hero: scroll-scrub the whole clip across ~3 viewport scrolls */
   (function(){
@@ -436,6 +446,67 @@ __HEROCSS__
 <header>
   <div class="hleft">
     <button class="menu-btn" id="menuBtn"><span class="bars"><i></i><i></i><i></i></span> MENU</button>
+    <nav class="megabar" aria-label="Primary">
+      <div class="mega-item">
+        <button class="mega-trig">Shop <span class="car">&#9660;</span></button>
+        <div class="mega-panel">
+          <div class="mega-col">
+            <div class="mega-h">Tea</div>
+            <a data-go="products">All Tea</a>
+            <a data-go="favourites">Best Sellers</a>
+            <a data-go="black">Black Tea</a>
+            <a data-go="matcha">Matcha</a>
+            <a data-go="green">Green Tea</a>
+            <a data-go="herbal">Fruit Infusions</a>
+            <a data-go="rooibos">Rooibos</a>
+          </div>
+          <div class="mega-col">
+            <div class="mega-h">Gifts &amp; More</div>
+            <a data-go="vouchers">Gifts &amp; Bundles</a>
+            <a data-go="starter-kits">Starter Kits</a>
+            <a data-go="accessories">Accessories</a>
+            <a data-go="vouchers">Gift Vouchers</a>
+          </div>
+        </div>
+      </div>
+      <div class="mega-item">
+        <button class="mega-trig">Cafe &amp; Lounge <span class="car">&#9660;</span></button>
+        <div class="mega-panel">
+          <div class="mega-col">
+            <div class="mega-h">Cafe &amp; Lounge</div>
+            <a data-go="book">Book A Table</a>
+            <a data-go="cafemenu">Menu</a>
+            <a data-go="kidsmenu">Kids Menu</a>
+            <a data-go="visit">Visit Us</a>
+            <a data-go="vouchers">Gift Vouchers</a>
+          </div>
+          <div class="mega-col">
+            <div class="mega-h">Experiences</div>
+            <a data-go="book">Afternoon Tea</a>
+            <a data-go="book">Tea Tasting</a>
+            <a data-go="book">Cream Tea</a>
+          </div>
+          <div class="mega-col">
+            <div class="mega-h">Events</div>
+            <a data-go="book">Summer Paint &amp; Brew</a>
+            <a data-go="book">A Court of Thorns and Roses Book Club</a>
+          </div>
+        </div>
+      </div>
+      <div class="mega-item">
+        <button class="mega-trig">About Us <span class="car">&#9660;</span></button>
+        <div class="mega-panel">
+          <div class="mega-col">
+            <div class="mega-h">About Us</div>
+            <a data-go="story">Our Story</a>
+            <a data-go="visit">Visit Us</a>
+            <a data-go="reviews">Reviews</a>
+            <a data-go="instagram">Find Us On Instagram</a>
+            <a data-go="refer">Refer a Friend</a>
+          </div>
+        </div>
+      </div>
+    </nav>
   </div>
   <a class="brand-logo" id="brandLogo" href="#" aria-label="Biscuit &amp; Brew — home"><img src="images/logo-mark.png" alt="Biscuit &amp; Brew" /></a>
   <div class="hnav">
