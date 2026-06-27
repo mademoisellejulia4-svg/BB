@@ -669,6 +669,24 @@
     transition:color .3s var(--ease), padding-left .3s var(--ease);
   }
   .nav-group a:hover{ color:var(--amber); padding-left:6px; }
+  /* flat category list (single column) */
+  .nav-flat{ flex:1; padding:14px 28px 24px; }
+  .nav-flat a{
+    display:block; padding:14px 0; color:rgba(255,255,255,0.82);
+    font-family:'Cormorant Garamond',serif; font-size:22px; letter-spacing:.02em;
+    text-decoration:none; cursor:pointer; border-bottom:1px solid rgba(255,255,255,0.06);
+    transition:color .3s var(--ease), padding-left .3s var(--ease);
+  }
+  .nav-flat a:hover{ color:var(--amber); padding-left:8px; }
+  .nav-foot{ padding:20px 28px 30px; border-top:1px solid rgba(255,255,255,0.08); }
+  .nav-login{
+    display:inline-flex; align-items:center; gap:10px; cursor:pointer;
+    color:rgba(255,255,255,0.7); font-size:13px; letter-spacing:.08em; text-decoration:none;
+    transition:color .3s var(--ease);
+  }
+  .nav-login:hover{ color:var(--amber); }
+  .nav-head .brand-logo{ position:static; transform:none; }
+  .nav-head .brand-logo img{ height:42px; width:auto; display:block; }
 
   /* ============ VISIT / CAFE & LOUNGE ============ */
   #visit{
@@ -910,29 +928,25 @@
 <div id="navOverlay"></div>
 <nav id="nav" aria-label="Main menu">
   <div class="nav-head">
-    <span class="brand">BISCUIT &amp; BREW</span>
     <button class="nav-close" id="navClose">&times;</button>
+    <span class="brand-logo"><img src="images/logo-mark.png" alt="Biscuit &amp; Brew" /></span>
+    <span style="width:24px"></span>
   </div>
-  <div class="nav-body">
-    <div class="nav-group">
-      <div class="nav-h">Shop</div>
-      <a data-go="products">Loose Leaf Tea</a>
-      <a data-go="starter-kits">Starter Kits</a>
-      <a data-go="vouchers">Gifts &amp; Bundles</a>
-      <a data-go="accessories">Accessories</a>
-    </div>
-    <div class="nav-group">
-      <div class="nav-h">Cafe &amp; Lounge</div>
-      <a data-go="book">Book A Table</a>
-      <a data-go="cafemenu">Cafe &amp; Lounge Menu</a>
-      <a data-go="kidsmenu">Kids Menu</a>
-      <a data-go="visit">Experiences</a>
-    </div>
-    <div class="nav-group">
-      <div class="nav-h">About Us</div>
-      <a data-go="story">Our Story</a>
-      <a data-go="visit">Visit Us</a>
-    </div>
+  <div class="nav-body nav-flat">
+    <a data-go="products">All Tea</a>
+    <a data-go="favourites">Best Sellers</a>
+    <a data-go="black">Black Tea</a>
+    <a data-go="matcha">Matcha</a>
+    <a data-go="green">Green Tea</a>
+    <a data-go="herbal">Fruit Infusions</a>
+    <a data-go="rooibos">Rooibos</a>
+    <a data-go="black">Chai</a>
+    <a data-go="green">White Tea</a>
+    <a data-go="rooibos">Caffeine Free</a>
+    <a data-go="products">Music Blends</a>
+  </div>
+  <div class="nav-foot">
+    <a class="nav-login" id="navLogin">&#9711;&nbsp; Log In</a>
   </div>
 </nav>
 
@@ -1840,7 +1854,6 @@
   $('#navClose').addEventListener('click', closeNav);
   navOverlay.addEventListener('click', closeNav);
   // category ids that should open the product detail view
-  const NAV_CAT = { vouchers:1, matcha:1, accessories:1, 'starter-kits':1 };
   nav.querySelectorAll('[data-go]').forEach(a => {
     a.addEventListener('click', () => {
       const go = a.getAttribute('data-go');
@@ -1848,15 +1861,18 @@
       if(go === 'products'){
         backToCats();
         $('#products').scrollIntoView({ behavior:'smooth' });
-      } else if(NAV_CAT[go]){
+      } else if(CAT_BY_ID[go]){
         $('#products').scrollIntoView({ behavior:'smooth' });
         setTimeout(() => openCategory(go), 420);
       } else {
         const el = document.getElementById(go);
         if(el) el.scrollIntoView({ behavior:'smooth' });
+        else { backToCats(); $('#products').scrollIntoView({ behavior:'smooth' }); }
       }
     });
   });
+  const navLogin = $('#navLogin');
+  if(navLogin) navLogin.addEventListener('click', () => { closeNav(); showToast('Accounts are a demo &mdash; sign-in coming soon.'); });
   // footer-column links that jump to a section
   document.querySelectorAll('#footcols [data-go]').forEach(a => {
     a.addEventListener('click', () => {

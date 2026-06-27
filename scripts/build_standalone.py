@@ -347,15 +347,15 @@ JS = """
   $('#menuBtn').addEventListener('click',openNav);
   $('#navClose').addEventListener('click',closeNav);
   navOv.addEventListener('click',closeNav);
-  const NAV_CAT={ vouchers:1, matcha:1, accessories:1, 'starter-kits':1 };
   document.querySelectorAll('[data-go]').forEach(a=>{
     a.addEventListener('click',()=>{
       const go=a.getAttribute('data-go'); closeNav();
       if(go==='products'){ backToCats(); $('#products').scrollIntoView({behavior:'smooth'}); }
-      else if(NAV_CAT[go]){ $('#products').scrollIntoView({behavior:'smooth'}); setTimeout(()=>openCategory(go),420); }
-      else { const el=document.getElementById(go); if(el) el.scrollIntoView({behavior:'smooth'}); }
+      else if(CAT[go]){ $('#products').scrollIntoView({behavior:'smooth'}); setTimeout(()=>openCategory(go),420); }
+      else { const el=document.getElementById(go); if(el) el.scrollIntoView({behavior:'smooth'}); else { backToCats(); $('#products').scrollIntoView({behavior:'smooth'}); } }
     });
   });
+  const navLogin=$('#navLogin'); if(navLogin) navLogin.addEventListener('click',()=>{ closeNav(); showToast('Accounts are a demo \\u2014 sign-in coming soon.'); });
   document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeNav(); });
 
   /* hero: scroll-scrub the whole clip across ~3 viewport scrolls */
@@ -420,29 +420,25 @@ __HEROCSS__
 <div id="navOverlay"></div>
 <nav id="nav" aria-label="Main menu">
   <div class="nav-head">
-    <span class="brand">BISCUIT &amp; BREW</span>
     <button class="nav-close" id="navClose">&times;</button>
+    <span class="brand-logo"><img src="images/logo-mark.png" alt="Biscuit &amp; Brew" /></span>
+    <span style="width:24px"></span>
   </div>
-  <div class="nav-body">
-    <div class="nav-group">
-      <div class="nav-h">Shop</div>
-      <a data-go="products">Loose Leaf Tea</a>
-      <a data-go="starter-kits">Starter Kits</a>
-      <a data-go="vouchers">Gifts &amp; Bundles</a>
-      <a data-go="accessories">Accessories</a>
-    </div>
-    <div class="nav-group">
-      <div class="nav-h">Cafe &amp; Lounge</div>
-      <a data-go="book">Book A Table</a>
-      <a data-go="cafemenu">Cafe &amp; Lounge Menu</a>
-      <a data-go="kidsmenu">Kids Menu</a>
-      <a data-go="visit">Experiences</a>
-    </div>
-    <div class="nav-group">
-      <div class="nav-h">About Us</div>
-      <a data-go="story">Our Story</a>
-      <a data-go="visit">Visit Us</a>
-    </div>
+  <div class="nav-body nav-flat">
+    <a data-go="products">All Tea</a>
+    <a data-go="favourites">Best Sellers</a>
+    <a data-go="black">Black Tea</a>
+    <a data-go="matcha">Matcha</a>
+    <a data-go="green">Green Tea</a>
+    <a data-go="herbal">Fruit Infusions</a>
+    <a data-go="rooibos">Rooibos</a>
+    <a data-go="black">Chai</a>
+    <a data-go="green">White Tea</a>
+    <a data-go="rooibos">Caffeine Free</a>
+    <a data-go="products">Music Blends</a>
+  </div>
+  <div class="nav-foot">
+    <a class="nav-login" id="navLogin">&#9711;&nbsp; Log In</a>
   </div>
 </nav>
 
