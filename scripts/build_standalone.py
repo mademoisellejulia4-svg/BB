@@ -371,7 +371,7 @@ JS = """
     v.load();
     function prog(){ const t=hero.offsetHeight-window.innerHeight; return t<=0?0:clamp(-hero.getBoundingClientRect().top/t,0,1); }
     function onScroll(){ const p=prog(); const d=dur||v.duration||0; targetT=p*Math.max(0,d-0.05); if(center) center.style.opacity=(1-ramp(p,0.04,0.32)).toFixed(3); }
-    function loop(){ curT+=(targetT-curT)*0.16; if(Math.abs(targetT-curT)<0.008) curT=targetT; if((dur||v.duration)&&Math.abs(v.currentTime-curT)>0.02){ try{v.currentTime=curT;}catch(e){} } requestAnimationFrame(loop); }
+    function loop(){ curT+=(targetT-curT)*0.22; if(Math.abs(targetT-curT)<0.008) curT=targetT; if((dur||v.duration)&&Math.abs(v.currentTime-curT)>0.02){ try{v.currentTime=curT;}catch(e){} } requestAnimationFrame(loop); }
     requestAnimationFrame(loop);
     window.addEventListener('scroll',onScroll,{passive:true});
     window.addEventListener('resize',onScroll);

@@ -105,7 +105,7 @@
   }
 
   /* ============ HERO — scroll-scrubbed video (≈3 scrolls) ============ */
-  #hero{ position:relative; height:300vh; width:100%; background:var(--ink); }
+  #hero{ position:relative; height:200vh; width:100%; background:var(--ink); }
   #sticky{ position:sticky; top:0; height:100vh; width:100%; overflow:hidden; }
   #heroVideo{
     position:absolute; inset:0;
@@ -1487,7 +1487,7 @@
     if(heroCenter) heroCenter.style.opacity = (1 - ramp(p, 0.04, 0.32)).toFixed(3);
   }
   function heroLoop(){
-    curT += (targetT - curT) * 0.16;
+    curT += (targetT - curT) * 0.22;
     if(Math.abs(targetT - curT) < 0.008) curT = targetT;
     if(heroVideo && (heroDur || heroVideo.duration) && Math.abs(heroVideo.currentTime - curT) > 0.02){
       try { heroVideo.currentTime = curT; } catch(e){}
