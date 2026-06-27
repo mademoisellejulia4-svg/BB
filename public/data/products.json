@@ -904,6 +904,20 @@
           ]
         },
         {
+          "id": "strawberry-jam",
+          "name": "Strawberry Jam",
+          "description": "Our homemade strawberry jam, crafted to capture the fresh, sweet flavour of ripe strawberries. Perfect on toast or in desserts — a delightful taste of summer all year round.",
+          "image": "images/strawberry-jam.jpg",
+          "variants": [
+            {
+              "sku": "GIFT-STRAWBERRY-JAM",
+              "size": "Jar",
+              "cups": "homemade",
+              "price": 4.25
+            }
+          ]
+        },
+        {
           "id": "gift-voucher",
           "name": "Gift Voucher",
           "description": "A gold-foiled gift voucher, posted in a forest-green envelope and sealed with a gold ribbon — to spend on loose leaf tea, gifts or a table at the tea house.",
