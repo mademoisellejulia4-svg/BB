@@ -836,6 +836,20 @@
             }
           ],
           "image": "images/cast-iron-teapot.jpg"
+        },
+        {
+          "id": "tea-tube",
+          "name": "Refillable Tea Tube 65g",
+          "description": "Reusable black and gold tea tube holding 65g of loose leaf tea. Perfect for storing your favourite blends fresh, travelling, or gifting — the elegant design keeps tea airtight and protected.",
+          "image": "images/tea-tube.jpg",
+          "variants": [
+            {
+              "sku": "ACC-TEA-TUBE",
+              "size": "65g tube",
+              "cups": "reusable",
+              "price": 2.0
+            }
+          ]
         }
       ],
       "image": "images/accessories.png"
