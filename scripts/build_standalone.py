@@ -338,6 +338,7 @@ JS = """
   $('#promoX').addEventListener('click',()=>{ document.body.classList.remove('promo-on'); $('#promo').style.display='none'; });
   (function(){ const el=$('#promoMsg'); if(!el) return; const msgs=["Hello! Is it tea you're looking for?","Free Delivery on all orders over &pound;30","<b>20% off</b> when you subscribe to the mail list"]; let i=0; setInterval(()=>{ el.style.opacity='0'; setTimeout(()=>{ i=(i+1)%msgs.length; el.innerHTML=msgs[i]; el.style.opacity='1'; },400); },4200); })();
   const favShop=$('#favShop'); if(favShop) favShop.addEventListener('click',()=>{ backToCats(); $('#products').scrollIntoView({behavior:'smooth'}); });
+  const brandLogo=$('#brandLogo'); if(brandLogo) brandLogo.addEventListener('click',(e)=>{ e.preventDefault(); window.scrollTo({top:0,behavior:'smooth'}); });
 
   /* nav drawer */
   const nav=$('#nav'), navOv=$('#navOverlay');
@@ -408,8 +409,8 @@ __HEROCSS__
 <header>
   <div class="hleft">
     <button class="menu-btn" id="menuBtn"><span class="bars"><i></i><i></i><i></i></span> MENU</button>
-    <div class="brand">BISCUIT &amp; BREW</div>
   </div>
+  <a class="brand-logo" id="brandLogo" href="#" aria-label="Biscuit &amp; Brew — home"><img src="images/logo-mark.png" alt="Biscuit &amp; Brew" /></a>
   <div class="hnav">
     <button class="shop" id="shopLink">SHOP</button>
     <button class="shop bag" id="bagBtn">BAG <span id="bagCount" class="bag-count">0</span></button>
@@ -923,6 +924,17 @@ for rel, uri in uri_map.items():
     HTML = HTML.replace('src="' + rel + '"', 'src="' + uri + '"')
     HTML = HTML.replace('poster="' + rel + '"', 'poster="' + uri + '"')
     HTML = HTML.replace("url('" + rel + "')", "url('" + uri + "')")
+
+# Embed the transparent logo as a PNG (keep alpha — JPEG would fill the background)
+def png_data_uri(path, max_w=300):
+    img = Image.open(path).convert("RGBA")
+    if img.width > max_w:
+        h = round(img.height * max_w / img.width)
+        img = img.resize((max_w, h), Image.LANCZOS)
+    buf = io.BytesIO(); img.save(buf, format="PNG", optimize=True)
+    return "data:image/png;base64," + base64.b64encode(buf.getvalue()).decode()
+logo_uri = png_data_uri(os.path.join(PUB, "images/logo-mark.png"))
+HTML = HTML.replace('src="images/logo-mark.png"', 'src="' + logo_uri + '"')
 
 # Embed ONLY the (compressed) hero video so the scroll-scrubbed hero works offline.
 # The heavy Instagram reel videos are NOT embedded (kept as poster tiles linking out),

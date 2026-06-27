@@ -81,6 +81,16 @@
     color:var(--amber);
     pointer-events:auto;
   }
+  header .brand-logo{
+    position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+    pointer-events:auto; line-height:0;
+  }
+  header .brand-logo img{
+    height:46px; width:auto; display:block;
+    filter:drop-shadow(0 2px 10px rgba(0,0,0,0.5));
+  }
+  body.promo-on header .brand-logo{ top:calc(50% + 0px); }
+  @media (max-width:560px){ header .brand-logo img{ height:38px; } }
   header .shop{
     font-size:11px; font-weight:400;
     text-transform:uppercase; letter-spacing:.2em;
@@ -888,8 +898,8 @@
 <header>
   <div class="hleft">
     <button class="menu-btn" id="menuBtn"><span class="bars"><i></i><i></i><i></i></span> MENU</button>
-    <div class="brand">BISCUIT &amp; BREW</div>
   </div>
+  <a class="brand-logo" id="brandLogo" href="#" aria-label="Biscuit &amp; Brew — home"><img src="images/logo-mark.png" alt="Biscuit &amp; Brew" /></a>
   <div class="hnav">
     <button class="shop" id="shopLink">SHOP</button>
     <button class="shop bag" id="bagBtn">BAG <span id="bagCount" class="bag-count">0</span></button>
@@ -1862,6 +1872,8 @@
   });
   const favShop = $('#favShop');
   if(favShop) favShop.addEventListener('click', () => { backToCats(); $('#products').scrollIntoView({ behavior:'smooth' }); });
+  const brandLogo = $('#brandLogo');
+  if(brandLogo) brandLogo.addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({ top:0, behavior:'smooth' }); });
   $('#nlForm').addEventListener('submit', (e) => {
     e.preventDefault();
     const val = $('#nlEmail').value.trim();
