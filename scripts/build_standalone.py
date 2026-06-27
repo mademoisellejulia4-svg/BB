@@ -571,6 +571,53 @@ __HEROCSS__
       <p class="cm-sub">Cloudy Lemonade &middot; Dandelion &amp; Burdock &middot; Orange Juice &middot; Apple Juice</p>
     </div>
   </div>
+
+  <div class="cm-divider">
+    <span class="l"></span><h3>Our Loose Leaf Blends</h3><span class="l"></span>
+    <p>We're loose leaf tea specialists and have been blending our own unique tea blends for nearly a decade. Blends marked <span class="cm-caff">*</span> contain caffeine.</p>
+  </div>
+  <div class="cm-grid">
+    <div class="cm-group">
+      <h3>Black Tea <span class="cm-caff">*</span></h3>
+      <div class="cm-blend"><span class="bn">Biscuit Brew</span><p class="bd">Our signature chocolate digestive blend. Rich and malty with chocolate and oats.</p></div>
+      <div class="cm-blend"><span class="bn">James &amp; The Giant Peach</span><p class="bd">Peach, ginger and cardamom. Based on the book by Roald Dahl. Sweet zesty fruits with subtle spice.</p></div>
+      <div class="cm-blend"><span class="bn">Banana Fudge</span><p class="bd">Creamy banana flavoured, bold but fruity.</p></div>
+      <div class="cm-blend"><span class="bn">Salted Caramel</span><p class="bd">Salted and caramelised. Robust with a warm, dark sweetness.</p></div>
+      <div class="cm-blend"><span class="bn">Caramel Apple Betty</span><p class="bd">Spiced cinnamon apple pie. Rich and creamy with subtle fruity notes and aromatic undertones.</p></div>
+      <div class="cm-blend"><span class="bn">Cherry Bakewell</span><p class="bd">A cherry amaretto blend. Rich and tangy with nutty tones.</p></div>
+      <div class="cm-blend"><span class="bn">Mango T'Chai</span><p class="bd">Mango and coconut chai, pronounced with a soft T. Light and fruity with warming aromatic undertones.</p></div>
+      <div class="cm-blend"><span class="bn">Moonbeam</span><p class="bd">Lavender flower and orange peel. Bright with floral undertones.</p></div>
+    </div>
+    <div class="cm-group">
+      <h3>Fruit Infusions</h3>
+      <div class="cm-blend"><span class="bn">Cherry Kiss</span><p class="bd">Cherry Cola flavoured fruit infusion. Fruity and aromatic.</p></div>
+      <div class="cm-blend"><span class="bn">Little Picture</span><p class="bd">Zesty lime, mango, papaya and pineapple. Blended to 'Little Picture' by Arthur Dove. Citrussy tropical fruits.</p></div>
+      <div class="cm-blend"><span class="bn">Hound on the Hunt <span class="cm-caff">*</span></span><p class="bd">Sweet, smokey and chilli flavoured bonfire blend. Smokey but sweet with a hot chilli kick.</p></div>
+      <div class="cm-blend"><span class="bn">Strawberry Fields Forever</span><p class="bd">Zesty lime and lemon with strawberries. Blended to the music of The Beatles. Tastes a bit like a Twister lolly.</p></div>
+      <div class="cm-blend"><span class="bn">Raspberry Rose <span class="cm-caff">*</span></span><p class="bd">Inspired by our wedding cake. Tart, floral and fruity.</p></div>
+    </div>
+    <div class="cm-group">
+      <h3>Rooibos</h3>
+      <div class="cm-blend"><span class="bn">Plum Tart</span><p class="bd">A springtime, fruity little tart. We use elderberries to make it plum-y with a bit of cinnamon.</p></div>
+      <div class="cm-blend"><span class="bn">French Toast <span class="cm-caff">*</span></span><p class="bd">Tastes like spiced-vanilla toast.</p></div>
+      <div class="cm-blend"><span class="bn">Jaffa Cake</span><p class="bd">Marmalade &amp; chocolate. Rich and creamy with fruit tones.</p></div>
+      <div class="cm-blend"><span class="bn">Battenburg</span><p class="bd">Apricot jam &amp; marzipan flavoured rooibos. Cakey with fruity and nutty tones.</p></div>
+    </div>
+    <div class="cm-group">
+      <h3>Green Tea <span class="cm-caff">*</span></h3>
+      <div class="cm-blend"><span class="bn">Robin Hood</span><p class="bd">Inspired by the folklore legend, made with fruits and flowers from the forests of Nottingham. Tastes of elderberry, dandelion &amp; blackberries.</p></div>
+      <div class="cm-blend"><span class="bn">Lull</span><p class="bd">Blueberry, almond &amp; cinnamon purple tea. Fruity and subtly spiced.</p></div>
+      <div class="cm-blend"><span class="bn">Watermelon Sugar</span><p class="bd">Watermelon, lychee &amp; passionfruit. Blended to the music of Harry Styles. Soft, fruity with a slight tang.</p></div>
+      <div class="cm-blend"><span class="bn">Pear &amp; Pistachio</span><p class="bd">Tastes as it sounds. One of the blends we made for our wedding. Fruity, earthy and nutty.</p></div>
+      <div class="cm-blend"><span class="bn">Deep Breath</span><p class="bd">Cool, clarifying eucalyptus and peppermint with a greeny, blue hue.</p></div>
+    </div>
+  </div>
+
+  <div class="kids-free" style="margin-top:48px">
+    <b>Take the Biscuit &amp; Brew experience home</b>
+    <p class="cm-sub" style="margin-top:10px">We make every loose leaf blend in house. Take a pack home, put the kettle on and fill your teapot. All blends available at the counter:</p>
+    <p class="cm-sub" style="margin-top:8px;color:rgba(255,255,255,0.62)">65g Loose Leaf Tea from £6.95 &nbsp;&middot;&nbsp; Bucket Brewer Tea Infuser £8.50 &nbsp;&middot;&nbsp; Cast Iron Teapot £25</p>
+  </div>
 </section>
 
 <section id="kidsmenu" style="background:#0a0a14">
