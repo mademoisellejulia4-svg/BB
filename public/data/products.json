@@ -918,6 +918,20 @@
           ]
         },
         {
+          "id": "essentially-giftset",
+          "name": "'It's Essentially Loose Leaf' Tea Gift Set",
+          "description": "A good place to start with loose leaf tea, or a good excuse to restock. Includes 30g of our traditional English Breakfast and 30g of Biscuit Brew — our chocolate-digestive signature blend.",
+          "image": "images/essentially-giftset.jpg",
+          "variants": [
+            {
+              "sku": "GIFT-ESSENTIALLY-SET",
+              "size": "Gift Set",
+              "cups": "2 × 30g blends",
+              "price": 9.95
+            }
+          ]
+        },
+        {
           "id": "gift-voucher",
           "name": "Gift Voucher",
           "description": "A gold-foiled gift voucher, posted in a forest-green envelope and sealed with a gold ribbon — to spend on loose leaf tea, gifts or a table at the tea house.",
