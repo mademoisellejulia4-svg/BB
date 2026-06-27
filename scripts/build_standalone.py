@@ -265,6 +265,37 @@ JS = """
   function backToCats(){ detailView.classList.remove('active'); catView.classList.add('active'); }
   $('#backBtn').addEventListener('click',backToCats);
 
+  /* ---- recommendations: "You may also like" + "Recently viewed" ---- */
+  const RECENT_KEY='bb_recent_v1';
+  function allProducts(){ const out=[]; (STORE.categories||[]).forEach(c=>(c.products||[]).forEach(p=>out.push({c,p}))); return out; }
+  function findProd(cid,pid){ const c=CAT[cid]; if(!c) return null; const p=(c.products||[]).find(x=>x.id===pid); return p?{c,p}:null; }
+  function getRecent(){ try{ return JSON.parse(localStorage.getItem(RECENT_KEY))||[]; }catch(e){ return []; } }
+  function pushRecent(cid,pid){ let r=getRecent().filter(x=>!(x.cid===cid&&x.pid===pid)); r.unshift({cid,pid}); try{ localStorage.setItem(RECENT_KEY,JSON.stringify(r.slice(0,12))); }catch(e){} }
+  function recCard(c,p){
+    const card=document.createElement('div'); card.className='rec-card';
+    const img=p.image||c.image||'';
+    card.innerHTML='<div class="rec-img"'+(img?' style="background-image:url(\\''+img+'\\')"':'')+'><span class="rec-badge">'+c.name+'</span></div>'+
+      '<div class="rec-name">'+p.name+'</div>'+
+      '<div class="rec-price">From '+fmt(fromPrice(p))+'</div>';
+    card.addEventListener('click',()=>openModal(c,p));
+    return card;
+  }
+  function renderAlsoLike(c,p){
+    const row=$('#mAlsoRow'); row.innerHTML='';
+    const picks=[];
+    (c.products||[]).forEach(x=>{ if(x.id!==p.id) picks.push({c,p:x}); });
+    if(picks.length<4){ allProducts().forEach(({c:cc,p:pp})=>{ if(picks.length>=8||cc.id===c.id) return; picks.push({c:cc,p:pp}); }); }
+    picks.slice(0,4).forEach(({c:cc,p:pp})=>row.appendChild(recCard(cc,pp)));
+    $('#mAlso').classList.toggle('show', row.children.length>0);
+  }
+  function renderRecent(c,p){
+    const row=$('#mRecentRow'); row.innerHTML='';
+    getRecent().map(x=>findProd(x.cid,x.pid)).filter(Boolean)
+      .filter(({c:cc,p:pp})=>!(cc.id===c.id&&pp.id===p.id))
+      .slice(0,8).forEach(({c:cc,p:pp})=>row.appendChild(recCard(cc,pp)));
+    $('#mRecent').classList.toggle('show', row.children.length>0);
+  }
+
   /* ---- modal ---- */
   const modal=$('#modal'); let mProduct=null,mCat=null,mVarIdx=0,mQty=1;
   function openModal(c,p){
@@ -286,7 +317,10 @@ JS = """
       b.addEventListener('click',()=>{ mVarIdx=idx; w.querySelectorAll('.vbtn').forEach(x=>x.classList.remove('sel')); b.classList.add('sel'); });
       w.appendChild(b);
     });
-    modal.classList.add('open'); requestAnimationFrame(()=>modal.style.opacity='1');
+    renderAlsoLike(c,p); renderRecent(c,p); pushRecent(c.id,p.id);
+    modal.classList.add('open');
+    const mCardEl=$('.modal-card'); if(mCardEl) mCardEl.scrollTop=0;
+    requestAnimationFrame(()=>modal.style.opacity='1');
   }
   function closeModal(){ modal.style.opacity='0'; setTimeout(()=>modal.classList.remove('open'),350); }
   $('#modalClose').addEventListener('click',closeModal);
@@ -1031,6 +1065,14 @@ __HEROCSS__
     <div class="modal-foot">
       <div class="qty"><button id="qMinus">&minus;</button><span id="qVal">1</span><button id="qPlus">+</button></div>
       <button class="addbtn" id="addBtn">Add to cart</button>
+    </div>
+    <div class="modal-recs" id="mAlso">
+      <div class="rec-title">You may also like</div>
+      <div class="rec-row" id="mAlsoRow"></div>
+    </div>
+    <div class="modal-recs" id="mRecent">
+      <div class="rec-title">Recently viewed</div>
+      <div class="rec-row" id="mRecentRow"></div>
     </div>
   </div>
 </div>
