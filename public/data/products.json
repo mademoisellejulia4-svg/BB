@@ -55,7 +55,7 @@
         {
           "id": "james-giant-peach",
           "name": "James and the Giant Peach",
-          "description": "Peach, ginger and cardamom — based on the Roald Dahl book. Sweet, zesty fruits with subtle spices.",
+          "description": "What would you do if your peaches couldn't stop growing? We'd just turn them into tea! Inspired by the Roald Dahl novel — a magical burst of citrus on a bold black tea base, ever so lightly spiced with ginger and allspice. Rich, fruity and lightly spiced.",
           "variants": [
             {
               "sku": "BLK-JAMES-GIANT-PEACH-15G",
@@ -81,7 +81,8 @@
               "cups": "reusable tin",
               "price": 14.95
             }
-          ]
+          ],
+          "image": "images/james-giant-peach.jpg"
         },
         {
           "id": "banana-fudge",
@@ -317,15 +318,22 @@
         {
           "id": "essential-bundle",
           "name": "The Essential Biscuit & Brew Loose Leaf Tea Bundle",
-          "description": "A curated set of our best-loved blends — the perfect introduction.",
+          "description": "A bundle of our essential blends, curated from our best-selling loose leaf teas. Basic set: 65g English Breakfast, 65g Biscuit Brew and 65g Moonbeam. The Luxury set adds a Japanese cast iron teapot and a 15g taster of Pear & Pistachio green tea.",
           "variants": [
             {
-              "sku": "BLK-ESSENTIAL-BUNDLE",
-              "size": "Bundle",
-              "cups": "4 blends",
-              "price": 22.0
+              "sku": "BLK-ESSENTIAL-BASIC",
+              "size": "Basic Set",
+              "cups": "3 × 65g blends",
+              "price": 15.0
+            },
+            {
+              "sku": "BLK-ESSENTIAL-LUXURY",
+              "size": "Luxury Set",
+              "cups": "+ teapot & taster",
+              "price": 39.95
             }
-          ]
+          ],
+          "image": "images/essential-bundle.jpg"
         }
       ]
     },
