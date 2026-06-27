@@ -241,6 +241,7 @@
       "id": "rooibos",
       "name": "Rooibos",
       "meta": "4 blends · caffeine-free",
+      "image": "images/rooibos.png",
       "products": [
         {
           "id": "plum-tart",
