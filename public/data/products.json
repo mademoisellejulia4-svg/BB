@@ -850,14 +850,14 @@
         {
           "id": "tea-taster-box",
           "name": "Tea Taster Bundle Box",
-          "description": "A curated box of taster pouches — the perfect way to explore our best-loved loose leaf blends and find your favourite.",
+          "description": "Perfect for finding your favourites! Choose any 10 blends from our current range of loose leaf teas and fruit infusions — just pick your packs and we'll do the rest. Includes 10 × 15g packs.",
           "image": "images/tea-taster-box.jpg",
           "variants": [
             {
               "sku": "GIFT-TASTER-BOX",
-              "size": "Taster Box",
-              "cups": "sampler set",
-              "price": 14.95
+              "size": "10 × 15g packs",
+              "cups": "choose 10 blends",
+              "price": 20.0
             }
           ]
         },
