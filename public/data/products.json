@@ -890,6 +890,20 @@
           ]
         },
         {
+          "id": "studio-chocolate",
+          "name": "Biscuit & Brew / Studio Chocolate Collaboration",
+          "description": "A chocolate-digestive flavoured milk chocolate bar, made in collaboration with Studio Chocolate using our signature Biscuit Brew black tea.",
+          "image": "images/studio-chocolate.jpg",
+          "variants": [
+            {
+              "sku": "GIFT-STUDIO-CHOC",
+              "size": "Chocolate bar",
+              "cups": "made with Biscuit Brew",
+              "price": 7.95
+            }
+          ]
+        },
+        {
           "id": "gift-voucher",
           "name": "Gift Voucher",
           "description": "A gold-foiled gift voucher, posted in a forest-green envelope and sealed with a gold ribbon — to spend on loose leaf tea, gifts or a table at the tea house.",

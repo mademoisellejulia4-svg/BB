@@ -51,6 +51,7 @@ img_files = {
     "images/tea-taster-box.jpg": ("images/tea-taster-box.jpg", 760),
     "images/loose-leaf-bundle.jpg": ("images/loose-leaf-bundle.jpg", 900),
     "images/tea-tube.jpg": ("images/tea-tube.jpg", 760),
+    "images/studio-chocolate.jpg": ("images/studio-chocolate.jpg", 760),
     "images/rv-battenburg.jpg": ("images/rv-battenburg.jpg", 300),
     "images/rv-taster.jpg": ("images/rv-taster.jpg", 300),
     "images/rv-biscuitbrew.jpg": ("images/rv-biscuitbrew.jpg", 300),
