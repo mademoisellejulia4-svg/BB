@@ -39,6 +39,7 @@ img_files = {
     "images/english-breakfast.jpg": ("images/english-breakfast.jpg", 760),
     "images/moonbeam.jpg": ("images/moonbeam.jpg", 760),
     "images/james-giant-peach.jpg": ("images/james-giant-peach.jpg", 760),
+    "images/mango-tchai.jpg": ("images/mango-tchai.jpg", 760),
     "images/essential-bundle.jpg": ("images/essential-bundle.jpg", 1000),
     "images/rooibos.png": ("images/rooibos.png", 1100),
     "images/vouchers.png": ("images/vouchers.png", 1100),

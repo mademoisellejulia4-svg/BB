@@ -217,7 +217,7 @@
         {
           "id": "mango-tchai",
           "name": "Mango T'Chai",
-          "description": "Mango and coconut chai (pronounced with a soft T) — light and fruity with warming aromatic undertones.",
+          "description": "A spiced, tropical fruit-flavoured chai blend — mango and warming chai spice on a bold black tea. Light and fruity with warming, aromatic undertones.",
           "variants": [
             {
               "sku": "BLK-MANGO-TCHAI-15G",
@@ -243,7 +243,10 @@
               "cups": "reusable tin",
               "price": 14.95
             }
-          ]
+          ],
+          "image": "images/mango-tchai.jpg",
+          "rating": 5,
+          "reviews": 2
         },
         {
           "id": "moonbeam",
