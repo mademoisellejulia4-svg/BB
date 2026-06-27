@@ -826,15 +826,16 @@
         },
         {
           "id": "cast-iron-teapot",
-          "name": "Cast Iron Teapot",
-          "description": "A Japanese-style cast iron teapot that holds the heat — the way we brew in the tea house.",
+          "name": "Japanese Cast Iron Teapot",
+          "description": "A white and gold 500ml solid cast iron teapot with an enamelled interior. We use these at Biscuit & Brew, so we know they keep your tea warmer for longer.",
           "variants": [
             {
               "sku": "ACC-CAST-IRON-TEAPOT",
               "size": "Each",
               "price": 25.0
             }
-          ]
+          ],
+          "image": "images/cast-iron-teapot.jpg"
         }
       ]
     },
