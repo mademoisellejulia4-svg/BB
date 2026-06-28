@@ -718,7 +718,7 @@
     {
       "id": "rooibos",
       "name": "Rooibos",
-      "meta": "4 blends · caffeine-free",
+      "meta": "5 blends · caffeine-free",
       "image": "images/rooibos.png",
       "products": [
         {
@@ -871,6 +871,42 @@
           "ingredients": "Rooibos, Apple Pieces, Freeze-dried Apricot, Sunflower Petals, Hibiscus, Red Cornflowers, Rosehip, Orange Peel, Natural Flavouring.",
           "brew": "Boil freshly drawn water, infuse for 3 minutes and drink with (or without) milk.",
           "pairing": "Custard Cream"
+        },
+        {
+          "id": "rhubarb-custard",
+          "name": "Rhubarb & Custard",
+          "description": "Childhood nostalgia in a cup. A retro candy shopper's delight packed with tangy rhubarb and sweet, natural stevia.",
+          "image": "images/rhubarb-custard.jpg",
+          "taste": "Creamy and oh so sweet.",
+          "ingredients": "Rooibos, Freeze-dried Rhubarb, Stevia, Sunflower Petals, Rhubarb Pieces, Flavouring.",
+          "brew": "Boil freshly drawn water, infuse for 3 minutes and drink with (or without) milk.",
+          "pairing": "Custard Cream",
+          "variants": [
+            {
+              "sku": "ROO-RHUBARB-CUSTARD-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "ROO-RHUBARB-CUSTARD-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "ROO-RHUBARB-CUSTARD-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 12.95
+            },
+            {
+              "sku": "ROO-RHUBARB-CUSTARD-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
+          ]
         }
       ]
     },

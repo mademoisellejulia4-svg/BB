@@ -43,6 +43,7 @@ img_files = {
     "images/french-toast.jpg": ("images/french-toast.jpg", 800),
     "images/plum-tart.jpg": ("images/plum-tart.jpg", 800),
     "images/battenberg.jpg": ("images/battenberg.jpg", 800),
+    "images/rhubarb-custard.jpg": ("images/rhubarb-custard.jpg", 800),
     "images/green-tea.png": ("images/green-tea.png", 1100),
     "images/fruit-herbal.png": ("images/fruit-herbal.png", 1100),
     "images/matcha-kit.png": ("images/matcha-kit.png", 1000),
