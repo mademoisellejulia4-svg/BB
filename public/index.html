@@ -1879,6 +1879,57 @@
   </form>
 </section>
 
+<!-- PRIVACY POLICY -->
+<section id="privacy">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Good to know</div>
+    <h2 class="sec-title">Privacy Policy</h2>
+    <p class="sec-sub">We respect your privacy just as much as we love a good cup of tea.</p>
+  </div>
+  <div class="policy-wrap">
+    <p>Hello and welcome to Biscuit &amp; Brew! We're thrilled to have you here, sipping tea with us. At Biscuit &amp; Brew, we believe in transparency and respect your privacy just as much as we love a good cup of tea. Here's what you need to know about how we handle your information:</p>
+
+    <h3>1. The Information We Collect</h3>
+    <p>When you browse our site, sign up, or make a purchase, we may collect:</p>
+    <ul>
+      <li><b>Personal Information</b> like your name, email, and shipping address.</li>
+      <li><b>Payment Information</b> to process orders, but don't worry — we don't store this directly. It's securely handled by trusted payment providers.</li>
+      <li><b>Browsing Information</b> (like cookies) to enhance your shopping experience, making our website faster and easier for you to use.</li>
+    </ul>
+
+    <h3>2. Why We Collect Your Information</h3>
+    <p>We use your information to:</p>
+    <ul>
+      <li>Process your orders and get that tea to you as soon as possible.</li>
+      <li>Improve your experience on our website.</li>
+      <li>Send you updates on new teas, offers, and Biscuit &amp; Brew happenings, but only if you've signed up to hear from us.</li>
+    </ul>
+
+    <h3>3. Sharing Your Information</h3>
+    <p>We only share your information when it's essential. That means with:</p>
+    <ul>
+      <li>Trusted third-party partners (like delivery services) to get your tea to your doorstep.</li>
+      <li>Payment processors to handle transactions securely.</li>
+    </ul>
+    <p>We'll never sell your information, and sharing is only for business and legal reasons.</p>
+
+    <h3>4. Keeping Your Information Safe</h3>
+    <p>Your information's security is our priority. We use industry-standard security measures to protect it from unauthorized access, and we review these measures regularly.</p>
+
+    <h3>5. Your Choices</h3>
+    <p>You're in control! You can:</p>
+    <ul>
+      <li>Update or delete your information at any time by logging into your account.</li>
+      <li>Unsubscribe from marketing emails by clicking the link in any email.</li>
+      <li>Limit cookies through your browser settings.</li>
+    </ul>
+
+    <h3>6. Questions?</h3>
+    <p>If you have any questions, feel free to <a data-go="contact">contact us</a>.</p>
+    <p>The Biscuit &amp; Brew Team</p>
+  </div>
+</section>
+
 <!-- NEWSLETTER -->
 <section id="newsletter">
   <h2>Join our exclusive tea club</h2>
@@ -1918,7 +1969,7 @@
       <a data-go="contact">Contact Us</a>
       <a data-go="visit">Visit Us</a>
       <a data-go="returns">Returns Policy</a>
-      <a href="#" onclick="return false">Privacy Policy</a>
+      <a data-go="privacy">Privacy Policy</a>
     </div>
     <div class="fc-col">
       <h4>Reading</h4>
@@ -2494,7 +2545,7 @@
   document.querySelectorAll('#footcols [data-go]').forEach(a =>
     a.addEventListener('click', () => goTo(a.getAttribute('data-go'))));
   // FAQ + policy + brew-guide + article answer links
-  document.querySelectorAll('#faq [data-go], #returns [data-go], #brew [data-go], #music [data-go]').forEach(a =>
+  document.querySelectorAll('#faq [data-go], #returns [data-go], #brew [data-go], #music [data-go], #privacy [data-go]').forEach(a =>
     a.addEventListener('click', () => goTo(a.getAttribute('data-go'))));
 
   /* horizontal mega-menu (wide screens) */
