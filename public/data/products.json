@@ -378,7 +378,7 @@
         {
           "id": "lull",
           "name": "Lull",
-          "description": "Blueberry, almond and cinnamon over a purple tea — fruity and gently spiced.",
+          "description": "Drop into the lull. Take a tranquil dip into blueberry and almond-infused waters paired with Chinese green tea for a dream-like, purple melancholy. Blended to the taste of Lull by Arthur Dove.",
           "variants": [
             {
               "sku": "GRN-LULL-15G",
@@ -390,15 +390,24 @@
               "sku": "GRN-LULL-65G",
               "size": "65g",
               "cups": "32 cups",
-              "price": 6.45
+              "price": 6.95
             },
             {
               "sku": "GRN-LULL-150G",
               "size": "150g",
               "cups": "75 cups",
               "price": 12.95
+            },
+            {
+              "sku": "GRN-LULL-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
             }
-          ]
+          ],
+          "image": "images/lull.jpg",
+          "brew": "Heat freshly drawn water to about 80°C, infuse for 3 minutes and drink without milk.",
+          "pairing": "Nice Biscuit"
         },
         {
           "id": "watermelon-sugar",
