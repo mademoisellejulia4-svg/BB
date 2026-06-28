@@ -581,7 +581,7 @@
         {
           "id": "little-picture",
           "name": "Little Picture",
-          "description": "Zesty lime, mango, papaya and pineapple — citrussy tropical fruits.",
+          "description": "One for all the lovers. A tropical blend of pineapple, mango and papaya helps you re-live and re-love those hazy polaroid, sun-kissed summers. Zesty and uplifting.",
           "variants": [
             {
               "sku": "HRB-LITTLE-PICTURE-15G",
@@ -593,15 +593,27 @@
               "sku": "HRB-LITTLE-PICTURE-65G",
               "size": "65g",
               "cups": "32 cups",
-              "price": 6.45
+              "price": 6.95
             },
             {
               "sku": "HRB-LITTLE-PICTURE-150G",
               "size": "150g",
               "cups": "75 cups",
               "price": 12.95
+            },
+            {
+              "sku": "HRB-LITTLE-PICTURE-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
             }
-          ]
+          ],
+          "image": "images/little-picture.jpg",
+          "rating": 5,
+          "reviews": 2,
+          "ingredients": "Pineapple, Hibiscus, Currants, Lime Leaves, Freeze-Dried Mango, Papaya Pieces, Coconut Flakes, Sunflower Petals, Flavouring.",
+          "brew": "Boil freshly drawn water, infuse for 3–5 minutes and drink without milk.",
+          "pairing": "Party Rings"
         },
         {
           "id": "hound-on-the-hunt",
