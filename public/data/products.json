@@ -856,7 +856,7 @@
     },
     {
       "id": "vouchers",
-      "name": "Gift Vouchers",
+      "name": "Gifts",
       "meta": "From £10 to £100",
       "image": "images/vouchers.png",
       "variantLabel": "Select amount",
@@ -956,7 +956,8 @@
               "size": "£100",
               "price": 100.0
             }
-          ]
+          ],
+          "image": "images/vouchers.png"
         },
         {
           "id": "afternoon-tea-voucher",
