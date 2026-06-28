@@ -39,6 +39,7 @@ img_files = {
     "images/cherry-kiss.jpg": ("images/cherry-kiss.jpg", 800),
     "images/little-picture.jpg": ("images/little-picture.jpg", 800),
     "images/raspberry-rose.jpg": ("images/raspberry-rose.jpg", 800),
+    "images/jaffa-cake.jpg": ("images/jaffa-cake.jpg", 800),
     "images/green-tea.png": ("images/green-tea.png", 1100),
     "images/fruit-herbal.png": ("images/fruit-herbal.png", 1100),
     "images/matcha-kit.png": ("images/matcha-kit.png", 1000),

@@ -774,7 +774,7 @@
         {
           "id": "jaffa-cake",
           "name": "Jaffa Cake",
-          "description": "Marmalade and chocolate — rich and creamy with orange fruit tones.",
+          "description": "Is it a biscuit or is it a cake? It's really quite hard to tell but either way, this orange jam centred, chocolate topped, biscuit-sized cake tastes just as great (or perhaps even better?) in a mug. So much that it'll totally eclipse everything else! Rich and creamy with subtle citrus notes.",
           "variants": [
             {
               "sku": "ROO-JAFFA-CAKE-15G",
@@ -786,15 +786,27 @@
               "sku": "ROO-JAFFA-CAKE-65G",
               "size": "65g",
               "cups": "32 cups",
-              "price": 6.45
+              "price": 6.95
             },
             {
               "sku": "ROO-JAFFA-CAKE-150G",
               "size": "150g",
               "cups": "75 cups",
               "price": 12.95
+            },
+            {
+              "sku": "ROO-JAFFA-CAKE-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
             }
-          ]
+          ],
+          "image": "images/jaffa-cake.jpg",
+          "rating": 5,
+          "reviews": 2,
+          "ingredients": "Rooibos, Apple Pieces, Rosehip, Hibiscus, Cocoa Shells, Orange Peel, Natural Flavouring.",
+          "brew": "Boil freshly drawn water, infuse for 3–5 minutes and drink with (or without) milk.",
+          "pairing": "Oh come on! Jaffa Cake!"
         },
         {
           "id": "battenburg",
