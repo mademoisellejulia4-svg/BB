@@ -749,7 +749,7 @@
         {
           "id": "french-toast",
           "name": "French Toast",
-          "description": "Tastes like spiced vanilla toast — warm, sweet and comforting.",
+          "description": "Who is this man of toast and what does he want from us? We're as stumped as Stimpy! Prefer your breakfast frenched, powdered, hot or cold? Either way, this spiced-vanilla blend is toasterific!",
           "variants": [
             {
               "sku": "ROO-FRENCH-TOAST-15G",
@@ -761,15 +761,28 @@
               "sku": "ROO-FRENCH-TOAST-65G",
               "size": "65g",
               "cups": "32 cups",
-              "price": 6.45
+              "price": 6.95
             },
             {
               "sku": "ROO-FRENCH-TOAST-150G",
               "size": "150g",
               "cups": "75 cups",
               "price": 12.95
+            },
+            {
+              "sku": "ROO-FRENCH-TOAST-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
             }
-          ]
+          ],
+          "image": "images/french-toast.jpg",
+          "rating": 5,
+          "reviews": 1,
+          "taste": "Sweet and creamy with subtle smoky undertones.",
+          "ingredients": "Rooibos, Cinnamon, Chinese Lapsang Souchong Black Tea, Natural Flavouring.",
+          "brew": "Boil freshly drawn water, infuse for 3–5 minutes and drink with (or without) milk.",
+          "pairing": "Rich Tea"
         },
         {
           "id": "jaffa-cake",
