@@ -46,6 +46,10 @@ img_files = {
     "images/rhubarb-custard.jpg": ("images/rhubarb-custard.jpg", 800),
     "images/hound-on-the-hunt.jpg": ("images/hound-on-the-hunt.jpg", 800),
     "images/newsletter-bg.jpg": ("images/newsletter-bg.jpg", 1400),
+    "images/fav-caramel-apple-betty.jpg": ("images/fav-caramel-apple-betty.jpg", 500),
+    "images/fav-battenberg.jpg": ("images/fav-battenberg.jpg", 500),
+    "images/fav-biscuit-brew.jpg": ("images/fav-biscuit-brew.jpg", 500),
+    "images/fav-lull.jpg": ("images/fav-lull.jpg", 500),
     "images/green-tea.png": ("images/green-tea.png", 1100),
     "images/fruit-herbal.png": ("images/fruit-herbal.png", 1100),
     "images/matcha-kit.png": ("images/matcha-kit.png", 1000),
@@ -241,13 +245,14 @@ JS = """
   const fmt = n => symbol() + Number(n).toFixed(2);
   const fromPrice = p => Math.min.apply(null, p.variants.map(v=>v.price));
   const CAT = {}; (STORE.categories||[]).forEach(c=>CAT[c.id]=c);
-  const FAVS=[['black','caramel-apple-betty'],['green','pear-pistachio'],['herbal','cherry-kiss'],['black','biscuit-brew']];
+  const FAVS=[['black','caramel-apple-betty','images/fav-caramel-apple-betty.jpg'],['rooibos','battenburg','images/fav-battenberg.jpg'],['black','biscuit-brew','images/fav-biscuit-brew.jpg'],['green','lull','images/fav-lull.jpg']];
   function buildFavourites(){
     const grid=$('#favGrid'); if(!grid) return; grid.innerHTML='';
-    FAVS.forEach(([cid,pid])=>{
+    FAVS.forEach(([cid,pid,img])=>{
       const c=CAT[cid]; if(!c) return; const p=(c.products||[]).find(x=>x.id===pid); if(!p) return;
+      const bg=img||c.image;
       const card=document.createElement('div'); card.className='fav-card';
-      card.innerHTML='<div class="fav-medal"'+(c.image?' style="background-image:url(\\''+c.image+'\\')"':'')+'><span class="fav-badge">'+c.name+'</span></div>'+
+      card.innerHTML='<div class="fav-medal"'+(bg?' style="background-image:url(\\''+bg+'\\')"':'')+'><span class="fav-badge">'+c.name+'</span></div>'+
         '<div class="fav-name">'+p.name+'</div>'+
         '<div class="fav-price">From '+fmt(fromPrice(p))+'</div>';
       card.addEventListener('click',()=>openModal(c,p));

@@ -2365,18 +2365,24 @@
   }
 
   /* curated "Our Personal Favourites" — circular medallions from the catalog */
-  const FAVS = [['black','caramel-apple-betty'],['green','pear-pistachio'],['herbal','cherry-kiss'],['black','biscuit-brew']];
+  const FAVS = [
+    ['black','caramel-apple-betty','images/fav-caramel-apple-betty.jpg'],
+    ['rooibos','battenburg','images/fav-battenberg.jpg'],
+    ['black','biscuit-brew','images/fav-biscuit-brew.jpg'],
+    ['green','lull','images/fav-lull.jpg']
+  ];
   function buildFavourites(){
     const grid = $('#favGrid');
     if(!grid) return;
     grid.innerHTML = '';
-    FAVS.forEach(([cid, pid]) => {
+    FAVS.forEach(([cid, pid, img]) => {
       const c = CAT_BY_ID[cid]; if(!c) return;
       const p = (c.products || []).find(x => x.id === pid); if(!p) return;
+      const bg = img || c.image;
       const card = document.createElement('div');
       card.className = 'fav-card';
       card.innerHTML =
-        '<div class="fav-medal"' + (c.image ? ' style="background-image:url(\'' + c.image + '\')"' : '') + '>' +
+        '<div class="fav-medal"' + (bg ? ' style="background-image:url(\'' + bg + '\')"' : '') + '>' +
           '<span class="fav-badge">' + c.name + '</span></div>' +
         '<div class="fav-name">' + p.name + '</div>' +
         '<div class="fav-price">From ' + fmt(fromPrice(p)) + '</div>';
