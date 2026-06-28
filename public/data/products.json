@@ -413,7 +413,7 @@
         {
           "id": "watermelon-sugar",
           "name": "Watermelon Sugar",
-          "description": "Watermelon, lychee and passionfruit — soft and fruity with a slight tang.",
+          "description": "Does it taste like strawberries? Not quite Harry. It doesn't even have berries. We made this blend about a late-night summer romance with a soft, delicate touch of fruits and flowers that ends with a last minute burst of passionfruit. Blended to the taste of 'Watermelon Sugar' by Harry Styles.",
           "variants": [
             {
               "sku": "GRN-WATERMELON-SUGAR-15G",
@@ -425,15 +425,26 @@
               "sku": "GRN-WATERMELON-SUGAR-65G",
               "size": "65g",
               "cups": "32 cups",
-              "price": 6.45
+              "price": 6.95
             },
             {
               "sku": "GRN-WATERMELON-SUGAR-150G",
               "size": "150g",
               "cups": "75 cups",
               "price": 12.95
+            },
+            {
+              "sku": "GRN-WATERMELON-SUGAR-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
             }
-          ]
+          ],
+          "image": "images/watermelon-sugar.jpg",
+          "taste": "Soft and fruity with a subtle tang.",
+          "ingredients": "Chinese Sencha Green Tea, Chinese Black Tea, Apple Pieces, Rosehip, Hibiscus, Elderberries, Rose Petals, Orange Peel, Freeze-dried Strawberry, Natural Flavouring.",
+          "brew": "Boil freshly drawn water, infuse for 3 minutes and drink without milk.",
+          "pairing": "Nice Biscuit"
         },
         {
           "id": "pear-pistachio",
