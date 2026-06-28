@@ -332,6 +332,8 @@ JS = """
       b.addEventListener('click',()=>{ mVarIdx=idx; w.querySelectorAll('.vbtn').forEach(x=>x.classList.remove('sel')); b.classList.add('sel'); });
       w.appendChild(b);
     });
+    const setExtra=(rowId,valId,val)=>{ const row=$('#'+rowId), el=$('#'+valId); if(val){ el.textContent=val; row.classList.add('show'); } else row.classList.remove('show'); };
+    setExtra('mTasteRow','mTaste',p.taste); setExtra('mIngRow','mIng',p.ingredients); setExtra('mBrewRow','mBrew',p.brew);
     renderAlsoLike(c,p); renderRecent(c,p); pushRecent(c.id,p.id);
     modal.classList.add('open');
     const mCardEl=$('.modal-card'); if(mCardEl) mCardEl.scrollTop=0;
@@ -1490,6 +1492,11 @@ __HEROCSS__
     <div class="modal-trust">
       <div class="modal-stock"><b>✓ In stock</b> &middot; Pickup at Biscuit &amp; Brew, usually ready in 24 hours<br/><span class="save">Subscribe &amp; save 10%</span> on repeat orders</div>
       <div class="modal-badges"><span>Sustainable</span><span>Blended in the UK</span><span>Invented by us</span></div>
+    </div>
+    <div class="modal-extra" id="mExtra">
+      <div class="me-row" id="mTasteRow"><span class="me-h">Taste</span><span class="me-v" id="mTaste"></span></div>
+      <div class="me-row" id="mIngRow"><span class="me-h">Ingredients</span><span class="me-v" id="mIng"></span></div>
+      <div class="me-row" id="mBrewRow"><span class="me-h">How to brew</span><span class="me-v" id="mBrew"></span></div>
     </div>
     <div class="modal-foot">
       <div class="qty"><button id="qMinus">&minus;</button><span id="qVal">1</span><button id="qPlus">+</button></div>

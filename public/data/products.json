@@ -457,7 +457,10 @@
           ],
           "image": "images/pear-pistachio.jpg",
           "rating": 5,
-          "reviews": 3
+          "reviews": 3,
+          "taste": "Fruity, earthy with nutty tones.",
+          "ingredients": "Chinese Chunmee Green Tea, Chinese White Tea, Rosehip, Apple Pieces, Pear Pieces, Orange Peel, Calendula Petals, Pistachio Pieces, Stevia, Natural Flavouring.",
+          "brew": "Boil freshly drawn water, infuse for 2–3 minutes and drink without milk."
         },
         {
           "id": "deep-breath",

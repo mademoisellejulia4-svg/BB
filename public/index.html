@@ -424,6 +424,12 @@
     transition:transform .3s var(--ease), filter .3s var(--ease);
   }
   .addbtn:hover{ filter:brightness(1.08); transform:translateY(-2px); }
+  /* in-modal extra detail: taste / ingredients / how to brew */
+  .modal-extra{ width:100%; margin-top:18px; }
+  .me-row{ display:none; padding:13px 0; border-top:1px solid rgba(255,255,255,0.08); text-align:left; }
+  .me-row.show{ display:block; }
+  .me-row .me-h{ display:block; font-size:10px; text-transform:uppercase; letter-spacing:.2em; color:rgba(var(--amber-rgb),0.8); margin-bottom:5px; }
+  .me-row .me-v{ font-size:12.5px; font-weight:300; line-height:1.65; color:rgba(255,255,255,0.7); }
   /* in-modal recommendations: "You may also like" + "Recently viewed" */
   .modal-recs{ display:none; margin-top:30px; padding-top:24px; border-top:1px solid rgba(255,255,255,0.08); }
   .modal-recs.show{ display:block; }
@@ -2157,6 +2163,11 @@
       <div class="modal-stock"><b>✓ In stock</b> &middot; Pickup at Biscuit &amp; Brew, usually ready in 24 hours<br/><span class="save">Subscribe &amp; save 10%</span> on repeat orders</div>
       <div class="modal-badges"><span>Sustainable</span><span>Blended in the UK</span><span>Invented by us</span></div>
     </div>
+    <div class="modal-extra" id="mExtra">
+      <div class="me-row" id="mTasteRow"><span class="me-h">Taste</span><span class="me-v" id="mTaste"></span></div>
+      <div class="me-row" id="mIngRow"><span class="me-h">Ingredients</span><span class="me-v" id="mIng"></span></div>
+      <div class="me-row" id="mBrewRow"><span class="me-h">How to brew</span><span class="me-v" id="mBrew"></span></div>
+    </div>
     <div class="modal-foot">
       <div class="qty">
         <button id="qMinus">&minus;</button><span id="qVal">1</span><button id="qPlus">+</button>
@@ -2492,6 +2503,14 @@
       });
       vWrap.appendChild(b);
     });
+
+    const setExtra = (rowId, valId, val) => {
+      const row = $('#'+rowId), el = $('#'+valId);
+      if(val){ el.textContent = val; row.classList.add('show'); } else { row.classList.remove('show'); }
+    };
+    setExtra('mTasteRow', 'mTaste', p.taste);
+    setExtra('mIngRow', 'mIng', p.ingredients);
+    setExtra('mBrewRow', 'mBrew', p.brew);
 
     renderAlsoLike(c, p);
     renderRecent(c, p);
