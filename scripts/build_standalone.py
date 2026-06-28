@@ -287,27 +287,37 @@ JS = """
     });
   }
   const catView=$('#catView'), detailView=$('#detailView'), prodGrid=$('#prodGrid');
-  function renderDetail(title, items){
+  function renderDetail(title, items, medals){
     $('#detailTitle').textContent=title; prodGrid.innerHTML='';
+    prodGrid.classList.toggle('medals', !!medals);
     items.forEach(({c,p})=>{
-      const card=document.createElement('div'); card.className='prod-card';
-      const chips=p.variants.map(v=>'<span class="pc-chip">'+v.size+' <b>'+fmt(v.price)+'</b></span>').join('');
-      const pimg=p.image?'<div class="pc-img" style="background-image:url(\\''+p.image+'\\')"></div>':'';
-      card.innerHTML=pimg+
-        '<div class="pc-cat">'+c.name+'</div>'+
-        '<div class="pc-name">'+p.name+'</div>'+
-        (p.rating?'<div class="pc-stars">'+('★★★★★'.slice(0,p.rating))+' <span>'+(p.reviews||'')+(p.reviews?' reviews':'')+'</span></div>':'')+
-        '<div class="pc-desc">'+(p.description||'')+'</div>'+
-        '<div class="pc-variants">'+chips+'</div>'+
-        '<div class="pc-from"><span><span class="lbl">From&nbsp;</span><span class="val">'+fmt(fromPrice(p))+'</span></span><span class="pc-view">View \\u2192</span></div>';
+      const card=document.createElement('div');
+      if(medals){
+        card.className='fav-card';
+        const bg=p.image||c.image;
+        card.innerHTML='<div class="fav-medal"'+(bg?' style="background-image:url(\\''+bg+'\\')"':'')+'><span class="fav-badge">'+c.name+'</span></div>'+
+          '<div class="fav-name">'+p.name+'</div>'+
+          '<div class="fav-price">From '+fmt(fromPrice(p))+'</div>';
+      } else {
+        card.className='prod-card';
+        const chips=p.variants.map(v=>'<span class="pc-chip">'+v.size+' <b>'+fmt(v.price)+'</b></span>').join('');
+        const pimg=p.image?'<div class="pc-img" style="background-image:url(\\''+p.image+'\\')"></div>':'';
+        card.innerHTML=pimg+
+          '<div class="pc-cat">'+c.name+'</div>'+
+          '<div class="pc-name">'+p.name+'</div>'+
+          (p.rating?'<div class="pc-stars">'+('★★★★★'.slice(0,p.rating))+' <span>'+(p.reviews||'')+(p.reviews?' reviews':'')+'</span></div>':'')+
+          '<div class="pc-desc">'+(p.description||'')+'</div>'+
+          '<div class="pc-variants">'+chips+'</div>'+
+          '<div class="pc-from"><span><span class="lbl">From&nbsp;</span><span class="val">'+fmt(fromPrice(p))+'</span></span><span class="pc-view">View \\u2192</span></div>';
+      }
       card.addEventListener('click',()=>openModal(c,p));
       prodGrid.appendChild(card);
     });
     catView.classList.remove('active'); detailView.classList.add('active');
     window.scrollTo({top:$('#products').offsetTop-10,behavior:'smooth'});
   }
-  const BEST=[['black','biscuit-brew'],['black','caramel-apple-betty'],['rooibos','battenburg'],['black','salted-caramel'],['green','lull'],['black','cherry-bakewell']];
-  function openBestSellers(){ renderDetail('Best Sellers', BEST.map(([cid,pid])=>findProd(cid,pid)).filter(Boolean)); }
+  const BEST=[['black','biscuit-brew'],['black','caramel-apple-betty'],['black','cherry-bakewell'],['black','salted-caramel'],['rooibos','battenburg'],['rooibos','jaffa-cake'],['green','pear-pistachio'],['herbal','cherry-kiss']];
+  function openBestSellers(){ renderDetail('Best Sellers', BEST.map(([cid,pid])=>findProd(cid,pid)).filter(Boolean), true); }
   function openCategory(id){ const c=CAT[id]; if(!c) return; renderDetail(c.name,(c.products||[]).map(p=>({c,p}))); }
   function backToCats(){ detailView.classList.remove('active'); catView.classList.add('active'); }
   $('#backBtn').addEventListener('click',backToCats);

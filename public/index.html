@@ -290,6 +290,7 @@
     grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
     max-width:1180px; margin:0 auto;
   }
+  .prod-grid.medals{ gap:34px 30px; grid-template-columns:repeat(auto-fit, minmax(190px, 1fr)); justify-items:center; text-align:center; }
   .prod-card{
     position:relative; cursor:pointer;
     border:1px solid rgba(255,255,255,0.07);
@@ -2434,44 +2435,55 @@
   const prodGrid = $('#prodGrid');
   let currentCat = null;
 
-  function renderDetail(title, items){
+  function renderDetail(title, items, medals){
     $('#detailTitle').textContent = title;
     prodGrid.innerHTML = '';
+    prodGrid.classList.toggle('medals', !!medals);
     items.forEach(({ c, p }) => {
       const card = document.createElement('div');
-      card.className = 'prod-card';
-      const chips = p.variants.map(v =>
-        '<span class="pc-chip">'+v.size+' <b>'+fmt(v.price)+'</b></span>').join('');
-      const pimg = p.image ? '<div class="pc-img" style="background-image:url(\''+p.image+'\')"></div>' : '';
-      card.innerHTML =
-        pimg +
-        '<div class="pc-cat">'+c.name+'</div>' +
-        '<div class="pc-name">'+p.name+'</div>' +
-        (p.rating ? '<div class="pc-stars">'+('★★★★★'.slice(0,p.rating))+' <span>'+(p.reviews||'')+(p.reviews?' reviews':'')+'</span></div>' : '') +
-        '<div class="pc-desc">'+(p.description||'')+'</div>' +
-        '<div class="pc-variants">'+chips+'</div>' +
-        '<div class="pc-from">' +
-          '<span><span class="lbl">From&nbsp;</span><span class="val">'+fmt(fromPrice(p))+'</span></span>' +
-          '<span class="pc-view">View &rarr;</span>' +
-        '</div>';
+      if(medals){
+        card.className = 'fav-card';
+        const bg = p.image || c.image;
+        card.innerHTML =
+          '<div class="fav-medal"' + (bg ? ' style="background-image:url(\'' + bg + '\')"' : '') + '>' +
+            '<span class="fav-badge">' + c.name + '</span></div>' +
+          '<div class="fav-name">' + p.name + '</div>' +
+          '<div class="fav-price">From ' + fmt(fromPrice(p)) + '</div>';
+      } else {
+        const chips = p.variants.map(v =>
+          '<span class="pc-chip">'+v.size+' <b>'+fmt(v.price)+'</b></span>').join('');
+        const pimg = p.image ? '<div class="pc-img" style="background-image:url(\''+p.image+'\')"></div>' : '';
+        card.className = 'prod-card';
+        card.innerHTML =
+          pimg +
+          '<div class="pc-cat">'+c.name+'</div>' +
+          '<div class="pc-name">'+p.name+'</div>' +
+          (p.rating ? '<div class="pc-stars">'+('★★★★★'.slice(0,p.rating))+' <span>'+(p.reviews||'')+(p.reviews?' reviews':'')+'</span></div>' : '') +
+          '<div class="pc-desc">'+(p.description||'')+'</div>' +
+          '<div class="pc-variants">'+chips+'</div>' +
+          '<div class="pc-from">' +
+            '<span><span class="lbl">From&nbsp;</span><span class="val">'+fmt(fromPrice(p))+'</span></span>' +
+            '<span class="pc-view">View &rarr;</span>' +
+          '</div>';
+      }
       card.addEventListener('click', () => openModal(c, p));
       prodGrid.appendChild(card);
     });
     catView.classList.remove('active');
     detailView.classList.add('active');
     if(window.gsap){
-      gsap.fromTo('#detailView .prod-card', { y:30, opacity:0 }, { y:0, opacity:1, duration:0.6, stagger:0.06, ease:'power3.out', clearProps:'transform' });
+      gsap.fromTo('#detailView .prod-card, #detailView .fav-card', { y:30, opacity:0 }, { y:0, opacity:1, duration:0.6, stagger:0.06, ease:'power3.out', clearProps:'transform' });
       gsap.fromTo('#detailView .detail-top', { y:-12, opacity:0 }, { y:0, opacity:1, duration:0.5, ease:'power2.out' });
     }
     if(window.ScrollTrigger) ScrollTrigger.refresh();
   }
 
-  // curated best sellers, shown by the featured card
-  const BEST = [['black','biscuit-brew'],['black','caramel-apple-betty'],['rooibos','battenburg'],['black','salted-caramel'],['green','lull'],['black','cherry-bakewell']];
+  // curated best sellers, shown as circular medallions by the featured card
+  const BEST = [['black','biscuit-brew'],['black','caramel-apple-betty'],['black','cherry-bakewell'],['black','salted-caramel'],['rooibos','battenburg'],['rooibos','jaffa-cake'],['green','pear-pistachio'],['herbal','cherry-kiss']];
   function openBestSellers(){
     currentCat = null;
     const items = BEST.map(([cid,pid]) => findProd(cid,pid)).filter(Boolean);
-    renderDetail('Best Sellers', items);
+    renderDetail('Best Sellers', items, true);
   }
 
   function openCategory(id){
