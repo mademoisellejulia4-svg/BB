@@ -619,7 +619,7 @@
         {
           "id": "strawberry-fields-forever",
           "name": "Strawberry Fields Forever",
-          "description": "Strawberries with zesty lime and lemon — like a strawberry twister lolly.",
+          "description": "What's in this blend? Well, strawberries obviously! But, just like the song that inspired it, there's certainly something to get hung up about. It tastes a little like a twister lolly! So, close your eyes and let this blend really take you down to the place where strawberries feel like forever. Blended to 'The Beatles' 1966 classic 'Strawberry Fields Forever'.",
           "variants": [
             {
               "sku": "HRB-STRAWBERRY-FIELDS-15G",
@@ -631,15 +631,28 @@
               "sku": "HRB-STRAWBERRY-FIELDS-65G",
               "size": "65g",
               "cups": "32 cups",
-              "price": 6.45
+              "price": 7.35
             },
             {
               "sku": "HRB-STRAWBERRY-FIELDS-150G",
               "size": "150g",
               "cups": "75 cups",
               "price": 12.95
+            },
+            {
+              "sku": "HRB-STRAWBERRY-FIELDS-FOREVER-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
             }
-          ]
+          ],
+          "taste": "Fruity and bright with floral undertones.",
+          "ingredients": "Apple Pieces, Rosehip, Hibiscus, Lemon Verbena, Freeze-dried Strawberry, Lime Leaves, Mallow Flowers, Safflower, Lavender, Natural Flavouring.",
+          "brew": "Boil freshly drawn water, infuse for 5 minutes and drink without milk.",
+          "pairing": "Shortbread",
+          "image": "images/strawberry-fields-forever.jpg",
+          "rating": 5,
+          "reviews": 1
         },
         {
           "id": "raspberry-rose",
