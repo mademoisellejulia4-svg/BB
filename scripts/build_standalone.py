@@ -805,31 +805,6 @@ __HEROCSS__
   </div>
 </section>
 
-<section id="visit">
-  <div class="visit-wrap">
-    <div class="visit-col">
-      <div class="v-eyebrow">Cafe &amp; Lounge</div>
-      <h3>Come and sit a while.</h3>
-      <p>A family-run cafe and hidden lounge in the heart of Nottingham, pouring our handcrafted loose leaf blends since 2017. Breakfast, brunch, afternoon tea, cakes and hot chocolates &mdash; with gluten-free and vegan-friendly options, served at your table or tucked away in our cosy downstairs snug.</p>
-    </div>
-    <div class="visit-col">
-      <div class="v-eyebrow">Find Us</div>
-      <h3>Visit Us</h3>
-      <p>5 Victoria Street<br/>Nottingham NG1 2EW</p>
-      <div style="margin-top:18px">
-        <div class="v-row"><span>Mon &ndash; Fri</span><span>9:00 &ndash; 5:00</span></div>
-        <div class="v-row"><span>Saturday</span><span>9:30 &ndash; 5:00</span></div>
-        <div class="v-row"><span>Sunday</span><span>10:00 &ndash; 4:30</span></div>
-      </div>
-    </div>
-    <div class="visit-col">
-      <div class="v-eyebrow">Experiences</div>
-      <h3>Afternoon Tea</h3>
-      <p>Book the full afternoon tea experience &mdash; scones, finger sandwiches, cake and a pot of loose leaf tea &mdash; or join one of our guided tea-tasting events. Booking online, or gift it with a voucher.</p>
-    </div>
-  </div>
-</section>
-
 <section id="book">
   <div class="book-banner"><img src="images/book-afternoon-tea.jpg" alt="Afternoon tea at Biscuit &amp; Brew" /></div>
   <div class="sec-head">
@@ -948,6 +923,31 @@ __HEROCSS__
     <div class="r-card"><div class="r-amt">£5</div><div class="r-lbl">You get</div></div>
   </div>
   <button class="r-cta" id="referBtn">Start Earning</button>
+</section>
+
+<section id="visit">
+  <div class="visit-wrap">
+    <div class="visit-col">
+      <div class="v-eyebrow">Cafe &amp; Lounge</div>
+      <h3>Come and sit a while.</h3>
+      <p>A family-run cafe and hidden lounge in the heart of Nottingham, pouring our handcrafted loose leaf blends since 2017. Breakfast, brunch, afternoon tea, cakes and hot chocolates &mdash; with gluten-free and vegan-friendly options, served at your table or tucked away in our cosy downstairs snug.</p>
+    </div>
+    <div class="visit-col">
+      <div class="v-eyebrow">Find Us</div>
+      <h3>Visit Us</h3>
+      <p>5 Victoria Street<br/>Nottingham NG1 2EW</p>
+      <div style="margin-top:18px">
+        <div class="v-row"><span>Mon &ndash; Fri</span><span>9:00 &ndash; 5:00</span></div>
+        <div class="v-row"><span>Saturday</span><span>9:30 &ndash; 5:00</span></div>
+        <div class="v-row"><span>Sunday</span><span>10:00 &ndash; 4:30</span></div>
+      </div>
+    </div>
+    <div class="visit-col">
+      <div class="v-eyebrow">Experiences</div>
+      <h3>Afternoon Tea</h3>
+      <p>Book the full afternoon tea experience &mdash; scones, finger sandwiches, cake and a pot of loose leaf tea &mdash; or join one of our guided tea-tasting events. Booking online, or gift it with a voucher.</p>
+    </div>
+  </div>
 </section>
 
 <section id="reviews">
