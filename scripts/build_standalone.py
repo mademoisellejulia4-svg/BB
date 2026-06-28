@@ -388,6 +388,7 @@ JS = """
     });
   });
   const contactForm=$('#contactForm'); if(contactForm) contactForm.addEventListener('submit',(e)=>{ e.preventDefault(); showToast('Thanks for your message \\u2014 we\\'ll be in touch soon.'); contactForm.reset(); });
+  const wholesaleForm=$('#wholesaleForm'); if(wholesaleForm) wholesaleForm.addEventListener('submit',(e)=>{ e.preventDefault(); showToast('Thanks for your wholesale enquiry \\u2014 we\\'ll be in touch soon.'); wholesaleForm.reset(); });
   const referBtn=$('#referBtn'); if(referBtn) referBtn.addEventListener('click',()=>showToast('Referral is a demo \\u2014 share your <b>£5</b> link.'));
   const storyVisit=$('#storyVisit'); if(storyVisit) storyVisit.addEventListener('click',()=>$('#visit').scrollIntoView({behavior:'smooth'}));
   const bookForm=$('#bookForm'); if(bookForm) bookForm.addEventListener('submit',(e)=>{ e.preventDefault(); showToast('Booking enquiry sent \\u2014 we\\'ll confirm by <b>email</b>.'); bookForm.reset(); });
@@ -1218,6 +1219,25 @@ __HEROCSS__
   </div>
 </section>
 
+<section id="wholesale">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Trade</div>
+    <h2 class="sec-title">Wholesale</h2>
+    <p class="sec-sub">We provide our loose leaf tea and biodegradable pyramid teabags to carefully selected retailers throughout the UK.</p>
+  </div>
+  <form class="contact-form" id="wholesaleForm">
+    <h3>Trade Enquiry</h3>
+    <div class="cf-two">
+      <div class="cf-field"><input type="text" id="whName" placeholder="Name *" required /></div>
+      <div class="cf-field"><input type="email" id="whEmail" placeholder="Email *" required /></div>
+    </div>
+    <div class="cf-field"><input type="tel" id="whPhone" placeholder="Phone number *" required /></div>
+    <div class="cf-field"><textarea id="whMsg" rows="5" placeholder="Comment *" required></textarea></div>
+    <button type="submit" class="cf-btn">Send</button>
+    <p class="cf-required">Fields marked with a * are compulsory</p>
+  </form>
+</section>
+
 <section id="newsletter">
   <h2>Join our exclusive tea club</h2>
   <p class="nsub">For 20% off your first order, secret menus, shop gossip and more. Fill in your details and we'll send your discount code as a thank you.</p>
@@ -1250,7 +1270,7 @@ __HEROCSS__
     </div>
     <div class="fc-col">
       <h4>Useful Info</h4>
-      <a href="#" onclick="return false">Wholesale</a>
+      <a data-go="wholesale">Wholesale</a>
       <a data-go="faq">FAQ</a>
       <a data-go="contact">Contact Us</a>
       <a data-go="visit">Visit Us</a>

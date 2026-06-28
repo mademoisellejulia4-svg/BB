@@ -671,6 +671,7 @@
     text-transform:uppercase; letter-spacing:.22em; transition:transform .3s var(--ease), filter .3s var(--ease);
   }
   .contact-form .cf-btn:hover{ filter:brightness(1.08); transform:translateY(-2px); }
+  .cf-required{ margin-top:16px; text-align:center; font-size:11px; font-weight:300; color:rgba(255,255,255,0.4); letter-spacing:.04em; }
   @media (max-width:520px){ .cf-two{ flex-direction:column; gap:0; } }
 
   /* ============ POLICY PAGES (Returns, etc.) ============ */
@@ -1858,6 +1859,26 @@
   </div>
 </section>
 
+<!-- WHOLESALE -->
+<section id="wholesale">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Trade</div>
+    <h2 class="sec-title">Wholesale</h2>
+    <p class="sec-sub">We provide our loose leaf tea and biodegradable pyramid teabags to carefully selected retailers throughout the UK.</p>
+  </div>
+  <form class="contact-form" id="wholesaleForm">
+    <h3>Trade Enquiry</h3>
+    <div class="cf-two">
+      <div class="cf-field"><input type="text" id="whName" placeholder="Name *" required /></div>
+      <div class="cf-field"><input type="email" id="whEmail" placeholder="Email *" required /></div>
+    </div>
+    <div class="cf-field"><input type="tel" id="whPhone" placeholder="Phone number *" required /></div>
+    <div class="cf-field"><textarea id="whMsg" rows="5" placeholder="Comment *" required></textarea></div>
+    <button type="submit" class="cf-btn">Send</button>
+    <p class="cf-required">Fields marked with a * are compulsory</p>
+  </form>
+</section>
+
 <!-- NEWSLETTER -->
 <section id="newsletter">
   <h2>Join our exclusive tea club</h2>
@@ -1892,7 +1913,7 @@
     </div>
     <div class="fc-col">
       <h4>Useful Info</h4>
-      <a href="#" onclick="return false">Wholesale</a>
+      <a data-go="wholesale">Wholesale</a>
       <a data-go="faq">FAQ</a>
       <a data-go="contact">Contact Us</a>
       <a data-go="visit">Visit Us</a>
@@ -2527,6 +2548,12 @@
     e.preventDefault();
     showToast('Thanks for your message &mdash; we\'ll be in touch soon.');
     contactForm.reset();
+  });
+  const wholesaleForm = $('#wholesaleForm');
+  if(wholesaleForm) wholesaleForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    showToast('Thanks for your wholesale enquiry &mdash; we\'ll be in touch soon.');
+    wholesaleForm.reset();
   });
   const referBtn = $('#referBtn');
   if(referBtn) referBtn.addEventListener('click', () => showToast('Referral is a demo &mdash; share your <b>£5</b> link.'));
