@@ -675,16 +675,6 @@ __HEROCSS__
   </div>
 </section>
 
-<section id="favourites">
-  <div class="sec-head" style="margin-bottom:0">
-    <div class="sec-eyebrow">Personal Favourites</div>
-    <h2 class="sec-title">Our Personal Favourites</h2>
-    <p class="sec-sub">Not sure where to start with our range? Here are a few of the team's favourite blends.</p>
-  </div>
-  <div class="fav-grid" id="favGrid"></div>
-  <button class="fav-shop" id="favShop">Shop our favourites &rarr;</button>
-</section>
-
 <section id="cafemenu">
   <button class="menu-overlay-close" data-close="cafemenu" aria-label="Close menu">&times;</button>
   <div class="sec-head">
@@ -934,6 +924,16 @@ __HEROCSS__
     <div class="story-sign">Dee &amp; Darren</div>
     <button class="story-cta" id="storyVisit">Visit Us</button>
   </div>
+</section>
+
+<section id="favourites">
+  <div class="sec-head" style="margin-bottom:0">
+    <div class="sec-eyebrow">Personal Favourites</div>
+    <h2 class="sec-title">Our Personal Favourites</h2>
+    <p class="sec-sub">Not sure where to start with our range? Here are a few of the team's favourite blends.</p>
+  </div>
+  <div class="fav-grid" id="favGrid"></div>
+  <button class="fav-shop" id="favShop">Shop our favourites &rarr;</button>
 </section>
 
 <section id="instagram">
