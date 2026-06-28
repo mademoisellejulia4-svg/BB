@@ -544,7 +544,7 @@
         {
           "id": "cherry-kiss",
           "name": "Cherry Kiss",
-          "description": "Cherry-cola flavoured fruit infusion — fruity and aromatic, caffeine-free.",
+          "description": "The cheekiest cherry cola-inspired fruit infusion, with sour cherries, warming spices and a sweet, tangy finish. A playful loose leaf blend that is fruity, aromatic and perfect hot or iced.",
           "variants": [
             {
               "sku": "HRB-CHERRY-KISS-15G",
@@ -556,15 +556,27 @@
               "sku": "HRB-CHERRY-KISS-65G",
               "size": "65g",
               "cups": "32 cups",
-              "price": 6.45
+              "price": 6.95
             },
             {
               "sku": "HRB-CHERRY-KISS-150G",
               "size": "150g",
               "cups": "75 cups",
               "price": 12.95
+            },
+            {
+              "sku": "HRB-CHERRY-KISS-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
             }
-          ]
+          ],
+          "image": "images/cherry-kiss.jpg",
+          "rating": 5,
+          "reviews": 1,
+          "taste": "Fruity and aromatic.",
+          "ingredients": "Apple Pieces, Cinnamon, Hibiscus, Rosehip, Ginger, Freeze-dried Cranberry, Cloves, Orange Peel, Freeze-dried Cherry, Natural Flavouring.",
+          "brew": "Boil freshly drawn water, infuse for 3–5 minutes and drink without milk."
         },
         {
           "id": "little-picture",

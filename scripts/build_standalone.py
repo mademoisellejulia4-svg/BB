@@ -36,6 +36,7 @@ img_files = {
     "images/robin-hood-2.jpg": ("images/robin-hood-2.jpg", 800),
     "images/deep-breath.jpg": ("images/deep-breath.jpg", 800),
     "images/strawberry-fields-forever.jpg": ("images/strawberry-fields-forever.jpg", 800),
+    "images/cherry-kiss.jpg": ("images/cherry-kiss.jpg", 800),
     "images/green-tea.png": ("images/green-tea.png", 1100),
     "images/fruit-herbal.png": ("images/fruit-herbal.png", 1100),
     "images/matcha-kit.png": ("images/matcha-kit.png", 1000),
