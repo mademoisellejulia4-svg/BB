@@ -491,7 +491,10 @@ JS = """
   (function(){
     const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
     const ramp=(p,a,b)=>clamp((p-a)/(b-a),0,1);
+    const band=(p,a,b,c,d)=>Math.min(ramp(p,a,b),1-ramp(p,c,d));
     const hero=$('#hero'), v=$('#heroVideo'), center=$('#sticky .hero-center');
+    const hl1=$('#heroLine1'), hl2=$('#heroLine2');
+    const reveal=(el,val)=>{ if(!el) return; el.style.opacity=val.toFixed(3); el.firstElementChild.style.transform='translateY('+((1-val)*26).toFixed(1)+'px)'; };
     if(!hero||!v) return;
     let dur=0, targetT=0, curT=0, primed=false;
     v.muted=true; v.playsInline=true; v.setAttribute('webkit-playsinline','');
@@ -502,7 +505,7 @@ JS = """
     window.addEventListener('wheel',prime,{once:true,passive:true});
     v.load();
     function prog(){ const t=hero.offsetHeight-window.innerHeight; return t<=0?0:clamp(-hero.getBoundingClientRect().top/t,0,1); }
-    function onScroll(){ const p=prog(); const d=dur||v.duration||0; targetT=p*Math.max(0,d-0.05); if(center) center.style.opacity=(1-ramp(p,0.04,0.32)).toFixed(3); }
+    function onScroll(){ const p=prog(); const d=dur||v.duration||0; targetT=p*Math.max(0,d-0.05); if(center) center.style.opacity=(1-ramp(p,0.04,0.32)).toFixed(3); reveal(hl1,band(p,0.34,0.45,0.55,0.64)); reveal(hl2,band(p,0.66,0.77,0.88,0.97)); }
     function loop(){ curT+=(targetT-curT)*0.22; if(Math.abs(targetT-curT)<0.008) curT=targetT; if((dur||v.duration)&&Math.abs(v.currentTime-curT)>0.02){ try{v.currentTime=curT;}catch(e){} } requestAnimationFrame(loop); }
     requestAnimationFrame(loop);
     window.addEventListener('scroll',onScroll,{passive:true});
@@ -644,6 +647,8 @@ __HEROCSS__
       <div class="hero-title">BISCUIT &amp; BREW</div>
       <div class="hero-tag">Rooted in the hills</div>
     </div>
+    <div class="hero-line left" id="heroLine1"><div class="hl-in"><span>An Everyday Brew, <em>But Better</em></span><span class="hl-rule"></span></div></div>
+    <div class="hero-line right" id="heroLine2"><div class="hl-in"><span>Cosy Cafe &amp; <em>The Hidden Lounge</em></span><span class="hl-rule"></span></div></div>
     <div class="scroll-hint">Scroll to explore</div>
   </div>
 </section>

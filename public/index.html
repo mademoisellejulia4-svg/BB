@@ -154,6 +154,23 @@
     opacity:0; transform:translateY(14px); animation:heroIn 1.4s var(--ease) .6s forwards;
   }
   @keyframes heroIn{ to{ opacity:1; transform:translateY(0); } }
+  /* scroll-revealed hero lines — each settles into its own bottom corner */
+  .hero-line{
+    position:absolute; bottom:clamp(64px,13vh,130px);
+    max-width:min(48%,520px); pointer-events:none; opacity:0;
+  }
+  .hero-line.left{ left:clamp(22px,6vw,84px); text-align:left; }
+  .hero-line.right{ right:clamp(22px,6vw,84px); text-align:right; }
+  .hero-line .hl-in{ display:inline-block; transform:translateY(28px); transition:transform .6s var(--ease); }
+  .hero-line .hl-in span{
+    display:block; font-family:'Cormorant Garamond', serif; font-weight:500;
+    font-size:clamp(24px,3.6vw,48px); letter-spacing:.05em; line-height:1.2; color:#fff;
+    text-shadow:0 2px 34px rgba(0,0,0,0.7);
+  }
+  .hero-line .hl-in em{ font-style:normal; color:rgba(var(--amber-rgb),0.95); }
+  .hero-line .hl-rule{ display:block; width:52px; height:1px; margin-top:16px; background:rgba(var(--amber-rgb),0.7); }
+  .hero-line.right .hl-rule{ margin-left:auto; }
+  @media (max-width:560px){ .hero-line{ max-width:74%; } }
 
   .scroll-hint{
     position:absolute; bottom:26px; left:50%; transform:translateX(-50%);
@@ -1249,6 +1266,8 @@
       <div class="hero-title">BISCUIT &amp; BREW</div>
       <div class="hero-tag">Rooted in the hills</div>
     </div>
+    <div class="hero-line left" id="heroLine1"><div class="hl-in"><span>An Everyday Brew, <em>But Better</em></span><span class="hl-rule"></span></div></div>
+    <div class="hero-line right" id="heroLine2"><div class="hl-in"><span>Cosy Cafe &amp; <em>The Hidden Lounge</em></span><span class="hl-rule"></span></div></div>
     <div class="scroll-hint">Scroll to explore</div>
   </div>
 </section>
@@ -2261,6 +2280,7 @@
   const hero = $('#hero');
   const heroVideo = $('#heroVideo');
   const heroCenter = $('#sticky .hero-center');
+  const heroLine1 = $('#heroLine1'), heroLine2 = $('#heroLine2');
   let heroDur = 0, targetT = 0, curT = 0, primed = false;
 
   if(heroVideo){
@@ -2291,6 +2311,10 @@
     targetT = p * Math.max(0, d - 0.05);
     // fade the title out as the clip plays in
     if(heroCenter) heroCenter.style.opacity = (1 - ramp(p, 0.04, 0.32)).toFixed(3);
+    // reveal the two luxury lines in turn as you scroll the hero
+    const reveal = (el, v) => { if(!el) return; el.style.opacity = v.toFixed(3); el.firstElementChild.style.transform = 'translateY('+((1-v)*26).toFixed(1)+'px)'; };
+    reveal(heroLine1, band(p, 0.34, 0.45, 0.55, 0.64));
+    reveal(heroLine2, band(p, 0.66, 0.77, 0.88, 0.97));
   }
   function heroLoop(){
     curT += (targetT - curT) * 0.22;
