@@ -385,6 +385,19 @@
   .modal-close:hover{ color:var(--amber); }
   .modal-img{ display:none; height:240px; margin:6px 0 22px; border-radius:14px; background-size:cover; background-position:center; background-color:#0c0c14; border:1px solid rgba(255,255,255,0.07); }
   .modal-img.show{ display:block; }
+  /* swipeable product image gallery */
+  .mgal{ position:relative; display:none; height:300px; margin:6px 0 22px; border-radius:14px; overflow:hidden; background:#0c0c14; border:1px solid rgba(255,255,255,0.07); }
+  .mgal.show{ display:block; }
+  .mgal-track{ display:flex; height:100%; transition:transform .4s var(--ease); touch-action:pan-y; cursor:grab; }
+  .mgal-slide{ flex:0 0 100%; height:100%; background-size:cover; background-position:center; }
+  .mgal-nav{ position:absolute; top:50%; transform:translateY(-50%); width:38px; height:38px; border-radius:50%; background:rgba(0,0,0,0.45); border:1px solid rgba(255,255,255,0.35); color:#fff; font-size:20px; cursor:pointer; display:none; align-items:center; justify-content:center; line-height:1; transition:background .3s var(--ease); }
+  .mgal-nav:hover{ background:rgba(var(--amber-rgb),0.85); color:#0a0a0a; }
+  .mgal.multi .mgal-nav{ display:flex; }
+  .mgal-nav.prev{ left:10px; } .mgal-nav.next{ right:10px; }
+  .mgal-dots{ position:absolute; bottom:12px; left:50%; transform:translateX(-50%); display:none; gap:7px; }
+  .mgal.multi .mgal-dots{ display:flex; }
+  .mgal-dots i{ width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,0.45); cursor:pointer; transition:background .3s var(--ease); }
+  .mgal-dots i.on{ background:var(--amber); }
   .modal-cat{ font-size:10px; text-transform:uppercase; letter-spacing:.28em; color:rgba(var(--amber-rgb),0.75); }
   .modal-name{ font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:500; color:#fff; margin:8px 0 14px; }
   .modal-desc{ font-size:13px; font-weight:300; line-height:1.7; color:rgba(255,255,255,0.6); }
@@ -2152,7 +2165,12 @@
 <div id="modal">
   <div class="modal-card">
     <button class="modal-close" id="modalClose">&times;</button>
-    <div class="modal-img" id="mImg"></div>
+    <div class="mgal" id="mGal">
+      <div class="mgal-track" id="mGalTrack"></div>
+      <button class="mgal-nav prev" id="mGalPrev" aria-label="Previous photo">&#8249;</button>
+      <button class="mgal-nav next" id="mGalNext" aria-label="Next photo">&#8250;</button>
+      <div class="mgal-dots" id="mGalDots"></div>
+    </div>
     <div class="modal-cat" id="mCat"></div>
     <div class="modal-name" id="mName"></div>
     <div class="modal-rating" id="mRating"><span class="ms" id="mStars">★★★★★</span><span class="mr" id="mReviews"></span></div>
@@ -2472,11 +2490,37 @@
   const modal = $('#modal');
   let mProduct = null, mCat = null, mVarIdx = 0, mQty = 1;
 
+  /* swipeable image gallery */
+  let galIdx = 0, galCount = 0;
+  function setGal(i){
+    if(!galCount) return;
+    galIdx = (i % galCount + galCount) % galCount;
+    $('#mGalTrack').style.transform = 'translateX(-'+(galIdx*100)+'%)';
+    $('#mGalDots').querySelectorAll('i').forEach((d,k) => d.classList.toggle('on', k===galIdx));
+  }
+  function buildGallery(imgs){
+    const gal = $('#mGal'), track = $('#mGalTrack'), dots = $('#mGalDots');
+    track.innerHTML = ''; dots.innerHTML = ''; galIdx = 0; galCount = imgs.length;
+    if(!galCount){ gal.classList.remove('show','multi'); return; }
+    imgs.forEach((src,k) => {
+      const s = document.createElement('div'); s.className = 'mgal-slide';
+      s.style.backgroundImage = "url('"+src+"')"; track.appendChild(s);
+      const dot = document.createElement('i'); if(k===0) dot.classList.add('on');
+      dot.addEventListener('click', () => setGal(k)); dots.appendChild(dot);
+    });
+    track.style.transform = 'translateX(0)';
+    gal.classList.add('show'); gal.classList.toggle('multi', galCount>1);
+  }
+  $('#mGalPrev').addEventListener('click', () => setGal(galIdx-1));
+  $('#mGalNext').addEventListener('click', () => setGal(galIdx+1));
+  (function(){ let x0=null; const t=$('#mGalTrack');
+    t.addEventListener('pointerdown', e => { x0=e.clientX; });
+    t.addEventListener('pointerup', e => { if(x0==null) return; const dx=e.clientX-x0; if(Math.abs(dx)>40) setGal(galIdx+(dx<0?1:-1)); x0=null; });
+  })();
+
   function openModal(c, p){
     mProduct = p; mCat = c; mVarIdx = 0; mQty = 1;
-    const mImg = $('#mImg');
-    if(p.image){ mImg.style.backgroundImage = "url('"+p.image+"')"; mImg.classList.add('show'); }
-    else { mImg.classList.remove('show'); mImg.style.backgroundImage = ''; }
+    buildGallery((p.images && p.images.length) ? p.images : (p.image ? [p.image] : []));
     $('#mCat').textContent = c.name;
     $('#mName').textContent = p.name;
     $('#mDesc').textContent = p.description || '';

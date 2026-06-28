@@ -372,8 +372,22 @@
               "size": "150g",
               "cups": "75 cups",
               "price": 13.95
+            },
+            {
+              "sku": "GRN-ROBIN-HOOD-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
             }
-          ]
+          ],
+          "image": "images/robin-hood-1.jpg",
+          "images": [
+            "images/robin-hood-1.jpg",
+            "images/robin-hood-2.jpg"
+          ],
+          "taste": "Herbaceous, earthy and fruity.",
+          "ingredients": "Chinese Sencha Green Tea, Roasted Dandelion Root, Nettle, Cinnamon, Apple Pieces, Rosehip, Elderflower, Freeze Dried Blackberry, Natural Flavouring.",
+          "brew": "Boil freshly drawn water, infuse for 2–3 minutes and drink without milk."
         },
         {
           "id": "lull",

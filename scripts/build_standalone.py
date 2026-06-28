@@ -32,6 +32,8 @@ img_files = {
     "images/pear-pistachio.jpg": ("images/pear-pistachio.jpg", 800),
     "images/lull.jpg": ("images/lull.jpg", 800),
     "images/watermelon-sugar.jpg": ("images/watermelon-sugar.jpg", 800),
+    "images/robin-hood-1.jpg": ("images/robin-hood-1.jpg", 800),
+    "images/robin-hood-2.jpg": ("images/robin-hood-2.jpg", 800),
     "images/green-tea.png": ("images/green-tea.png", 1100),
     "images/fruit-herbal.png": ("images/fruit-herbal.png", 1100),
     "images/matcha-kit.png": ("images/matcha-kit.png", 1000),
@@ -313,13 +315,26 @@ JS = """
     $('#mRecent').classList.toggle('show', row.children.length>0);
   }
 
+  /* ---- swipeable image gallery ---- */
+  let galIdx=0, galCount=0;
+  function setGal(i){ if(!galCount) return; galIdx=(i%galCount+galCount)%galCount; $('#mGalTrack').style.transform='translateX(-'+(galIdx*100)+'%)'; $('#mGalDots').querySelectorAll('i').forEach((d,k)=>d.classList.toggle('on',k===galIdx)); }
+  function buildGallery(imgs){
+    const gal=$('#mGal'), track=$('#mGalTrack'), dots=$('#mGalDots');
+    track.innerHTML=''; dots.innerHTML=''; galIdx=0; galCount=imgs.length;
+    if(!galCount){ gal.classList.remove('show','multi'); return; }
+    imgs.forEach((src,k)=>{ const s=document.createElement('div'); s.className='mgal-slide'; s.style.backgroundImage=\"url('\"+src+\"')\"; track.appendChild(s);
+      const dot=document.createElement('i'); if(k===0) dot.classList.add('on'); dot.addEventListener('click',()=>setGal(k)); dots.appendChild(dot); });
+    track.style.transform='translateX(0)'; gal.classList.add('show'); gal.classList.toggle('multi', galCount>1);
+  }
+  $('#mGalPrev').addEventListener('click',()=>setGal(galIdx-1));
+  $('#mGalNext').addEventListener('click',()=>setGal(galIdx+1));
+  (function(){ let x0=null; const t=$('#mGalTrack'); t.addEventListener('pointerdown',e=>{x0=e.clientX;}); t.addEventListener('pointerup',e=>{ if(x0==null)return; const dx=e.clientX-x0; if(Math.abs(dx)>40) setGal(galIdx+(dx<0?1:-1)); x0=null; }); })();
+
   /* ---- modal ---- */
   const modal=$('#modal'); let mProduct=null,mCat=null,mVarIdx=0,mQty=1;
   function openModal(c,p){
     mProduct=p; mCat=c; mVarIdx=0; mQty=1;
-    const mImg=$('#mImg');
-    if(p.image){ mImg.style.backgroundImage="url('"+p.image+"')"; mImg.classList.add('show'); }
-    else { mImg.classList.remove('show'); mImg.style.backgroundImage=''; }
+    buildGallery((p.images&&p.images.length)?p.images:(p.image?[p.image]:[]));
     $('#mCat').textContent=c.name; $('#mName').textContent=p.name;
     $('#mDesc').textContent=p.description||'';
     $('#mVlabel').textContent=c.variantLabel||'Select size';
@@ -1484,7 +1499,12 @@ __HEROCSS__
 <div id="modal">
   <div class="modal-card">
     <button class="modal-close" id="modalClose">&times;</button>
-    <div class="modal-img" id="mImg"></div>
+    <div class="mgal" id="mGal">
+      <div class="mgal-track" id="mGalTrack"></div>
+      <button class="mgal-nav prev" id="mGalPrev" aria-label="Previous photo">&#8249;</button>
+      <button class="mgal-nav next" id="mGalNext" aria-label="Next photo">&#8250;</button>
+      <div class="mgal-dots" id="mGalDots"></div>
+    </div>
     <div class="modal-cat" id="mCat"></div>
     <div class="modal-name" id="mName"></div>
     <div class="modal-rating" id="mRating"><span class="ms" id="mStars">★★★★★</span><span class="mr" id="mReviews"></span></div>
