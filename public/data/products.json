@@ -836,8 +836,8 @@
         },
         {
           "id": "battenburg",
-          "name": "Battenburg",
-          "description": "Apricot jam and marzipan — cakey with fruity, nutty tones.",
+          "name": "Battenberg",
+          "description": "Batten down the hatches and boil up this brew of sweet pink and yellow apricot and marzipan-flavoured Battenberg rooibos tea.",
           "variants": [
             {
               "sku": "ROO-BATTENBURG-15G",
@@ -849,15 +849,28 @@
               "sku": "ROO-BATTENBURG-65G",
               "size": "65g",
               "cups": "32 cups",
-              "price": 6.45
+              "price": 6.95
             },
             {
               "sku": "ROO-BATTENBURG-150G",
               "size": "150g",
               "cups": "75 cups",
               "price": 12.95
+            },
+            {
+              "sku": "ROO-BATTENBURG-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
             }
-          ]
+          ],
+          "image": "images/battenberg.jpg",
+          "rating": 5,
+          "reviews": 2,
+          "taste": "Cakey, fruity with nutty undertones.",
+          "ingredients": "Rooibos, Apple Pieces, Freeze-dried Apricot, Sunflower Petals, Hibiscus, Red Cornflowers, Rosehip, Orange Peel, Natural Flavouring.",
+          "brew": "Boil freshly drawn water, infuse for 3 minutes and drink with (or without) milk.",
+          "pairing": "Custard Cream"
         }
       ]
     },
