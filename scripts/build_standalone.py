@@ -316,7 +316,7 @@ JS = """
     catView.classList.remove('active'); detailView.classList.add('active');
     window.scrollTo({top:$('#products').offsetTop-10,behavior:'smooth'});
   }
-  const BEST=[['black','biscuit-brew'],['black','caramel-apple-betty'],['black','cherry-bakewell'],['black','salted-caramel'],['rooibos','battenburg'],['rooibos','jaffa-cake'],['green','pear-pistachio'],['herbal','cherry-kiss']];
+  const BEST=[['black','biscuit-brew'],['black','moonbeam'],['black','caramel-apple-betty'],['black','cherry-bakewell'],['herbal','strawberry-fields-forever'],['herbal','raspberry-rose'],['black','english-breakfast'],['green','robin-hood']];
   function openBestSellers(){ renderDetail('Best Sellers', BEST.map(([cid,pid])=>findProd(cid,pid)).filter(Boolean), true); }
   function openCategory(id){ const c=CAT[id]; if(!c) return; renderDetail(c.name,(c.products||[]).map(p=>({c,p}))); }
   function backToCats(){ detailView.classList.remove('active'); catView.classList.add('active'); }
