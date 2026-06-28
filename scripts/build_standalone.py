@@ -1185,6 +1185,30 @@ __HEROCSS__
   </div>
 </section>
 
+<section id="music">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Journal</div>
+    <h2 class="sec-title">Blending Sound &amp; Flavour</h2>
+    <p class="sec-sub">Why music and tea make the perfect pairing.</p>
+  </div>
+  <div class="policy-wrap">
+    <p>At Biscuit &amp; Brew, tea and music have always been steeped together. Long before we had a counter to stand behind, we were naming blends after the songs, albums and artists we couldn't stop playing. Pour a cup, drop the needle, and the afternoon takes care of itself.</p>
+
+    <blockquote>A great brew and a great record share the same secret — they ask you to slow down, and reward you when you do.</blockquote>
+
+    <h3>A Blend for Every Record</h3>
+    <p>Some of our most-loved blends started life as a song stuck in our heads. <b>Strawberry Fields Forever</b> — zesty lime and lemon with strawberries — is our little tribute to The Beatles, and tastes a bit like a Twister lolly. <b>Watermelon Sugar</b>, blended to the music of Harry Styles, is all soft watermelon, lychee and passionfruit with a gentle tang. They're a small reminder that flavour, like a melody, is really about how it makes you feel.</p>
+
+    <h3>Why They Pair So Well</h3>
+    <p>Music and tea work on us in the same quiet way. Both are built on rhythm and ritual — the kettle coming to the boil, the first few bars of a favourite track, the pause before you take a sip. Both shift your mood: something bright and fruity for a sunny morning, something dark and malty for a slow, rainy evening. Put the two together and each makes the other taste (and sound) a little better.</p>
+
+    <h3>Make Your Own Pairing</h3>
+    <p>There are no rules, but here's where we'd start: a robust black blend with something warm and acoustic, a fresh green or fruit infusion with bright pop, and a comforting rooibos with whatever record feels like home. Brew a pot, press play, and let the two settle into the same groove.</p>
+
+    <p>Curious which of our blends were born from a song? Explore our <a data-go="products">music-inspired loose leaf teas</a> and find your soundtrack in a cup.</p>
+  </div>
+</section>
+
 <section id="newsletter">
   <h2>Join our exclusive tea club</h2>
   <p class="nsub">For 20% off your first order, secret menus, shop gossip and more. Fill in your details and we'll send your discount code as a thank you.</p>
@@ -1230,7 +1254,7 @@ __HEROCSS__
       <a data-go="story">Our Story</a>
       <a href="#" onclick="return false">Caffeine Guide</a>
       <a data-go="brew">How to Brew Loose Leaf Tea</a>
-      <a href="#" onclick="return false">Music &amp; Tea</a>
+      <a data-go="music">Music &amp; Tea</a>
       <a href="#" onclick="return false">Our Name</a>
     </div>
   </div>
