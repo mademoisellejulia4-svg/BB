@@ -724,7 +724,7 @@
         {
           "id": "plum-tart",
           "name": "Plum Tart",
-          "description": "A springtime, fruity little tart — plum and elderberry with a touch of cinnamon.",
+          "description": "Ever thought of dipping your plums in a nice tart? Or is it better to put them in a pudding? You can tell us, we won't judge. We're the same, we love it too! We just think it works best as a tea. A cheeky rooibos blend with hints of spice and spring time fruitiness.",
           "variants": [
             {
               "sku": "ROO-PLUM-TART-15G",
@@ -736,15 +736,28 @@
               "sku": "ROO-PLUM-TART-65G",
               "size": "65g",
               "cups": "32 cups",
-              "price": 6.45
+              "price": 6.95
             },
             {
               "sku": "ROO-PLUM-TART-150G",
               "size": "150g",
               "cups": "75 cups",
               "price": 12.95
+            },
+            {
+              "sku": "ROO-PLUM-TART-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
             }
-          ]
+          ],
+          "image": "images/plum-tart.jpg",
+          "rating": 5,
+          "reviews": 1,
+          "taste": "Tart and fruity.",
+          "ingredients": "Rooibos, Elderberries, Cinnamon, Hibiscus, Apple Pieces, Rosehip, Natural Flavouring.",
+          "brew": "Boil freshly drawn water, infuse for 3–5 minutes and drink with or without milk.",
+          "pairing": "Fruit Shortie"
         },
         {
           "id": "french-toast",
