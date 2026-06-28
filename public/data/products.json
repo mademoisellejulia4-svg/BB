@@ -618,7 +618,7 @@
         {
           "id": "hound-on-the-hunt",
           "name": "Hound on the Hunt",
-          "description": "A sweet, smoky bonfire blend with a kick of chilli heat. Contains caffeine.",
+          "description": "It'll be flaming hot in your mouth with this unusually sweet bonfire blend, with smokey Lapsang Souchong caught up in the wires with aniseed and chilli — this blend will blow the roof off your mouth. A hint of caution: you'll feel the chilli burn if you oversteep it! Blended to the taste of Hound on the Hunt by Arthur Dove.",
           "variants": [
             {
               "sku": "HRB-HOUND-HUNT-15G",
@@ -637,8 +637,19 @@
               "size": "150g",
               "cups": "75 cups",
               "price": 13.95
+            },
+            {
+              "sku": "HRB-HOUND-ON-THE-HUNT-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
             }
-          ]
+          ],
+          "image": "images/hound-on-the-hunt.jpg",
+          "taste": "Smokey but sweet with a hot chilli kick.",
+          "ingredients": "Apple Pieces, Rosehip, Beetroot, Aniseed, Liquorice, Lapsang Souchong Black Tea, Red Peppercorns, Safflower, Sunflower Petals, Chilli, Natural Flavouring.",
+          "brew": "Boil freshly drawn water, infuse for 3 minutes and drink without milk. The longer the brew, the spicier the hit!",
+          "pairing": "Fruit Shortcake"
         },
         {
           "id": "strawberry-fields-forever",
