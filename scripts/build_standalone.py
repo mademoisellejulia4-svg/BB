@@ -27,6 +27,8 @@ img_files = {
     "images/name-1.jpg": ("images/name-1.jpg", 900),
     "images/name-2.jpg": ("images/name-2.jpg", 900),
     "images/name-3.jpg": ("images/name-3.jpg", 760),
+    "images/caffeine-hero.jpg": ("images/caffeine-hero.jpg", 1280),
+    "images/caffeine-cups.jpg": ("images/caffeine-cups.jpg", 1000),
     "images/green-tea.png": ("images/green-tea.png", 1100),
     "images/fruit-herbal.png": ("images/fruit-herbal.png", 1100),
     "images/matcha-kit.png": ("images/matcha-kit.png", 1000),
@@ -1355,6 +1357,56 @@ __HEROCSS__
   </div>
 </section>
 
+<section id="caffeine">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Journal</div>
+    <h2 class="sec-title">Caffeine Guide</h2>
+    <p class="article-meta">Posted on 21 Feb. 2025</p>
+  </div>
+  <div class="article-hero"><img src="images/caffeine-hero.jpg" alt="A spread of different teas, from black to herbal" loading="lazy" /></div>
+  <div class="policy-wrap">
+    <p>From morning rituals to afternoon pick-me-ups, caffeine plays a huge role in 21st century life. Some depend on it to power through the day, while others prefer to stay clear of it altogether. In this blog, we'll take a closer look at caffeine — its history, its benefits, and its potential drawbacks — and discuss how you can find your perfect brew.</p>
+
+    <h3>What is caffeine?</h3>
+    <p>Caffeine is a natural stimulant found in many seeds, nuts and plants, including coffee beans, cacao beans, kola nuts and guarana (a Brazilian rainforest plant). It works by inhibiting the effects of adenosine, a neurotransmitter that normally relaxes the brain and makes you feel tired as the day goes on.</p>
+    <p>By connecting to adenosine receptors in the brain without activating them, caffeine reduces tiredness, increases blood adrenaline levels and activates neurotransmitters linked to dopamine (associated with pleasure, satisfaction and motivation) and norepinephrine (associated with alertness, focus and attention).</p>
+    <p>This is how caffeine can improve cognitive function, increase athletic endurance and help provide a boost in overall mood. However, some people are more sensitive to caffeine than others. Many find that caffeine inhibits restful sleep and leads to feelings of restlessness and anxiety. Too much caffeine may also give some people headaches, migraines, and high blood pressure, and pregnant women are advised to avoid it entirely.</p>
+
+    <h3>A brief history of caffeine</h3>
+    <p>While Chinese legend claims Emperor Shen Nung discovered caffeinated tea over 4000 years ago, people likely began to use caffeine regularly as a stimulant around 141 BC, in imperial China. According to African mythologies meanwhile, coffee's energising effects were discovered by Ethiopian goat herders in the 9th century, CE.</p>
+    <p>By the 15th century, coffee cultivation had spread across the Arabian Peninsula, with social gatherings over coffee becoming commonplace. The 17th and 18th centuries saw coffee and tea arrive in Europe, where it rapidly became a staple of social life. Tea rooms, coffee houses and so-called "pleasure gardens" sprang up across Europe at this time, offering affordable spaces for people of all backgrounds to gather.</p>
+    <p>The Industrial Revolution then ushered in mass consumption of caffeine, particularly among the working classes, who relied on it to endure long hours in factories and workhouses. With the invention of instant coffee and tea bags in the 20th century, these drinks became more convenient to make at home. When caffeinated soft drinks and energy drinks took off in the 1980s, caffeine became cemented as the world's most widely used psychoactive stimulant.</p>
+
+    <div class="article-img"><img src="images/caffeine-cups.jpg" alt="Five cups of differently-coloured loose leaf brews on a wooden table" loading="lazy" /></div>
+
+    <h3>How does caffeine content vary for different kinds of tea?</h3>
+    <p>There are a few factors that affect how much caffeine a cup of tea contains. Broken tea leaves — such as those found in tea bags — will release more caffeine when brewed compared to whole leaves, and the more tea leaves in your cup or bag, the more caffeine you'll drink. Longer brew times and higher water temperatures will also increase the caffeine content, as the hot water will act faster to release the caffeine from the leaves.</p>
+    <p>Some types of tea also naturally contain more caffeine than others. Black teas like English Breakfast, Assam and Darjeeling generally contain the most caffeine because they are fully oxidised (meaning the leaves have been exposed to air for the maximum amount of time).</p>
+    <p>Green tea is less oxidised than black tea, which preserves its lighter colour and flavour, as well as a slightly lower caffeine content. It also contains L-theanine — an amino acid that promotes relaxation and focus — meaning it gives you a gentler energy lift, without the jitters or crash often associated with caffeine. Matcha (ground green tea whisked into hot water) generally contains more caffeine than regular green tea because you're consuming the entire leaf.</p>
+    <p>White tea — the most delicate of the tea types — is made from young tea buds and leaves that are minimally processed. It's a great choice for those who are sensitive to caffeine but still want a little pick-me-up.</p>
+
+    <h3>Which teas are caffeine free?</h3>
+    <p>The most common types of caffeine free tea are herbal blends like peppermint, chamomile and lavender, and <a data-go="herbal">fruit infusions</a>, neither of which contain caffeinated tea leaves. Both are perfect for any time of the day, especially in the evening when you want a warm, comforting drink without worrying about sleep disruption.</p>
+    <p><a data-go="rooibos">Rooibos</a> — also known as African red tea or redbush tea — is also caffeine free, because it's made from the leaves of the Aspalathus linearis plant. Its rich, nutty, and subtly sweet taste makes it a great choice for those who prefer milk in their tea, but don't want to drink caffeine.</p>
+
+    <h3>What's the difference between decaffeinated and caffeine free tea?</h3>
+    <p>Decaffeinated blends offer a great solution for anyone looking to avoid caffeine. This is where usually caffeinated tea leaves are chemically altered using carbon dioxide, green coffee beans, or the naturally occurring solvent ethyl acetate. This process removes most of the caffeine, although a small amount will remain.</p>
+    <p>Black teas, green teas and some oolong teas are readily available in decaf versions, and while some people think these teas taste slightly weaker and more processed than caffeinated blends, for many the difference is negligible.</p>
+    <p>Ultimately, the best way to find your perfect caffeine level is to experiment with <a data-go="products">different types of loose leaf tea</a>. Pay attention to how your body reacts and choose the teas that make you feel the best. If you're looking to avoid caffeine altogether, try a herbal or fruit infusion, or get acquainted with rooibos.</p>
+
+    <h3>The Highlights</h3>
+    <ul>
+      <li>Caffeine is a natural stimulant found in coffee, tea, and cacao that blocks sleep-inducing adenosine.</li>
+      <li>Drinking caffeinated drinks can boost focus, energy, and mood, but may also lead to side effects like headaches and poor sleep.</li>
+      <li>Black tea has the most caffeine, and white tea has the least. Green tea has slightly less caffeine than black tea, but drinking it in powdered form (matcha) will give you a stronger boost.</li>
+      <li>Herbal teas like peppermint, chamomile and rooibos, as well as fruit teas, are naturally caffeine free.</li>
+      <li>While decaf teas are not completely caffeine free, they undergo a process to remove most caffeine, and the remaining amount shouldn't have any effect.</li>
+      <li>Experimenting with different teas and brewing methods can help you find the perfect balance for your energy levels and lifestyle.</li>
+    </ul>
+    <p>Happy drinking!</p>
+  </div>
+</section>
+
 <section id="newsletter">
   <h2>Join our exclusive tea club</h2>
   <p class="nsub">For 20% off your first order, secret menus, shop gossip and more. Fill in your details and we'll send your discount code as a thank you.</p>
@@ -1398,7 +1450,7 @@ __HEROCSS__
       <h4>Reading</h4>
       <a data-go="media">Media</a>
       <a data-go="story">Our Story</a>
-      <a href="#" onclick="return false">Caffeine Guide</a>
+      <a data-go="caffeine">Caffeine Guide</a>
       <a data-go="brew">How to Brew Loose Leaf Tea</a>
       <a data-go="music">Music &amp; Tea</a>
       <a data-go="ourname">Our Name</a>
