@@ -1188,24 +1188,33 @@ __HEROCSS__
 <section id="music">
   <div class="sec-head">
     <div class="sec-eyebrow">Journal</div>
-    <h2 class="sec-title">Blending Sound &amp; Flavour</h2>
-    <p class="sec-sub">Why music and tea make the perfect pairing.</p>
+    <h2 class="sec-title">Why Music and Tea Make The Perfect Pairing</h2>
+    <p class="article-meta">Posted on 31 Jan. 2025</p>
   </div>
   <div class="policy-wrap">
-    <p>At Biscuit &amp; Brew, tea and music have always been steeped together. Long before we had a counter to stand behind, we were naming blends after the songs, albums and artists we couldn't stop playing. Pour a cup, drop the needle, and the afternoon takes care of itself.</p>
+    <p>One of the first things you'll notice when you browse our tea menu is how inspired we are by music. Over the years, we've blended teas to the sound of Harry Styles, The Beatles, and the classic Pogues song, Fairytale of New York.</p>
+    <p>But what does it mean to blend tea to music? Can a drink really be inspired by a song? In this blog, we'll take a closer look at our musical tea flavours and discover how pairing tea with music makes for a more immersive experience.</p>
 
-    <blockquote>A great brew and a great record share the same secret — they ask you to slow down, and reward you when you do.</blockquote>
+    <h3>The Origin of Our Music Blends</h3>
+    <p>The history of Biscuit and Brew really begins with our music teas, which we introduced as a way for our owner, Darren, to promote his music (under the name Arthur Dove). As any musician will know, finding new ways to catch people's attention is difficult, and promoting music through PR and radio plugging can be expensive — plus, it doesn't always work!</p>
+    <p>After developing a casual interest in tea blending, Darren envisioned people connecting with his songs more deeply if they could taste something while listening to them. After all, people typically immerse themselves in music by listening to melodies, reading lyrics, and looking at cover art, but they rarely get to engage their most evocative physical sense at the same time: taste. We'd also never seen anyone use sound as an inspiration before — most of the tea blends we'd encountered at that point were based on food, smells or other tangible experiences.</p>
+    <p>What made the concept even more exciting was the opportunity to elevate drinking tea into an immersive experience that engages as many of your senses as possible. We're used to hearing about fine wine and food being savoured in unique ways — such as at Dans Le Noir, the London restaurant where you eat in total darkness to intensify the flavours — so why not tea too?</p>
+    <p>So, we began crafting our first musical tea experiments in 2019 — Little Picture, Lull, Hound on the Hunt and Sobre — which were inspired by Darren's songs, then we branched out into covering some household names: Strawberry Fields Forever, Watermelon Sugar, and Fairytale of New York.</p>
 
-    <h3>A Blend for Every Record</h3>
-    <p>Some of our most-loved blends started life as a song stuck in our heads. <b>Strawberry Fields Forever</b> — zesty lime and lemon with strawberries — is our little tribute to The Beatles, and tastes a bit like a Twister lolly. <b>Watermelon Sugar</b>, blended to the music of Harry Styles, is all soft watermelon, lychee and passionfruit with a gentle tang. They're a small reminder that flavour, like a melody, is really about how it makes you feel.</p>
+    <h3>How We Create Our Music Blends</h3>
+    <p>When crafting any of our tea blends, taste is our main consideration (of course), but we also think scent is super important. That sounds obvious, but we've found that a lot of teas don't particularly taste like they smell, which is always a bit disappointing. The other factor we consider is colour. This doesn't just mean creating blends that brew into bright, vibrant-looking drinks, but also making sure we capture colours that reflect the taste — and for our music blends, the sound — of the tea.</p>
+    <p>Helpfully, Darren is synaesthetic, so he can often perceive the feeling of a particular colour when listening to music. Guided by this sense, we tweak the ingredients of our music blends so they steep into very distinct tea liquors (the fancy term for tea leaves brewed in water) and often go through a few test liquors before we settle on the right one.</p>
+    <p>Our blueberry and cinnamon green tea Lull is a good example. We blended a few options, one of which was a floral tea with peppermint and ginger that steeped into a deep reddish brown. However, for Darren, the song feels particularly blue/purple, and you might sense a similar vibe when you listen to it: it's got a wintery, brooding atmosphere, and there's something icy and melancholy about the melody.</p>
+    <p>In the end we opted for a sweeter, slightly spiced blend, and added blue pea flowers so it steeps into a rich purple. The goal is ultimately for the tea and the song to feel like they're coming from the same creative place, so this felt a lot more appropriate (we ended up using the original idea for another blend: Winter's Glow). Essentially, once the taste, smell and sound of a blend align into something cohesive, we know we're onto something good.</p>
 
-    <h3>Why They Pair So Well</h3>
-    <p>Music and tea work on us in the same quiet way. Both are built on rhythm and ritual — the kettle coming to the boil, the first few bars of a favourite track, the pause before you take a sip. Both shift your mood: something bright and fruity for a sunny morning, something dark and malty for a slow, rainy evening. Put the two together and each makes the other taste (and sound) a little better.</p>
-
-    <h3>Make Your Own Pairing</h3>
-    <p>There are no rules, but here's where we'd start: a robust black blend with something warm and acoustic, a fresh green or fruit infusion with bright pop, and a comforting rooibos with whatever record feels like home. Brew a pot, press play, and let the two settle into the same groove.</p>
-
-    <p>Curious which of our blends were born from a song? Explore our <a data-go="products">music-inspired loose leaf teas</a> and find your soundtrack in a cup.</p>
+    <h3>How To Enjoy Our Music Blends</h3>
+    <p>Our goal has always been to encourage you to slow down, eliminate distractions, and truly savour what you're eating and drinking, be it in the comfort of our cafe or through the ritual of brewing loose leaf tea at home. Our music teas are one way you can really lean into this practice.</p>
+    <p>To get the best experience from drinking our teas, try to focus on the activity as much as possible. Eating and drinking are often treated as passive tasks, done whilst watching TV, scrolling on our phones or daydreaming, with the goal of simply filling ourselves up or quenching our thirst. But, with deep and sustained focus, you can make the experience far more rewarding.</p>
+    <p>So, find a comfy place to sit, and whilst your tea brews, take a minute to bring yourself into the present moment. Notice any stray thoughts or distractions that crowd out your mind, and gently bring yourself back to what you're doing: enjoying a nice cup of tea.</p>
+    <p>This might be difficult at first — our minds have a tendency to move at a hundred miles per hour! — but it's easy once you get the hang of it. Then, queue up the song that inspired the tea you've chosen (you can find links to the relevant songs embedded below) and take a sip. Focus intentionally on the tastes and sounds and observe how they might be connected. How do the flavours and scents of the tea reflect the atmosphere and melody of the music? What about the colour of the tea? As you sip and listen, remember to hold your attention as best you can on what you're tasting and hearing.</p>
+    <p>If you want to go one step further, you could experiment with restricting your other senses. A few years ago we set up a makeshift sensory deprivation room at the Corn Exchange in Leeds — blacked out windows, blindfolds, the lot — and invited people to try our music teas whilst listening to the songs they represent. We found that guiding people to focus more closely on taste and sound made the flavours even more intense and strengthened their connection with the music. We'd encourage you to try a similar experiment at home if you have the means.</p>
+    <p>So, that's the story of our music blends! Whilst we've focussed specifically on a few flavours here, practicing engaged and mindful drinking can help you get the most out of any of our teas. Take a look at our <a data-go="products">menu</a> and see if you can build the habit.</p>
+    <p>Happy drinking!</p>
   </div>
 </section>
 
