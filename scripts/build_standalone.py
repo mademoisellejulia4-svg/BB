@@ -1288,6 +1288,28 @@ __HEROCSS__
   </div>
 </section>
 
+<section id="media">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Press</div>
+    <h2 class="sec-title">Media</h2>
+    <p class="sec-sub">Telling the Biscuit &amp; Brew story.</p>
+  </div>
+  <div class="policy-wrap">
+    <p>We love sharing the Biscuit &amp; Brew story. Whether you're a journalist, blogger, podcaster or fellow tea lover, we're always happy to help with features, interviews and collaborations.</p>
+    <p>For all press and media enquiries, please <a data-go="contact">get in touch</a> and we'll get back to you as soon as we can.</p>
+
+    <h3>What We Can Share</h3>
+    <ul>
+      <li>Our story and background — how Biscuit &amp; Brew began, and what makes our music-inspired loose leaf blends different.</li>
+      <li>High-resolution logos and product photography.</li>
+      <li>Interviews with our founder, Darren (also known as Arthur Dove).</li>
+      <li>Tea samples for honest reviews, where available.</li>
+    </ul>
+
+    <p>Drop us a line through our <a data-go="contact">contact page</a> and tell us a little about your publication or project — we'd love to hear from you.</p>
+  </div>
+</section>
+
 <section id="newsletter">
   <h2>Join our exclusive tea club</h2>
   <p class="nsub">For 20% off your first order, secret menus, shop gossip and more. Fill in your details and we'll send your discount code as a thank you.</p>
@@ -1329,7 +1351,7 @@ __HEROCSS__
     </div>
     <div class="fc-col">
       <h4>Reading</h4>
-      <a href="#" onclick="return false">Media</a>
+      <a data-go="media">Media</a>
       <a data-go="story">Our Story</a>
       <a href="#" onclick="return false">Caffeine Guide</a>
       <a data-go="brew">How to Brew Loose Leaf Tea</a>
