@@ -681,7 +681,7 @@
         {
           "id": "raspberry-rose",
           "name": "Raspberry Rose",
-          "description": "Tart, floral and fruity — inspired by a wedding cake. Contains caffeine.",
+          "description": "A marriage of tangy tarts and soft scents, blown raspberries and rose beds that resolves into a gently amorous white tea blend. We made this blend for our French wedding in 2023 and served it as an iced tea on the day.",
           "variants": [
             {
               "sku": "HRB-RASPBERRY-ROSE-15G",
@@ -693,15 +693,25 @@
               "sku": "HRB-RASPBERRY-ROSE-65G",
               "size": "65g",
               "cups": "32 cups",
-              "price": 6.95
+              "price": 7.35
             },
             {
               "sku": "HRB-RASPBERRY-ROSE-150G",
               "size": "150g",
               "cups": "75 cups",
               "price": 13.95
+            },
+            {
+              "sku": "HRB-RASPBERRY-ROSE-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
             }
-          ]
+          ],
+          "image": "images/raspberry-rose.jpg",
+          "taste": "Tart, floral and fruity.",
+          "brew": "Boil freshly drawn water, infuse for 3 minutes and drink without milk.",
+          "pairing": "Pink Wafer"
         }
       ]
     },
