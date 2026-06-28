@@ -50,6 +50,7 @@ img_files = {
     "images/fav-battenberg.jpg": ("images/fav-battenberg.jpg", 500),
     "images/fav-biscuit-brew.jpg": ("images/fav-biscuit-brew.jpg", 500),
     "images/fav-lull.jpg": ("images/fav-lull.jpg", 500),
+    "images/best-seller.jpg": ("images/best-seller.jpg", 800),
     "images/green-tea.png": ("images/green-tea.png", 1100),
     "images/fruit-herbal.png": ("images/fruit-herbal.png", 1100),
     "images/matcha-kit.png": ("images/matcha-kit.png", 1000),
@@ -264,6 +265,14 @@ JS = """
   const catGrid = $('#catGrid');
   function buildCategories(){
     catGrid.innerHTML='';
+    const bcard=document.createElement('div'); bcard.className='cat-card cat-best';
+    bcard.innerHTML='<div class="cc-img" style="background-image:url(\\'images/best-seller.jpg\\')"></div>'+
+      '<div class="cc-index cc-star">\\u2605</div>'+
+      '<div class="cc-name">Best Sellers</div>'+
+      '<div class="cc-meta">The blends everyone loves</div>'+
+      '<div class="cc-cta">Explore \\u2192</div>';
+    bcard.addEventListener('click',openBestSellers);
+    catGrid.appendChild(bcard);
     STORE.categories.forEach((c,i)=>{
       const card=document.createElement('div'); card.className='cat-card';
       const count=(c.products&&c.products.length)||0;
@@ -278,10 +287,9 @@ JS = """
     });
   }
   const catView=$('#catView'), detailView=$('#detailView'), prodGrid=$('#prodGrid');
-  function openCategory(id){
-    const c=CAT[id]; if(!c) return;
-    $('#detailTitle').textContent=c.name; prodGrid.innerHTML='';
-    c.products.forEach(p=>{
+  function renderDetail(title, items){
+    $('#detailTitle').textContent=title; prodGrid.innerHTML='';
+    items.forEach(({c,p})=>{
       const card=document.createElement('div'); card.className='prod-card';
       const chips=p.variants.map(v=>'<span class="pc-chip">'+v.size+' <b>'+fmt(v.price)+'</b></span>').join('');
       const pimg=p.image?'<div class="pc-img" style="background-image:url(\\''+p.image+'\\')"></div>':'';
@@ -298,6 +306,9 @@ JS = """
     catView.classList.remove('active'); detailView.classList.add('active');
     window.scrollTo({top:$('#products').offsetTop-10,behavior:'smooth'});
   }
+  const BEST=[['black','biscuit-brew'],['black','caramel-apple-betty'],['rooibos','battenburg'],['black','salted-caramel'],['green','lull'],['black','cherry-bakewell']];
+  function openBestSellers(){ renderDetail('Best Sellers', BEST.map(([cid,pid])=>findProd(cid,pid)).filter(Boolean)); }
+  function openCategory(id){ const c=CAT[id]; if(!c) return; renderDetail(c.name,(c.products||[]).map(p=>({c,p}))); }
   function backToCats(){ detailView.classList.remove('active'); catView.classList.add('active'); }
   $('#backBtn').addEventListener('click',backToCats);
 
