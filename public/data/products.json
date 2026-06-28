@@ -428,7 +428,7 @@
         {
           "id": "pear-pistachio",
           "name": "Pear & Pistachio",
-          "description": "Pear and toasted pistachio over a soft green — fruity, earthy and nutty.",
+          "description": "The ultimate green machine. A green tea base blended with apples, pears, and pistachios, made to taste like and inspired by our wedding cake.",
           "variants": [
             {
               "sku": "GRN-PEAR-PISTACHIO-15G",
@@ -447,8 +447,17 @@
               "size": "150g",
               "cups": "75 cups",
               "price": 13.95
+            },
+            {
+              "sku": "GRN-PEAR-PISTACHIO-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
             }
-          ]
+          ],
+          "image": "images/pear-pistachio.jpg",
+          "rating": 5,
+          "reviews": 3
         },
         {
           "id": "deep-breath",

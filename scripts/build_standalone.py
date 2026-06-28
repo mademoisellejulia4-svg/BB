@@ -29,6 +29,7 @@ img_files = {
     "images/name-3.jpg": ("images/name-3.jpg", 760),
     "images/caffeine-hero.jpg": ("images/caffeine-hero.jpg", 1280),
     "images/caffeine-cups.jpg": ("images/caffeine-cups.jpg", 1000),
+    "images/pear-pistachio.jpg": ("images/pear-pistachio.jpg", 800),
     "images/green-tea.png": ("images/green-tea.png", 1100),
     "images/fruit-herbal.png": ("images/fruit-herbal.png", 1100),
     "images/matcha-kit.png": ("images/matcha-kit.png", 1000),
