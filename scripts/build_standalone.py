@@ -333,7 +333,7 @@ JS = """
       w.appendChild(b);
     });
     const setExtra=(rowId,valId,val)=>{ const row=$('#'+rowId), el=$('#'+valId); if(val){ el.textContent=val; row.classList.add('show'); } else row.classList.remove('show'); };
-    setExtra('mTasteRow','mTaste',p.taste); setExtra('mIngRow','mIng',p.ingredients); setExtra('mBrewRow','mBrew',p.brew);
+    setExtra('mTasteRow','mTaste',p.taste); setExtra('mIngRow','mIng',p.ingredients); setExtra('mBrewRow','mBrew',p.brew); setExtra('mPairRow','mPair',p.pairing);
     renderAlsoLike(c,p); renderRecent(c,p); pushRecent(c.id,p.id);
     modal.classList.add('open');
     const mCardEl=$('.modal-card'); if(mCardEl) mCardEl.scrollTop=0;
@@ -1497,6 +1497,7 @@ __HEROCSS__
       <div class="me-row" id="mTasteRow"><span class="me-h">Taste</span><span class="me-v" id="mTaste"></span></div>
       <div class="me-row" id="mIngRow"><span class="me-h">Ingredients</span><span class="me-v" id="mIng"></span></div>
       <div class="me-row" id="mBrewRow"><span class="me-h">How to brew</span><span class="me-v" id="mBrew"></span></div>
+      <div class="me-row" id="mPairRow"><span class="me-h">Biscuit pairing</span><span class="me-v" id="mPair"></span></div>
     </div>
     <div class="modal-foot">
       <div class="qty"><button id="qMinus">&minus;</button><span id="qVal">1</span><button id="qPlus">+</button></div>
