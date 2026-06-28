@@ -24,6 +24,9 @@ img_files = {
     "images/brew-infuser.jpg": ("images/brew-infuser.jpg", 560),
     "images/brew-water.jpg": ("images/brew-water.jpg", 560),
     "images/brew-tea.jpg": ("images/brew-tea.jpg", 560),
+    "images/name-1.jpg": ("images/name-1.jpg", 900),
+    "images/name-2.jpg": ("images/name-2.jpg", 900),
+    "images/name-3.jpg": ("images/name-3.jpg", 760),
     "images/green-tea.png": ("images/green-tea.png", 1100),
     "images/fruit-herbal.png": ("images/fruit-herbal.png", 1100),
     "images/matcha-kit.png": ("images/matcha-kit.png", 1000),
@@ -1310,6 +1313,41 @@ __HEROCSS__
   </div>
 </section>
 
+<section id="ourname">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Our Story</div>
+    <h2 class="sec-title">How Did We Get The Name Biscuit &amp; Brew?</h2>
+  </div>
+  <p class="name-lead">The answer goes back to the very beginning, before we were a tea house, or really a business at all.</p>
+  <div class="name-wrap">
+    <div class="name-row">
+      <div class="name-img"><img src="images/name-1.jpg" alt="Friends gathered together drinking tea" loading="lazy" /></div>
+      <div class="name-text">
+        <p>At first, the goal was simply to blend some music-inspired teas to promote Darren's music (under the name Arthur Dove). So we began as Arthur Dove Tea Co., and experimented with some homemade blends to give to our friends and colleagues (like Lull and Little Picture).</p>
+        <p>Over time, we started trying out flavours that would appeal to a wider audience — like Rhubarb and Custard and Jaffa Cake — and at that point, it made sense to expand things a little. We started inviting friends over, not just to try the teas, but to see how they were made. Those gatherings became a regular thing: just us and our friends, hanging out, drinking tea, eating biscuits. No fuss, no grand occasion. Just a biscuit and a brew.</p>
+      </div>
+    </div>
+    <div class="name-row rev">
+      <div class="name-img"><img src="images/name-2.jpg" alt="A tea gathering with friends around a table" loading="lazy" /></div>
+      <div class="name-text">
+        <p>The name chose itself really! The more teas we made and the more gatherings we hosted, the more we felt like we were onto something special. A cup of tea with friends is such a simple, joyful thing, right? We began to wonder: could we bottle up that experience and recreate it somewhere bigger?</p>
+        <p>That's when we decided to open the tea house. At its heart, we want your visit to feel like those early gatherings: good tea, good company, and something sweet on the side, all in a relaxed and welcoming space. We like to think we're inviting you into our home, just like we did for our friends all those years ago.</p>
+      </div>
+    </div>
+    <div class="name-row">
+      <div class="name-img"><img src="images/name-3.jpg" alt="Homemade loose leaf tea blends and biscuits" loading="lazy" /></div>
+      <div class="name-text">
+        <p>Although we decided pretty quickly that we didn't want to serve the usual biscuits you'd eat at home, we still wanted our menu to reflect our roots. We made our signature blend, Biscuit Brew, to commemorate the choice to become a tea house. It's a biscuit in tea form, so it encapsulates our story pretty well! It's also now our most popular tea, which feels like a fitting tribute. We also serve tea-flavoured biscuits with our afternoon teas, so whichever way you spin it, the spirit of those early days is alive and well.</p>
+      </div>
+    </div>
+  </div>
+  <div class="name-close">
+    <p>So, that's the story of our name! If a biscuit and brew sounds good to you, <a class="lnk" data-go="visit">pop in</a> and see for yourself, or check out our <a class="lnk" data-go="products">tea menu</a> to take the experience home.</p>
+    <p class="happy">Happy drinking!</p>
+    <a class="fav-shop" data-go="visit" style="display:inline-block;text-decoration:none;margin-top:20px">Visit Us</a>
+  </div>
+</section>
+
 <section id="newsletter">
   <h2>Join our exclusive tea club</h2>
   <p class="nsub">For 20% off your first order, secret menus, shop gossip and more. Fill in your details and we'll send your discount code as a thank you.</p>
@@ -1356,7 +1394,7 @@ __HEROCSS__
       <a href="#" onclick="return false">Caffeine Guide</a>
       <a data-go="brew">How to Brew Loose Leaf Tea</a>
       <a data-go="music">Music &amp; Tea</a>
-      <a href="#" onclick="return false">Our Name</a>
+      <a data-go="ourname">Our Name</a>
     </div>
   </div>
   <div class="fc-pay" aria-label="Accepted payment methods">

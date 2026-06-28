@@ -710,6 +710,21 @@
   @media (max-width:600px){ .bstep{ grid-template-columns:1fr; } .bs-num{ flex-direction:row; gap:10px; border-right:none; border-bottom:1px solid rgba(255,255,255,0.12); padding:16px; } .bs-num .sn{ font-size:28px; margin-top:0; } }
   .article-meta{ text-align:center; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-top:-6px; }
   .policy-wrap blockquote{ margin:28px 0; padding:4px 0 4px 22px; border-left:2px solid var(--amber); font-family:'Cormorant Garamond',serif; font-size:23px; line-height:1.5; color:rgba(255,255,255,0.85); font-style:italic; }
+  #ourname{ position:relative; z-index:2; background:#08080f; padding:clamp(70px,11vh,140px) clamp(20px,6vw,90px); border-top:1px solid rgba(255,255,255,0.06); }
+  .name-lead{ max-width:720px; margin:-4px auto 0; text-align:center; font-size:14px; font-weight:300; line-height:1.8; color:rgba(255,255,255,0.6); }
+  .name-wrap{ max-width:1000px; margin:44px auto 0; display:flex; flex-direction:column; gap:50px; }
+  .name-row{ display:grid; grid-template-columns:1fr 1fr; gap:44px; align-items:center; }
+  .name-row.rev .name-img{ order:2; }
+  .name-img{ width:100%; border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); box-shadow:0 30px 60px -30px rgba(0,0,0,0.7); }
+  .name-img img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .name-text p{ font-size:13.5px; font-weight:300; line-height:1.85; color:rgba(255,255,255,0.64); margin-bottom:14px; }
+  .name-text p:last-child{ margin-bottom:0; }
+  .name-text a{ color:var(--amber); text-decoration:underline; cursor:pointer; }
+  .name-close{ max-width:760px; margin:54px auto 0; text-align:center; border:1px solid rgba(var(--amber-rgb),0.3); border-radius:14px; padding:30px 28px; background:rgba(var(--amber-rgb),0.06); }
+  .name-close p{ font-size:13.5px; font-weight:300; line-height:1.8; color:rgba(255,255,255,0.7); }
+  .name-close a.lnk{ color:var(--amber); text-decoration:underline; cursor:pointer; }
+  .name-close .happy{ margin-top:10px; font-family:'Cormorant Garamond',serif; font-size:22px; color:#fff; }
+  @media (max-width:760px){ .name-row{ grid-template-columns:1fr; gap:22px; } .name-row.rev .name-img{ order:0; } }
 
   /* ============ FOOTER ============ */
   footer{
@@ -1953,6 +1968,42 @@
   </div>
 </section>
 
+<!-- OUR NAME -->
+<section id="ourname">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Our Story</div>
+    <h2 class="sec-title">How Did We Get The Name Biscuit &amp; Brew?</h2>
+  </div>
+  <p class="name-lead">The answer goes back to the very beginning, before we were a tea house, or really a business at all.</p>
+  <div class="name-wrap">
+    <div class="name-row">
+      <div class="name-img"><img src="images/name-1.jpg" alt="Friends gathered together drinking tea" loading="lazy" /></div>
+      <div class="name-text">
+        <p>At first, the goal was simply to blend some music-inspired teas to promote Darren's music (under the name Arthur Dove). So we began as Arthur Dove Tea Co., and experimented with some homemade blends to give to our friends and colleagues (like Lull and Little Picture).</p>
+        <p>Over time, we started trying out flavours that would appeal to a wider audience — like Rhubarb and Custard and Jaffa Cake — and at that point, it made sense to expand things a little. We started inviting friends over, not just to try the teas, but to see how they were made. Those gatherings became a regular thing: just us and our friends, hanging out, drinking tea, eating biscuits. No fuss, no grand occasion. Just a biscuit and a brew.</p>
+      </div>
+    </div>
+    <div class="name-row rev">
+      <div class="name-img"><img src="images/name-2.jpg" alt="A tea gathering with friends around a table" loading="lazy" /></div>
+      <div class="name-text">
+        <p>The name chose itself really! The more teas we made and the more gatherings we hosted, the more we felt like we were onto something special. A cup of tea with friends is such a simple, joyful thing, right? We began to wonder: could we bottle up that experience and recreate it somewhere bigger?</p>
+        <p>That's when we decided to open the tea house. At its heart, we want your visit to feel like those early gatherings: good tea, good company, and something sweet on the side, all in a relaxed and welcoming space. We like to think we're inviting you into our home, just like we did for our friends all those years ago.</p>
+      </div>
+    </div>
+    <div class="name-row">
+      <div class="name-img"><img src="images/name-3.jpg" alt="Homemade loose leaf tea blends and biscuits" loading="lazy" /></div>
+      <div class="name-text">
+        <p>Although we decided pretty quickly that we didn't want to serve the usual biscuits you'd eat at home, we still wanted our menu to reflect our roots. We made our signature blend, Biscuit Brew, to commemorate the choice to become a tea house. It's a biscuit in tea form, so it encapsulates our story pretty well! It's also now our most popular tea, which feels like a fitting tribute. We also serve tea-flavoured biscuits with our afternoon teas, so whichever way you spin it, the spirit of those early days is alive and well.</p>
+      </div>
+    </div>
+  </div>
+  <div class="name-close">
+    <p>So, that's the story of our name! If a biscuit and brew sounds good to you, <a class="lnk" data-go="visit">pop in</a> and see for yourself, or check out our <a class="lnk" data-go="products">tea menu</a> to take the experience home.</p>
+    <p class="happy">Happy drinking!</p>
+    <a class="fav-shop" data-go="visit" style="display:inline-block;text-decoration:none;margin-top:20px">Visit Us</a>
+  </div>
+</section>
+
 <!-- NEWSLETTER -->
 <section id="newsletter">
   <h2>Join our exclusive tea club</h2>
@@ -2001,7 +2052,7 @@
       <a href="#" onclick="return false">Caffeine Guide</a>
       <a data-go="brew">How to Brew Loose Leaf Tea</a>
       <a data-go="music">Music &amp; Tea</a>
-      <a href="#" onclick="return false">Our Name</a>
+      <a data-go="ourname">Our Name</a>
     </div>
   </div>
   <div class="fc-pay" aria-label="Accepted payment methods">
@@ -2568,7 +2619,7 @@
   document.querySelectorAll('#footcols [data-go]').forEach(a =>
     a.addEventListener('click', () => goTo(a.getAttribute('data-go'))));
   // FAQ + policy + brew-guide + article answer links
-  document.querySelectorAll('#faq [data-go], #returns [data-go], #brew [data-go], #music [data-go], #privacy [data-go], #media [data-go]').forEach(a =>
+  document.querySelectorAll('#faq [data-go], #returns [data-go], #brew [data-go], #music [data-go], #privacy [data-go], #media [data-go], #ourname [data-go]').forEach(a =>
     a.addEventListener('click', () => goTo(a.getAttribute('data-go'))));
 
   /* horizontal mega-menu (wide screens) */
