@@ -1001,11 +1001,17 @@
   .rv-verified::before{ content:"✓"; display:inline-flex; align-items:center; justify-content:center; width:16px; height:16px; border-radius:4px; background:#2f7d4a; color:#fff; font-size:10px; }
   .rv-ratings{ display:flex; gap:14px 28px; align-items:center; justify-content:center; flex-wrap:wrap; margin-top:10px; }
   .rv-prod{ font-size:11px; letter-spacing:.04em; color:rgba(255,255,255,0.4); }
-  .rv-grid{
-    max-width:1180px; margin:46px auto 0; display:grid; gap:22px;
-    grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); text-align:center;
+  .rv-marquee{
+    margin:46px auto 0; overflow:hidden; text-align:center;
+    -webkit-mask:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    mask:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
   }
+  .rv-track{ display:flex; align-items:stretch; gap:22px; width:max-content; animation:rv-scroll 48s linear infinite; }
+  .rv-marquee:hover .rv-track{ animation-play-state:paused; }
+  @keyframes rv-scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  @media (prefers-reduced-motion:reduce){ .rv-marquee{ overflow-x:auto; } .rv-track{ animation:none; } }
   .rv-card{
+    flex:0 0 300px; max-width:300px;
     border:1px solid rgba(255,255,255,0.08); border-radius:16px;
     background:linear-gradient(160deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015));
     padding:30px 24px 26px; display:flex; flex-direction:column; align-items:center; gap:14px;
@@ -1600,7 +1606,8 @@
     <span class="rv-verified">Verified reviews</span>
     <span class="rv-count">·&nbsp; Google 4.8 ★ · 155 reviews</span>
   </div>
-  <div class="rv-grid">
+  <div class="rv-marquee">
+   <div class="rv-track" id="rvTrack">
     <div class="rv-card">
       <img class="rv-avatar" src="images/rv-battenburg.jpg" alt="Battenburg loose leaf tea" />
       <p class="rv-q">"Lovely tea"</p>
@@ -1643,6 +1650,7 @@
       <div class="rv-name">Daniel McDonald-Smith</div>
       <div class="rv-prod">Cafe &amp; Lounge</div>
     </div>
+   </div>
   </div>
   <a class="rv-cta" href="https://www.google.com/maps/search/?api=1&query=Biscuit%20%26%20Brew%20Nottingham" target="_blank" rel="noopener">Read &amp; leave a review →</a>
 </section>
@@ -2652,6 +2660,10 @@
     const val = $('#nlEmail').value.trim();
     if(val){ showToast('Welcome to the <b>Tea Club</b> &mdash; check your inbox.'); $('#nlEmail').value=''; }
   });
+
+  /* reviews marquee — duplicate cards once for a seamless loop */
+  const rvTrack = $('#rvTrack');
+  if(rvTrack) rvTrack.innerHTML += rvTrack.innerHTML;
 
   /* FAQ accordion */
   document.querySelectorAll('#faq .faq-item').forEach((item) => {

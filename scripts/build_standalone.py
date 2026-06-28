@@ -169,8 +169,12 @@ HERO_CSS = """
   .rv-score .rv-num{ font-family:'Cormorant Garamond',serif; font-size:44px; color:#fff; line-height:1; }
   .rv-stars{ color:var(--amber); font-size:18px; letter-spacing:2px; }
   .rv-count{ font-size:12px; color:rgba(255,255,255,0.5); letter-spacing:.04em; }
-  .rv-grid{ max-width:1180px; margin:46px auto 0; display:grid; gap:22px; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); text-align:left; }
-  .rv-card{ border:1px solid rgba(255,255,255,0.08); border-radius:16px; background:linear-gradient(160deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015)); padding:26px 24px; display:flex; flex-direction:column; gap:12px; }
+  .rv-marquee{ margin:46px auto 0; overflow:hidden; text-align:center; -webkit-mask:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+  .rv-track{ display:flex; align-items:stretch; gap:22px; width:max-content; animation:rv-scroll 48s linear infinite; }
+  .rv-marquee:hover .rv-track{ animation-play-state:paused; }
+  @keyframes rv-scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  @media (prefers-reduced-motion:reduce){ .rv-marquee{ overflow-x:auto; } .rv-track{ animation:none; } }
+  .rv-card{ flex:0 0 300px; max-width:300px; border:1px solid rgba(255,255,255,0.08); border-radius:16px; background:linear-gradient(160deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015)); padding:30px 24px 26px; display:flex; flex-direction:column; align-items:center; gap:14px; }
   .rv-card .rv-s{ color:var(--amber); font-size:13px; letter-spacing:2px; }
   .rv-card .rv-q{ font-size:14px; font-weight:300; line-height:1.7; color:rgba(255,255,255,0.78); flex:1; }
   .rv-card .rv-by{ font-size:11px; letter-spacing:.06em; color:rgba(255,255,255,0.45); }
@@ -381,6 +385,7 @@ JS = """
   $('#checkoutBtn').addEventListener('click',()=>showToast('Checkout is a demo \\u2014 <b>'+count()+'</b> item(s), '+fmt(total())));
   $('#shopLink').addEventListener('click',()=>$('#products').scrollIntoView({behavior:'smooth'}));
   $('#nlForm').addEventListener('submit',e=>{ e.preventDefault(); const v=$('#nlEmail').value.trim(); if(v){ showToast('Welcome to the <b>Tea Club</b> \\u2014 check your inbox.'); $('#nlEmail').value=''; } });
+  const rvTrack=$('#rvTrack'); if(rvTrack) rvTrack.innerHTML += rvTrack.innerHTML;
   document.querySelectorAll('#faq .faq-item').forEach((item)=>{
     const q=item.querySelector('.faq-q'), a=item.querySelector('.faq-a');
     q.addEventListener('click',()=>{
@@ -953,7 +958,8 @@ __HEROCSS__
     <span class="rv-verified">Verified reviews</span>
     <span class="rv-count">·&nbsp; Google 4.8 ★ · 155 reviews</span>
   </div>
-  <div class="rv-grid">
+  <div class="rv-marquee">
+   <div class="rv-track" id="rvTrack">
     <div class="rv-card">
       <img class="rv-avatar" src="images/rv-battenburg.jpg" alt="Battenburg loose leaf tea" />
       <p class="rv-q">"Lovely tea"</p>
@@ -996,6 +1002,7 @@ __HEROCSS__
       <div class="rv-name">Daniel McDonald-Smith</div>
       <div class="rv-prod">Cafe &amp; Lounge</div>
     </div>
+   </div>
   </div>
   <a class="rv-cta" href="https://www.google.com/maps/search/?api=1&query=Biscuit%20%26%20Brew%20Nottingham" target="_blank" rel="noopener">Read &amp; leave a review →</a>
 </section>
