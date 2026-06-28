@@ -20,6 +20,10 @@ img_files = {
     "images/black-tea.png": ("images/black-tea.png", 1100),
     "images/hero-poster.jpg": ("images/hero-poster.jpg", 1280),
     "images/storefront.jpg": ("images/storefront.jpg", 1400),
+    "images/brew-brewer.jpg": ("images/brew-brewer.jpg", 560),
+    "images/brew-infuser.jpg": ("images/brew-infuser.jpg", 560),
+    "images/brew-water.jpg": ("images/brew-water.jpg", 560),
+    "images/brew-tea.jpg": ("images/brew-tea.jpg", 560),
     "images/green-tea.png": ("images/green-tea.png", 1100),
     "images/fruit-herbal.png": ("images/fruit-herbal.png", 1100),
     "images/matcha-kit.png": ("images/matcha-kit.png", 1000),
@@ -1144,44 +1148,40 @@ __HEROCSS__
     <p class="sec-sub">A little care makes all the difference. Here's how to get the most out of every blend.</p>
   </div>
   <div class="policy-wrap">
-    <p>Loose leaf tea is easier than it looks — and once you've brewed your first proper pot, you won't go back. The leaves are bigger and better quality than what you'll find in most tea bags, so they need a little room to unfurl and a little time to work their magic.</p>
-
-    <h3>What You'll Need</h3>
-    <ul>
-      <li>Your favourite Biscuit &amp; Brew loose leaf blend</li>
-      <li>An infuser, teapot or <a data-go="accessories">bucket brewer</a> to give the leaves space to open up</li>
-      <li>Fresh, just-boiled water (filtered if your tap water is hard)</li>
-    </ul>
-
-    <h3>The Simple Method</h3>
-    <ol>
-      <li><b>Measure:</b> Use roughly one heaped teaspoon (about 2–3g) per cup — and, if you like the old saying, "one for the pot".</li>
-      <li><b>Heat the water:</b> Different teas like different temperatures (see the chart below). Black, rooibos and fruit infusions love water straight off the boil; green and white teas prefer it a little cooler so they don't turn bitter.</li>
-      <li><b>Add the leaves:</b> Pop the tea into your infuser or straight into the pot, then pour the hot water over.</li>
-      <li><b>Steep:</b> Let it brew for the time shown below. Give it the full time — loose leaf rewards a little patience.</li>
-      <li><b>Lift &amp; enjoy:</b> Remove the leaves (or pour off the pot) so it doesn't keep stewing, then sip and enjoy.</li>
-    </ol>
-
-    <h3>Brewing Chart</h3>
-    <div class="brew-chart">
-      <div class="bc-row bc-head"><span>Tea</span><span>Water</span><span>Steep</span></div>
-      <div class="bc-row"><span class="bc-tea">Black Tea</span><span>95–100°C</span><span>3–5 min</span></div>
-      <div class="bc-row"><span class="bc-tea">Green Tea</span><span>70–80°C</span><span>2–3 min</span></div>
-      <div class="bc-row"><span class="bc-tea">White Tea</span><span>75–85°C</span><span>3–4 min</span></div>
-      <div class="bc-row"><span class="bc-tea">Oolong</span><span>85–95°C</span><span>3–5 min</span></div>
-      <div class="bc-row"><span class="bc-tea">Rooibos</span><span>100°C</span><span>5–7 min</span></div>
-      <div class="bc-row"><span class="bc-tea">Fruit Infusions</span><span>100°C</span><span>5–8 min</span></div>
+    <h3 style="margin-top:0">What You'll Need</h3>
+    <div class="brew-need">
+      <div class="bn-card"><div class="bn-img" style="background-image:url('images/brew-brewer.jpg')"></div><div class="bn-name">Brewer</div><div class="bn-desc">First (and most importantly!) is a brewer, to hold your loose leaf tea. We use Japanese cast iron teapots at Biscuit and Brew, but for a single cup, a mug from home is fine.</div></div>
+      <div class="bn-card"><div class="bn-img" style="background-image:url('images/brew-infuser.jpg')"></div><div class="bn-name">Infuser</div><div class="bn-desc">A key difference between teabags and loose leaf tea is that for the latter you'll need a tea strainer. Many teapots, including our cast iron ones, come with a strainer inside. However if you're looking to brew in a mug, you might want to acquire a single cup tea infuser/strainer. These can be single use or metal, and include mesh ball and basket infusers.</div></div>
+      <div class="bn-card"><div class="bn-img" style="background-image:url('images/brew-water.jpg')"></div><div class="bn-name">Water</div><div class="bn-desc">Freshly drawn and boiled water is needed to a great loose leaf cup of tea, this can be boiled from the kettle or on the hob. The ideal temperature of the water also depends on your type of tea — but more on this later!</div></div>
+      <div class="bn-card"><div class="bn-img" style="background-image:url('images/brew-tea.jpg')"></div><div class="bn-name">Loose Leaf Tea</div><div class="bn-desc">Ensure you have some loose leaf tea ready to brew. Most tea found in teabags will have a loose leaf version available. For tips on some good teas to start with, see the bottom of this page.</div></div>
     </div>
-
-    <h3>A Few Tips</h3>
-    <ul>
-      <li><b>Don't over-steep.</b> Leaving the leaves in too long can make your brew bitter — set a timer if you're prone to forgetting.</li>
-      <li><b>Re-steep your leaves.</b> Good loose leaf tea has plenty to give. Most of our blends are happy with a second (and sometimes third) brew.</li>
-      <li><b>Mind the milk.</b> Our black blends take milk beautifully; the fruit infusions, greens and rooibos are best enjoyed as they are.</li>
-      <li><b>Store it well.</b> Keep your tea in an airtight tin or pouch, away from light, heat and strong smells, to keep it fresh and flavoursome.</li>
-    </ul>
-
-    <p>Want to take it further? Every packet we send out has brewing instructions on the front, and you'll find the perfect kit over in our <a data-go="accessories">accessories</a>. Still have a question? <a data-go="contact">Get in touch</a> — we're always happy to talk tea.</p>
+    <div class="brew-note"><b>Optional: Thermometer</b><p>All teas will taste great with water boiled straight from the kettle. However, if you're wanting to extract the best flavours from your loose leaf tea, a thermometer can help ensure you are brewing at the right temperature for the tea you are using.</p></div>
+  </div>
+  <div class="brew-steps">
+    <div class="bstep">
+      <div class="bs-num"><span class="sl">Step</span><span class="sn">1</span></div>
+      <div class="bs-body"><h4>Fill Your Mug or Teapot</h4><p>First, fill your brewer with freshly boiled water. Our cast iron teapots can hold up to 500ml. Mugs are around 200ml.</p><a class="bs-cta" data-go="accessories">View Teapots &amp; Infusers</a></div>
+    </div>
+    <div class="bstep">
+      <div class="bs-num"><span class="sl">Step</span><span class="sn">2</span></div>
+      <div class="bs-body"><h4>Check Temperature</h4><p>The temperature of your water can be an important factor in extracting the best flavours from your leaves. If you are brewing black, herbal or fruit teas, 90–100°C is perfect. For green, white or oolong teas, around 80°C is ideal. If you are brewing the latter, feel free to wait a few minutes before steeping.</p></div>
+    </div>
+    <div class="bstep">
+      <div class="bs-num"><span class="sl">Step</span><span class="sn">3</span></div>
+      <div class="bs-body"><h4>Add Loose Leaf Tea</h4><p>When your water is at the perfect temperature, it's time to put your tea in your strainer and add it to your brewer! For every 200ml of water we recommend using 1tsp (2.5g) of loose leaf tea. Add two heaped teaspoons to your teapot, or one to your mug.</p><a class="bs-cta" data-go="products">Explore Loose Leaf Tea</a></div>
+    </div>
+    <div class="bstep">
+      <div class="bs-num"><span class="sl">Step</span><span class="sn">4</span></div>
+      <div class="bs-body"><h4>Steep the Leaves</h4><p>Allow your tea to steep to extract your loose leaf flavours. Again, this depends on the type of tea you choose. Most blends require 3–5 minutes, while white or green tea is more delicate and requires a slightly shorter 2–3 minutes. These are only recommendations, and don't be afraid to steep for longer or shorter depending on personal preference! If you are unsure, the recommended time is usually found on your loose leaf tea bag.</p></div>
+    </div>
+    <div class="bstep">
+      <div class="bs-num"><span class="sl">Step</span><span class="sn">5</span></div>
+      <div class="bs-body"><h4>Remove the Infuser</h4><p>Once you have steeped for the appropriate length of time, carefully remove your infuser from the tea or mug.</p></div>
+    </div>
+    <div class="bstep">
+      <div class="bs-num"><span class="sl">Step</span><span class="sn">6</span></div>
+      <div class="bs-body"><h4>Enjoy!</h4><p>Now you have a perfectly brewed cup of tea to enjoy.</p></div>
+    </div>
   </div>
 </section>
 
