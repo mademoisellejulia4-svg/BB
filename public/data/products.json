@@ -1066,8 +1066,8 @@
       "products": [
         {
           "id": "luxury-scone-box",
-          "name": "Luxury Scone Box",
-          "description": "A box of our freshly baked luxury scones to enjoy at home, served with clotted cream and your choice of preserve.",
+          "name": "Biscuit & Brew Luxury Scone Box",
+          "description": "A special selection of scones made in house at Biscuit & Brew. We change our scone flavours every month depending on the season and our mood! Shipped next day delivery with Royal Mail Tracked 24.",
           "image": "images/scone-1.jpg",
           "images": [
             "images/scone-1.jpg",
@@ -1076,10 +1076,10 @@
           ],
           "variants": [
             {
-              "sku": "GIFT-SCONE-BOX-4",
-              "size": "Box of 4",
+              "sku": "GIFT-SCONE-BOX",
+              "size": "Scone Box",
               "cups": "",
-              "price": 12.95
+              "price": 20.0
             }
           ]
         },
