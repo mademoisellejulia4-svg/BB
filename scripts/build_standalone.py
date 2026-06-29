@@ -492,7 +492,7 @@ JS = """
   $('#menuBtn').addEventListener('click',openNav);
   $('#navClose').addEventListener('click',closeNav);
   navOv.addEventListener('click',closeNav);
-  const MENU_OVERLAYS={ cafemenu:1, kidsmenu:1 };
+  const MENU_OVERLAYS={ cafemenu:1, kidsmenu:1, foodmenu:1 };
   function openMenuOverlay(id){ const el=document.getElementById(id); if(!el) return; el.classList.add('open'); el.scrollTop=0; document.body.style.overflow='hidden'; }
   function closeMenuOverlay(id){ const el=document.getElementById(id); if(el) el.classList.remove('open'); document.body.style.overflow=''; }
   document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>closeMenuOverlay(b.getAttribute('data-close'))));
@@ -517,7 +517,7 @@ JS = """
     item.querySelectorAll('[data-go]').forEach(a=>a.addEventListener('click',()=>{ closeMega(); if(document.activeElement) document.activeElement.blur(); }));
   });
   document.addEventListener('click',(e)=>{ if(!e.target.closest('.mega-item')) closeMega(); });
-  document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeNav(); closeMega(); closeMenuOverlay('cafemenu'); closeMenuOverlay('kidsmenu'); } });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeNav(); closeMega(); closeMenuOverlay('cafemenu'); closeMenuOverlay('kidsmenu'); closeMenuOverlay('foodmenu'); } });
 
   /* hero: scroll-scrub the whole clip across ~3 viewport scrolls */
   (function(){
@@ -654,7 +654,7 @@ __HEROCSS__
     <div class="nm-eyebrow">Our Menus</div>
     <a class="nm-item" data-go="products"><span class="nm-img" style="background-image:url('images/nm-tea.jpg')"></span><span class="nm-txt"><span class="nm-t">Tea</span><span class="nm-d">Our loose leaf tea blends inspired by cakes, drinks, cocktails, sweets and music.</span><span class="nm-cta">View Tea Menu &rarr;</span></span></a>
     <a class="nm-item" data-go="cafemenu"><span class="nm-img" style="background-image:url('images/nm-drinks.jpg')"></span><span class="nm-txt"><span class="nm-t">Drinks</span><span class="nm-d">Hot &amp; cold drinks including coffee, matcha, hot chocolate, tea lattes &amp; iced brews.</span><span class="nm-cta">View Drinks Menu &rarr;</span></span></a>
-    <a class="nm-item" data-go="cafemenu"><span class="nm-img" style="background-image:url('images/nm-food.jpg')"></span><span class="nm-txt"><span class="nm-t">Food</span><span class="nm-d">Traditional and our signature breakfasts, sandwiches, cakes and afternoon tea.</span><span class="nm-cta">View Food Menu &rarr;</span></span></a>
+    <a class="nm-item" data-go="foodmenu"><span class="nm-img" style="background-image:url('images/nm-food.jpg')"></span><span class="nm-txt"><span class="nm-t">Food</span><span class="nm-d">Traditional and our signature breakfasts, sandwiches, cakes and afternoon tea.</span><span class="nm-cta">View Food Menu &rarr;</span></span></a>
     <a class="nm-item" data-go="kidsmenu"><span class="nm-img" style="background-image:url('images/nm-kids.jpg')"></span><span class="nm-txt"><span class="nm-t">Kids</span><span class="nm-d">Our full kids menu.</span><span class="nm-cta">View Kids Menu &rarr;</span></span></a>
     <div class="nm-btns">
       <a class="nm-btn" data-go="book">Book a Table</a>
@@ -872,6 +872,85 @@ __HEROCSS__
   <div class="kids-free">
     <b>KIDS EAT FREE</b> with adults eating a main meal
     <span>Choose any cold drink &amp; a breakfast or sandwich. Desserts and hot chocolates not included.</span>
+  </div>
+</section>
+
+<section id="foodmenu">
+  <button class="menu-overlay-close" data-close="foodmenu" aria-label="Close menu">&times;</button>
+  <div class="sec-head">
+    <div class="sec-eyebrow">Breakfast, Brunch &amp; Lunch</div>
+    <h2 class="sec-title">Food Menu</h2>
+    <p class="sec-sub">Breakfast &amp; brunch served all day, in our Nottingham tea house.</p>
+  </div>
+  <div class="cm-grid">
+    <div class="cm-group">
+      <h3>Light Bites</h3>
+      <div class="cm-row"><span class="cm-name">Toast (v)</span><span class="cm-dots"></span><span class="cm-price">£4.25</span></div>
+      <p class="cm-sub">Two slices of toasted sourdough with butter &middot; add strawberry jam +50p</p>
+      <div class="cm-row"><span class="cm-name">Toasted Teacake (v)</span><span class="cm-dots"></span><span class="cm-price">£3.85</span></div>
+      <p class="cm-sub">Served with butter &middot; add jam +50p</p>
+    </div>
+    <div class="cm-group">
+      <h3>Classics</h3>
+      <div class="cm-row"><span class="cm-name">Dippy Eggs (v)</span><span class="cm-dots"></span><span class="cm-price">£9.25</span></div>
+      <p class="cm-sub">Two soft boiled eggs with a rank of sourdough soldiers.</p>
+      <div class="cm-row"><span class="cm-name">Scrambled Egg on Toast (v)</span><span class="cm-dots"></span><span class="cm-price">£9.25</span></div>
+      <p class="cm-sub">Toasted sourdough with scrambled eggs &middot; add smoked salmon +£3.45 &middot; add streaky bacon +£2.50</p>
+      <div class="cm-row"><span class="cm-name">Avocado &amp; Egg (v, ask for ve)</span><span class="cm-dots"></span><span class="cm-price">£12.95</span></div>
+      <p class="cm-sub">Smashed seasoned avocado on toasted sourdough with mixed seeds, cherry tomatoes &amp; poached or scrambled eggs.</p>
+      <div class="cm-row"><span class="cm-name">French Toast (v)</span><span class="cm-dots"></span><span class="cm-price">£12.95</span></div>
+      <p class="cm-sub">Chunky saut&eacute;ed eggy brioche with banana, blueberry &amp; maple syrup &middot; add bacon +£2.50</p>
+      <div class="cm-row"><span class="cm-name">Eggs Benedict (ask for v)</span><span class="cm-dots"></span><span class="cm-price">£13.45</span></div>
+      <p class="cm-sub">English muffin, poached eggs, beechwood smoked streaky bacon &amp; hollandaise &middot; smoked salmon instead +£1</p>
+      <div class="cm-row"><span class="cm-name">The English</span><span class="cm-dots"></span><span class="cm-price">£14.40</span></div>
+      <p class="cm-sub">Sourdough, poached or scrambled egg, smoked bacon, Cumberland sausage, baked beans, cherry tomatoes &amp; mushrooms.</p>
+      <div class="cm-row"><span class="cm-name">The Full English</span><span class="cm-dots"></span><span class="cm-price">£15.95</span></div>
+      <p class="cm-sub">As The English with two eggs &amp; two sausages.</p>
+    </div>
+    <div class="cm-group">
+      <h3>Signature</h3>
+      <div class="cm-row"><span class="cm-name">Maple Bacon Banana Bread</span><span class="cm-dots"></span><span class="cm-price">£13.95</span></div>
+      <p class="cm-sub">House banana bread with white chocolate mascarpone, smoked streaky bacon, walnuts &amp; maple syrup.</p>
+      <div class="cm-row"><span class="cm-name">Monte Cristo</span><span class="cm-dots"></span><span class="cm-price">£13.45</span></div>
+      <p class="cm-sub">Eggy sourdough with honey roast ham, melty gruy&egrave;re, dijon &amp; mayo, glazed with honey &middot; add poached egg +£2.50</p>
+      <div class="cm-row"><span class="cm-name">Spice Girl</span><span class="cm-dots"></span><span class="cm-price">£13.65</span></div>
+      <p class="cm-sub">Eggy sourdough with oak smoked chicken, streaky bacon, chilli jam, mayo, gruy&egrave;re &amp; maple syrup &middot; add scrambled egg +£2.50</p>
+    </div>
+    <div class="cm-group">
+      <h3>Lunches</h3>
+      <div class="cm-note">Sandwiches with a mixed leaf side &amp; balsamic &middot; gf bread +£1 &middot; fries +£2.45 &middot; sweet potato fries +£3.45</div>
+      <div class="cm-row"><span class="cm-name">Ploughmans Board</span><span class="cm-dots"></span><span class="cm-price">£11.95 / £13.45</span></div>
+      <p class="cm-sub">Rolled ham, pastrami beef, mature cheddar, cream cheese &amp; red onion marmalade, pickled onions, grapes, ciabatta &amp; salad. (one / sharing)</p>
+      <div class="cm-row"><span class="cm-name">Chicken Caesar Sandwich</span><span class="cm-dots"></span><span class="cm-price">£11.45</span></div>
+      <p class="cm-sub">Oak smoked chicken, smoked bacon, salad leaf, caesar dressing &amp; grana padano on ciabatta &middot; toast it +£1 &middot; make it a salad +£2</p>
+      <div class="cm-row"><span class="cm-name">The Italian Job Tartine</span><span class="cm-dots"></span><span class="cm-price">£12.95</span></div>
+      <p class="cm-sub">Mozzarella, basil, chickpea hummus, tomato &amp; balsamic on open toasted ciabatta.</p>
+      <div class="cm-row"><span class="cm-name">Grilled Three Cheese Sandwich</span><span class="cm-dots"></span><span class="cm-price">£12.45</span></div>
+      <p class="cm-sub">Grilled sourdough with cheddar, gruy&egrave;re &amp; red leicester, worcestershire sauce &amp; red onion.</p>
+      <div class="cm-row"><span class="cm-name">Jolly Reuben Toastie</span><span class="cm-dots"></span><span class="cm-price">£13.45</span></div>
+      <p class="cm-sub">Toasted sourdough with pastrami, gruy&egrave;re, Russian dressing, sauerkraut &amp; gherkins.</p>
+    </div>
+    <div class="cm-group">
+      <h3>Cake Display</h3>
+      <div class="cm-note">Ask at the cake counter for this week's flavours</div>
+      <div class="cm-row"><span class="cm-name">Traybakes</span><span class="cm-dots"></span><span class="cm-price">£4.95</span></div>
+      <div class="cm-row"><span class="cm-name">Cake Stacks</span><span class="cm-dots"></span><span class="cm-price">£5.25</span></div>
+      <div class="cm-row"><span class="cm-name">Scones (v, ask for gf/ve)</span><span class="cm-dots"></span><span class="cm-price">£5.60</span></div>
+      <div class="cm-row"><span class="cm-name">Luxury Scones (v)</span><span class="cm-dots"></span><span class="cm-price">£5.95</span></div>
+      <div class="cm-row"><span class="cm-name">Cheesecake</span><span class="cm-dots"></span><span class="cm-price">£6.25</span></div>
+      <p class="cm-sub">Warm with ice cream +£1.50</p>
+    </div>
+    <div class="cm-group">
+      <h3>Experiences</h3>
+      <div class="cm-note">Online booking only</div>
+      <div class="cm-row"><span class="cm-name">Cream Tea Experience (v)</span><span class="cm-dots"></span><span class="cm-price">£14.95</span></div>
+      <p class="cm-sub">House tea spritzer, refillable loose leaf tea &amp; your choice of scone with cream, preserve and fresh fruit.</p>
+      <div class="cm-row"><span class="cm-name">Afternoon Tea Experience</span><span class="cm-dots"></span><span class="cm-price">£28.95pp</span></div>
+      <p class="cm-sub">Tea spritzer, refillable loose leaf tea, sandwiches &amp; savoury snacks, scone with cream &amp; preserve, and mini cakes, biscuits &amp; fruit.</p>
+    </div>
+  </div>
+  <div class="kids-free" style="margin-top:46px">
+    <span>Food may contain milk, eggs, wheat, soybean, peanuts, tree nuts &amp; fish. Worried about allergies? Just let us know!</span>
   </div>
 </section>
 
