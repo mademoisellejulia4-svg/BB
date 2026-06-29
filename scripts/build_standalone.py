@@ -59,6 +59,7 @@ img_files = {
     "images/scone-1.jpg": ("images/scone-1.jpg", 800),
     "images/scone-2.jpg": ("images/scone-2.jpg", 800),
     "images/scone-3.jpg": ("images/scone-3.jpg", 800),
+    "images/music-tea.jpg": ("images/music-tea.jpg", 800),
     "images/green-tea.png": ("images/green-tea.png", 1100),
     "images/fruit-herbal.png": ("images/fruit-herbal.png", 1100),
     "images/matcha-kit.png": ("images/matcha-kit.png", 1000),
@@ -1453,6 +1454,7 @@ __HEROCSS__
     <h2 class="sec-title">Why Music and Tea Make The Perfect Pairing</h2>
     <p class="article-meta">Posted on 31 Jan. 2025</p>
   </div>
+  <div class="article-hero"><img src="images/music-tea.jpg" alt="Listening to music while enjoying a cup of tea" loading="lazy" /></div>
   <div class="policy-wrap">
     <p>One of the first things you'll notice when you browse our tea menu is how inspired we are by music. Over the years, we've blended teas to the sound of Harry Styles, The Beatles, and the classic Pogues song, Fairytale of New York.</p>
     <p>But what does it mean to blend tea to music? Can a drink really be inspired by a song? In this blog, we'll take a closer look at our musical tea flavours and discover how pairing tea with music makes for a more immersive experience.</p>
