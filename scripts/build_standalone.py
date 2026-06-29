@@ -55,6 +55,7 @@ img_files = {
     "images/nm-drinks.jpg": ("images/nm-drinks.jpg", 300),
     "images/nm-food.jpg": ("images/nm-food.jpg", 300),
     "images/nm-kids.jpg": ("images/nm-kids.jpg", 300),
+    "images/cream-tea.jpg": ("images/cream-tea.jpg", 900),
     "images/green-tea.png": ("images/green-tea.png", 1100),
     "images/fruit-herbal.png": ("images/fruit-herbal.png", 1100),
     "images/matcha-kit.png": ("images/matcha-kit.png", 1000),
@@ -942,6 +943,7 @@ __HEROCSS__
     </div>
     <div class="cm-group">
       <h3>Experiences</h3>
+      <img class="cm-photo" src="images/cream-tea.jpg" alt="Cream tea at Biscuit &amp; Brew" loading="lazy" />
       <div class="cm-note">Online booking only</div>
       <div class="cm-row"><span class="cm-name">Cream Tea Experience (v)</span><span class="cm-dots"></span><span class="cm-price">£14.95</span></div>
       <p class="cm-sub">House tea spritzer, refillable loose leaf tea &amp; your choice of scone with cream, preserve and fresh fruit.</p>
