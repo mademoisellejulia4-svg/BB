@@ -494,6 +494,7 @@ JS = """
   document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>closeMenuOverlay(b.getAttribute('data-close'))));
   function goTo(go){
     if(go==='products'){ backToCats(); $('#products').scrollIntoView({behavior:'smooth'}); }
+    else if(go==='bestsellers'){ $('#products').scrollIntoView({behavior:'smooth'}); setTimeout(()=>openBestSellers(),420); }
     else if(MENU_OVERLAYS[go]){ openMenuOverlay(go); }
     else if(CAT[go]){ $('#products').scrollIntoView({behavior:'smooth'}); setTimeout(()=>openCategory(go),420); }
     else { const el=document.getElementById(go); if(el) el.scrollIntoView({behavior:'smooth'}); else { backToCats(); $('#products').scrollIntoView({behavior:'smooth'}); } }
@@ -575,7 +576,7 @@ __HEROCSS__
           <div class="mega-col">
             <div class="mega-h">Tea</div>
             <a data-go="products">All Tea</a>
-            <a data-go="favourites">Best Sellers</a>
+            <a data-go="bestsellers">Best Sellers</a>
             <a data-go="black">Black Tea</a>
             <a data-go="matcha">Matcha</a>
             <a data-go="green">Green Tea</a>
@@ -645,9 +646,21 @@ __HEROCSS__
     <span class="brand-logo"><img src="images/logo-mark.png" alt="Biscuit &amp; Brew" /></span>
     <span style="width:24px"></span>
   </div>
+  <div class="nav-menus">
+    <div class="nm-eyebrow">Our Menus</div>
+    <a class="nm-item" data-go="products"><span class="nm-t">Tea</span><span class="nm-d">Our loose leaf tea blends inspired by cakes, drinks, cocktails, sweets and music.</span><span class="nm-cta">View Tea Menu &rarr;</span></a>
+    <a class="nm-item" data-go="cafemenu"><span class="nm-t">Drinks</span><span class="nm-d">Hot &amp; cold drinks including coffee, matcha, hot chocolate, tea lattes &amp; iced brews.</span><span class="nm-cta">View Drinks Menu &rarr;</span></a>
+    <a class="nm-item" data-go="cafemenu"><span class="nm-t">Food</span><span class="nm-d">Traditional and our signature breakfasts, sandwiches, cakes and afternoon tea.</span><span class="nm-cta">View Food Menu &rarr;</span></a>
+    <a class="nm-item" data-go="kidsmenu"><span class="nm-t">Kids</span><span class="nm-d">Our full kids menu.</span><span class="nm-cta">View Kids Menu &rarr;</span></a>
+    <div class="nm-btns">
+      <a class="nm-btn" data-go="book">Book a Table</a>
+      <a class="nm-btn ghost" data-go="visit">How To Find Us</a>
+    </div>
+  </div>
+  <div class="nm-eyebrow nm-shop-label">Shop</div>
   <div class="nav-body nav-flat">
+    <a class="nav-feature" data-go="bestsellers">&#9733;&nbsp; Best Sellers</a>
     <a data-go="products">All Tea</a>
-    <a data-go="favourites">Best Sellers</a>
     <a data-go="black">Black Tea</a>
     <a data-go="matcha">Matcha</a>
     <a data-go="green">Green Tea</a>
