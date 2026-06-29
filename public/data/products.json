@@ -1065,6 +1065,25 @@
       "variantLabel": "Select amount",
       "products": [
         {
+          "id": "luxury-scone-box",
+          "name": "Luxury Scone Box",
+          "description": "A box of our freshly baked luxury scones to enjoy at home, served with clotted cream and your choice of preserve.",
+          "image": "images/scone-1.jpg",
+          "images": [
+            "images/scone-1.jpg",
+            "images/scone-2.jpg",
+            "images/scone-3.jpg"
+          ],
+          "variants": [
+            {
+              "sku": "GIFT-SCONE-BOX-4",
+              "size": "Box of 4",
+              "cups": "",
+              "price": 12.95
+            }
+          ]
+        },
+        {
           "id": "tea-taster-box",
           "name": "Tea Taster Bundle Box",
           "description": "Perfect for finding your favourites! Choose any 10 blends from our current range of loose leaf teas and fruit infusions — just pick your packs and we'll do the rest. Includes 10 × 15g packs.",
