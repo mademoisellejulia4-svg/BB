@@ -901,8 +901,10 @@
   .nav-menus{ padding:20px 28px 4px; }
   .nm-eyebrow{ font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:var(--amber); margin-bottom:12px; }
   .nm-shop-label{ padding:8px 28px 0; opacity:.85; }
-  .nm-item{ display:block; text-decoration:none; cursor:pointer; padding:13px 0; border-bottom:1px solid rgba(255,255,255,0.07); transition:padding-left .3s var(--ease); }
+  .nm-item{ display:flex; gap:14px; align-items:center; text-decoration:none; cursor:pointer; padding:13px 0; border-bottom:1px solid rgba(255,255,255,0.07); transition:padding-left .3s var(--ease); }
   .nm-item:hover{ padding-left:6px; }
+  .nm-img{ flex:0 0 62px; width:62px; height:62px; border-radius:10px; background-size:cover; background-position:center; background-color:#0c0c14; border:1px solid rgba(255,255,255,0.1); }
+  .nm-txt{ flex:1; min-width:0; }
   .nm-item .nm-t{ display:block; font-family:'Cormorant Garamond',serif; font-size:21px; color:#fff; letter-spacing:.02em; }
   .nm-item .nm-d{ display:block; font-size:11.5px; font-weight:300; line-height:1.5; color:rgba(255,255,255,0.5); margin-top:3px; }
   .nm-item .nm-cta{ display:inline-block; margin-top:7px; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:rgba(var(--amber-rgb),0.85); }
@@ -1253,10 +1255,10 @@
   </div>
   <div class="nav-menus">
     <div class="nm-eyebrow">Our Menus</div>
-    <a class="nm-item" data-go="products"><span class="nm-t">Tea</span><span class="nm-d">Our loose leaf tea blends inspired by cakes, drinks, cocktails, sweets and music.</span><span class="nm-cta">View Tea Menu &rarr;</span></a>
-    <a class="nm-item" data-go="cafemenu"><span class="nm-t">Drinks</span><span class="nm-d">Hot &amp; cold drinks including coffee, matcha, hot chocolate, tea lattes &amp; iced brews.</span><span class="nm-cta">View Drinks Menu &rarr;</span></a>
-    <a class="nm-item" data-go="cafemenu"><span class="nm-t">Food</span><span class="nm-d">Traditional and our signature breakfasts, sandwiches, cakes and afternoon tea.</span><span class="nm-cta">View Food Menu &rarr;</span></a>
-    <a class="nm-item" data-go="kidsmenu"><span class="nm-t">Kids</span><span class="nm-d">Our full kids menu.</span><span class="nm-cta">View Kids Menu &rarr;</span></a>
+    <a class="nm-item" data-go="products"><span class="nm-img" style="background-image:url('images/nm-tea.jpg')"></span><span class="nm-txt"><span class="nm-t">Tea</span><span class="nm-d">Our loose leaf tea blends inspired by cakes, drinks, cocktails, sweets and music.</span><span class="nm-cta">View Tea Menu &rarr;</span></span></a>
+    <a class="nm-item" data-go="cafemenu"><span class="nm-img" style="background-image:url('images/nm-drinks.jpg')"></span><span class="nm-txt"><span class="nm-t">Drinks</span><span class="nm-d">Hot &amp; cold drinks including coffee, matcha, hot chocolate, tea lattes &amp; iced brews.</span><span class="nm-cta">View Drinks Menu &rarr;</span></span></a>
+    <a class="nm-item" data-go="cafemenu"><span class="nm-img" style="background-image:url('images/nm-food.jpg')"></span><span class="nm-txt"><span class="nm-t">Food</span><span class="nm-d">Traditional and our signature breakfasts, sandwiches, cakes and afternoon tea.</span><span class="nm-cta">View Food Menu &rarr;</span></span></a>
+    <a class="nm-item" data-go="kidsmenu"><span class="nm-img" style="background-image:url('images/nm-kids.jpg')"></span><span class="nm-txt"><span class="nm-t">Kids</span><span class="nm-d">Our full kids menu.</span><span class="nm-cta">View Kids Menu &rarr;</span></span></a>
     <div class="nm-btns">
       <a class="nm-btn" data-go="book">Book a Table</a>
       <a class="nm-btn ghost" data-go="visit">How To Find Us</a>

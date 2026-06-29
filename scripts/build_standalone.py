@@ -51,6 +51,10 @@ img_files = {
     "images/fav-biscuit-brew.jpg": ("images/fav-biscuit-brew.jpg", 500),
     "images/fav-lull.jpg": ("images/fav-lull.jpg", 500),
     "images/best-seller.jpg": ("images/best-seller.jpg", 800),
+    "images/nm-tea.jpg": ("images/nm-tea.jpg", 300),
+    "images/nm-drinks.jpg": ("images/nm-drinks.jpg", 300),
+    "images/nm-food.jpg": ("images/nm-food.jpg", 300),
+    "images/nm-kids.jpg": ("images/nm-kids.jpg", 300),
     "images/green-tea.png": ("images/green-tea.png", 1100),
     "images/fruit-herbal.png": ("images/fruit-herbal.png", 1100),
     "images/matcha-kit.png": ("images/matcha-kit.png", 1000),
@@ -648,10 +652,10 @@ __HEROCSS__
   </div>
   <div class="nav-menus">
     <div class="nm-eyebrow">Our Menus</div>
-    <a class="nm-item" data-go="products"><span class="nm-t">Tea</span><span class="nm-d">Our loose leaf tea blends inspired by cakes, drinks, cocktails, sweets and music.</span><span class="nm-cta">View Tea Menu &rarr;</span></a>
-    <a class="nm-item" data-go="cafemenu"><span class="nm-t">Drinks</span><span class="nm-d">Hot &amp; cold drinks including coffee, matcha, hot chocolate, tea lattes &amp; iced brews.</span><span class="nm-cta">View Drinks Menu &rarr;</span></a>
-    <a class="nm-item" data-go="cafemenu"><span class="nm-t">Food</span><span class="nm-d">Traditional and our signature breakfasts, sandwiches, cakes and afternoon tea.</span><span class="nm-cta">View Food Menu &rarr;</span></a>
-    <a class="nm-item" data-go="kidsmenu"><span class="nm-t">Kids</span><span class="nm-d">Our full kids menu.</span><span class="nm-cta">View Kids Menu &rarr;</span></a>
+    <a class="nm-item" data-go="products"><span class="nm-img" style="background-image:url('images/nm-tea.jpg')"></span><span class="nm-txt"><span class="nm-t">Tea</span><span class="nm-d">Our loose leaf tea blends inspired by cakes, drinks, cocktails, sweets and music.</span><span class="nm-cta">View Tea Menu &rarr;</span></span></a>
+    <a class="nm-item" data-go="cafemenu"><span class="nm-img" style="background-image:url('images/nm-drinks.jpg')"></span><span class="nm-txt"><span class="nm-t">Drinks</span><span class="nm-d">Hot &amp; cold drinks including coffee, matcha, hot chocolate, tea lattes &amp; iced brews.</span><span class="nm-cta">View Drinks Menu &rarr;</span></span></a>
+    <a class="nm-item" data-go="cafemenu"><span class="nm-img" style="background-image:url('images/nm-food.jpg')"></span><span class="nm-txt"><span class="nm-t">Food</span><span class="nm-d">Traditional and our signature breakfasts, sandwiches, cakes and afternoon tea.</span><span class="nm-cta">View Food Menu &rarr;</span></span></a>
+    <a class="nm-item" data-go="kidsmenu"><span class="nm-img" style="background-image:url('images/nm-kids.jpg')"></span><span class="nm-txt"><span class="nm-t">Kids</span><span class="nm-d">Our full kids menu.</span><span class="nm-cta">View Kids Menu &rarr;</span></span></a>
     <div class="nm-btns">
       <a class="nm-btn" data-go="book">Book a Table</a>
       <a class="nm-btn ghost" data-go="visit">How To Find Us</a>
