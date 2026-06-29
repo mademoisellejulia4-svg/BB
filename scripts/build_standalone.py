@@ -492,7 +492,7 @@ JS = """
   $('#menuBtn').addEventListener('click',openNav);
   $('#navClose').addEventListener('click',closeNav);
   navOv.addEventListener('click',closeNav);
-  const MENU_OVERLAYS={ cafemenu:1, kidsmenu:1, foodmenu:1 };
+  const MENU_OVERLAYS={ cafemenu:1, kidsmenu:1, foodmenu:1, drinksmenu:1 };
   function openMenuOverlay(id){ const el=document.getElementById(id); if(!el) return; el.classList.add('open'); el.scrollTop=0; document.body.style.overflow='hidden'; }
   function closeMenuOverlay(id){ const el=document.getElementById(id); if(el) el.classList.remove('open'); document.body.style.overflow=''; }
   document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>closeMenuOverlay(b.getAttribute('data-close'))));
@@ -517,7 +517,7 @@ JS = """
     item.querySelectorAll('[data-go]').forEach(a=>a.addEventListener('click',()=>{ closeMega(); if(document.activeElement) document.activeElement.blur(); }));
   });
   document.addEventListener('click',(e)=>{ if(!e.target.closest('.mega-item')) closeMega(); });
-  document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeNav(); closeMega(); closeMenuOverlay('cafemenu'); closeMenuOverlay('kidsmenu'); closeMenuOverlay('foodmenu'); } });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeNav(); closeMega(); closeMenuOverlay('cafemenu'); closeMenuOverlay('kidsmenu'); closeMenuOverlay('foodmenu'); closeMenuOverlay('drinksmenu'); } });
 
   /* hero: scroll-scrub the whole clip across ~3 viewport scrolls */
   (function(){
@@ -653,7 +653,7 @@ __HEROCSS__
   <div class="nav-menus">
     <div class="nm-eyebrow">Our Menus</div>
     <a class="nm-item" data-go="products"><span class="nm-img" style="background-image:url('images/nm-tea.jpg')"></span><span class="nm-txt"><span class="nm-t">Tea</span><span class="nm-d">Our loose leaf tea blends inspired by cakes, drinks, cocktails, sweets and music.</span><span class="nm-cta">View Tea Menu &rarr;</span></span></a>
-    <a class="nm-item" data-go="cafemenu"><span class="nm-img" style="background-image:url('images/nm-drinks.jpg')"></span><span class="nm-txt"><span class="nm-t">Drinks</span><span class="nm-d">Hot &amp; cold drinks including coffee, matcha, hot chocolate, tea lattes &amp; iced brews.</span><span class="nm-cta">View Drinks Menu &rarr;</span></span></a>
+    <a class="nm-item" data-go="drinksmenu"><span class="nm-img" style="background-image:url('images/nm-drinks.jpg')"></span><span class="nm-txt"><span class="nm-t">Drinks</span><span class="nm-d">Hot &amp; cold drinks including coffee, matcha, hot chocolate, tea lattes &amp; iced brews.</span><span class="nm-cta">View Drinks Menu &rarr;</span></span></a>
     <a class="nm-item" data-go="foodmenu"><span class="nm-img" style="background-image:url('images/nm-food.jpg')"></span><span class="nm-txt"><span class="nm-t">Food</span><span class="nm-d">Traditional and our signature breakfasts, sandwiches, cakes and afternoon tea.</span><span class="nm-cta">View Food Menu &rarr;</span></span></a>
     <a class="nm-item" data-go="kidsmenu"><span class="nm-img" style="background-image:url('images/nm-kids.jpg')"></span><span class="nm-txt"><span class="nm-t">Kids</span><span class="nm-d">Our full kids menu.</span><span class="nm-cta">View Kids Menu &rarr;</span></span></a>
     <div class="nm-btns">
@@ -951,6 +951,76 @@ __HEROCSS__
   </div>
   <div class="kids-free" style="margin-top:46px">
     <span>Food may contain milk, eggs, wheat, soybean, peanuts, tree nuts &amp; fish. Worried about allergies? Just let us know!</span>
+  </div>
+</section>
+
+<section id="drinksmenu">
+  <button class="menu-overlay-close" data-close="drinksmenu" aria-label="Close menu">&times;</button>
+  <div class="sec-head">
+    <div class="sec-eyebrow">Hot &amp; Cold</div>
+    <h2 class="sec-title">Drinks Menu</h2>
+    <p class="sec-sub">Served in our Nottingham tea house.</p>
+  </div>
+  <div class="cm-grid">
+    <div class="cm-group">
+      <h3>Tea</h3>
+      <div class="cm-note">Loose leaf, brewed in a Japanese cast iron teapot</div>
+      <div class="cm-row"><span class="cm-name">Our Blends &mdash; Pot For One</span><span class="cm-dots"></span><span class="cm-price">£4.25</span></div>
+      <div class="cm-row"><span class="cm-name">Our Blends &mdash; 65g Tea Pack</span><span class="cm-dots"></span><span class="cm-price">£6.95</span></div>
+      <p class="cm-sub">Our own range of blends inspired by cakes, desserts, cocktails &amp; music.</p>
+      <div class="cm-row"><span class="cm-name">Traditional Brews &mdash; Pot For One</span><span class="cm-dots"></span><span class="cm-price">£4.10</span></div>
+      <div class="cm-row"><span class="cm-name">Traditional Brews &mdash; 65g Tea Pack</span><span class="cm-dots"></span><span class="cm-price">£5.95</span></div>
+      <p class="cm-sub">English Breakfast &middot; Decaf Black &middot; Earl Grey &middot; Assam &middot; Darjeeling &middot; Ceylon &middot; Jasmine Green &middot; Black Dragon Oolong &middot; Chun Mee Green &middot; Rooibos &middot; Pure Peppermint &middot; Lapsang Souchong &middot; Lavender Flower</p>
+    </div>
+    <div class="cm-group">
+      <h3>Coffee</h3>
+      <div class="cm-note">Rich, smooth dark roast &middot; poured over ice +50p</div>
+      <div class="cm-row"><span class="cm-name">Americano</span><span class="cm-dots"></span><span class="cm-price">£3.70</span></div>
+      <div class="cm-row"><span class="cm-name">Cappuccino</span><span class="cm-dots"></span><span class="cm-price">£3.95</span></div>
+      <div class="cm-row"><span class="cm-name">Latte</span><span class="cm-dots"></span><span class="cm-price">£3.95</span></div>
+      <div class="cm-row"><span class="cm-name">Flat White</span><span class="cm-dots"></span><span class="cm-price">£3.85</span></div>
+      <div class="cm-row"><span class="cm-name">Double Espresso</span><span class="cm-dots"></span><span class="cm-price">£2.95</span></div>
+      <div class="cm-row"><span class="cm-name">Mocha / White Mocha</span><span class="cm-dots"></span><span class="cm-price">£4.45</span></div>
+      <p class="cm-sub">Double espresso with Belgian or Italian white chocolate &middot; make it luxury with marshmallows &amp; chocolate flakes +95p</p>
+      <div class="cm-row"><span class="cm-name">Affogato</span><span class="cm-dots"></span><span class="cm-price">£4.45</span></div>
+      <p class="cm-sub">Double espresso over a scoop of vanilla ice cream.</p>
+      <div class="cm-row"><span class="cm-name">250g Beans</span><span class="cm-dots"></span><span class="cm-price">£10.95</span></div>
+      <p class="cm-sub">Upgrades: oat milk +50p &middot; over ice +50p &middot; extra shot +£1.45 &middot; flavouring syrups +50p (hazelnut, vanilla, caramel, salted caramel, Biscoff, cinnamon)</p>
+    </div>
+    <div class="cm-group">
+      <h3>Chai</h3>
+      <div class="cm-note">Served hot or poured over ice +50p</div>
+      <div class="cm-row"><span class="cm-name">Chai Latte</span><span class="cm-dots"></span><span class="cm-price">£3.95</span></div>
+      <p class="cm-sub">Masala chai latte topped with cinnamon &middot; add cream or syrup +50p</p>
+      <div class="cm-row"><span class="cm-name">Dirty Chai</span><span class="cm-dots"></span><span class="cm-price">£5.25</span></div>
+      <p class="cm-sub">Chai latte with double espresso, topped with cinnamon &middot; add cream +50p</p>
+      <h3 style="margin-top:26px">Iced Brews</h3>
+      <div class="cm-row"><span class="cm-name">Strawberry Fields Forever</span><span class="cm-dots"></span><span class="cm-price">£4.95</span></div>
+      <div class="cm-row"><span class="cm-name">Cherry Kiss</span><span class="cm-dots"></span><span class="cm-price">£4.95</span></div>
+    </div>
+    <div class="cm-group">
+      <h3>Matcha</h3>
+      <div class="cm-note">Japanese ceremonial-grade green tea</div>
+      <div class="cm-row"><span class="cm-name">Matcha Latte</span><span class="cm-dots"></span><span class="cm-price">£4.25</span></div>
+      <div class="cm-row"><span class="cm-name">Matchagato</span><span class="cm-dots"></span><span class="cm-price">£4.45</span></div>
+      <p class="cm-sub">Matcha poured over a scoop of vanilla ice cream.</p>
+      <div class="cm-row"><span class="cm-name">Biscuit Brew Matcha</span><span class="cm-dots"></span><span class="cm-price">£5.45</span></div>
+      <p class="cm-sub">Chocolate-digestive flavoured matcha with oat milk, topped with cocoa curls &middot; hot or iced +50p</p>
+    </div>
+    <div class="cm-group">
+      <h3>Hot Chocolate</h3>
+      <div class="cm-note">Add flavouring syrups +50p</div>
+      <div class="cm-row"><span class="cm-name">Belgian Hot Chocolate</span><span class="cm-dots"></span><span class="cm-price">£4.25</span></div>
+      <div class="cm-row"><span class="cm-name">Italian White Hot Chocolate</span><span class="cm-dots"></span><span class="cm-price">£4.25</span></div>
+      <div class="cm-row"><span class="cm-name">Luxury Hot Choc</span><span class="cm-dots"></span><span class="cm-price">£5.20</span></div>
+      <p class="cm-sub">Belgian or Italian white hot chocolate topped with cream &amp; marshmallows.</p>
+    </div>
+    <div class="cm-group">
+      <h3>Cold Drinks</h3>
+      <div class="cm-note">Chilled &amp; refreshing</div>
+      <div class="cm-row"><span class="cm-name">Soft Drinks</span><span class="cm-dots"></span><span class="cm-price">£4.75</span></div>
+      <p class="cm-sub">Cloudy Lemonade &middot; Dandelion &amp; Burdock &middot; Orange Juice &middot; Apple Juice</p>
+    </div>
   </div>
 </section>
 
