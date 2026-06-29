@@ -496,10 +496,11 @@ JS = """
   $('#menuBtn').addEventListener('click',openNav);
   $('#navClose').addEventListener('click',closeNav);
   navOv.addEventListener('click',closeNav);
-  const MENU_OVERLAYS={ cafemenu:1, kidsmenu:1, foodmenu:1, drinksmenu:1 };
+  const MENU_OVERLAYS={ cafemenu:1, kidsmenu:1, foodmenu:1, drinksmenu:1, creamtea:1 };
   function openMenuOverlay(id){ const el=document.getElementById(id); if(!el) return; el.classList.add('open'); el.scrollTop=0; document.body.style.overflow='hidden'; }
   function closeMenuOverlay(id){ const el=document.getElementById(id); if(el) el.classList.remove('open'); document.body.style.overflow=''; }
   document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>closeMenuOverlay(b.getAttribute('data-close'))));
+  document.querySelectorAll('#creamtea [data-go]').forEach(a=>a.addEventListener('click',()=>closeMenuOverlay('creamtea')));
   function goTo(go){
     if(go==='products'){ backToCats(); $('#products').scrollIntoView({behavior:'smooth'}); }
     else if(go==='bestsellers'){ $('#products').scrollIntoView({behavior:'smooth'}); setTimeout(()=>openBestSellers(),420); }
@@ -521,7 +522,7 @@ JS = """
     item.querySelectorAll('[data-go]').forEach(a=>a.addEventListener('click',()=>{ closeMega(); if(document.activeElement) document.activeElement.blur(); }));
   });
   document.addEventListener('click',(e)=>{ if(!e.target.closest('.mega-item')) closeMega(); });
-  document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeNav(); closeMega(); closeMenuOverlay('cafemenu'); closeMenuOverlay('kidsmenu'); closeMenuOverlay('foodmenu'); closeMenuOverlay('drinksmenu'); } });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeNav(); closeMega(); closeMenuOverlay('cafemenu'); closeMenuOverlay('kidsmenu'); closeMenuOverlay('foodmenu'); closeMenuOverlay('drinksmenu'); closeMenuOverlay('creamtea'); } });
 
   /* hero: scroll-scrub the whole clip across ~3 viewport scrolls */
   (function(){
@@ -615,7 +616,7 @@ __HEROCSS__
             <div class="mega-h">Experiences</div>
             <a data-go="book">Afternoon Tea</a>
             <a data-go="book">Tea Tasting</a>
-            <a data-go="book">Cream Tea</a>
+            <a data-go="creamtea">Cream Tea</a>
           </div>
           <div class="mega-col">
             <div class="mega-h">Events</div>
@@ -946,7 +947,6 @@ __HEROCSS__
     </div>
     <div class="cm-group">
       <h3>Experiences</h3>
-      <img class="cm-photo" src="images/cream-tea.jpg" alt="Cream tea at Biscuit &amp; Brew" loading="lazy" />
       <div class="cm-note">Online booking only</div>
       <div class="cm-row"><span class="cm-name">Cream Tea Experience (v)</span><span class="cm-dots"></span><span class="cm-price">£14.95</span></div>
       <p class="cm-sub">House tea spritzer, refillable loose leaf tea &amp; your choice of scone with cream, preserve and fresh fruit.</p>
@@ -1026,6 +1026,21 @@ __HEROCSS__
       <div class="cm-row"><span class="cm-name">Soft Drinks</span><span class="cm-dots"></span><span class="cm-price">£4.75</span></div>
       <p class="cm-sub">Cloudy Lemonade &middot; Dandelion &amp; Burdock &middot; Orange Juice &middot; Apple Juice</p>
     </div>
+  </div>
+</section>
+
+<section id="creamtea">
+  <button class="menu-overlay-close" data-close="creamtea" aria-label="Close">&times;</button>
+  <div class="sec-head">
+    <div class="sec-eyebrow">Experience</div>
+    <h2 class="sec-title">Cream Tea</h2>
+    <p class="article-meta">£14.95 per person &middot; online booking only</p>
+  </div>
+  <div class="article-hero"><img src="images/cream-tea.jpg" alt="Cream tea at Biscuit &amp; Brew" loading="lazy" /></div>
+  <div class="policy-wrap" style="text-align:center">
+    <p>A relaxed little ritual for one or to share. Settle in with a flute of our house-blended tea spritzer, a pot of refillable loose leaf tea, and your choice of freshly baked scone served with clotted cream, preserve and fresh fruit.</p>
+    <p>Available to book online &mdash; perfect as a treat or a gift. Gluten-free and vegan-friendly options available, just let us know.</p>
+    <a class="fav-shop" data-go="book" style="display:inline-block;text-decoration:none;margin-top:8px">Book this experience</a>
   </div>
 </section>
 

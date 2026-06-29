@@ -960,13 +960,13 @@
 
   /* ============ CAFE & LOUNGE MENU ============ */
   /* Cafe & Kids menus open as full-screen overlays from the nav (not in scroll flow) */
-  #cafemenu, #kidsmenu, #foodmenu, #drinksmenu{
+  #cafemenu, #kidsmenu, #foodmenu, #drinksmenu, #creamtea{
     position:fixed; inset:0; z-index:680; overflow-y:auto;
     background:#08080f;
     padding:clamp(70px,11vh,120px) clamp(20px,6vw,90px) 80px;
     opacity:0; visibility:hidden; transition:opacity .4s var(--ease), visibility .4s;
   }
-  #cafemenu.open, #kidsmenu.open, #foodmenu.open, #drinksmenu.open{ opacity:1; visibility:visible; }
+  #cafemenu.open, #kidsmenu.open, #foodmenu.open, #drinksmenu.open, #creamtea.open{ opacity:1; visibility:visible; }
   .menu-overlay-close{
     position:fixed; top:18px; right:22px; z-index:690;
     width:42px; height:42px; border-radius:50%;
@@ -1214,7 +1214,7 @@
             <div class="mega-h">Experiences</div>
             <a data-go="book">Afternoon Tea</a>
             <a data-go="book">Tea Tasting</a>
-            <a data-go="book">Cream Tea</a>
+            <a data-go="creamtea">Cream Tea</a>
           </div>
           <div class="mega-col">
             <div class="mega-h">Events</div>
@@ -1560,7 +1560,6 @@
     </div>
     <div class="cm-group">
       <h3>Experiences</h3>
-      <img class="cm-photo" src="images/cream-tea.jpg" alt="Cream tea at Biscuit &amp; Brew" loading="lazy" />
       <div class="cm-note">Online booking only</div>
       <div class="cm-row"><span class="cm-name">Cream Tea Experience (v)</span><span class="cm-dots"></span><span class="cm-price">£14.95</span></div>
       <p class="cm-sub">House tea spritzer, refillable loose leaf tea &amp; your choice of scone with cream, preserve and fresh fruit.</p>
@@ -1641,6 +1640,22 @@
       <div class="cm-row"><span class="cm-name">Soft Drinks</span><span class="cm-dots"></span><span class="cm-price">£4.75</span></div>
       <p class="cm-sub">Cloudy Lemonade &middot; Dandelion &amp; Burdock &middot; Orange Juice &middot; Apple Juice</p>
     </div>
+  </div>
+</section>
+
+<!-- CREAM TEA -->
+<section id="creamtea">
+  <button class="menu-overlay-close" data-close="creamtea" aria-label="Close">&times;</button>
+  <div class="sec-head">
+    <div class="sec-eyebrow">Experience</div>
+    <h2 class="sec-title">Cream Tea</h2>
+    <p class="article-meta">£14.95 per person &middot; online booking only</p>
+  </div>
+  <div class="article-hero"><img src="images/cream-tea.jpg" alt="Cream tea at Biscuit &amp; Brew" loading="lazy" /></div>
+  <div class="policy-wrap" style="text-align:center">
+    <p>A relaxed little ritual for one or to share. Settle in with a flute of our house-blended tea spritzer, a pot of refillable loose leaf tea, and your choice of freshly baked scone served with clotted cream, preserve and fresh fruit.</p>
+    <p>Available to book online &mdash; perfect as a treat or a gift. Gluten-free and vegan-friendly options available, just let us know.</p>
+    <a class="fav-shop" data-go="book" style="display:inline-block;text-decoration:none;margin-top:8px">Book this experience</a>
   </div>
 </section>
 
@@ -2959,7 +2974,7 @@
   $('#navClose').addEventListener('click', closeNav);
   navOverlay.addEventListener('click', closeNav);
   // full-screen menu overlays (Cafe & Lounge Menu, Kids Menu)
-  const MENU_OVERLAYS = { cafemenu:1, kidsmenu:1, foodmenu:1, drinksmenu:1 };
+  const MENU_OVERLAYS = { cafemenu:1, kidsmenu:1, foodmenu:1, drinksmenu:1, creamtea:1 };
   function openMenuOverlay(id){
     const el = document.getElementById(id);
     if(!el) return;
@@ -2974,8 +2989,11 @@
   }
   document.querySelectorAll('[data-close]').forEach(b =>
     b.addEventListener('click', () => closeMenuOverlay(b.getAttribute('data-close'))));
+  // links inside the Cream Tea overlay (e.g. Book) — close it then navigate
+  document.querySelectorAll('#creamtea [data-go]').forEach(a =>
+    a.addEventListener('click', () => { closeMenuOverlay('creamtea'); goTo(a.getAttribute('data-go')); }));
   document.addEventListener('keydown', (e) => {
-    if(e.key === 'Escape'){ closeMenuOverlay('cafemenu'); closeMenuOverlay('kidsmenu'); closeMenuOverlay('foodmenu'); closeMenuOverlay('drinksmenu'); }
+    if(e.key === 'Escape'){ closeMenuOverlay('cafemenu'); closeMenuOverlay('kidsmenu'); closeMenuOverlay('foodmenu'); closeMenuOverlay('drinksmenu'); closeMenuOverlay('creamtea'); }
   });
 
   function goTo(go){
