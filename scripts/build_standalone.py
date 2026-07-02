@@ -269,6 +269,20 @@ JS = """
       grid.appendChild(card);
     });
   }
+  const MUSIC_BLENDS=[['green','lull'],['herbal','strawberry-fields-forever'],['herbal','little-picture'],['green','watermelon-sugar'],['herbal','hound-on-the-hunt']];
+  function buildMusicBlends(){
+    const grid=$('#musicGrid'); if(!grid) return; grid.innerHTML='';
+    MUSIC_BLENDS.forEach(([cid,pid])=>{
+      const c=CAT[cid]; if(!c) return; const p=(c.products||[]).find(x=>x.id===pid); if(!p) return;
+      const bg=p.image||c.image;
+      const card=document.createElement('div'); card.className='fav-card';
+      card.innerHTML='<div class="fav-medal"'+(bg?' style="background-image:url(\\''+bg+'\\')"':'')+'><span class="fav-badge">'+c.name+'</span></div>'+
+        '<div class="fav-name">'+p.name+'</div>'+
+        '<div class="fav-price">From '+fmt(fromPrice(p))+'</div>';
+      card.addEventListener('click',()=>openModal(c,p));
+      grid.appendChild(card);
+    });
+  }
 
   /* ---- categories ---- */
   const catGrid = $('#catGrid');
@@ -551,7 +565,7 @@ JS = """
     onScroll();
   })();
 
-  buildCategories(); buildFavourites(); renderCart();
+  buildCategories(); buildFavourites(); buildMusicBlends(); renderCart();
 })();
 """
 JS = JS.replace("__STORE__", store_json)
@@ -1480,6 +1494,12 @@ __HEROCSS__
     <p>So, that's the story of our music blends! Whilst we've focussed specifically on a few flavours here, practicing engaged and mindful drinking can help you get the most out of any of our teas. Take a look at our <a data-go="products">menu</a> and see if you can build the habit.</p>
     <p>Happy drinking!</p>
   </div>
+  <div class="sec-head" style="margin:54px 0 0">
+    <div class="sec-eyebrow">Listen &amp; sip</div>
+    <h2 class="sec-title" style="font-size:clamp(26px,4.5vw,44px)">The Music Blends</h2>
+    <p class="sec-sub">Brew one, queue up the track that inspired it, and find your soundtrack in a cup.</p>
+  </div>
+  <div class="fav-grid" id="musicGrid"></div>
 </section>
 
 <section id="wholesale">
