@@ -1,3 +1,34 @@
+# Preview the site
+
+## Open on a computer (easiest — no server needed)
+
+The file `public/biscuit-and-brew-ipad.html` is a single, fully self-contained
+page (catalog, images and the hero video are all embedded). On any computer it
+just opens — no server, no internet:
+
+1. Download it: open
+   `https://github.com/mademoisellejulia4-svg/BB/raw/claude/biscuit-brew-website-gnwai3/public/biscuit-and-brew-ipad.html`
+   (or grab the file from the repo).
+2. **Double-click the downloaded file** — it opens in your default browser
+   (Chrome, Edge, Firefox or Safari) and the hero video plays as you scroll.
+
+> On a desktop browser everything works, including the embedded hero video —
+> the data-URI video limitation only affects iPad/iOS Safari.
+
+## Run the full served site on a computer
+
+To run the real Express server (live `index.html`, hot data from
+`data/products.json`):
+
+```bash
+npm install
+npm start
+```
+
+Then open **http://localhost:3000** in your browser. Stop with `Ctrl-C`.
+
+---
+
 # Private preview — from an iPad, with no computer
 
 The site is fully static (HTML + `data/products.json` + `Video.mp4`). You can
@@ -12,7 +43,7 @@ for you, and the preview URL is **private by default** — only you, signed into
 GitHub, can open it. Nothing is public.
 
 1. In Safari, go to your repo: `https://github.com/mademoisellejulia4-svg/BB`
-2. Switch to the branch **`claude/biscuit-brew-scroll-site-btdgqu`**.
+2. Switch to the branch **`claude/biscuit-brew-website-gnwai3`**.
 3. Tap the green **`< > Code`** button → **Codespaces** tab →
    **Create codespace on this branch**. Wait ~1 minute for it to build
    (it auto-runs `npm install`).
@@ -44,7 +75,7 @@ only you can view it — it is **not** public.
 2. **Workers & Pages** → **Create** → **Pages** → **Connect to Git** → authorize
    GitHub and pick this repo.
 3. Build settings:
-   - **Production branch:** `claude/biscuit-brew-scroll-site-btdgqu`
+   - **Production branch:** `claude/biscuit-brew-website-gnwai3`
    - **Build command:** *(leave empty)*
    - **Build output directory:** `public`
    - Deploy. You'll get a `https://<name>.pages.dev` URL.

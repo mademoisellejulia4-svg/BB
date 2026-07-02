@@ -1,5 +1,5 @@
 {
-  "_comment": "Biscuit & Brew catalog. Edit names, descriptions, sizes and prices here — the site reads this file at load. Prices are placeholders (GBP) pending real data. Schema: store{ name, currency, currencySymbol }, categories[]{ id, name, meta, products[]{ id, name, description, variants[]{ sku, size, price } } }.",
+  "_comment": "Biscuit & Brew catalog. Edit names, descriptions, sizes and prices here — the site reads this file at load. Loose-leaf sizes mirror the real shop (15g ≈ 7 cups, 65g ≈ 32 cups, 150g ≈ 75 cups). Tea prices are anchored to the shop's £6.45 (65g) reference; accessory and experience-voucher prices that could not be confirmed are best-effort. Schema: store{...}, categories[]{ id, name, meta, image, variantLabel, products[]{ id, name, description, image, variants[]{ sku, size, cups, price } } }.",
   "store": {
     "name": "Biscuit & Brew",
     "currency": "GBP",
@@ -10,104 +10,337 @@
       "id": "black",
       "name": "Black Tea",
       "meta": "10 blends · full-bodied",
+      "image": "images/black-tea.png",
       "products": [
         {
           "id": "biscuit-brew",
           "name": "Biscuit Brew",
-          "description": "The signature: malty Assam wrapped in warm biscuit and a whisper of vanilla.",
+          "description": "Our signature black tea blend inspired by the mighty chocolate digestive. Rich Sri Lankan and Yunnan black tea with cocoa shells, oat flowering tops and natural flavouring for a comforting, biscuit-like brew.",
+          "image": "images/biscuit-brew.jpg",
+          "rating": 5,
+          "reviews": 5,
           "variants": [
-            { "sku": "BLK-BISCUIT-BREW-50G", "size": "50g", "price": 6.95 },
-            { "sku": "BLK-BISCUIT-BREW-100G", "size": "100g", "price": 12.50 },
-            { "sku": "BLK-BISCUIT-BREW-250G", "size": "250g", "price": 27.00 }
-          ]
-        },
-        {
-          "id": "caramel-apple-betty",
-          "name": "Caramel Apple Betty",
-          "description": "Baked apple, buttery caramel and cinnamon over a smooth black base.",
-          "variants": [
-            { "sku": "BLK-CARAMEL-APPLE-BETTY-50G", "size": "50g", "price": 7.25 },
-            { "sku": "BLK-CARAMEL-APPLE-BETTY-100G", "size": "100g", "price": 12.95 },
-            { "sku": "BLK-CARAMEL-APPLE-BETTY-250G", "size": "250g", "price": 28.00 }
-          ]
-        },
-        {
-          "id": "salted-caramel",
-          "name": "Salted Caramel",
-          "description": "Rich golden caramel finished with a pinch of sea salt.",
-          "variants": [
-            { "sku": "BLK-SALTED-CARAMEL-50G", "size": "50g", "price": 7.25 },
-            { "sku": "BLK-SALTED-CARAMEL-100G", "size": "100g", "price": 12.95 },
-            { "sku": "BLK-SALTED-CARAMEL-250G", "size": "250g", "price": 28.00 }
-          ]
-        },
-        {
-          "id": "cherry-bakewell",
-          "name": "Cherry Bakewell",
-          "description": "Almond, morello cherry and frangipane — afternoon tea in a cup.",
-          "variants": [
-            { "sku": "BLK-CHERRY-BAKEWELL-50G", "size": "50g", "price": 7.25 },
-            { "sku": "BLK-CHERRY-BAKEWELL-100G", "size": "100g", "price": 12.95 },
-            { "sku": "BLK-CHERRY-BAKEWELL-250G", "size": "250g", "price": 28.00 }
-          ]
-        },
-        {
-          "id": "banana-fudge",
-          "name": "Banana Fudge",
-          "description": "Soft banana and creamy fudge folded into a mellow black tea.",
-          "variants": [
-            { "sku": "BLK-BANANA-FUDGE-50G", "size": "50g", "price": 7.25 },
-            { "sku": "BLK-BANANA-FUDGE-100G", "size": "100g", "price": 12.95 },
-            { "sku": "BLK-BANANA-FUDGE-250G", "size": "250g", "price": 28.00 }
-          ]
-        },
-        {
-          "id": "english-breakfast",
-          "name": "English Breakfast",
-          "description": "A classic bright, brisk blend — the dependable morning cup.",
-          "variants": [
-            { "sku": "BLK-ENGLISH-BREAKFAST-50G", "size": "50g", "price": 5.95 },
-            { "sku": "BLK-ENGLISH-BREAKFAST-100G", "size": "100g", "price": 10.95 },
-            { "sku": "BLK-ENGLISH-BREAKFAST-250G", "size": "250g", "price": 23.00 }
-          ]
-        },
-        {
-          "id": "moonbeam",
-          "name": "Moonbeam",
-          "description": "A gentle evening black with soft floral and honeyed notes.",
-          "variants": [
-            { "sku": "BLK-MOONBEAM-50G", "size": "50g", "price": 7.50 },
-            { "sku": "BLK-MOONBEAM-100G", "size": "100g", "price": 13.50 },
-            { "sku": "BLK-MOONBEAM-250G", "size": "250g", "price": 29.00 }
-          ]
-        },
-        {
-          "id": "essential-bundle",
-          "name": "The Essential Biscuit & Brew Loose Leaf Tea Bundle",
-          "description": "A curated set of our best-loved blends — the perfect introduction.",
-          "variants": [
-            { "sku": "BLK-ESSENTIAL-BUNDLE", "size": "Bundle", "price": 45.00 }
+            {
+              "sku": "BLK-BISCUIT-BREW-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "BLK-BISCUIT-BREW-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "BLK-BISCUIT-BREW-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 13.5
+            },
+            {
+              "sku": "BLK-BISCUIT-BREW-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            },
+            {
+              "sku": "BLK-BISCUIT-BREW-TEABAGS",
+              "size": "15 Teabags",
+              "cups": "pyramid bags",
+              "price": 4.95
+            }
           ]
         },
         {
           "id": "james-giant-peach",
           "name": "James and the Giant Peach",
-          "description": "Juicy peach and apricot lifting a smooth, fragrant black tea.",
+          "description": "What would you do if your peaches couldn't stop growing? We'd just turn them into tea! Inspired by the Roald Dahl novel — a magical burst of citrus on a bold black tea base, ever so lightly spiced with ginger and allspice. Rich, fruity and lightly spiced.",
           "variants": [
-            { "sku": "BLK-JAMES-GIANT-PEACH-50G", "size": "50g", "price": 7.25 },
-            { "sku": "BLK-JAMES-GIANT-PEACH-100G", "size": "100g", "price": 12.95 },
-            { "sku": "BLK-JAMES-GIANT-PEACH-250G", "size": "250g", "price": 28.00 }
+            {
+              "sku": "BLK-JAMES-GIANT-PEACH-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "BLK-JAMES-GIANT-PEACH-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "BLK-JAMES-GIANT-PEACH-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 13.5
+            },
+            {
+              "sku": "BLK-JAMES-GIANT-PEACH-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
+          ],
+          "image": "images/james-giant-peach.jpg"
+        },
+        {
+          "id": "banana-fudge",
+          "name": "Banana Fudge",
+          "description": "Banana meets creamy black tea in this indulgent loose leaf blend. Sri Lankan black tea with freeze-dried banana and natural flavouring — a rich, comforting brew with a sweet, fudgy finish.",
+          "variants": [
+            {
+              "sku": "BLK-BANANA-FUDGE-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "BLK-BANANA-FUDGE-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "BLK-BANANA-FUDGE-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 13.5
+            },
+            {
+              "sku": "BLK-BANANA-FUDGE-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
+          ],
+          "image": "images/banana-fudge.jpg"
+        },
+        {
+          "id": "salted-caramel",
+          "name": "Salted Caramel",
+          "description": "Hot and syrupy, salty and sweet — melted caramel with a touch of fleur de sel over Sri Lankan black tea. A decadent treat, robust with a warm, dark sweetness.",
+          "variants": [
+            {
+              "sku": "BLK-SALTED-CARAMEL-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "BLK-SALTED-CARAMEL-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "BLK-SALTED-CARAMEL-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 13.5
+            },
+            {
+              "sku": "BLK-SALTED-CARAMEL-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
+          ],
+          "image": "images/salted-caramel.jpg",
+          "rating": 5,
+          "reviews": 1
+        },
+        {
+          "id": "caramel-apple-betty",
+          "name": "Caramel Apple Betty",
+          "description": "Not quite a crumble, nor just a pie. Sweet, tart apples with warming cinnamon and fenugreek, served with the magic ingredient: caramel custard. A rich black tea blend with comforting dessert notes.",
+          "image": "images/caramel-apple-betty.jpg",
+          "rating": 5,
+          "reviews": 3,
+          "variants": [
+            {
+              "sku": "BLK-CARAMEL-APPLE-BETTY-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "BLK-CARAMEL-APPLE-BETTY-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "BLK-CARAMEL-APPLE-BETTY-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 13.5
+            },
+            {
+              "sku": "BLK-CARAMEL-APPLE-BETTY-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
+          ]
+        },
+        {
+          "id": "cherry-bakewell",
+          "name": "Cherry Bakewell",
+          "description": "Rich and tangy with berry and nutty tones — a cheeky black tea blend of Sri Lankan black tea, apple pieces, rosehip, hibiscus, almond pieces, freeze-dried cranberry, orange peel, freeze-dried cherry and natural flavouring.",
+          "image": "images/cherry-bakewell.jpg",
+          "rating": 5,
+          "reviews": 3,
+          "variants": [
+            {
+              "sku": "BLK-CHERRY-BAKEWELL-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "BLK-CHERRY-BAKEWELL-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "BLK-CHERRY-BAKEWELL-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 13.5
+            },
+            {
+              "sku": "BLK-CHERRY-BAKEWELL-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
           ]
         },
         {
           "id": "mango-tchai",
           "name": "Mango T'Chai",
-          "description": "Sweet mango meets warming chai spice — ginger, cardamom and clove.",
+          "description": "A spiced, tropical fruit-flavoured chai blend — mango and warming chai spice on a bold black tea. Light and fruity with warming, aromatic undertones.",
           "variants": [
-            { "sku": "BLK-MANGO-TCHAI-50G", "size": "50g", "price": 7.50 },
-            { "sku": "BLK-MANGO-TCHAI-100G", "size": "100g", "price": 13.50 },
-            { "sku": "BLK-MANGO-TCHAI-250G", "size": "250g", "price": 29.00 }
-          ]
+            {
+              "sku": "BLK-MANGO-TCHAI-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "BLK-MANGO-TCHAI-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "BLK-MANGO-TCHAI-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 13.5
+            },
+            {
+              "sku": "BLK-MANGO-TCHAI-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
+          ],
+          "image": "images/mango-tchai.jpg",
+          "rating": 5,
+          "reviews": 2
+        },
+        {
+          "id": "moonbeam",
+          "name": "Moonbeam",
+          "description": "Escape into the midsummer evening with this lavender flower and orange peel infused Sri Lankan black tea. Bright with floral tones — a perfect swap for your Earl Grey.",
+          "variants": [
+            {
+              "sku": "BLK-MOONBEAM-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "BLK-MOONBEAM-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "BLK-MOONBEAM-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 13.5
+            },
+            {
+              "sku": "BLK-MOONBEAM-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
+          ],
+          "image": "images/moonbeam.jpg"
+        },
+        {
+          "id": "english-breakfast",
+          "name": "English Breakfast",
+          "description": "Our house English Breakfast blend, perfect for any time of day. A quintessentially British, full-bodied brew that pairs beautifully with buttery toast — blended from Chinese, Assam and Sri Lankan black teas for a smooth, satisfying flavour.",
+          "variants": [
+            {
+              "sku": "BLK-ENGLISH-BREAKFAST-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.5
+            },
+            {
+              "sku": "BLK-ENGLISH-BREAKFAST-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 5.95
+            },
+            {
+              "sku": "BLK-ENGLISH-BREAKFAST-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 11.5
+            },
+            {
+              "sku": "BLK-ENGLISH-BREAKFAST-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 13.95
+            },
+            {
+              "sku": "BLK-ENGLISH-BREAKFAST-TEABAGS",
+              "size": "15 Teabags",
+              "cups": "pyramid bags",
+              "price": 4.5
+            }
+          ],
+          "image": "images/english-breakfast.jpg"
+        },
+        {
+          "id": "essential-bundle",
+          "name": "The Essential Biscuit & Brew Loose Leaf Tea Bundle",
+          "description": "A bundle of our essential blends, curated from our best-selling loose leaf teas. Basic set: 65g English Breakfast, 65g Biscuit Brew and 65g Moonbeam. The Luxury set adds a Japanese cast iron teapot and a 15g taster of Pear & Pistachio green tea.",
+          "variants": [
+            {
+              "sku": "BLK-ESSENTIAL-BASIC",
+              "size": "Basic Set",
+              "cups": "3 × 65g blends",
+              "price": 15.0
+            },
+            {
+              "sku": "BLK-ESSENTIAL-LUXURY",
+              "size": "Luxury Set",
+              "cups": "+ teapot & taster",
+              "price": 39.95
+            }
+          ],
+          "image": "images/essential-bundle.jpg"
         }
       ]
     },
@@ -115,102 +348,873 @@
       "id": "green",
       "name": "Green Tea",
       "meta": "5 blends · fresh & delicate",
+      "image": "images/green-tea.png",
       "products": [
         {
-          "id": "pear-pistachio",
-          "name": "Pear & Pistachio",
-          "description": "Silky pear and toasted pistachio over a soft sencha green.",
+          "id": "robin-hood",
+          "name": "Robin Hood",
+          "description": "Elderberry, dandelion and blackberry — fruits from the Nottingham forests.",
           "variants": [
-            { "sku": "GRN-PEAR-PISTACHIO-50G", "size": "50g", "price": 7.50 },
-            { "sku": "GRN-PEAR-PISTACHIO-100G", "size": "100g", "price": 13.50 },
-            { "sku": "GRN-PEAR-PISTACHIO-250G", "size": "250g", "price": 29.00 }
-          ]
+            {
+              "sku": "GRN-ROBIN-HOOD-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 3.25
+            },
+            {
+              "sku": "GRN-ROBIN-HOOD-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "GRN-ROBIN-HOOD-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 13.95
+            },
+            {
+              "sku": "GRN-ROBIN-HOOD-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
+          ],
+          "image": "images/robin-hood-1.jpg",
+          "images": [
+            "images/robin-hood-1.jpg",
+            "images/robin-hood-2.jpg"
+          ],
+          "taste": "Herbaceous, earthy and fruity.",
+          "ingredients": "Chinese Sencha Green Tea, Roasted Dandelion Root, Nettle, Cinnamon, Apple Pieces, Rosehip, Elderflower, Freeze Dried Blackberry, Natural Flavouring.",
+          "brew": "Boil freshly drawn water, infuse for 2–3 minutes and drink without milk."
         },
         {
           "id": "lull",
           "name": "Lull",
-          "description": "A calming green blend to slow the evening down.",
+          "description": "Drop into the lull. Take a tranquil dip into blueberry and almond-infused waters paired with Chinese green tea for a dream-like, purple melancholy. Blended to the taste of Lull by Arthur Dove.",
           "variants": [
-            { "sku": "GRN-LULL-50G", "size": "50g", "price": 7.25 },
-            { "sku": "GRN-LULL-100G", "size": "100g", "price": 12.95 },
-            { "sku": "GRN-LULL-250G", "size": "250g", "price": 28.00 }
-          ]
+            {
+              "sku": "GRN-LULL-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "GRN-LULL-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "GRN-LULL-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 12.95
+            },
+            {
+              "sku": "GRN-LULL-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
+          ],
+          "image": "images/lull.jpg",
+          "brew": "Heat freshly drawn water to about 80°C, infuse for 3 minutes and drink without milk.",
+          "pairing": "Nice Biscuit",
+          "ingredients": "Chinese Green Tea, Blue Pea Flowers, Cinnamon, Hibiscus, Apple Pieces, Almond Pieces, Freeze-dried Blueberries, Rosehips, Elderberries, Orange Peel, Calendula Petals, Sunflower Petals, Natural Flavouring."
         },
         {
           "id": "watermelon-sugar",
           "name": "Watermelon Sugar",
-          "description": "Cool, sweet watermelon for a bright summer green.",
+          "description": "Does it taste like strawberries? Not quite Harry. It doesn't even have berries. We made this blend about a late-night summer romance with a soft, delicate touch of fruits and flowers that ends with a last minute burst of passionfruit. Blended to the taste of 'Watermelon Sugar' by Harry Styles.",
           "variants": [
-            { "sku": "GRN-WATERMELON-SUGAR-50G", "size": "50g", "price": 7.25 },
-            { "sku": "GRN-WATERMELON-SUGAR-100G", "size": "100g", "price": 12.95 },
-            { "sku": "GRN-WATERMELON-SUGAR-250G", "size": "250g", "price": 28.00 }
-          ]
+            {
+              "sku": "GRN-WATERMELON-SUGAR-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "GRN-WATERMELON-SUGAR-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "GRN-WATERMELON-SUGAR-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 12.95
+            },
+            {
+              "sku": "GRN-WATERMELON-SUGAR-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
+          ],
+          "image": "images/watermelon-sugar.jpg",
+          "taste": "Soft and fruity with a subtle tang.",
+          "ingredients": "Chinese Sencha Green Tea, Chinese Black Tea, Apple Pieces, Rosehip, Hibiscus, Elderberries, Rose Petals, Orange Peel, Freeze-dried Strawberry, Natural Flavouring.",
+          "brew": "Boil freshly drawn water, infuse for 3 minutes and drink without milk.",
+          "pairing": "Nice Biscuit"
         },
         {
-          "id": "robin-hood",
-          "name": "Robin Hood",
-          "description": "A woodland green with berry and herb — bold yet smooth.",
+          "id": "pear-pistachio",
+          "name": "Pear & Pistachio",
+          "description": "The ultimate green machine. A green tea base blended with apples, pears, and pistachios, made to taste like and inspired by our wedding cake.",
           "variants": [
-            { "sku": "GRN-ROBIN-HOOD-50G", "size": "50g", "price": 7.50 },
-            { "sku": "GRN-ROBIN-HOOD-100G", "size": "100g", "price": 13.50 },
-            { "sku": "GRN-ROBIN-HOOD-250G", "size": "250g", "price": 29.00 }
-          ]
+            {
+              "sku": "GRN-PEAR-PISTACHIO-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 3.25
+            },
+            {
+              "sku": "GRN-PEAR-PISTACHIO-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "GRN-PEAR-PISTACHIO-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 13.95
+            },
+            {
+              "sku": "GRN-PEAR-PISTACHIO-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
+          ],
+          "image": "images/pear-pistachio.jpg",
+          "rating": 5,
+          "reviews": 3,
+          "taste": "Fruity, earthy with nutty tones.",
+          "ingredients": "Chinese Chunmee Green Tea, Chinese White Tea, Rosehip, Apple Pieces, Pear Pieces, Orange Peel, Calendula Petals, Pistachio Pieces, Stevia, Natural Flavouring.",
+          "brew": "Boil freshly drawn water, infuse for 2–3 minutes and drink without milk.",
+          "pairing": "Cheese cracker"
         },
         {
           "id": "deep-breath",
           "name": "Deep Breath",
-          "description": "Mint and green tea to clear the head and reset.",
+          "description": "Cooling eucalyptus and peppermint — clarifying with a green-blue hue.",
           "variants": [
-            { "sku": "GRN-DEEP-BREATH-50G", "size": "50g", "price": 7.25 },
-            { "sku": "GRN-DEEP-BREATH-100G", "size": "100g", "price": 12.95 },
-            { "sku": "GRN-DEEP-BREATH-250G", "size": "250g", "price": 28.00 }
-          ]
+            {
+              "sku": "GRN-DEEP-BREATH-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "GRN-DEEP-BREATH-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "GRN-DEEP-BREATH-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 12.95
+            },
+            {
+              "sku": "GRN-DEEP-BREATH-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
+          ],
+          "image": "images/deep-breath.jpg",
+          "taste": "Cooling and herbaceous.",
+          "ingredients": "Chinese Sencha Green Tea, Peppermint, Eucalyptus, Gotu Kola, Blue Pea Flower, Cornflower, Natural Flavouring.",
+          "brew": "Boil freshly drawn water, infuse for 2–3 minutes and drink without milk."
         }
       ]
     },
     {
       "id": "herbal",
-      "name": "Fruit & Herbal",
-      "meta": "4 blends · caffeine-free",
+      "name": "Fruit Infusions",
+      "meta": "5 infusions · fruity & aromatic",
+      "image": "images/fruit-herbal.png",
       "products": [
-        {
-          "id": "strawberry-fields-forever",
-          "name": "Strawberry Fields Forever",
-          "description": "Ripe strawberries and a hint of cream — naturally caffeine-free.",
-          "variants": [
-            { "sku": "HRB-STRAWBERRY-FIELDS-50G", "size": "50g", "price": 7.25 },
-            { "sku": "HRB-STRAWBERRY-FIELDS-100G", "size": "100g", "price": 12.95 },
-            { "sku": "HRB-STRAWBERRY-FIELDS-250G", "size": "250g", "price": 28.00 }
-          ]
-        },
         {
           "id": "cherry-kiss",
           "name": "Cherry Kiss",
-          "description": "Sweet cherry and hibiscus for a deep ruby infusion.",
+          "description": "The cheekiest cherry cola-inspired fruit infusion, with sour cherries, warming spices and a sweet, tangy finish. A playful loose leaf blend that is fruity, aromatic and perfect hot or iced.",
           "variants": [
-            { "sku": "HRB-CHERRY-KISS-50G", "size": "50g", "price": 7.25 },
-            { "sku": "HRB-CHERRY-KISS-100G", "size": "100g", "price": 12.95 },
-            { "sku": "HRB-CHERRY-KISS-250G", "size": "250g", "price": 28.00 }
-          ]
+            {
+              "sku": "HRB-CHERRY-KISS-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "HRB-CHERRY-KISS-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "HRB-CHERRY-KISS-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 12.95
+            },
+            {
+              "sku": "HRB-CHERRY-KISS-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
+          ],
+          "image": "images/cherry-kiss.jpg",
+          "rating": 5,
+          "reviews": 1,
+          "taste": "Fruity and aromatic.",
+          "ingredients": "Apple Pieces, Cinnamon, Hibiscus, Rosehip, Ginger, Freeze-dried Cranberry, Cloves, Orange Peel, Freeze-dried Cherry, Natural Flavouring.",
+          "brew": "Boil freshly drawn water, infuse for 3–5 minutes and drink without milk."
         },
         {
           "id": "little-picture",
           "name": "Little Picture",
-          "description": "A gentle fruit-and-herb medley, soft and soothing.",
+          "description": "One for all the lovers. A tropical blend of pineapple, mango and papaya helps you re-live and re-love those hazy polaroid, sun-kissed summers. Zesty and uplifting.",
           "variants": [
-            { "sku": "HRB-LITTLE-PICTURE-50G", "size": "50g", "price": 7.25 },
-            { "sku": "HRB-LITTLE-PICTURE-100G", "size": "100g", "price": 12.95 },
-            { "sku": "HRB-LITTLE-PICTURE-250G", "size": "250g", "price": 28.00 }
-          ]
+            {
+              "sku": "HRB-LITTLE-PICTURE-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "HRB-LITTLE-PICTURE-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "HRB-LITTLE-PICTURE-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 12.95
+            },
+            {
+              "sku": "HRB-LITTLE-PICTURE-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
+          ],
+          "image": "images/little-picture.jpg",
+          "rating": 5,
+          "reviews": 2,
+          "ingredients": "Pineapple, Hibiscus, Currants, Lime Leaves, Freeze-Dried Mango, Papaya Pieces, Coconut Flakes, Sunflower Petals, Flavouring.",
+          "brew": "Boil freshly drawn water, infuse for 3–5 minutes and drink without milk.",
+          "pairing": "Party Rings"
+        },
+        {
+          "id": "hound-on-the-hunt",
+          "name": "Hound on the Hunt",
+          "description": "It'll be flaming hot in your mouth with this unusually sweet bonfire blend, with smokey Lapsang Souchong caught up in the wires with aniseed and chilli — this blend will blow the roof off your mouth. A hint of caution: you'll feel the chilli burn if you oversteep it! Blended to the taste of Hound on the Hunt by Arthur Dove.",
+          "variants": [
+            {
+              "sku": "HRB-HOUND-HUNT-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 3.25
+            },
+            {
+              "sku": "HRB-HOUND-HUNT-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "HRB-HOUND-HUNT-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 13.95
+            },
+            {
+              "sku": "HRB-HOUND-ON-THE-HUNT-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
+          ],
+          "image": "images/hound-on-the-hunt.jpg",
+          "taste": "Smokey but sweet with a hot chilli kick.",
+          "ingredients": "Apple Pieces, Rosehip, Beetroot, Aniseed, Liquorice, Lapsang Souchong Black Tea, Red Peppercorns, Safflower, Sunflower Petals, Chilli, Natural Flavouring.",
+          "brew": "Boil freshly drawn water, infuse for 3 minutes and drink without milk. The longer the brew, the spicier the hit!",
+          "pairing": "Fruit Shortcake"
+        },
+        {
+          "id": "strawberry-fields-forever",
+          "name": "Strawberry Fields Forever",
+          "description": "What's in this blend? Well, strawberries obviously! But, just like the song that inspired it, there's certainly something to get hung up about. It tastes a little like a twister lolly! So, close your eyes and let this blend really take you down to the place where strawberries feel like forever. Blended to 'The Beatles' 1966 classic 'Strawberry Fields Forever'.",
+          "variants": [
+            {
+              "sku": "HRB-STRAWBERRY-FIELDS-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "HRB-STRAWBERRY-FIELDS-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 7.35
+            },
+            {
+              "sku": "HRB-STRAWBERRY-FIELDS-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 12.95
+            },
+            {
+              "sku": "HRB-STRAWBERRY-FIELDS-FOREVER-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
+          ],
+          "taste": "Fruity and bright with floral undertones.",
+          "ingredients": "Apple Pieces, Rosehip, Hibiscus, Lemon Verbena, Freeze-dried Strawberry, Lime Leaves, Mallow Flowers, Safflower, Lavender, Natural Flavouring.",
+          "brew": "Boil freshly drawn water, infuse for 5 minutes and drink without milk.",
+          "pairing": "Shortbread",
+          "image": "images/strawberry-fields-forever.jpg",
+          "rating": 5,
+          "reviews": 1
         },
         {
           "id": "raspberry-rose",
           "name": "Raspberry Rose",
-          "description": "Tart raspberry lifted with delicate rose petals.",
+          "description": "A marriage of tangy tarts and soft scents, blown raspberries and rose beds that resolves into a gently amorous white tea blend. We made this blend for our French wedding in 2023 and served it as an iced tea on the day.",
           "variants": [
-            { "sku": "HRB-RASPBERRY-ROSE-50G", "size": "50g", "price": 7.50 },
-            { "sku": "HRB-RASPBERRY-ROSE-100G", "size": "100g", "price": 13.50 },
-            { "sku": "HRB-RASPBERRY-ROSE-250G", "size": "250g", "price": 29.00 }
+            {
+              "sku": "HRB-RASPBERRY-ROSE-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 3.25
+            },
+            {
+              "sku": "HRB-RASPBERRY-ROSE-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 7.35
+            },
+            {
+              "sku": "HRB-RASPBERRY-ROSE-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 13.95
+            },
+            {
+              "sku": "HRB-RASPBERRY-ROSE-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
+          ],
+          "image": "images/raspberry-rose.jpg",
+          "taste": "Tart, floral and fruity.",
+          "brew": "Boil freshly drawn water, infuse for 3 minutes and drink without milk.",
+          "pairing": "Pink Wafer"
+        }
+      ]
+    },
+    {
+      "id": "rooibos",
+      "name": "Rooibos",
+      "meta": "5 blends · caffeine-free",
+      "image": "images/rooibos.png",
+      "products": [
+        {
+          "id": "plum-tart",
+          "name": "Plum Tart",
+          "description": "Ever thought of dipping your plums in a nice tart? Or is it better to put them in a pudding? You can tell us, we won't judge. We're the same, we love it too! We just think it works best as a tea. A cheeky rooibos blend with hints of spice and spring time fruitiness.",
+          "variants": [
+            {
+              "sku": "ROO-PLUM-TART-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "ROO-PLUM-TART-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "ROO-PLUM-TART-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 12.95
+            },
+            {
+              "sku": "ROO-PLUM-TART-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
+          ],
+          "image": "images/plum-tart.jpg",
+          "rating": 5,
+          "reviews": 1,
+          "taste": "Tart and fruity.",
+          "ingredients": "Rooibos, Elderberries, Cinnamon, Hibiscus, Apple Pieces, Rosehip, Natural Flavouring.",
+          "brew": "Boil freshly drawn water, infuse for 3–5 minutes and drink with or without milk.",
+          "pairing": "Fruit Shortie"
+        },
+        {
+          "id": "french-toast",
+          "name": "French Toast",
+          "description": "Who is this man of toast and what does he want from us? We're as stumped as Stimpy! Prefer your breakfast frenched, powdered, hot or cold? Either way, this spiced-vanilla blend is toasterific!",
+          "variants": [
+            {
+              "sku": "ROO-FRENCH-TOAST-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "ROO-FRENCH-TOAST-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "ROO-FRENCH-TOAST-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 12.95
+            },
+            {
+              "sku": "ROO-FRENCH-TOAST-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
+          ],
+          "image": "images/french-toast.jpg",
+          "rating": 5,
+          "reviews": 1,
+          "taste": "Sweet and creamy with subtle smoky undertones.",
+          "ingredients": "Rooibos, Cinnamon, Chinese Lapsang Souchong Black Tea, Natural Flavouring.",
+          "brew": "Boil freshly drawn water, infuse for 3–5 minutes and drink with (or without) milk.",
+          "pairing": "Rich Tea"
+        },
+        {
+          "id": "jaffa-cake",
+          "name": "Jaffa Cake",
+          "description": "Is it a biscuit or is it a cake? It's really quite hard to tell but either way, this orange jam centred, chocolate topped, biscuit-sized cake tastes just as great (or perhaps even better?) in a mug. So much that it'll totally eclipse everything else! Rich and creamy with subtle citrus notes.",
+          "variants": [
+            {
+              "sku": "ROO-JAFFA-CAKE-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "ROO-JAFFA-CAKE-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "ROO-JAFFA-CAKE-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 12.95
+            },
+            {
+              "sku": "ROO-JAFFA-CAKE-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
+          ],
+          "image": "images/jaffa-cake.jpg",
+          "rating": 5,
+          "reviews": 2,
+          "ingredients": "Rooibos, Apple Pieces, Rosehip, Hibiscus, Cocoa Shells, Orange Peel, Natural Flavouring.",
+          "brew": "Boil freshly drawn water, infuse for 3–5 minutes and drink with (or without) milk.",
+          "pairing": "Oh come on! Jaffa Cake!"
+        },
+        {
+          "id": "battenburg",
+          "name": "Battenberg",
+          "description": "Batten down the hatches and boil up this brew of sweet pink and yellow apricot and marzipan-flavoured Battenberg rooibos tea.",
+          "variants": [
+            {
+              "sku": "ROO-BATTENBURG-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "ROO-BATTENBURG-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "ROO-BATTENBURG-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 12.95
+            },
+            {
+              "sku": "ROO-BATTENBURG-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
+          ],
+          "image": "images/battenberg.jpg",
+          "rating": 5,
+          "reviews": 2,
+          "taste": "Cakey, fruity with nutty undertones.",
+          "ingredients": "Rooibos, Apple Pieces, Freeze-dried Apricot, Sunflower Petals, Hibiscus, Red Cornflowers, Rosehip, Orange Peel, Natural Flavouring.",
+          "brew": "Boil freshly drawn water, infuse for 3 minutes and drink with (or without) milk.",
+          "pairing": "Custard Cream"
+        },
+        {
+          "id": "rhubarb-custard",
+          "name": "Rhubarb & Custard",
+          "description": "Childhood nostalgia in a cup. A retro candy shopper's delight packed with tangy rhubarb and sweet, natural stevia.",
+          "image": "images/rhubarb-custard.jpg",
+          "taste": "Creamy and oh so sweet.",
+          "ingredients": "Rooibos, Freeze-dried Rhubarb, Stevia, Sunflower Petals, Rhubarb Pieces, Flavouring.",
+          "brew": "Boil freshly drawn water, infuse for 3 minutes and drink with (or without) milk.",
+          "pairing": "Custard Cream",
+          "variants": [
+            {
+              "sku": "ROO-RHUBARB-CUSTARD-15G",
+              "size": "15g",
+              "cups": "7 cups",
+              "price": 2.95
+            },
+            {
+              "sku": "ROO-RHUBARB-CUSTARD-65G",
+              "size": "65g",
+              "cups": "32 cups",
+              "price": 6.95
+            },
+            {
+              "sku": "ROO-RHUBARB-CUSTARD-150G",
+              "size": "150g",
+              "cups": "75 cups",
+              "price": 12.95
+            },
+            {
+              "sku": "ROO-RHUBARB-CUSTARD-TUBE",
+              "size": "65g Tube",
+              "cups": "reusable tin",
+              "price": 14.95
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "starter-kits",
+      "name": "Starter Kits",
+      "meta": "Everything you need to begin",
+      "image": "images/starter-loose-leaf.png",
+      "variantLabel": "Select kit",
+      "products": [
+        {
+          "id": "loose-leaf-starter-kit",
+          "name": "Loose Leaf Tea Starter Kit",
+          "description": "A cast iron teapot paired with a bag of our loose leaf tea — the easiest way to start brewing properly at home.",
+          "image": "images/starter-loose-leaf.png",
+          "variants": [
+            {
+              "sku": "KIT-LOOSE-LEAF",
+              "size": "Kit",
+              "cups": "teapot + tea",
+              "price": 29.95
+            }
+          ]
+        },
+        {
+          "id": "matcha-starter-kit",
+          "name": "Matcha Starter Kit",
+          "description": "Ceremonial matcha, a kraft storage tube and a hand-cut bamboo whisk — your full matcha ritual in one set.",
+          "image": "images/starter-matcha.png",
+          "variants": [
+            {
+              "sku": "KIT-MATCHA",
+              "size": "Kit",
+              "cups": "matcha + whisk",
+              "price": 25.95
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matcha",
+      "name": "Matcha",
+      "meta": "Ceremonial kit · whisk & tin",
+      "image": "images/matcha-kit.png",
+      "products": [
+        {
+          "id": "matcha-kit",
+          "name": "Matcha Kit",
+          "description": "The complete ritual: ceremonial matcha in its kraft tube paired with a hand-cut bamboo whisk — everything you need to whisk a bowl from scratch.",
+          "image": "images/matcha-kit.png",
+          "variants": [
+            {
+              "sku": "MAT-KIT",
+              "size": "Kit",
+              "cups": "whisk + matcha tin",
+              "price": 25.95
+            }
+          ]
+        },
+        {
+          "id": "matcha",
+          "name": "Matcha",
+          "description": "Stone-ground ceremonial-grade green tea powder — vivid, smooth and naturally energising. Whisk with hot water or steamed milk.",
+          "image": "images/matcha.png",
+          "variants": [
+            {
+              "sku": "MAT-TIN",
+              "size": "30g",
+              "cups": "ceremonial grade",
+              "price": 17.95
+            }
+          ]
+        },
+        {
+          "id": "matcha-whisk",
+          "name": "Matcha Whisk",
+          "description": "A traditional chasen, hand-carved from a single piece of bamboo, for a silky, even froth every time.",
+          "image": "images/matcha-whisk.png",
+          "variants": [
+            {
+              "sku": "MAT-WHISK",
+              "size": "Bamboo chasen",
+              "cups": "handcrafted",
+              "price": 9.95
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "accessories",
+      "name": "Accessories",
+      "meta": "Brew it like we do",
+      "variantLabel": "Select option",
+      "products": [
+        {
+          "id": "bucket-brewer",
+          "name": "Bucket Brewer Loose Leaf Tea Infuser",
+          "description": "A loose leaf tea infuser that easily fits in most mugs. Actual infuser style may slightly vary from the image; our infusers currently do not come with lids.",
+          "variants": [
+            {
+              "sku": "ACC-BUCKET-BREWER",
+              "size": "Each",
+              "price": 8.5
+            }
+          ],
+          "image": "images/bucket-brewer.jpg"
+        },
+        {
+          "id": "cast-iron-teapot",
+          "name": "Japanese Cast Iron Teapot",
+          "description": "A white and gold 500ml solid cast iron teapot with an enamelled interior. We use these at Biscuit & Brew, so we know they keep your tea warmer for longer.",
+          "variants": [
+            {
+              "sku": "ACC-CAST-IRON-TEAPOT",
+              "size": "Each",
+              "price": 25.0
+            }
+          ],
+          "image": "images/cast-iron-teapot.jpg"
+        },
+        {
+          "id": "tea-tube",
+          "name": "Refillable Tea Tube 65g",
+          "description": "Reusable black and gold tea tube holding 65g of loose leaf tea. Perfect for storing your favourite blends fresh, travelling, or gifting — the elegant design keeps tea airtight and protected.",
+          "image": "images/tea-tube.jpg",
+          "variants": [
+            {
+              "sku": "ACC-TEA-TUBE",
+              "size": "65g tube",
+              "cups": "reusable",
+              "price": 2.0
+            }
+          ]
+        }
+      ],
+      "image": "images/accessories.png"
+    },
+    {
+      "id": "vouchers",
+      "name": "Gifts",
+      "meta": "From £10 to £100",
+      "image": "images/vouchers.png",
+      "variantLabel": "Select amount",
+      "products": [
+        {
+          "id": "luxury-scone-box",
+          "name": "Biscuit & Brew Luxury Scone Box",
+          "description": "A special selection of scones made in house at Biscuit & Brew. We change our scone flavours every month depending on the season and our mood! Shipped next day delivery with Royal Mail Tracked 24.",
+          "image": "images/scone-1.jpg",
+          "images": [
+            "images/scone-1.jpg",
+            "images/scone-2.jpg",
+            "images/scone-3.jpg"
+          ],
+          "variants": [
+            {
+              "sku": "GIFT-SCONE-BOX",
+              "size": "Scone Box",
+              "cups": "",
+              "price": 20.0
+            }
+          ]
+        },
+        {
+          "id": "tea-taster-box",
+          "name": "Tea Taster Bundle Box",
+          "description": "Perfect for finding your favourites! Choose any 10 blends from our current range of loose leaf teas and fruit infusions — just pick your packs and we'll do the rest. Includes 10 × 15g packs.",
+          "image": "images/tea-taster-box.jpg",
+          "variants": [
+            {
+              "sku": "GIFT-TASTER-BOX",
+              "size": "10 × 15g packs",
+              "cups": "choose 10 blends",
+              "price": 20.0
+            }
+          ]
+        },
+        {
+          "id": "loose-leaf-bundle",
+          "name": "Loose Leaf Tea Bundle",
+          "description": "Build your perfect tea collection with our custom 4 × 65g bundle. Choose any four blends from our full range — mix black teas, fruit infusions, herbals or matcha.",
+          "image": "images/loose-leaf-bundle.jpg",
+          "variants": [
+            {
+              "sku": "GIFT-LL-BUNDLE",
+              "size": "4 × 65g",
+              "cups": "choose 4 blends",
+              "price": 20.0
+            }
+          ]
+        },
+        {
+          "id": "studio-chocolate",
+          "name": "Biscuit & Brew / Studio Chocolate Collaboration",
+          "description": "A chocolate-digestive flavoured milk chocolate bar, made in collaboration with Studio Chocolate using our signature Biscuit Brew black tea.",
+          "image": "images/studio-chocolate.jpg",
+          "variants": [
+            {
+              "sku": "GIFT-STUDIO-CHOC",
+              "size": "Chocolate bar",
+              "cups": "made with Biscuit Brew",
+              "price": 7.95
+            }
+          ]
+        },
+        {
+          "id": "strawberry-jam",
+          "name": "Strawberry Jam",
+          "description": "Our homemade strawberry jam, crafted to capture the fresh, sweet flavour of ripe strawberries. Perfect on toast or in desserts — a delightful taste of summer all year round.",
+          "image": "images/strawberry-jam.jpg",
+          "variants": [
+            {
+              "sku": "GIFT-STRAWBERRY-JAM",
+              "size": "Jar",
+              "cups": "homemade",
+              "price": 4.25
+            }
+          ]
+        },
+        {
+          "id": "essentially-giftset",
+          "name": "'It's Essentially Loose Leaf' Tea Gift Set",
+          "description": "A good place to start with loose leaf tea, or a good excuse to restock. Includes 30g of our traditional English Breakfast and 30g of Biscuit Brew — our chocolate-digestive signature blend.",
+          "image": "images/essentially-giftset.jpg",
+          "variants": [
+            {
+              "sku": "GIFT-ESSENTIALLY-SET",
+              "size": "Gift Set",
+              "cups": "2 × 30g blends",
+              "price": 9.95
+            }
+          ]
+        },
+        {
+          "id": "gift-voucher",
+          "name": "Gift Voucher",
+          "description": "A gold-foiled gift voucher, posted in a forest-green envelope and sealed with a gold ribbon — to spend on loose leaf tea, gifts or a table at the tea house.",
+          "variants": [
+            {
+              "sku": "VCH-10",
+              "size": "£10",
+              "price": 10.0
+            },
+            {
+              "sku": "VCH-25",
+              "size": "£25",
+              "price": 25.0
+            },
+            {
+              "sku": "VCH-50",
+              "size": "£50",
+              "price": 50.0
+            },
+            {
+              "sku": "VCH-100",
+              "size": "£100",
+              "price": 100.0
+            }
+          ],
+          "image": "images/vouchers.png"
+        },
+        {
+          "id": "afternoon-tea-voucher",
+          "name": "Afternoon Tea Experience Voucher",
+          "description": "Treat someone to the full afternoon tea — scones, finger sandwiches, cake and a pot of loose leaf tea in the Nottingham lounge.",
+          "variants": [
+            {
+              "sku": "VCH-AT",
+              "size": "Per person",
+              "price": 30.0
+            }
+          ]
+        },
+        {
+          "id": "cream-tea-voucher",
+          "name": "Cream Tea Experience Voucher",
+          "description": "Warm scones with clotted cream, jam and a pot of tea — a cosy afternoon treat.",
+          "variants": [
+            {
+              "sku": "VCH-CT",
+              "size": "Per person",
+              "price": 15.0
+            }
+          ]
+        },
+        {
+          "id": "tea-tasting-voucher",
+          "name": "Tea Tasting Event Voucher",
+          "description": "A guided tasting flight through our handcrafted blends, hosted at the tea house.",
+          "variants": [
+            {
+              "sku": "VCH-TT",
+              "size": "Per ticket",
+              "price": 35.0
+            }
           ]
         }
       ]
