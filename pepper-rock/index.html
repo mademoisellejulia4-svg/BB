@@ -580,528 +580,88 @@
   const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
   const ramp = (p,a,b) => clamp((p-a)/(b-a), 0, 1);
   const band = (p,a,b,c,d) => Math.min(ramp(p,a,b), 1-ramp(p,c,d));
-  const lerp = (a,b,t) => a + (b-a)*t;
 
-  /* seeded PRNG so droplet fields are stable across reloads/resizes */
-  function mulberry32(seed){
-    return function(){
-      seed |= 0; seed = (seed + 0x6D2B79F5) | 0;
-      let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
-      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-    };
-  }
-
+  /* seeded PRNG (unused placeholder kept out of the bundle) */
   /* =====================================================================
-     SCROLL-DRIVEN CANVAS SCENE — a procedurally drawn rocks glass: pour,
-     splash, ice drop, garnish, condensation droplets. No video asset.
+     SCROLL-DRIVEN VIDEO — extract frames via Canvas at load, map to scroll.
+     Video.mp4: a real sugar-rimmed coupe glass — strawberry daiquiri pour,
+     then a gloved hand placing the strawberry garnish.
      ===================================================================== */
   const canvas = $('#sceneCanvas');
-  const ctx = canvas.getContext('2d');
-  let dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const ctx = canvas.getContext('2d', { alpha:false });
+  const frames = [];
+
+  const TARGET_FPS = 24;
+  const MAX_FRAMES = 160;
+  const MAX_CAP_W  = 960;
+
+  const loaderFill = $('#loaderFill');
+  function setLoad(p){ loaderFill.style.width = (clamp(p,0,1)*100).toFixed(1) + '%'; }
+
+  function seekTo(video, t){
+    return new Promise((res) => {
+      let done = false;
+      const ok = () => { if(done) return; done = true; video.removeEventListener('seeked', ok); res(); };
+      video.addEventListener('seeked', ok);
+      try { video.currentTime = t; } catch(e){ ok(); }
+      setTimeout(ok, 2500); // watchdog so extraction never stalls
+    });
+  }
+
+  async function extractFrames(video){
+    const vw = video.videoWidth || 1080;
+    const vh = video.videoHeight || 1920;
+    const ow = Math.min(vw, MAX_CAP_W);
+    const oh = Math.round(ow * (vh / vw));
+
+    const off = document.createElement('canvas');
+    off.width = ow; off.height = oh;
+    const octx = off.getContext('2d', { alpha:false });
+
+    const dur = video.duration || 1;
+    const count = Math.max(2, Math.min(Math.round(dur * TARGET_FPS), MAX_FRAMES));
+
+    for(let i=0;i<count;i++){
+      const t = (i/(count-1)) * Math.max(0, dur - 0.03);
+      await seekTo(video, t);
+      try {
+        octx.drawImage(video, 0, 0, ow, oh);
+        const bmp = await createImageBitmap(off);
+        frames.push(bmp);
+      } catch(e){ /* skip a bad frame */ }
+      setLoad((i+1)/count);
+    }
+  }
 
   function sizeCanvas(){
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width  = Math.round(window.innerWidth  * dpr);
     canvas.height = Math.round(window.innerHeight * dpr);
   }
 
-  /* ---- seeded decorative fields, built once per canvas size ---- */
-  let FX = null;
-  function buildFX(cw, ch){
-    const rnd = mulberry32(20260702);
-    const rocks = [];
-    for(let i=0;i<6;i++){
-      rocks.push({
-        x: rnd()*cw, y: ch*(0.15+rnd()*0.6), r: ch*(0.18+rnd()*0.22),
-        a: 0.05 + rnd()*0.05
-      });
-    }
-    const pourSplash = [];
-    for(let i=0;i<12;i++){
-      pourSplash.push({
-        ang: lerp(-Math.PI*0.82, -Math.PI*0.18, rnd()),
-        spd: 0.5 + rnd()*0.9,
-        size: 1.6 + rnd()*3.0,
-        speedT: 0.7 + rnd()*1.1,
-        phase: rnd()
-      });
-    }
-    const iceBurst = [];
-    for(let i=0;i<18;i++){
-      iceBurst.push({
-        ang: rnd()*Math.PI*2,
-        spd: 0.6 + rnd()*1.0,
-        size: 1.6 + rnd()*3.2,
-        drop: 0.4 + rnd()*0.6
-      });
-    }
-    const garnishBurst = [];
-    for(let i=0;i<9;i++){
-      garnishBurst.push({
-        ang: lerp(-Math.PI*0.9, -Math.PI*0.1, rnd()),
-        spd: 0.35 + rnd()*0.55,
-        size: 1.2 + rnd()*2.2
-      });
-    }
-    const condensation = [];
-    for(let i=0;i<10;i++){
-      condensation.push({
-        fx: 0.12 + rnd()*0.76,     // fraction across glass width
-        fy0: 0.14 + rnd()*0.5,     // start fraction down the glass
-        len: 0.05 + rnd()*0.09,
-        w: 1.6 + rnd()*2.0,
-        appearAt: 0.63 + rnd()*0.16,   // appear after the garnish stage, in p-space
-        speed: 0.08 + rnd()*0.12
-      });
-    }
-    const bubbles = [];
-    for(let i=0;i<7;i++){
-      bubbles.push({ fx: 0.15+rnd()*0.7, size: 1+rnd()*1.8, spd: 0.15+rnd()*0.25, phase: rnd() });
-    }
-    FX = { rocks, pourSplash, iceBurst, garnishBurst, condensation, bubbles };
-  }
-
-  /* ---- rounded-polygon path helper (arcTo based, handles any quad) ---- */
-  function roundedPoly(c, pts, radii){
-    const n = pts.length;
-    c.beginPath();
-    c.moveTo((pts[n-1][0]+pts[0][0])/2, (pts[n-1][1]+pts[0][1])/2);
-    for(let i=0;i<n;i++){
-      const cur = pts[i], next = pts[(i+1)%n];
-      c.arcTo(cur[0], cur[1], next[0], next[1], Math.max(0.01, radii[i]));
-    }
-    c.closePath();
-  }
-
-  function glassGeometry(cw, ch){
-    const glassH = Math.min(ch*0.30, cw*0.62, 480*dpr);
-    const glassW = glassH*0.60;
-    const cx = cw*0.5;
-    const botY = ch*0.635 + glassH*0.02;
-    const topY = botY - glassH;
-    const topW = glassW, botW = glassW*0.86;
-    const r = glassW*0.07;
-    const pts = [[cx-topW/2, topY],[cx+topW/2, topY],[cx+botW/2, botY],[cx-botW/2, botY]];
-    const radii = [r*0.6, r*0.6, r*1.6, r*1.6];
-    const ellipseRatio = 0.19; // vertical squash for the "viewed from slightly above" rim/base/liquid ellipses
-    return {
-      cx, topY, botY, topW, botW, glassW, glassH, pts, radii,
-      wall: glassW*0.055,
-      topRy: topW*0.5*ellipseRatio,
-      botRy: botW*0.5*ellipseRatio*0.85,
-      ellipseRatio,
-      pivotY: (topY+botY)/2
-    };
-  }
-
-  /* elliptical rim: outer glass edge + a thin inner ring for wall thickness */
-  function drawRimEllipse(c, cx, y, rx, ry, wall, opacity){
-    c.beginPath();
-    c.ellipse(cx, y, rx, ry, 0, 0, Math.PI*2);
-    const rg = c.createLinearGradient(cx-rx, y, cx+rx, y);
-    rg.addColorStop(0, 'rgba(255,255,255,'+(0.10*opacity).toFixed(3)+')');
-    rg.addColorStop(0.14, 'rgba(255,255,255,'+(0.42*opacity).toFixed(3)+')');
-    rg.addColorStop(0.28, 'rgba(255,255,255,'+(0.08*opacity).toFixed(3)+')');
-    rg.addColorStop(0.85, 'rgba(255,255,255,'+(0.05*opacity).toFixed(3)+')');
-    rg.addColorStop(1, 'rgba(255,255,255,'+(0.20*opacity).toFixed(3)+')');
-    c.fillStyle = rg;
-    c.fill();
-    c.strokeStyle = 'rgba(255,255,255,'+(0.38*opacity).toFixed(3)+')';
-    c.lineWidth = Math.max(1, dpr*1.1);
-    c.stroke();
-    const wrx = Math.max(2, rx - wall*1.3), wry = Math.max(1, ry*(wrx/rx));
-    c.beginPath();
-    c.ellipse(cx, y, wrx, wry, 0, 0, Math.PI*2);
-    c.strokeStyle = 'rgba(255,255,255,'+(0.16*opacity).toFixed(3)+')';
-    c.lineWidth = Math.max(1, dpr*0.7);
-    c.stroke();
-  }
-
-  /* isometric ice cube: three shaded faces read as a real 3D block */
-  function drawIceCube(c, cx, cy, s, rot, alpha){
-    if(alpha <= 0.01) return;
-    c.save();
-    c.globalAlpha = alpha;
-    c.translate(cx, cy);
-    c.rotate(rot);
-    const hw = s*0.5, hh = s*0.30, H = s*0.58;
-    const N = [0, -hh], E = [hw, 0], S = [0, hh], W = [-hw, 0];
-    const drop = (pt) => [pt[0], pt[1]+H];
-
-    /* front-left face (W,S -> down) */
-    c.beginPath();
-    c.moveTo(W[0],W[1]); c.lineTo(S[0],S[1]);
-    c.lineTo(drop(S)[0],drop(S)[1]); c.lineTo(drop(W)[0],drop(W)[1]);
-    c.closePath();
-    let g = c.createLinearGradient(W[0],0,S[0],0);
-    g.addColorStop(0,'rgba(200,225,235,0.20)');
-    g.addColorStop(1,'rgba(220,238,244,0.34)');
-    c.fillStyle = g; c.fill();
-    c.strokeStyle='rgba(255,255,255,0.28)'; c.lineWidth=Math.max(1,dpr*0.7); c.stroke();
-
-    /* front-right face (S,E -> down) */
-    c.beginPath();
-    c.moveTo(S[0],S[1]); c.lineTo(E[0],E[1]);
-    c.lineTo(drop(E)[0],drop(E)[1]); c.lineTo(drop(S)[0],drop(S)[1]);
-    c.closePath();
-    g = c.createLinearGradient(S[0],0,E[0],0);
-    g.addColorStop(0,'rgba(170,200,212,0.30)');
-    g.addColorStop(1,'rgba(150,185,200,0.16)');
-    c.fillStyle = g; c.fill();
-    c.strokeStyle='rgba(255,255,255,0.18)'; c.lineWidth=Math.max(1,dpr*0.7); c.stroke();
-
-    /* top face (rhombus N,E,S,W) — brightest, sells the cube */
-    c.beginPath();
-    c.moveTo(N[0],N[1]); c.lineTo(E[0],E[1]); c.lineTo(S[0],S[1]); c.lineTo(W[0],W[1]);
-    c.closePath();
-    g = c.createLinearGradient(N[0],N[1],S[0],S[1]);
-    g.addColorStop(0,'rgba(255,255,255,0.62)');
-    g.addColorStop(1,'rgba(225,242,248,0.38)');
-    c.fillStyle = g; c.fill();
-    c.strokeStyle='rgba(255,255,255,0.4)'; c.lineWidth=Math.max(1,dpr*0.8); c.stroke();
-
-    /* a couple of internal refraction cracks */
-    c.strokeStyle='rgba(255,255,255,0.22)'; c.lineWidth=Math.max(1,dpr*0.6);
-    c.beginPath(); c.moveTo(W[0]+hw*0.3, W[1]+H*0.3); c.lineTo(W[0]+hw*0.7, W[1]+H*0.7); c.stroke();
-    c.beginPath(); c.moveTo(E[0]-hw*0.25, E[1]+H*0.4); c.lineTo(E[0]-hw*0.6, E[1]+H*0.75); c.stroke();
-
-    c.restore();
-  }
-
-  function drawScene(p, cw, ch, tSec){
-    if(!FX) buildFX(cw, ch);
-    const G = glassGeometry(cw, ch);
-
-    /* ---------- background ---------- */
+  function drawFrame(idx){
+    const img = frames[idx];
+    const cw = canvas.width, ch = canvas.height;
     ctx.fillStyle = '#0a0806';
     ctx.fillRect(0,0,cw,ch);
+    if(!img) return;
+    const iw = img.width, ih = img.height;
+    const scale = Math.max(cw/iw, ch/ih); // cover
+    const w = iw*scale, h = ih*scale;
+    ctx.drawImage(img, (cw-w)/2, (ch-h)/2, w, h);
+  }
 
-    FX.rocks.forEach(r => {
-      const g = ctx.createRadialGradient(r.x, r.y, 0, r.x, r.y, r.r);
-      g.addColorStop(0, 'rgba(120,80,50,'+r.a+')');
-      g.addColorStop(1, 'rgba(120,80,50,0)');
-      ctx.fillStyle = g;
-      ctx.beginPath(); ctx.arc(r.x, r.y, r.r, 0, Math.PI*2); ctx.fill();
-    });
-
-    const glowStrength = 0.10 + 0.22*ramp(p,0.02,0.30) - 0.05*ramp(p,0.85,1.0);
-    const glow = ctx.createRadialGradient(G.cx, G.topY + G.glassH*0.5, 0, G.cx, G.topY+G.glassH*0.5, G.glassH*2.6);
-    glow.addColorStop(0, 'rgba(var(--x),0)'.replace('var(--x)','209,122,61').replace('0)', clamp(glowStrength,0,1)+')'));
-    glow.addColorStop(1, 'rgba(209,122,61,0)');
-    ctx.fillStyle = glow;
-    ctx.fillRect(0,0,cw,ch);
-
-    const vig = ctx.createRadialGradient(cw*0.5, ch*0.46, ch*0.2, cw*0.5, ch*0.5, ch*0.75);
-    vig.addColorStop(0, 'rgba(0,0,0,0)');
-    vig.addColorStop(1, 'rgba(0,0,0,0.55)');
-    ctx.fillStyle = vig;
-    ctx.fillRect(0,0,cw,ch);
-
-    /* ---------- outro pull-back ---------- */
-    const outro = ramp(p, 0.84, 1.0);
-    const sceneScale = 1 - outro*0.08;
-    const sceneShiftY = outro*ch*0.05;
-    const sceneAlpha = 1 - outro*0.55;
-    ctx.save();
-    ctx.globalAlpha = sceneAlpha;
-    ctx.translate(G.cx, G.botY);
-    ctx.scale(sceneScale, sceneScale);
-    ctx.translate(-G.cx, -G.botY - sceneShiftY);
-
-    /* ---------- contact shadow (stays grounded — doesn't tilt with the glass) ---------- */
-    const sh = ctx.createRadialGradient(G.cx, G.botY+G.glassH*0.05, 0, G.cx, G.botY+G.glassH*0.05, G.botW*0.9);
-    sh.addColorStop(0, 'rgba(0,0,0,0.45)');
-    sh.addColorStop(1, 'rgba(0,0,0,0)');
-    ctx.fillStyle = sh;
-    ctx.beginPath(); ctx.ellipse(G.cx, G.botY+G.glassH*0.04, G.botW*0.85, G.glassH*0.07, 0, 0, Math.PI*2); ctx.fill();
-
-    /* a permanent, subtle tilt makes the glass read as photographed, not diagrammed */
-    const tilt = -0.052 - outro*0.02;
-    ctx.save();
-    ctx.translate(G.cx, G.pivotY);
-    ctx.rotate(tilt);
-    ctx.translate(-G.cx, -G.pivotY);
-
-    /* ---------- stage progress ---------- */
-    const pourP = ramp(p, 0.06, 0.32);
-    const iceP  = ramp(p, 0.34, 0.46);
-    const iceLandT = ramp(iceP, 0.78, 1.0);
-    const garnP = ramp(p, 0.48, 0.60);
-    const garnLandT = ramp(garnP, 0.7, 1.0);
-
-    /* ---------- liquid ---------- */
-    const liquidFrac = pourP * 0.74 + (iceP>0 ? iceLandT*0.02 : 0);
-    const interiorTopY = G.topY + G.wall*1.4;
-    const interiorBotY = G.botY - G.wall*1.2;
-    const liquidTopY = lerp(interiorBotY, interiorTopY, liquidFrac);
-
-    if(pourP > 0.001){
-      const liquidWAt = lerp(G.botW, G.topW, (liquidTopY-G.botY)/(G.topY-G.botY));
-      const liquidRy = G.topRy * (liquidWAt/G.topW);
-
-      ctx.save();
-      roundedPoly(ctx, G.pts, G.radii);
-      ctx.clip();
-      ctx.beginPath();
-      ctx.rect(G.cx-G.glassW, liquidTopY, G.glassW*2, ch);
-      ctx.clip();
-
-      const lg = ctx.createLinearGradient(0, liquidTopY, 0, interiorBotY);
-      lg.addColorStop(0, '#e8964f');
-      lg.addColorStop(0.4, '#c9702f');
-      lg.addColorStop(1, '#7a3312');
-      ctx.fillStyle = lg;
-      ctx.beginPath();
-      const waveAmp = G.glassH*0.006 * (1 - outro);
-      ctx.moveTo(G.cx-G.glassW, liquidTopY);
-      for(let x=-G.glassW; x<=G.glassW; x+=6){
-        const yy = liquidTopY + Math.sin((x*0.04) + tSec*1.6)*waveAmp;
-        ctx.lineTo(G.cx+x, yy);
-      }
-      ctx.lineTo(G.cx+G.glassW, ch);
-      ctx.lineTo(G.cx-G.glassW, ch);
-      ctx.closePath();
-      ctx.fill();
-
-      /* ambient bubbles */
-      FX.bubbles.forEach(b => {
-        const bx = G.cx - G.glassW*0.5 + b.fx*G.glassW;
-        const cyc = ((tSec*b.spd + b.phase) % 1);
-        const by = lerp(interiorBotY, liquidTopY, cyc);
-        if(by < interiorBotY && by > liquidTopY - 4){
-          ctx.globalAlpha = 0.35*(1-cyc);
-          ctx.fillStyle = '#ffe0b0';
-          ctx.beginPath(); ctx.arc(bx, by, b.size*dpr, 0, Math.PI*2); ctx.fill();
-          ctx.globalAlpha = 1;
-        }
-      });
-      ctx.restore();
-
-      /* liquid surface as an ellipse (viewed slightly from above) — the single
-         biggest cue that this is a 3D vessel and not a flat silhouette */
-      ctx.save();
-      roundedPoly(ctx, G.pts, G.radii);
-      ctx.clip();
-      ctx.beginPath();
-      ctx.ellipse(G.cx, liquidTopY, liquidWAt/2, liquidRy, 0, 0, Math.PI*2);
-      const topG = ctx.createRadialGradient(G.cx-liquidWAt*0.12, liquidTopY-liquidRy*0.3, 1, G.cx, liquidTopY, liquidWAt*0.55);
-      topG.addColorStop(0, '#ffcf8f');
-      topG.addColorStop(0.45, '#e8964f');
-      topG.addColorStop(1, '#a85623');
-      ctx.fillStyle = topG;
-      ctx.fill();
-      ctx.strokeStyle = 'rgba(255,230,190,0.5)';
-      ctx.lineWidth = Math.max(1, dpr*0.8);
-      ctx.stroke();
-      ctx.restore();
+  /* render loop: smooth toward scroll target, redraw only on frame change */
+  let targetP = 0, displayP = 0, lastIdx = -1;
+  function renderLoop(){
+    displayP += (targetP - displayP) * 0.14;
+    if(Math.abs(targetP - displayP) < 0.0005) displayP = targetP;
+    const n = frames.length;
+    if(n){
+      const idx = clamp(Math.round(displayP * (n-1)), 0, n-1);
+      if(idx !== lastIdx){ drawFrame(idx); lastIdx = idx; }
     }
-
-    /* ---------- pour stream + splash ---------- */
-    const streamOn = pourP > 0.01 && pourP < 0.92;
-    if(streamOn){
-      const streamAlpha = ramp(pourP,0,0.06) * (1-ramp(pourP,0.82,0.94));
-      const streamX = G.cx + Math.sin(tSec*3.0)*G.glassW*0.02;
-      ctx.globalAlpha = streamAlpha;
-      const sg = ctx.createLinearGradient(streamX,0,streamX,liquidTopY);
-      sg.addColorStop(0,'rgba(230,150,70,0.05)');
-      sg.addColorStop(1,'rgba(232,150,79,0.85)');
-      ctx.fillStyle = sg;
-      const sw = G.glassW*0.045;
-      ctx.beginPath();
-      ctx.moveTo(streamX-sw/2, 0);
-      ctx.lineTo(streamX+sw/2, 0);
-      ctx.lineTo(streamX+sw*0.35, liquidTopY);
-      ctx.lineTo(streamX-sw*0.35, liquidTopY);
-      ctx.closePath(); ctx.fill();
-      ctx.globalAlpha = 1;
-
-      /* splash spray at impact point */
-      FX.pourSplash.forEach(d => {
-        const t = ((tSec*d.speedT + d.phase) % 1);
-        const dist = d.spd * G.glassH * 0.22 * Math.sin(t*Math.PI);
-        const dx = Math.cos(d.ang)*dist;
-        const dy = Math.sin(d.ang)*dist;
-        const a = streamAlpha * (1-t) * 0.9;
-        if(a <= 0.01) return;
-        ctx.globalAlpha = a;
-        ctx.fillStyle = '#f0a35c';
-        ctx.beginPath();
-        ctx.arc(streamX+dx, liquidTopY+dy, d.size*dpr*(1-t*0.4), 0, Math.PI*2);
-        ctx.fill();
-        ctx.globalAlpha = 1;
-      });
-    }
-
-    /* ---------- ice cube ---------- */
-    if(iceP > 0.001){
-      const fallT = ramp(iceP, 0, 0.78);
-      const size = G.glassW*0.30;
-      const startY = interiorTopY - G.glassH*0.9;
-      const landY = liquidTopY - size*0.35;
-      const iy = iceLandT>0 ? lerp(landY, landY+Math.sin(tSec*4)*size*0.03, 1) : lerp(startY, landY, fallT);
-      const rot = lerp(-0.5, 0.06, fallT);
-
-      ctx.save();
-      roundedPoly(ctx, G.pts, G.radii);
-      ctx.clip();
-      drawIceCube(ctx, G.cx, iy, size, rot, 1);
-      ctx.restore();
-
-      /* splash burst on landing */
-      if(iceLandT > 0.001 && iceLandT < 1){
-        const bt = iceLandT;
-        FX.iceBurst.forEach(d => {
-          const dist = d.spd * G.glassH * 0.5 * Math.sin(bt*Math.PI*0.9);
-          const dx = Math.cos(d.ang)*dist;
-          const dy = Math.sin(d.ang)*dist*0.6 - dist*d.drop*0.3;
-          const a = (1-bt)*0.85;
-          if(a<=0.01) return;
-          ctx.globalAlpha = a;
-          ctx.fillStyle = '#f3b378';
-          ctx.beginPath();
-          ctx.arc(G.cx+dx, landY+dy, d.size*dpr, 0, Math.PI*2);
-          ctx.fill();
-          ctx.globalAlpha = 1;
-        });
-      }
-    }
-
-    /* ---------- garnish: orange twist ---------- */
-    if(garnP > 0.001){
-      const fallT = ramp(garnP, 0, 0.7);
-      const restY = liquidTopY - G.glassH*0.05;
-      const startY = interiorTopY - G.glassH*0.7;
-      const gy = lerp(startY, restY, fallT);
-      const gx = G.cx + G.glassW*0.22;
-      const rot = lerp(-1.2, -0.25, fallT) + (garnLandT>0? Math.sin(tSec*2)*0.02:0);
-
-      ctx.save();
-      ctx.translate(gx, gy);
-      ctx.rotate(rot);
-      ctx.globalAlpha = ramp(garnP,0,0.08);
-      const og = ctx.createLinearGradient(-14*dpr,0,14*dpr,0);
-      og.addColorStop(0,'#e8862f');
-      og.addColorStop(1,'#f5b04a');
-      ctx.strokeStyle = og;
-      ctx.lineWidth = Math.max(2, G.glassW*0.028);
-      ctx.lineCap = 'round';
-      ctx.beginPath();
-      ctx.moveTo(-16*dpr, -6*dpr);
-      ctx.quadraticCurveTo(0, -22*dpr, 16*dpr, -2*dpr);
-      ctx.quadraticCurveTo(22*dpr, 8*dpr, 8*dpr, 16*dpr);
-      ctx.stroke();
-      ctx.globalAlpha = 1;
-      ctx.restore();
-
-      if(garnLandT > 0.001 && garnLandT < 1){
-        const bt = garnLandT;
-        FX.garnishBurst.forEach(d => {
-          const dist = d.spd * G.glassH * 0.22 * Math.sin(bt*Math.PI);
-          const dx = Math.cos(d.ang)*dist, dy = Math.sin(d.ang)*dist;
-          const a = (1-bt)*0.7;
-          if(a<=0.01) return;
-          ctx.globalAlpha = a;
-          ctx.fillStyle = '#f0a35c';
-          ctx.beginPath(); ctx.arc(gx+dx, restY+dy, d.size*dpr, 0, Math.PI*2); ctx.fill();
-          ctx.globalAlpha = 1;
-        });
-      }
-    }
-
-    /* ---------- glass body (drawn over liquid edges, under condensation) ---------- */
-    roundedPoly(ctx, G.pts, G.radii);
-    const glassFill = ctx.createLinearGradient(G.cx-G.glassW/2,0,G.cx+G.glassW/2,0);
-    glassFill.addColorStop(0,   'rgba(255,255,255,0.07)');
-    glassFill.addColorStop(0.10,'rgba(255,255,255,0.40)');
-    glassFill.addColorStop(0.16,'rgba(255,255,255,0.14)');
-    glassFill.addColorStop(0.30,'rgba(255,255,255,0.04)');
-    glassFill.addColorStop(0.72,'rgba(255,255,255,0.02)');
-    glassFill.addColorStop(0.88,'rgba(255,255,255,0.10)');
-    glassFill.addColorStop(1,   'rgba(255,255,255,0.20)');
-    ctx.fillStyle = glassFill;
-    ctx.fill();
-    ctx.strokeStyle = 'rgba(255,255,255,0.28)';
-    ctx.lineWidth = Math.max(1, dpr*1.1);
-    ctx.stroke();
-
-    /* faceted crystal cut-lines */
-    ctx.save();
-    roundedPoly(ctx, G.pts, G.radii);
-    ctx.clip();
-    ctx.strokeStyle = 'rgba(255,255,255,0.10)';
-    ctx.lineWidth = Math.max(1, dpr*0.8);
-    const cuts = 5;
-    for(let i=1;i<cuts;i++){
-      const fx = i/cuts;
-      const xTop = lerp(G.pts[0][0], G.pts[1][0], fx);
-      const xBot = lerp(G.pts[3][0], G.pts[2][0], fx) + Math.sin(fx*8)*G.glassW*0.02;
-      ctx.beginPath();
-      ctx.moveTo(xTop, G.topY);
-      ctx.lineTo(xBot, G.botY);
-      ctx.stroke();
-    }
-    ctx.restore();
-
-    /* base: soft curved arc suggesting the thick glass foot */
-    ctx.save();
-    roundedPoly(ctx, G.pts, G.radii);
-    ctx.clip();
-    ctx.beginPath();
-    ctx.ellipse(G.cx, G.botY - G.botRy*0.3, G.botW/2*0.94, G.botRy, 0, 0, Math.PI);
-    ctx.strokeStyle = 'rgba(255,255,255,0.14)';
-    ctx.lineWidth = Math.max(1, dpr*0.9);
-    ctx.stroke();
-    ctx.restore();
-
-    /* rim: the full ellipse at the glass opening — the single biggest 3D cue */
-    drawRimEllipse(ctx, G.cx, G.topY, G.topW/2, G.topRy, G.wall, 1);
-
-    /* ---------- condensation droplets on exterior ---------- */
-    ctx.save();
-    roundedPoly(ctx, G.pts, G.radii);
-    ctx.clip();
-    FX.condensation.forEach(d => {
-      const local = ramp(p, d.appearAt, d.appearAt+0.05);
-      if(local <= 0) return;
-      const slide = ramp(p, d.appearAt, 1.0) * d.speed;
-      const dx = G.pts[0][0] + d.fx*(G.pts[1][0]-G.pts[0][0]);
-      const dy0 = G.topY + d.fy0*G.glassH;
-      const dy = Math.min(G.botY - G.wall, dy0 + slide*G.glassH*1.4);
-      const len = d.len*G.glassH*(0.6+local*0.4);
-      ctx.globalAlpha = 0.5*local;
-      const dg = ctx.createLinearGradient(dx, dy-len, dx, dy+d.w*dpr*2);
-      dg.addColorStop(0,'rgba(255,255,255,0)');
-      dg.addColorStop(0.7,'rgba(255,255,255,0.55)');
-      dg.addColorStop(1,'rgba(255,255,255,0.75)');
-      ctx.strokeStyle = dg;
-      ctx.lineWidth = d.w*dpr;
-      ctx.lineCap = 'round';
-      ctx.beginPath(); ctx.moveTo(dx, dy-len); ctx.lineTo(dx, dy); ctx.stroke();
-      ctx.beginPath(); ctx.fillStyle = 'rgba(255,255,255,0.8)';
-      ctx.arc(dx, dy+d.w*dpr*0.6, d.w*dpr*0.9, 0, Math.PI*2); ctx.fill();
-      ctx.globalAlpha = 1;
-    });
-    ctx.restore();
-
-    /* ---------- rim light sweep ---------- */
-    const shineP = ramp(p, 0.60, 0.80);
-    if(shineP > 0){
-      ctx.save();
-      roundedPoly(ctx, G.pts, G.radii);
-      ctx.clip();
-      const sx = lerp(G.pts[0][0]-40*dpr, G.pts[1][0]+40*dpr, shineP);
-      const shineGrad = ctx.createLinearGradient(sx-30*dpr,0,sx+30*dpr,0);
-      shineGrad.addColorStop(0,'rgba(255,255,255,0)');
-      shineGrad.addColorStop(0.5,'rgba(255,235,210,0.28)');
-      shineGrad.addColorStop(1,'rgba(255,255,255,0)');
-      ctx.fillStyle = shineGrad;
-      ctx.fillRect(sx-30*dpr, G.topY, 60*dpr, G.glassH);
-      ctx.restore();
-    }
-
-    ctx.restore(); /* end tilt group */
-    ctx.restore(); /* end outro transform */
+    requestAnimationFrame(renderLoop);
   }
 
   /* =====================================================================
@@ -1148,21 +708,11 @@
   }
 
   /* =====================================================================
-     RENDER LOOP
+     SET UP GSAP SCROLLTRIGGER AFTER FRAMES READY
      ===================================================================== */
-  let targetP = 0, displayP = 0;
-  const t0 = performance.now();
-  function renderLoop(){
-    displayP += (targetP - displayP) * 0.14;
-    if(Math.abs(targetP - displayP) < 0.0005) displayP = targetP;
-    const tSec = (performance.now() - t0) / 1000;
-    drawScene(displayP, canvas.width, canvas.height, tSec);
-    requestAnimationFrame(renderLoop);
-  }
-
   function initScroll(){
     sizeCanvas();
-    buildFX(canvas.width, canvas.height);
+    drawFrame(0);
 
     if(window.gsap && window.ScrollTrigger){
       gsap.registerPlugin(ScrollTrigger);
@@ -1192,27 +742,44 @@
   }
 
   window.addEventListener('resize', () => {
-    sizeCanvas(); FX = null;
+    sizeCanvas(); lastIdx = -1;
+    const n = frames.length;
+    if(n) drawFrame(clamp(Math.round(displayP*(n-1)),0,n-1));
     if(window.ScrollTrigger) ScrollTrigger.refresh();
     updateVBar();
   });
 
   /* =====================================================================
-     BOOT: minimum-display loader, then reveal scene
+     BOOT: load video, extract frames, fade out loader
      ===================================================================== */
-  const loaderFill = $('#loaderFill');
   function finishLoading(){
     const loader = $('#loader');
     loader.style.opacity = '0';
     setTimeout(() => { loader.style.display = 'none'; }, 850);
     initScroll();
   }
+
   function boot(){
-    loaderFill.style.width = '20%';
-    const fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
-    const minWait = new Promise(res => setTimeout(res, 700));
-    requestAnimationFrame(() => { loaderFill.style.width = '100%'; });
-    Promise.all([fontsReady, minWait]).then(finishLoading);
+    const video = document.createElement('video');
+    video.muted = true; video.playsInline = true; video.preload = 'auto';
+    video.setAttribute('webkit-playsinline','');
+    video.crossOrigin = 'anonymous';
+    video.src = 'Video.mp4';
+
+    let started = false;
+    const start = async () => {
+      if(started) return; started = true;
+      try {
+        try { await video.play(); video.pause(); } catch(e){}
+        await extractFrames(video);
+      } catch(e){ /* fall through */ }
+      finishLoading();
+    };
+
+    video.addEventListener('loadeddata', start);
+    video.addEventListener('error', () => { setLoad(1); finishLoading(); });
+    setTimeout(() => { if(!started && video.readyState >= 2) start(); }, 4000);
+    video.load();
   }
 
   /* =====================================================================
