@@ -1,0 +1,211 @@
+{
+  "_comment": "Pepper Rock (Nottingham) menu. pepperrocks.co.uk could not be reached from this environment (network policy blocks the domain), so the cocktails, prices and copy below are an editable placeholder built around the venue's name and cave/spice theme — replace with the real menu at will. Schema: store{ name, currency, currencySymbol, city }, categories[]{ id, name, meta, tagline, products[]{ id, name, description, price, glass, tags[] } }.",
+  "store": {
+    "name": "Pepper Rock",
+    "currency": "GBP",
+    "currencySymbol": "£",
+    "city": "Nottingham"
+  },
+  "categories": [
+    {
+      "id": "signatures",
+      "name": "Rock Signatures",
+      "meta": "6 serves · house originals",
+      "tagline": "Born in the cave. Poured nowhere else.",
+      "products": [
+        {
+          "id": "sandstone-sour",
+          "name": "Sandstone Sour",
+          "description": "Bourbon shaken with a black pepper & honey syrup, lemon and a whisper of egg white — silky, warm, faintly spiced.",
+          "price": 11.50,
+          "glass": "Coupe",
+          "tags": ["Spiced", "Citrus", "Silky"]
+        },
+        {
+          "id": "smoke-and-chilli",
+          "name": "Smoke & Chilli",
+          "description": "Mezcal, smoked chilli agave, fresh lime and a tajín rim, finished under a glass cloche of applewood smoke.",
+          "price": 12.00,
+          "glass": "Rocks",
+          "tags": ["Smoky", "Fiery"]
+        },
+        {
+          "id": "pepper-rock-old-fashioned",
+          "name": "Pepper Rock Old Fashioned",
+          "description": "Rye whiskey, a housemade black pepper tincture, demerara and an orange oil expression over one hand-carved ice sphere.",
+          "price": 11.00,
+          "glass": "Rocks",
+          "tags": ["Boozy", "Spiced"]
+        },
+        {
+          "id": "cave-fire",
+          "name": "Cave Fire",
+          "description": "Spiced rum, ginger, blood orange and a cinnamon-smoke rinse — the house winter warmer, served year-round.",
+          "price": 11.50,
+          "glass": "Rocks",
+          "tags": ["Spiced", "Warming"]
+        },
+        {
+          "id": "nottingham-nights",
+          "name": "Nottingham Nights",
+          "description": "Vodka, blackberry, sloe gin, lemon and torn thyme — deep purple, bright and a little wild.",
+          "price": 10.50,
+          "glass": "Coupe",
+          "tags": ["Fruity", "Herbal"]
+        },
+        {
+          "id": "molten-rock",
+          "name": "Molten Rock",
+          "description": "Tequila, fresh passionfruit and a chilli-honey drizzle, shaken hard and poured long over crushed ice.",
+          "price": 11.50,
+          "glass": "Highball",
+          "tags": ["Tropical", "Fiery"]
+        }
+      ]
+    },
+    {
+      "id": "classics",
+      "name": "Cave Classics",
+      "meta": "6 serves · the standards, elevated",
+      "tagline": "Timeless serves, cut with Pepper Rock stone.",
+      "products": [
+        {
+          "id": "espresso-martini",
+          "name": "Espresso Martini",
+          "description": "Vodka, fresh espresso, coffee liqueur and a whisper of vanilla — shaken until it crowns with foam.",
+          "price": 10.50,
+          "glass": "Coupe",
+          "tags": ["Bittersweet", "Bold"]
+        },
+        {
+          "id": "negroni",
+          "name": "Negroni",
+          "description": "Equal parts gin, Campari and sweet vermouth, stirred slow over ice and finished with orange peel oils.",
+          "price": 10.00,
+          "glass": "Rocks",
+          "tags": ["Bitter", "Boozy"]
+        },
+        {
+          "id": "whisky-sour",
+          "name": "Whisky Sour",
+          "description": "Bourbon, lemon, sugar and egg white shaken to a silken foam, three drops of Angostura drawn through the top.",
+          "price": 10.50,
+          "glass": "Rocks",
+          "tags": ["Citrus", "Silky"]
+        },
+        {
+          "id": "old-fashioned",
+          "name": "Old Fashioned",
+          "description": "Bourbon, sugar and bitters, stirred to order over a single block of clear ice.",
+          "price": 10.50,
+          "glass": "Rocks",
+          "tags": ["Boozy", "Classic"]
+        },
+        {
+          "id": "french-75",
+          "name": "French 75",
+          "description": "Gin, lemon and sugar, topped with cold Champagne — cut-glass and effervescent.",
+          "price": 11.00,
+          "glass": "Flute",
+          "tags": ["Bright", "Effervescent"]
+        },
+        {
+          "id": "paloma",
+          "name": "Paloma",
+          "description": "Tequila, fresh grapefruit, lime and soda over ice with a salt rim — Pepper Rock's warm-weather favourite.",
+          "price": 10.00,
+          "glass": "Highball",
+          "tags": ["Citrus", "Refreshing"]
+        }
+      ]
+    },
+    {
+      "id": "spiced-smoked",
+      "name": "Spiced & Smoked",
+      "meta": "5 serves · the house obsession",
+      "tagline": "Pepper in the glass, fire in the finish.",
+      "products": [
+        {
+          "id": "black-pepper-martini",
+          "name": "Black Pepper Martini",
+          "description": "Cracked-pepper-infused vodka, dry vermouth and a single olive — cold, sharp and unmistakably Pepper Rock.",
+          "price": 11.00,
+          "glass": "Coupe",
+          "tags": ["Spiced", "Dry"]
+        },
+        {
+          "id": "smoked-manhattan",
+          "name": "Smoked Manhattan",
+          "description": "Rye, sweet vermouth and bitters, stirred down and served beneath a dome of smouldering oak chips.",
+          "price": 12.00,
+          "glass": "Coupe",
+          "tags": ["Smoky", "Boozy"]
+        },
+        {
+          "id": "chai-spiced-rum-punch",
+          "name": "Chai Spiced Rum Punch",
+          "description": "Dark rum steeped with cardamom, clove and cinnamon chai, orange and a caramel rim.",
+          "price": 11.00,
+          "glass": "Rocks",
+          "tags": ["Spiced", "Warming"]
+        },
+        {
+          "id": "ember-mule",
+          "name": "Ember Mule",
+          "description": "Ginger-chilli vodka, fresh lime and spiced ginger beer, served in a copper mug over cracked ice.",
+          "price": 10.50,
+          "glass": "Copper mug",
+          "tags": ["Fiery", "Zesty"]
+        },
+        {
+          "id": "pink-peppercorn-fizz",
+          "name": "Pink Peppercorn Fizz",
+          "description": "Gin, pink peppercorn syrup, lemon and soda — light, floral, with a gentle peppered kick.",
+          "price": 10.00,
+          "glass": "Highball",
+          "tags": ["Floral", "Spiced"]
+        }
+      ]
+    },
+    {
+      "id": "zero-proof",
+      "name": "Zero Proof",
+      "meta": "4 serves · alcohol-free",
+      "tagline": "All of the craft, none of the proof.",
+      "products": [
+        {
+          "id": "rock-garden-fizz",
+          "name": "Rock Garden Fizz",
+          "description": "Cucumber, elderflower, lime and soda over ice with a sprig of mint — crisp and green.",
+          "price": 7.00,
+          "glass": "Highball",
+          "tags": ["Fresh", "Alcohol-free"]
+        },
+        {
+          "id": "spiced-cherry-thyme",
+          "name": "Spiced Cherry & Thyme",
+          "description": "Tart cherry, thyme syrup and soda, built over ice with a cinnamon-dusted rim.",
+          "price": 7.00,
+          "glass": "Rocks",
+          "tags": ["Fruity", "Alcohol-free"]
+        },
+        {
+          "id": "sandstone-sunset",
+          "name": "Sandstone Sunset",
+          "description": "Blood orange, passionfruit and vanilla shaken to a foam — non-alcoholic, all Rock Signature.",
+          "price": 7.50,
+          "glass": "Coupe",
+          "tags": ["Tropical", "Alcohol-free"]
+        },
+        {
+          "id": "chilli-lime-cooler",
+          "name": "Chilli-Lime Cooler",
+          "description": "Muddled chilli, fresh lime and agave over crushed ice, topped with soda.",
+          "price": 7.00,
+          "glass": "Highball",
+          "tags": ["Fiery", "Alcohol-free"]
+        }
+      ]
+    }
+  ]
+}

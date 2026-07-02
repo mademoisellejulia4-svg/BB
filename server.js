@@ -9,6 +9,9 @@ const HOST = '0.0.0.0'; // listen on every network interface so other devices (e
 // Serve everything in /public (index.html, Video.mp4, data/products.json, etc.)
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Pepper Rock (Nottingham cocktail bar) — separate static site, own folder.
+app.use('/pepper-rock', express.static(path.join(__dirname, 'pepper-rock')));
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });

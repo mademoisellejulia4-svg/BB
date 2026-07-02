@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PEPPER ROCK — Nottingham</title>
+<meta name="description" content="A cocktail den carved into Nottingham's rock. Scroll to pour." />
+
+<!-- Google Fonts: Cormorant Garamond (display) + Inter (body) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+<!-- GSAP 3 + ScrollTrigger from CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<style>
+  :root{
+    --copper: #d17a3d;
+    --copper-rgb: 209,122,61;
+    --ember: #a23b32;
+    --ember-rgb: 162,59,50;
+    --ink: #0a0806;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:auto; }
+  body{
+    background: var(--ink);
+    color:#fff;
+    font-family:'Inter', system-ui, sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:rgba(var(--copper-rgb),0.3); color:#fff; }
+
+  /* ============ LOADING SCREEN ============ */
+  #loader{
+    position:fixed; inset:0; z-index:1000;
+    background:var(--ink);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:26px;
+    transition:opacity .8s ease;
+  }
+  #loader .lt{
+    font-family:'Cormorant Garamond', serif;
+    font-size:44px; font-weight:500;
+    letter-spacing:.2em;
+    color:var(--copper);
+  }
+  #loaderBar{
+    width:200px; height:2px;
+    background:rgba(var(--copper-rgb),0.15);
+    overflow:hidden;
+  }
+  #loaderFill{
+    height:100%; width:0%;
+    background:var(--copper);
+    transition:width .15s linear;
+  }
+  #loader .lsub{
+    font-size:11px; font-weight:300;
+    letter-spacing:.18em;
+    color:rgba(255,255,255,0.35);
+  }
+
+  /* ============ FIXED HEADER ============ */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:200;
+    height:64px;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 clamp(20px,4vw,48px);
+    background:transparent; border:none;
+    pointer-events:none;
+  }
+  header .brand{
+    font-family:'Cormorant Garamond', serif;
+    font-size:15px; font-weight:600;
+    letter-spacing:.25em;
+    color:var(--copper);
+    pointer-events:auto;
+  }
+  header .navbtn{
+    font-size:11px; font-weight:400;
+    text-transform:uppercase; letter-spacing:.2em;
+    color:rgba(255,255,255,0.6);
+    background:none; border:none; cursor:pointer;
+    pointer-events:auto;
+    transition:color .3s var(--ease);
+    font-family:'Inter',sans-serif;
+  }
+  header .navbtn:hover{ color:var(--copper); }
+  header .navbtn.solid{
+    border:1px solid rgba(var(--copper-rgb),0.55);
+    border-radius:30px; padding:9px 18px; color:#fff;
+  }
+  header .navbtn.solid:hover{ background:rgba(var(--copper-rgb),0.14); border-color:var(--copper); }
+  header .hnav{ display:flex; align-items:center; gap:16px; pointer-events:auto; }
+
+  /* ============ SCROLL PROGRESS BAR (vertical, right) ============ */
+  #vbar{
+    position:fixed; top:0; right:0; z-index:100;
+    width:2px; height:100vh;
+    background:rgba(var(--copper-rgb),0.15);
+  }
+  #vfill{
+    position:absolute; top:0; left:0; width:100%;
+    height:0%;
+    background:rgba(var(--copper-rgb),0.85);
+  }
+
+  /* ============ HERO — scroll-driven canvas scene ============ */
+  #hero{ position:relative; height:700vh; background:var(--ink); }
+  #sticky{
+    position:sticky; top:0;
+    height:100vh; width:100%;
+    overflow:hidden;
+  }
+  #sceneCanvas{
+    position:absolute; inset:0;
+    width:100vw; height:100vh;
+    display:block;
+    background:var(--ink);
+  }
+
+  .overlay{ position:absolute; pointer-events:none; will-change:opacity; text-align:center; left:0; right:0; }
+
+  #ovTag{
+    top:6vh;
+    opacity:0;
+  }
+  #ovTag span{
+    font-size:11px; letter-spacing:.5em; text-transform:uppercase;
+    color:rgba(255,255,255,0.5);
+  }
+  #ovTitle{
+    top:9vh;
+    opacity:0;
+  }
+  #ovTitle span{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    font-size:clamp(38px, 12vw, 128px);
+    letter-spacing:.14em;
+    color:rgba(var(--copper-rgb),0.92);
+    text-shadow:0 2px 40px rgba(0,0,0,0.65);
+    padding-left:.14em;
+  }
+
+  #ovSub{
+    left:8%; right:8%; bottom:16%; top:auto;
+    max-width:640px; margin:0 auto;
+    opacity:0;
+  }
+  #ovSub p{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic; font-weight:400;
+    font-size:clamp(22px, 4.6vw, 38px);
+    line-height:1.3;
+    color:rgba(255,255,255,0.88);
+    text-shadow:0 2px 30px rgba(0,0,0,0.7);
+  }
+  #ovSub .w{ display:inline-block; opacity:0; transform:translateY(6px); margin-right:0.3em; }
+
+  .scroll-hint{
+    position:absolute; bottom:26px; left:50%; transform:translateX(-50%);
+    font-size:10px; letter-spacing:.35em; text-transform:uppercase;
+    color:rgba(255,255,255,0.4);
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{ 0%,100%{opacity:.25} 50%{opacity:.7} }
+
+  /* ============ MENU SECTION ============ */
+  #menu{
+    position:relative; z-index:2;
+    background:linear-gradient(to bottom, #0b0805 0%, #120c08 100%);
+    padding:clamp(80px,12vh,160px) clamp(20px,6vw,90px);
+    min-height:100vh;
+  }
+  .sec-head{ text-align:center; margin-bottom:64px; }
+  .sec-eyebrow{
+    font-size:11px; letter-spacing:.4em; text-transform:uppercase;
+    color:var(--copper); opacity:.85; margin-bottom:18px;
+  }
+  .sec-title{
+    font-family:'Cormorant Garamond', serif;
+    font-size:clamp(36px,6vw,64px); font-weight:500;
+    letter-spacing:.04em; color:#fff;
+  }
+  .sec-sub{
+    margin-top:16px; font-size:13.5px; font-weight:300; line-height:1.7;
+    color:rgba(255,255,255,0.5); letter-spacing:.02em;
+    max-width:560px; margin-left:auto; margin-right:auto;
+  }
+
+  .view{ display:none; }
+  .view.active{ display:block; }
+
+  .cat-grid{
+    display:grid; gap:28px;
+    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    max-width:1180px; margin:0 auto;
+  }
+  .cat-card{
+    position:relative; cursor:pointer;
+    border:1px solid rgba(255,255,255,0.07);
+    border-radius:18px;
+    background:linear-gradient(160deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+    padding:46px 34px; min-height:320px;
+    display:flex; flex-direction:column; justify-content:flex-end;
+    overflow:hidden;
+    transition:transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease);
+  }
+  .cat-card::before{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(120% 80% at 50% 0%, rgba(var(--copper-rgb),0.12), transparent 60%);
+    opacity:.6; transition:opacity .4s var(--ease);
+  }
+  .cat-card:hover{
+    transform:translateY(-12px);
+    border-color:rgba(var(--copper-rgb),0.6);
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.7), 0 0 40px -8px rgba(var(--copper-rgb),0.35);
+  }
+  .cat-card:hover::before{ opacity:1; }
+  .cat-card .cc-index{
+    position:absolute; top:26px; left:34px;
+    font-size:11px; letter-spacing:.3em; color:rgba(var(--copper-rgb),0.6);
+  }
+  .cat-card .cc-name{
+    position:relative;
+    font-family:'Cormorant Garamond', serif;
+    font-size:32px; font-weight:500; letter-spacing:.04em; color:#fff;
+  }
+  .cat-card .cc-tagline{
+    position:relative; margin-top:10px;
+    font-family:'Cormorant Garamond', serif; font-style:italic;
+    font-size:15px; color:rgba(255,255,255,0.55);
+  }
+  .cat-card .cc-meta{
+    position:relative; margin-top:12px;
+    font-size:11.5px; color:rgba(255,255,255,0.42); letter-spacing:.04em;
+  }
+  .cat-card .cc-cta{
+    position:relative; margin-top:20px;
+    font-size:11px; text-transform:uppercase; letter-spacing:.25em;
+    color:var(--copper);
+  }
+
+  /* detail view */
+  .detail-top{
+    display:flex; align-items:center; gap:22px;
+    max-width:1180px; margin:0 auto 40px; flex-wrap:wrap;
+  }
+  .back-btn{
+    display:inline-flex; align-items:center; gap:10px;
+    background:none; border:1px solid rgba(255,255,255,0.14);
+    color:rgba(255,255,255,0.75);
+    padding:11px 20px; border-radius:40px; cursor:pointer;
+    font-family:'Inter',sans-serif; font-size:11px;
+    text-transform:uppercase; letter-spacing:.2em;
+    transition:all .4s var(--ease);
+  }
+  .back-btn:hover{ border-color:rgba(var(--copper-rgb),0.6); color:var(--copper); transform:translateX(-4px); }
+  .detail-title{
+    font-family:'Cormorant Garamond', serif;
+    font-size:clamp(28px,4vw,44px); font-weight:500; color:#fff; letter-spacing:.04em;
+  }
+  .detail-tagline{
+    font-family:'Cormorant Garamond', serif; font-style:italic;
+    font-size:16px; color:rgba(255,255,255,0.5);
+    max-width:1180px; margin:-28px auto 34px;
+  }
+
+  .prod-grid{
+    display:grid; gap:24px;
+    grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
+    max-width:1180px; margin:0 auto;
+  }
+  .prod-card{
+    position:relative; cursor:pointer;
+    border:1px solid rgba(255,255,255,0.07);
+    border-radius:16px;
+    background:linear-gradient(160deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015));
+    padding:28px 26px 26px;
+    display:flex; flex-direction:column;
+    transition:transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease);
+  }
+  .prod-card:hover{
+    transform:translateY(-12px);
+    border-color:rgba(var(--copper-rgb),0.6);
+    box-shadow:0 30px 60px -22px rgba(0,0,0,0.7), 0 0 36px -8px rgba(var(--copper-rgb),0.32);
+  }
+  .pc-cat{
+    font-size:10px; text-transform:uppercase; letter-spacing:.28em;
+    color:rgba(var(--copper-rgb),0.7); margin-bottom:14px;
+  }
+  .pc-name{
+    font-family:'Cormorant Garamond', serif;
+    font-size:25px; font-weight:500; color:#fff; letter-spacing:.02em; line-height:1.15;
+  }
+  .pc-desc{
+    margin-top:10px; font-size:12.5px; font-weight:300; line-height:1.6;
+    color:rgba(255,255,255,0.5); flex:1;
+  }
+  .pc-tags{
+    margin-top:18px; display:flex; flex-wrap:wrap; gap:8px;
+  }
+  .pc-chip{
+    font-size:10.5px; letter-spacing:.05em;
+    color:rgba(255,255,255,0.65);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:30px; padding:5px 12px;
+  }
+  .pc-from{
+    margin-top:20px; display:flex; align-items:center; justify-content:space-between;
+  }
+  .pc-from .lbl{ font-size:10px; text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,0.4); }
+  .pc-from .val{ font-family:'Cormorant Garamond',serif; font-size:22px; color:#fff; }
+  .pc-view{
+    font-size:10px; text-transform:uppercase; letter-spacing:.22em; color:var(--copper);
+  }
+
+  /* ============ MODAL ============ */
+  #modal{
+    position:fixed; inset:0; z-index:500;
+    display:none; align-items:center; justify-content:center;
+    padding:24px;
+    background:rgba(6,4,3,0.8); backdrop-filter:blur(8px);
+    opacity:0; transition:opacity .35s var(--ease);
+  }
+  #modal.open{ display:flex; }
+  .modal-card{
+    width:min(520px, 100%);
+    background:linear-gradient(165deg, #16100b, #0e0a07);
+    border:1px solid rgba(var(--copper-rgb),0.2);
+    border-radius:22px; padding:40px 38px;
+    transform:translateY(18px) scale(.98);
+    transition:transform .45s var(--ease);
+    box-shadow:0 40px 90px -30px rgba(0,0,0,0.9);
+  }
+  #modal.open .modal-card{ transform:translateY(0) scale(1); }
+  .modal-close{
+    float:right; background:none; border:none; color:rgba(255,255,255,0.5);
+    font-size:22px; cursor:pointer; line-height:1; transition:color .3s var(--ease);
+  }
+  .modal-close:hover{ color:var(--copper); }
+  .modal-cat{ font-size:10px; text-transform:uppercase; letter-spacing:.28em; color:rgba(var(--copper-rgb),0.75); }
+  .modal-name{ font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:500; color:#fff; margin:8px 0 14px; }
+  .modal-desc{ font-size:13px; font-weight:300; line-height:1.75; color:rgba(255,255,255,0.62); }
+  .modal-meta{ margin-top:22px; display:flex; flex-wrap:wrap; gap:22px; }
+  .modal-meta div{ font-size:10px; text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,0.4); }
+  .modal-meta span{ display:block; margin-top:6px; font-family:'Cormorant Garamond',serif; font-size:19px; color:#fff; letter-spacing:.02em; }
+  .modal-tags{ margin-top:20px; display:flex; flex-wrap:wrap; gap:8px; }
+  .modal-foot{ margin-top:30px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+  .modal-price{ font-family:'Cormorant Garamond',serif; font-size:28px; color:#fff; }
+  .reservebtn{
+    cursor:pointer;
+    background:var(--copper); color:#0a0a0a; border:none;
+    border-radius:12px; padding:15px 22px; font-family:'Inter',sans-serif;
+    font-size:11px; font-weight:500; text-transform:uppercase; letter-spacing:.2em;
+    transition:transform .3s var(--ease), filter .3s var(--ease);
+    white-space:nowrap;
+  }
+  .reservebtn:hover{ filter:brightness(1.1); transform:translateY(-2px); }
+
+  #toast{
+    position:fixed; left:50%; bottom:40px; transform:translateX(-50%) translateY(20px);
+    z-index:700; background:#140f0a; border:1px solid rgba(var(--copper-rgb),0.4);
+    color:#fff; padding:14px 26px; border-radius:40px;
+    font-size:12px; letter-spacing:.04em; opacity:0; pointer-events:none;
+    max-width:88vw; text-align:center;
+    transition:all .4s var(--ease);
+  }
+  #toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+  #toast b{ color:var(--copper); font-weight:500; }
+
+  /* ============ RESERVE SECTION ============ */
+  #reserve{
+    position:relative; z-index:2;
+    background:linear-gradient(to bottom, rgba(5,4,3,0.95) 0%, rgba(10,7,5,0.98) 100%),
+      radial-gradient(120% 90% at 50% 20%, rgba(var(--ember-rgb),0.14), rgba(5,4,3,1) 70%);
+    padding:clamp(90px,16vh,160px) 24px;
+    text-align:center;
+  }
+  #reserve h2{
+    font-family:'Cormorant Garamond', serif;
+    font-size:clamp(34px,6vw,52px); font-weight:500; color:#fff; letter-spacing:.03em;
+  }
+  #reserve .rsub{ margin-top:14px; font-size:13px; font-weight:300; color:rgba(255,255,255,0.55); letter-spacing:.04em; }
+
+  .rsv-form{
+    margin:44px auto 0; max-width:620px;
+    display:grid; grid-template-columns:1fr 1fr; gap:18px;
+    text-align:left;
+  }
+  .rsv-form .full{ grid-column:1/-1; }
+  .rsv-field label{
+    display:block; font-size:10px; text-transform:uppercase; letter-spacing:.2em;
+    color:rgba(255,255,255,0.42); margin-bottom:8px;
+  }
+  .rsv-field input, .rsv-field select, .rsv-field textarea{
+    width:100%; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.14);
+    border-radius:10px; color:#fff; padding:13px 14px;
+    font-family:'Inter',sans-serif; font-size:13.5px; letter-spacing:.02em;
+  }
+  .rsv-field select option{ background:#16100b; }
+  .rsv-field input::placeholder, .rsv-field textarea::placeholder{ color:rgba(255,255,255,0.32); }
+  .rsv-field input:focus, .rsv-field select:focus, .rsv-field textarea:focus{ outline:none; border-color:rgba(var(--copper-rgb),0.6); }
+  .rsv-field textarea{ resize:vertical; min-height:80px; font-family:'Inter',sans-serif; }
+  .rsv-submit{
+    grid-column:1/-1; margin-top:6px; cursor:pointer;
+    background:var(--copper); color:#0a0a0a; border:none; border-radius:12px;
+    padding:16px; font-family:'Inter',sans-serif; font-size:11px; font-weight:500;
+    text-transform:uppercase; letter-spacing:.22em;
+    transition:transform .3s var(--ease), filter .3s var(--ease);
+  }
+  .rsv-submit:hover{ filter:brightness(1.08); transform:translateY(-2px); }
+  .rsv-note{ margin-top:16px; text-align:center; font-size:10.5px; color:rgba(255,255,255,0.35); letter-spacing:.04em; grid-column:1/-1; }
+
+  @media (max-width:560px){
+    .rsv-form{ grid-template-columns:1fr; }
+  }
+
+  /* ============ FOOTER ============ */
+  footer{
+    position:relative; z-index:2;
+    border-top:1px solid rgba(var(--copper-rgb),0.15);
+    background:var(--ink);
+    display:flex; align-items:center; justify-content:space-between;
+    gap:18px; flex-wrap:wrap;
+    padding:34px clamp(20px,6vw,70px);
+  }
+  footer .f-left{ font-family:'Cormorant Garamond',serif; font-size:18px; letter-spacing:.16em; color:var(--copper); }
+  footer .f-center{ font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:.04em; }
+  footer .f-right a{ font-size:11px; color:rgba(255,255,255,0.55); text-decoration:none; letter-spacing:.04em; }
+  footer .f-right a:hover{ text-decoration:underline; color:var(--copper); }
+
+  @media (max-width:640px){
+    footer{ justify-content:center; text-align:center; }
+    #ovSub{ left:6%; right:6%; bottom:13%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LOADING SCREEN -->
+<div id="loader">
+  <div class="lt">PEPPER ROCK</div>
+  <div id="loaderBar"><div id="loaderFill"></div></div>
+  <div class="lsub">Uncorking the cellar&hellip;</div>
+</div>
+
+<!-- FIXED HEADER -->
+<header>
+  <div class="brand">PEPPER ROCK</div>
+  <div class="hnav">
+    <button class="navbtn" id="menuLink">MENU</button>
+    <button class="navbtn solid" id="reserveLink">RESERVE</button>
+  </div>
+</header>
+
+<!-- SCROLL PROGRESS BAR -->
+<div id="vbar"><div id="vfill"></div></div>
+
+<!-- HERO: scroll-driven canvas scene -->
+<section id="hero">
+  <div id="sticky">
+    <canvas id="sceneCanvas"></canvas>
+
+    <div class="overlay" id="ovTag"><span>NOTTINGHAM &middot; UNDERGROUND</span></div>
+    <div class="overlay" id="ovTitle"><span>PEPPER&nbsp;ROCK</span></div>
+
+    <div class="overlay" id="ovSub">
+      <p id="ovSubText"></p>
+    </div>
+
+    <div class="scroll-hint">Scroll to pour</div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu">
+  <div class="sec-head">
+    <div class="sec-eyebrow">The Menu</div>
+    <h2 class="sec-title">Cocktails carved in stone</h2>
+    <p class="sec-sub">Hand-stirred beneath Nottingham's sandstone, finished with smoke, spice and a little fire. Choose a chapter to begin.</p>
+  </div>
+
+  <!-- CATEGORY VIEW -->
+  <div class="view active" id="catView">
+    <div class="cat-grid" id="catGrid"></div>
+  </div>
+
+  <!-- DETAIL VIEW -->
+  <div class="view" id="detailView">
+    <div class="detail-top">
+      <button class="back-btn" id="backBtn">&larr;&nbsp; Back to menu</button>
+      <div class="detail-title" id="detailTitle"></div>
+    </div>
+    <p class="detail-tagline" id="detailTagline"></p>
+    <div class="prod-grid" id="prodGrid"></div>
+  </div>
+</section>
+
+<!-- RESERVE -->
+<section id="reserve">
+  <h2>Reserve Your Table</h2>
+  <p class="rsub">The cave seats few. Book ahead to guarantee your stone.</p>
+  <form class="rsv-form" id="rsvForm">
+    <div class="rsv-field"><label for="rName">Name</label><input id="rName" type="text" placeholder="Your name" required /></div>
+    <div class="rsv-field"><label for="rEmail">Email</label><input id="rEmail" type="email" placeholder="you@email.com" required /></div>
+    <div class="rsv-field"><label for="rDate">Date</label><input id="rDate" type="date" required /></div>
+    <div class="rsv-field"><label for="rTime">Time</label>
+      <select id="rTime" required>
+        <option value="" disabled selected>Select a time</option>
+        <option>17:00</option><option>18:00</option><option>19:00</option>
+        <option>20:00</option><option>21:00</option><option>22:00</option>
+      </select>
+    </div>
+    <div class="rsv-field full"><label for="rGuests">Guests</label>
+      <select id="rGuests" required>
+        <option value="" disabled selected>Party size</option>
+        <option>1</option><option>2</option><option>3</option><option>4</option>
+        <option>5</option><option>6</option><option>7+</option>
+      </select>
+    </div>
+    <div class="rsv-field full"><label for="rNotes">Notes</label><textarea id="rNotes" placeholder="Anything we should know?"></textarea></div>
+    <button type="submit" class="rsv-submit">Request table &rarr;</button>
+    <p class="rsv-note">We'll confirm by email within 24 hours.</p>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-left">PEPPER ROCK</div>
+  <div class="f-center">&copy; 2026 PEPPER ROCK &middot; Nottingham, UK &middot; Open Wed&ndash;Sat, 5pm&ndash;late</div>
+  <div class="f-right">
+    <a href="#" onclick="return false">Instagram</a> &nbsp;&bull;&nbsp;
+    <a href="#" onclick="return false">Facebook</a>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div id="modal">
+  <div class="modal-card">
+    <button class="modal-close" id="modalClose">&times;</button>
+    <div class="modal-cat" id="mCat"></div>
+    <div class="modal-name" id="mName"></div>
+    <div class="modal-desc" id="mDesc"></div>
+    <div class="modal-meta">
+      <div>Glass<span id="mGlass"></span></div>
+    </div>
+    <div class="modal-tags" id="mTags"></div>
+    <div class="modal-foot">
+      <div class="modal-price" id="mPrice"></div>
+      <button class="reservebtn" id="reserveFromModal">Reserve a table</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+/* =========================================================================
+   PEPPER ROCK — Nottingham
+   NOTE ON MENU DATA: pepperrocks.co.uk could not be reached from this
+   environment (network policy blocks the domain), so live cocktails/prices
+   could not be fetched. The catalog in data/cocktails.json is a realistic,
+   editable placeholder built around the venue's name and cave/spice theme —
+   swap it for the real menu whenever it's available.
+   ========================================================================= */
+(function(){
+  "use strict";
+
+  /* ---------- helpers ---------- */
+  const $ = (s, r=document) => r.querySelector(s);
+  const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
+  const ramp = (p,a,b) => clamp((p-a)/(b-a), 0, 1);
+  const band = (p,a,b,c,d) => Math.min(ramp(p,a,b), 1-ramp(p,c,d));
+  const lerp = (a,b,t) => a + (b-a)*t;
+
+  /* seeded PRNG so droplet fields are stable across reloads/resizes */
+  function mulberry32(seed){
+    return function(){
+      seed |= 0; seed = (seed + 0x6D2B79F5) | 0;
+      let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  /* =====================================================================
+     SCROLL-DRIVEN CANVAS SCENE — a procedurally drawn rocks glass: pour,
+     splash, ice drop, garnish, condensation droplets. No video asset.
+     ===================================================================== */
+  const canvas = $('#sceneCanvas');
+  const ctx = canvas.getContext('2d');
+  let dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+  function sizeCanvas(){
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width  = Math.round(window.innerWidth  * dpr);
+    canvas.height = Math.round(window.innerHeight * dpr);
+  }
+
+  /* ---- seeded decorative fields, built once per canvas size ---- */
+  let FX = null;
+  function buildFX(cw, ch){
+    const rnd = mulberry32(20260702);
+    const rocks = [];
+    for(let i=0;i<6;i++){
+      rocks.push({
+        x: rnd()*cw, y: ch*(0.15+rnd()*0.6), r: ch*(0.18+rnd()*0.22),
+        a: 0.05 + rnd()*0.05
+      });
+    }
+    const pourSplash = [];
+    for(let i=0;i<12;i++){
+      pourSplash.push({
+        ang: lerp(-Math.PI*0.82, -Math.PI*0.18, rnd()),
+        spd: 0.5 + rnd()*0.9,
+        size: 1.6 + rnd()*3.0,
+        speedT: 0.7 + rnd()*1.1,
+        phase: rnd()
+      });
+    }
+    const iceBurst = [];
+    for(let i=0;i<18;i++){
+      iceBurst.push({
+        ang: rnd()*Math.PI*2,
+        spd: 0.6 + rnd()*1.0,
+        size: 1.6 + rnd()*3.2,
+        drop: 0.4 + rnd()*0.6
+      });
+    }
+    const garnishBurst = [];
+    for(let i=0;i<9;i++){
+      garnishBurst.push({
+        ang: lerp(-Math.PI*0.9, -Math.PI*0.1, rnd()),
+        spd: 0.35 + rnd()*0.55,
+        size: 1.2 + rnd()*2.2
+      });
+    }
+    const condensation = [];
+    for(let i=0;i<10;i++){
+      condensation.push({
+        fx: 0.12 + rnd()*0.76,     // fraction across glass width
+        fy0: 0.14 + rnd()*0.5,     // start fraction down the glass
+        len: 0.05 + rnd()*0.09,
+        w: 1.6 + rnd()*2.0,
+        appearAt: 0.63 + rnd()*0.16,   // appear after the garnish stage, in p-space
+        speed: 0.08 + rnd()*0.12
+      });
+    }
+    const bubbles = [];
+    for(let i=0;i<7;i++){
+      bubbles.push({ fx: 0.15+rnd()*0.7, size: 1+rnd()*1.8, spd: 0.15+rnd()*0.25, phase: rnd() });
+    }
+    FX = { rocks, pourSplash, iceBurst, garnishBurst, condensation, bubbles };
+  }
+
+  /* ---- rounded-polygon path helper (arcTo based, handles any quad) ---- */
+  function roundedPoly(c, pts, radii){
+    const n = pts.length;
+    c.beginPath();
+    c.moveTo((pts[n-1][0]+pts[0][0])/2, (pts[n-1][1]+pts[0][1])/2);
+    for(let i=0;i<n;i++){
+      const cur = pts[i], next = pts[(i+1)%n];
+      c.arcTo(cur[0], cur[1], next[0], next[1], Math.max(0.01, radii[i]));
+    }
+    c.closePath();
+  }
+
+  function glassGeometry(cw, ch){
+    const glassH = Math.min(ch*0.30, cw*0.62, 480*dpr);
+    const glassW = glassH*0.60;
+    const cx = cw*0.5;
+    const botY = ch*0.635 + glassH*0.02;
+    const topY = botY - glassH;
+    const topW = glassW, botW = glassW*0.86;
+    const r = glassW*0.07;
+    const pts = [[cx-topW/2, topY],[cx+topW/2, topY],[cx+botW/2, botY],[cx-botW/2, botY]];
+    const radii = [r*0.6, r*0.6, r*1.6, r*1.6];
+    const ellipseRatio = 0.19; // vertical squash for the "viewed from slightly above" rim/base/liquid ellipses
+    return {
+      cx, topY, botY, topW, botW, glassW, glassH, pts, radii,
+      wall: glassW*0.055,
+      topRy: topW*0.5*ellipseRatio,
+      botRy: botW*0.5*ellipseRatio*0.85,
+      ellipseRatio,
+      pivotY: (topY+botY)/2
+    };
+  }
+
+  /* elliptical rim: outer glass edge + a thin inner ring for wall thickness */
+  function drawRimEllipse(c, cx, y, rx, ry, wall, opacity){
+    c.beginPath();
+    c.ellipse(cx, y, rx, ry, 0, 0, Math.PI*2);
+    const rg = c.createLinearGradient(cx-rx, y, cx+rx, y);
+    rg.addColorStop(0, 'rgba(255,255,255,'+(0.10*opacity).toFixed(3)+')');
+    rg.addColorStop(0.14, 'rgba(255,255,255,'+(0.42*opacity).toFixed(3)+')');
+    rg.addColorStop(0.28, 'rgba(255,255,255,'+(0.08*opacity).toFixed(3)+')');
+    rg.addColorStop(0.85, 'rgba(255,255,255,'+(0.05*opacity).toFixed(3)+')');
+    rg.addColorStop(1, 'rgba(255,255,255,'+(0.20*opacity).toFixed(3)+')');
+    c.fillStyle = rg;
+    c.fill();
+    c.strokeStyle = 'rgba(255,255,255,'+(0.38*opacity).toFixed(3)+')';
+    c.lineWidth = Math.max(1, dpr*1.1);
+    c.stroke();
+    const wrx = Math.max(2, rx - wall*1.3), wry = Math.max(1, ry*(wrx/rx));
+    c.beginPath();
+    c.ellipse(cx, y, wrx, wry, 0, 0, Math.PI*2);
+    c.strokeStyle = 'rgba(255,255,255,'+(0.16*opacity).toFixed(3)+')';
+    c.lineWidth = Math.max(1, dpr*0.7);
+    c.stroke();
+  }
+
+  /* isometric ice cube: three shaded faces read as a real 3D block */
+  function drawIceCube(c, cx, cy, s, rot, alpha){
+    if(alpha <= 0.01) return;
+    c.save();
+    c.globalAlpha = alpha;
+    c.translate(cx, cy);
+    c.rotate(rot);
+    const hw = s*0.5, hh = s*0.30, H = s*0.58;
+    const N = [0, -hh], E = [hw, 0], S = [0, hh], W = [-hw, 0];
+    const drop = (pt) => [pt[0], pt[1]+H];
+
+    /* front-left face (W,S -> down) */
+    c.beginPath();
+    c.moveTo(W[0],W[1]); c.lineTo(S[0],S[1]);
+    c.lineTo(drop(S)[0],drop(S)[1]); c.lineTo(drop(W)[0],drop(W)[1]);
+    c.closePath();
+    let g = c.createLinearGradient(W[0],0,S[0],0);
+    g.addColorStop(0,'rgba(200,225,235,0.20)');
+    g.addColorStop(1,'rgba(220,238,244,0.34)');
+    c.fillStyle = g; c.fill();
+    c.strokeStyle='rgba(255,255,255,0.28)'; c.lineWidth=Math.max(1,dpr*0.7); c.stroke();
+
+    /* front-right face (S,E -> down) */
+    c.beginPath();
+    c.moveTo(S[0],S[1]); c.lineTo(E[0],E[1]);
+    c.lineTo(drop(E)[0],drop(E)[1]); c.lineTo(drop(S)[0],drop(S)[1]);
+    c.closePath();
+    g = c.createLinearGradient(S[0],0,E[0],0);
+    g.addColorStop(0,'rgba(170,200,212,0.30)');
+    g.addColorStop(1,'rgba(150,185,200,0.16)');
+    c.fillStyle = g; c.fill();
+    c.strokeStyle='rgba(255,255,255,0.18)'; c.lineWidth=Math.max(1,dpr*0.7); c.stroke();
+
+    /* top face (rhombus N,E,S,W) — brightest, sells the cube */
+    c.beginPath();
+    c.moveTo(N[0],N[1]); c.lineTo(E[0],E[1]); c.lineTo(S[0],S[1]); c.lineTo(W[0],W[1]);
+    c.closePath();
+    g = c.createLinearGradient(N[0],N[1],S[0],S[1]);
+    g.addColorStop(0,'rgba(255,255,255,0.62)');
+    g.addColorStop(1,'rgba(225,242,248,0.38)');
+    c.fillStyle = g; c.fill();
+    c.strokeStyle='rgba(255,255,255,0.4)'; c.lineWidth=Math.max(1,dpr*0.8); c.stroke();
+
+    /* a couple of internal refraction cracks */
+    c.strokeStyle='rgba(255,255,255,0.22)'; c.lineWidth=Math.max(1,dpr*0.6);
+    c.beginPath(); c.moveTo(W[0]+hw*0.3, W[1]+H*0.3); c.lineTo(W[0]+hw*0.7, W[1]+H*0.7); c.stroke();
+    c.beginPath(); c.moveTo(E[0]-hw*0.25, E[1]+H*0.4); c.lineTo(E[0]-hw*0.6, E[1]+H*0.75); c.stroke();
+
+    c.restore();
+  }
+
+  function drawScene(p, cw, ch, tSec){
+    if(!FX) buildFX(cw, ch);
+    const G = glassGeometry(cw, ch);
+
+    /* ---------- background ---------- */
+    ctx.fillStyle = '#0a0806';
+    ctx.fillRect(0,0,cw,ch);
+
+    FX.rocks.forEach(r => {
+      const g = ctx.createRadialGradient(r.x, r.y, 0, r.x, r.y, r.r);
+      g.addColorStop(0, 'rgba(120,80,50,'+r.a+')');
+      g.addColorStop(1, 'rgba(120,80,50,0)');
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(r.x, r.y, r.r, 0, Math.PI*2); ctx.fill();
+    });
+
+    const glowStrength = 0.10 + 0.22*ramp(p,0.02,0.30) - 0.05*ramp(p,0.85,1.0);
+    const glow = ctx.createRadialGradient(G.cx, G.topY + G.glassH*0.5, 0, G.cx, G.topY+G.glassH*0.5, G.glassH*2.6);
+    glow.addColorStop(0, 'rgba(var(--x),0)'.replace('var(--x)','209,122,61').replace('0)', clamp(glowStrength,0,1)+')'));
+    glow.addColorStop(1, 'rgba(209,122,61,0)');
+    ctx.fillStyle = glow;
+    ctx.fillRect(0,0,cw,ch);
+
+    const vig = ctx.createRadialGradient(cw*0.5, ch*0.46, ch*0.2, cw*0.5, ch*0.5, ch*0.75);
+    vig.addColorStop(0, 'rgba(0,0,0,0)');
+    vig.addColorStop(1, 'rgba(0,0,0,0.55)');
+    ctx.fillStyle = vig;
+    ctx.fillRect(0,0,cw,ch);
+
+    /* ---------- outro pull-back ---------- */
+    const outro = ramp(p, 0.84, 1.0);
+    const sceneScale = 1 - outro*0.08;
+    const sceneShiftY = outro*ch*0.05;
+    const sceneAlpha = 1 - outro*0.55;
+    ctx.save();
+    ctx.globalAlpha = sceneAlpha;
+    ctx.translate(G.cx, G.botY);
+    ctx.scale(sceneScale, sceneScale);
+    ctx.translate(-G.cx, -G.botY - sceneShiftY);
+
+    /* ---------- contact shadow (stays grounded — doesn't tilt with the glass) ---------- */
+    const sh = ctx.createRadialGradient(G.cx, G.botY+G.glassH*0.05, 0, G.cx, G.botY+G.glassH*0.05, G.botW*0.9);
+    sh.addColorStop(0, 'rgba(0,0,0,0.45)');
+    sh.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = sh;
+    ctx.beginPath(); ctx.ellipse(G.cx, G.botY+G.glassH*0.04, G.botW*0.85, G.glassH*0.07, 0, 0, Math.PI*2); ctx.fill();
+
+    /* a permanent, subtle tilt makes the glass read as photographed, not diagrammed */
+    const tilt = -0.052 - outro*0.02;
+    ctx.save();
+    ctx.translate(G.cx, G.pivotY);
+    ctx.rotate(tilt);
+    ctx.translate(-G.cx, -G.pivotY);
+
+    /* ---------- stage progress ---------- */
+    const pourP = ramp(p, 0.06, 0.32);
+    const iceP  = ramp(p, 0.34, 0.46);
+    const iceLandT = ramp(iceP, 0.78, 1.0);
+    const garnP = ramp(p, 0.48, 0.60);
+    const garnLandT = ramp(garnP, 0.7, 1.0);
+
+    /* ---------- liquid ---------- */
+    const liquidFrac = pourP * 0.74 + (iceP>0 ? iceLandT*0.02 : 0);
+    const interiorTopY = G.topY + G.wall*1.4;
+    const interiorBotY = G.botY - G.wall*1.2;
+    const liquidTopY = lerp(interiorBotY, interiorTopY, liquidFrac);
+
+    if(pourP > 0.001){
+      const liquidWAt = lerp(G.botW, G.topW, (liquidTopY-G.botY)/(G.topY-G.botY));
+      const liquidRy = G.topRy * (liquidWAt/G.topW);
+
+      ctx.save();
+      roundedPoly(ctx, G.pts, G.radii);
+      ctx.clip();
+      ctx.beginPath();
+      ctx.rect(G.cx-G.glassW, liquidTopY, G.glassW*2, ch);
+      ctx.clip();
+
+      const lg = ctx.createLinearGradient(0, liquidTopY, 0, interiorBotY);
+      lg.addColorStop(0, '#e8964f');
+      lg.addColorStop(0.4, '#c9702f');
+      lg.addColorStop(1, '#7a3312');
+      ctx.fillStyle = lg;
+      ctx.beginPath();
+      const waveAmp = G.glassH*0.006 * (1 - outro);
+      ctx.moveTo(G.cx-G.glassW, liquidTopY);
+      for(let x=-G.glassW; x<=G.glassW; x+=6){
+        const yy = liquidTopY + Math.sin((x*0.04) + tSec*1.6)*waveAmp;
+        ctx.lineTo(G.cx+x, yy);
+      }
+      ctx.lineTo(G.cx+G.glassW, ch);
+      ctx.lineTo(G.cx-G.glassW, ch);
+      ctx.closePath();
+      ctx.fill();
+
+      /* ambient bubbles */
+      FX.bubbles.forEach(b => {
+        const bx = G.cx - G.glassW*0.5 + b.fx*G.glassW;
+        const cyc = ((tSec*b.spd + b.phase) % 1);
+        const by = lerp(interiorBotY, liquidTopY, cyc);
+        if(by < interiorBotY && by > liquidTopY - 4){
+          ctx.globalAlpha = 0.35*(1-cyc);
+          ctx.fillStyle = '#ffe0b0';
+          ctx.beginPath(); ctx.arc(bx, by, b.size*dpr, 0, Math.PI*2); ctx.fill();
+          ctx.globalAlpha = 1;
+        }
+      });
+      ctx.restore();
+
+      /* liquid surface as an ellipse (viewed slightly from above) — the single
+         biggest cue that this is a 3D vessel and not a flat silhouette */
+      ctx.save();
+      roundedPoly(ctx, G.pts, G.radii);
+      ctx.clip();
+      ctx.beginPath();
+      ctx.ellipse(G.cx, liquidTopY, liquidWAt/2, liquidRy, 0, 0, Math.PI*2);
+      const topG = ctx.createRadialGradient(G.cx-liquidWAt*0.12, liquidTopY-liquidRy*0.3, 1, G.cx, liquidTopY, liquidWAt*0.55);
+      topG.addColorStop(0, '#ffcf8f');
+      topG.addColorStop(0.45, '#e8964f');
+      topG.addColorStop(1, '#a85623');
+      ctx.fillStyle = topG;
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(255,230,190,0.5)';
+      ctx.lineWidth = Math.max(1, dpr*0.8);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    /* ---------- pour stream + splash ---------- */
+    const streamOn = pourP > 0.01 && pourP < 0.92;
+    if(streamOn){
+      const streamAlpha = ramp(pourP,0,0.06) * (1-ramp(pourP,0.82,0.94));
+      const streamX = G.cx + Math.sin(tSec*3.0)*G.glassW*0.02;
+      ctx.globalAlpha = streamAlpha;
+      const sg = ctx.createLinearGradient(streamX,0,streamX,liquidTopY);
+      sg.addColorStop(0,'rgba(230,150,70,0.05)');
+      sg.addColorStop(1,'rgba(232,150,79,0.85)');
+      ctx.fillStyle = sg;
+      const sw = G.glassW*0.045;
+      ctx.beginPath();
+      ctx.moveTo(streamX-sw/2, 0);
+      ctx.lineTo(streamX+sw/2, 0);
+      ctx.lineTo(streamX+sw*0.35, liquidTopY);
+      ctx.lineTo(streamX-sw*0.35, liquidTopY);
+      ctx.closePath(); ctx.fill();
+      ctx.globalAlpha = 1;
+
+      /* splash spray at impact point */
+      FX.pourSplash.forEach(d => {
+        const t = ((tSec*d.speedT + d.phase) % 1);
+        const dist = d.spd * G.glassH * 0.22 * Math.sin(t*Math.PI);
+        const dx = Math.cos(d.ang)*dist;
+        const dy = Math.sin(d.ang)*dist;
+        const a = streamAlpha * (1-t) * 0.9;
+        if(a <= 0.01) return;
+        ctx.globalAlpha = a;
+        ctx.fillStyle = '#f0a35c';
+        ctx.beginPath();
+        ctx.arc(streamX+dx, liquidTopY+dy, d.size*dpr*(1-t*0.4), 0, Math.PI*2);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      });
+    }
+
+    /* ---------- ice cube ---------- */
+    if(iceP > 0.001){
+      const fallT = ramp(iceP, 0, 0.78);
+      const size = G.glassW*0.30;
+      const startY = interiorTopY - G.glassH*0.9;
+      const landY = liquidTopY - size*0.35;
+      const iy = iceLandT>0 ? lerp(landY, landY+Math.sin(tSec*4)*size*0.03, 1) : lerp(startY, landY, fallT);
+      const rot = lerp(-0.5, 0.06, fallT);
+
+      ctx.save();
+      roundedPoly(ctx, G.pts, G.radii);
+      ctx.clip();
+      drawIceCube(ctx, G.cx, iy, size, rot, 1);
+      ctx.restore();
+
+      /* splash burst on landing */
+      if(iceLandT > 0.001 && iceLandT < 1){
+        const bt = iceLandT;
+        FX.iceBurst.forEach(d => {
+          const dist = d.spd * G.glassH * 0.5 * Math.sin(bt*Math.PI*0.9);
+          const dx = Math.cos(d.ang)*dist;
+          const dy = Math.sin(d.ang)*dist*0.6 - dist*d.drop*0.3;
+          const a = (1-bt)*0.85;
+          if(a<=0.01) return;
+          ctx.globalAlpha = a;
+          ctx.fillStyle = '#f3b378';
+          ctx.beginPath();
+          ctx.arc(G.cx+dx, landY+dy, d.size*dpr, 0, Math.PI*2);
+          ctx.fill();
+          ctx.globalAlpha = 1;
+        });
+      }
+    }
+
+    /* ---------- garnish: orange twist ---------- */
+    if(garnP > 0.001){
+      const fallT = ramp(garnP, 0, 0.7);
+      const restY = liquidTopY - G.glassH*0.05;
+      const startY = interiorTopY - G.glassH*0.7;
+      const gy = lerp(startY, restY, fallT);
+      const gx = G.cx + G.glassW*0.22;
+      const rot = lerp(-1.2, -0.25, fallT) + (garnLandT>0? Math.sin(tSec*2)*0.02:0);
+
+      ctx.save();
+      ctx.translate(gx, gy);
+      ctx.rotate(rot);
+      ctx.globalAlpha = ramp(garnP,0,0.08);
+      const og = ctx.createLinearGradient(-14*dpr,0,14*dpr,0);
+      og.addColorStop(0,'#e8862f');
+      og.addColorStop(1,'#f5b04a');
+      ctx.strokeStyle = og;
+      ctx.lineWidth = Math.max(2, G.glassW*0.028);
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(-16*dpr, -6*dpr);
+      ctx.quadraticCurveTo(0, -22*dpr, 16*dpr, -2*dpr);
+      ctx.quadraticCurveTo(22*dpr, 8*dpr, 8*dpr, 16*dpr);
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+      ctx.restore();
+
+      if(garnLandT > 0.001 && garnLandT < 1){
+        const bt = garnLandT;
+        FX.garnishBurst.forEach(d => {
+          const dist = d.spd * G.glassH * 0.22 * Math.sin(bt*Math.PI);
+          const dx = Math.cos(d.ang)*dist, dy = Math.sin(d.ang)*dist;
+          const a = (1-bt)*0.7;
+          if(a<=0.01) return;
+          ctx.globalAlpha = a;
+          ctx.fillStyle = '#f0a35c';
+          ctx.beginPath(); ctx.arc(gx+dx, restY+dy, d.size*dpr, 0, Math.PI*2); ctx.fill();
+          ctx.globalAlpha = 1;
+        });
+      }
+    }
+
+    /* ---------- glass body (drawn over liquid edges, under condensation) ---------- */
+    roundedPoly(ctx, G.pts, G.radii);
+    const glassFill = ctx.createLinearGradient(G.cx-G.glassW/2,0,G.cx+G.glassW/2,0);
+    glassFill.addColorStop(0,   'rgba(255,255,255,0.07)');
+    glassFill.addColorStop(0.10,'rgba(255,255,255,0.40)');
+    glassFill.addColorStop(0.16,'rgba(255,255,255,0.14)');
+    glassFill.addColorStop(0.30,'rgba(255,255,255,0.04)');
+    glassFill.addColorStop(0.72,'rgba(255,255,255,0.02)');
+    glassFill.addColorStop(0.88,'rgba(255,255,255,0.10)');
+    glassFill.addColorStop(1,   'rgba(255,255,255,0.20)');
+    ctx.fillStyle = glassFill;
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,0.28)';
+    ctx.lineWidth = Math.max(1, dpr*1.1);
+    ctx.stroke();
+
+    /* faceted crystal cut-lines */
+    ctx.save();
+    roundedPoly(ctx, G.pts, G.radii);
+    ctx.clip();
+    ctx.strokeStyle = 'rgba(255,255,255,0.10)';
+    ctx.lineWidth = Math.max(1, dpr*0.8);
+    const cuts = 5;
+    for(let i=1;i<cuts;i++){
+      const fx = i/cuts;
+      const xTop = lerp(G.pts[0][0], G.pts[1][0], fx);
+      const xBot = lerp(G.pts[3][0], G.pts[2][0], fx) + Math.sin(fx*8)*G.glassW*0.02;
+      ctx.beginPath();
+      ctx.moveTo(xTop, G.topY);
+      ctx.lineTo(xBot, G.botY);
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    /* base: soft curved arc suggesting the thick glass foot */
+    ctx.save();
+    roundedPoly(ctx, G.pts, G.radii);
+    ctx.clip();
+    ctx.beginPath();
+    ctx.ellipse(G.cx, G.botY - G.botRy*0.3, G.botW/2*0.94, G.botRy, 0, 0, Math.PI);
+    ctx.strokeStyle = 'rgba(255,255,255,0.14)';
+    ctx.lineWidth = Math.max(1, dpr*0.9);
+    ctx.stroke();
+    ctx.restore();
+
+    /* rim: the full ellipse at the glass opening — the single biggest 3D cue */
+    drawRimEllipse(ctx, G.cx, G.topY, G.topW/2, G.topRy, G.wall, 1);
+
+    /* ---------- condensation droplets on exterior ---------- */
+    ctx.save();
+    roundedPoly(ctx, G.pts, G.radii);
+    ctx.clip();
+    FX.condensation.forEach(d => {
+      const local = ramp(p, d.appearAt, d.appearAt+0.05);
+      if(local <= 0) return;
+      const slide = ramp(p, d.appearAt, 1.0) * d.speed;
+      const dx = G.pts[0][0] + d.fx*(G.pts[1][0]-G.pts[0][0]);
+      const dy0 = G.topY + d.fy0*G.glassH;
+      const dy = Math.min(G.botY - G.wall, dy0 + slide*G.glassH*1.4);
+      const len = d.len*G.glassH*(0.6+local*0.4);
+      ctx.globalAlpha = 0.5*local;
+      const dg = ctx.createLinearGradient(dx, dy-len, dx, dy+d.w*dpr*2);
+      dg.addColorStop(0,'rgba(255,255,255,0)');
+      dg.addColorStop(0.7,'rgba(255,255,255,0.55)');
+      dg.addColorStop(1,'rgba(255,255,255,0.75)');
+      ctx.strokeStyle = dg;
+      ctx.lineWidth = d.w*dpr;
+      ctx.lineCap = 'round';
+      ctx.beginPath(); ctx.moveTo(dx, dy-len); ctx.lineTo(dx, dy); ctx.stroke();
+      ctx.beginPath(); ctx.fillStyle = 'rgba(255,255,255,0.8)';
+      ctx.arc(dx, dy+d.w*dpr*0.6, d.w*dpr*0.9, 0, Math.PI*2); ctx.fill();
+      ctx.globalAlpha = 1;
+    });
+    ctx.restore();
+
+    /* ---------- rim light sweep ---------- */
+    const shineP = ramp(p, 0.60, 0.80);
+    if(shineP > 0){
+      ctx.save();
+      roundedPoly(ctx, G.pts, G.radii);
+      ctx.clip();
+      const sx = lerp(G.pts[0][0]-40*dpr, G.pts[1][0]+40*dpr, shineP);
+      const shineGrad = ctx.createLinearGradient(sx-30*dpr,0,sx+30*dpr,0);
+      shineGrad.addColorStop(0,'rgba(255,255,255,0)');
+      shineGrad.addColorStop(0.5,'rgba(255,235,210,0.28)');
+      shineGrad.addColorStop(1,'rgba(255,255,255,0)');
+      ctx.fillStyle = shineGrad;
+      ctx.fillRect(sx-30*dpr, G.topY, 60*dpr, G.glassH);
+      ctx.restore();
+    }
+
+    ctx.restore(); /* end tilt group */
+    ctx.restore(); /* end outro transform */
+  }
+
+  /* =====================================================================
+     TEXT OVERLAYS
+     ===================================================================== */
+  const ovTag = $('#ovTag');
+  const ovTitle = $('#ovTitle');
+  const ovSub   = $('#ovSub');
+  const SUB_WORDS = ['Carved','from','stone.','<br>','Poured','with','fire.'];
+  (function buildSub(){
+    const el = $('#ovSubText');
+    SUB_WORDS.forEach(w => {
+      if(w === '<br>'){ el.appendChild(document.createElement('br')); return; }
+      const s = document.createElement('span');
+      s.className = 'w'; s.textContent = w;
+      el.appendChild(s);
+    });
+  })();
+  const subWordEls = Array.from(ovSub.querySelectorAll('.w'));
+
+  function updateOverlays(p){
+    ovTag.style.opacity = band(p, 0.02, 0.05, 0.13, 0.16).toFixed(3);
+    ovTitle.style.opacity = band(p, 0.03, 0.06, 0.16, 0.19).toFixed(3);
+
+    ovSub.style.opacity = band(p, 0.50, 0.53, 0.80, 0.84).toFixed(3);
+    const n = subWordEls.length;
+    for(let i=0;i<n;i++){
+      const start = 0.53 + (i/n) * 0.20;
+      const o = ramp(p, start, start + 0.03);
+      const el = subWordEls[i];
+      el.style.opacity = o.toFixed(3);
+      el.style.transform = 'translateY(' + (6 - 6*o).toFixed(2) + 'px)';
+    }
+  }
+
+  /* =====================================================================
+     SCROLL PROGRESS BAR (whole page)
+     ===================================================================== */
+  const vfill = $('#vfill');
+  function updateVBar(){
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const p = max > 0 ? window.scrollY / max : 0;
+    vfill.style.height = (p*100).toFixed(2) + '%';
+  }
+
+  /* =====================================================================
+     RENDER LOOP
+     ===================================================================== */
+  let targetP = 0, displayP = 0;
+  const t0 = performance.now();
+  function renderLoop(){
+    displayP += (targetP - displayP) * 0.14;
+    if(Math.abs(targetP - displayP) < 0.0005) displayP = targetP;
+    const tSec = (performance.now() - t0) / 1000;
+    drawScene(displayP, canvas.width, canvas.height, tSec);
+    requestAnimationFrame(renderLoop);
+  }
+
+  function initScroll(){
+    sizeCanvas();
+    buildFX(canvas.width, canvas.height);
+
+    if(window.gsap && window.ScrollTrigger){
+      gsap.registerPlugin(ScrollTrigger);
+      ScrollTrigger.create({
+        trigger: '#hero',
+        start: 'top top',
+        end: 'bottom bottom',
+        onUpdate: (self) => {
+          targetP = self.progress;
+          updateOverlays(self.progress);
+        }
+      });
+      ScrollTrigger.refresh();
+    } else {
+      const hero = $('#hero');
+      window.addEventListener('scroll', () => {
+        const rect = hero.getBoundingClientRect();
+        const total = hero.offsetHeight - window.innerHeight;
+        const p = clamp(-rect.top / total, 0, 1);
+        targetP = p; updateOverlays(p);
+      });
+    }
+
+    window.addEventListener('scroll', updateVBar, { passive:true });
+    updateVBar();
+    renderLoop();
+  }
+
+  window.addEventListener('resize', () => {
+    sizeCanvas(); FX = null;
+    if(window.ScrollTrigger) ScrollTrigger.refresh();
+    updateVBar();
+  });
+
+  /* =====================================================================
+     BOOT: minimum-display loader, then reveal scene
+     ===================================================================== */
+  const loaderFill = $('#loaderFill');
+  function finishLoading(){
+    const loader = $('#loader');
+    loader.style.opacity = '0';
+    setTimeout(() => { loader.style.display = 'none'; }, 850);
+    initScroll();
+  }
+  function boot(){
+    loaderFill.style.width = '20%';
+    const fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+    const minWait = new Promise(res => setTimeout(res, 700));
+    requestAnimationFrame(() => { loaderFill.style.width = '100%'; });
+    Promise.all([fontsReady, minWait]).then(finishLoading);
+  }
+
+  /* =====================================================================
+     MENU — data-driven two-level browse + modal (no cart: this is a bar).
+     Catalog lives in /data/cocktails.json — edit names, prices, copy there.
+     ===================================================================== */
+  let STORE = { store:{ currencySymbol:'£' }, categories:[] };
+  let CAT_BY_ID = {};
+  const symbol = () => (STORE.store && STORE.store.currencySymbol) || '£';
+  const fmt = (n) => symbol() + Number(n).toFixed(2);
+
+  async function loadCatalog(){
+    try {
+      const res = await fetch('data/cocktails.json', { cache:'no-cache' });
+      if(!res.ok) throw new Error('HTTP '+res.status);
+      STORE = await res.json();
+    } catch(e){
+      console.error('Could not load data/cocktails.json —', e);
+      STORE = { store:{ currencySymbol:'£' }, categories:[] };
+    }
+    CAT_BY_ID = {};
+    (STORE.categories || []).forEach(c => { CAT_BY_ID[c.id] = c; });
+    buildCategories();
+  }
+
+  const catGrid = $('#catGrid');
+  function buildCategories(){
+    catGrid.innerHTML = '';
+    if(!STORE.categories || !STORE.categories.length){
+      catGrid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:rgba(255,255,255,0.4)">Menu unavailable.</p>';
+      return;
+    }
+    STORE.categories.forEach((c, i) => {
+      const card = document.createElement('div');
+      card.className = 'cat-card';
+      const count = (c.products && c.products.length) || 0;
+      card.innerHTML =
+        '<div class="cc-index">'+(i<9?'0':'')+(i+1)+'</div>' +
+        '<div class="cc-name">'+c.name+'</div>' +
+        (c.tagline ? '<div class="cc-tagline">&ldquo;'+c.tagline+'&rdquo;</div>' : '') +
+        '<div class="cc-meta">'+(c.meta || (count+' serves'))+'</div>' +
+        '<div class="cc-cta">Explore &rarr;</div>';
+      card.addEventListener('click', () => openCategory(c.id));
+      catGrid.appendChild(card);
+    });
+  }
+
+  const catView = $('#catView');
+  const detailView = $('#detailView');
+  const prodGrid = $('#prodGrid');
+
+  function openCategory(id){
+    const c = CAT_BY_ID[id];
+    if(!c) return;
+    $('#detailTitle').textContent = c.name;
+    $('#detailTagline').textContent = c.tagline ? ('"'+c.tagline+'"') : '';
+    prodGrid.innerHTML = '';
+
+    c.products.forEach((pr) => {
+      const card = document.createElement('div');
+      card.className = 'prod-card';
+      const chips = (pr.tags||[]).map(t => '<span class="pc-chip">'+t+'</span>').join('');
+      card.innerHTML =
+        '<div class="pc-cat">'+c.name+' &middot; '+pr.glass+'</div>' +
+        '<div class="pc-name">'+pr.name+'</div>' +
+        '<div class="pc-desc">'+(pr.description||'')+'</div>' +
+        '<div class="pc-tags">'+chips+'</div>' +
+        '<div class="pc-from">' +
+          '<span class="val">'+fmt(pr.price)+'</span>' +
+          '<span class="pc-view">View &rarr;</span>' +
+        '</div>';
+      card.addEventListener('click', () => openModal(c, pr));
+      prodGrid.appendChild(card);
+    });
+
+    catView.classList.remove('active');
+    detailView.classList.add('active');
+    if(window.gsap){
+      gsap.fromTo('#detailView .prod-card',
+        { y:30, opacity:0 },
+        { y:0, opacity:1, duration:0.6, stagger:0.06, ease:'power3.out', clearProps:'transform' });
+      gsap.fromTo('#detailView .detail-top', { y:-12, opacity:0 }, { y:0, opacity:1, duration:0.5, ease:'power2.out' });
+    }
+    if(window.ScrollTrigger) ScrollTrigger.refresh();
+    window.scrollTo({ top: $('#menu').offsetTop - 40, behavior:'smooth' });
+  }
+
+  function backToCats(){
+    detailView.classList.remove('active');
+    catView.classList.add('active');
+    if(window.gsap){
+      gsap.fromTo('#catView .cat-card', { y:20, opacity:0 }, { y:0, opacity:1, duration:0.5, stagger:0.05, ease:'power3.out', clearProps:'transform' });
+    }
+    if(window.ScrollTrigger) ScrollTrigger.refresh();
+  }
+  $('#backBtn').addEventListener('click', backToCats);
+
+  /* ---------- modal ---------- */
+  const modal = $('#modal');
+  let mProduct = null;
+
+  function openModal(c, pr){
+    mProduct = pr;
+    $('#mCat').textContent = c.name;
+    $('#mName').textContent = pr.name;
+    $('#mDesc').textContent = pr.description || '';
+    $('#mGlass').textContent = pr.glass || '';
+    $('#mPrice').textContent = fmt(pr.price);
+    $('#mTags').innerHTML = (pr.tags||[]).map(t => '<span class="pc-chip">'+t+'</span>').join('');
+
+    modal.classList.add('open');
+    requestAnimationFrame(() => modal.style.opacity = '1');
+  }
+  function closeModal(){
+    modal.style.opacity = '0';
+    setTimeout(() => modal.classList.remove('open'), 350);
+  }
+  $('#modalClose').addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeModal(); });
+
+  $('#reserveFromModal').addEventListener('click', () => {
+    if(mProduct){
+      $('#rNotes').value = "I'd like to try the " + mProduct.name + ".";
+    }
+    closeModal();
+    setTimeout(() => $('#reserve').scrollIntoView({ behavior:'smooth' }), 200);
+  });
+
+  /* =====================================================================
+     TOAST
+     ===================================================================== */
+  const toast = $('#toast');
+  let toastT;
+  function showToast(html){
+    toast.innerHTML = html; toast.classList.add('show');
+    clearTimeout(toastT);
+    toastT = setTimeout(() => toast.classList.remove('show'), 3200);
+  }
+
+  /* =====================================================================
+     NAV + RESERVATION FORM (demo submit — no backend)
+     ===================================================================== */
+  $('#menuLink').addEventListener('click', () => {
+    $('#menu').scrollIntoView({ behavior:'smooth' });
+  });
+  $('#reserveLink').addEventListener('click', () => {
+    $('#reserve').scrollIntoView({ behavior:'smooth' });
+  });
+
+  $('#rsvForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = $('#rName').value.trim();
+    const date = $('#rDate').value;
+    if(!name) return;
+    showToast('Thanks, <b>'+name+'</b> &mdash; we\'ll confirm your table'+(date?' for '+date:'')+' by email shortly.');
+    $('#rsvForm').reset();
+  });
+
+  /* go */
+  function start(){ loadCatalog(); boot(); }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', start);
+  } else { start(); }
+})();
+</script>
+</body>
+</html>
